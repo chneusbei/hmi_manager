@@ -262,7 +262,7 @@
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;
-                        X轴起始值：<input type="text" name="pressDataId"  th:value="${param.pressDataId!=null?param.pressDataId:0}" > <input type="submit" value="确定"></div>
+                        X轴起始值：<input type="text" name="pressDataId"  th:value="${param.pressDataId}" > <input type="submit" value="确定"></div>
                 </form>
 
 
@@ -279,7 +279,7 @@
                             var pair = vars[i].split("=");
                             if(pair[0] == variable){return pair[1];}
                         }
-                        return(0);
+                        return(false);
                     }
 
 
@@ -287,7 +287,9 @@
                     var myChart = echarts.init(document.getElementById('main'));
                     var names=[];
                     var pressDataId=getQueryVariable("pressDataId");
-
+                    if(pressDataId==false){
+                        pressDataId=0;
+                    }
                     $.ajax({
                         type : "post",
                         async : false, //同步执行
