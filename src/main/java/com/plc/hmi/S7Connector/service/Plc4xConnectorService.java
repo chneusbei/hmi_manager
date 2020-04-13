@@ -194,7 +194,6 @@ public class Plc4xConnectorService {
     }
 
     /*
-        builder.addItem("shuru2", "%I0.1:BOOL");
         builder.addItem("Tag_1",  "%M0.1:BOOL");
         builder.addItem("shuru2", "%I0.1:BOOL");
         builder.addItem("shuru3", "%I0.2:BOOL");
