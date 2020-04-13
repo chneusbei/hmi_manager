@@ -80,7 +80,7 @@ public class Plc4xConnectorService {
             connect2Plc();
         }
 
-        if (!plcConnection.getMetadata().canRead()) {
+        if (!plcConnection.getMetadata().canRead()) {/*判断数据是否可以读取*/
             logger.info("This connection doesn't support reading.");
             return null;
         }

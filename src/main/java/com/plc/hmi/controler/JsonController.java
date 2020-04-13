@@ -18,11 +18,9 @@ public class JsonController {
 
     @RequestMapping("/getHisDateByCode")
     public String getHisDateByCode(@RequestParam(value = "pressDataId") Long pressDataId){
-       /* System.out.println("pressDataId:"+pressDataId);*/
         pressDataId = 1L;
         List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(1L, pressDataId);
                 String json = JSON.toJSONString(list);
-               // System.out.println(json);
         return json;
     }
 }
