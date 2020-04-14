@@ -14,10 +14,7 @@ import org.springframework.util.SocketUtils;
 
 import javax.sound.midi.Soundbank;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /***
  * 曲线信息-数据
@@ -29,6 +26,9 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     public static final String tagGroup = HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode();
     public static Map<Long, List<PressureCurveEntity>> curveMap = new HashMap<Long, List<PressureCurveEntity>>();
     public static Long productNo;
+    private static Long startTime= 0L;
+    private static Long endTime= 0L;
+    private static Long peerStartTime= 0L;
     /**
      *  获取设备状态
      *  频率是每秒钟一次
@@ -44,6 +44,13 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      * @return
      */
     public List<PressureCurveEntity> getCurveDatas() {
+        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
+        List<PressureCurveEntity> list = curveMap.get(productNo);
+        if(!CollectionUtils.isEmpty(list)) {
+            System.out.println("size = "+list.size()+", totalTime="+(endTime-startTime) );
+        } else {
+
+        }
         return curveMap.get(productNo);
     }
 
@@ -52,25 +59,42 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      * @return
      */
     public void getCurveDatasFromPlc() {
-        System.out.println("get data from plc >>>>>>>>>>>>>>>>>>>>>>>>");
-//        List<PlcEntity> plcEntityList = this.getDatas();
-//        PressureCurveEntity curve = plc2Curve(plcEntityList);
-//        if(CollectionUtils.isEmpty(curveMap.get(curve.getPressDataId()))) {
-//            //TODO
-//            //需要将除当前当前零件外的其他信息全部入库并从map中去除。
-//            curveMap.clear();
-//            List<PressureCurveEntity>  curveEntityList = new ArrayList<PressureCurveEntity>();
-//            curveEntityList.add(curve);
-//            curveMap.put(curve.getPressDataId(),curveEntityList);
+        peerStartTime = System.currentTimeMillis();
+//        System.out.println("get data from plc >>>>>>>>>>>>>>>>>>>>>>>>");
+        List<PlcEntity> plcEntityList = this.getDatas();
+        PressureCurveEntity curve = plc2Curve(plcEntityList);
+//        if(curve.getCurveRecording()) {
+//             System.out.println("true ******** ");
 //        } else {
-//            curveMap.get(curve.getPressDataId()).add(curve);
+////            System.out.println("false ");
 //        }
-        try {
-            //每20毫秒获取一次数据
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if(curve.getCurveRecording()) {
+            startTime =  this.startTime > 0 ? startTime : System.currentTimeMillis();
+//            System.out.println("******productNo="+curve.getPressDataId()+" , position="+curve.getPosition());
+            productNo = curve.getPressDataId();
+           if(CollectionUtils.isEmpty(curveMap.get(curve.getPressDataId()))) {
+               List<PressureCurveEntity>  curveEntityList = new ArrayList<PressureCurveEntity>();
+               curveEntityList.add(curve);
+               curveMap.put(curve.getPressDataId(),curveEntityList);
+            }else {
+               curveMap.get(curve.getPressDataId()).add(curve);
+           }
+            //TODO
+            //需要将除当前当前零件外的其他信息全部入库并从map中去除。
+//            curveMap.clear();
+        } else {
+            if(endTime ==0) {
+                endTime = this.startTime > 0 ? System.currentTimeMillis() : endTime;
+            }
         }
+        System.out.println("every time spend time = "+(System.currentTimeMillis() - peerStartTime));
+
+//        try {
+//            //每20毫秒获取一次数据
+//            Thread.sleep(20);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
     }
 
 
@@ -104,7 +128,11 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 } else if(PlcEntityEnum.equipment_operation_productNo.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //零件号
                     curveEntity.setPressDataId(new Long(plcEntity.getValueOjb().toString()));
+                }else if(PlcEntityEnum.curve_status_curve_recording.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //零件号
+                    curveEntity.setCurveRecording(new Boolean(plcEntity.getValueOjb().toString()));
                 }
+
             }
 
         }

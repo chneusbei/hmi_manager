@@ -15,13 +15,14 @@ import java.util.List;
 public class Plc4xTest {
     @Autowired
     private Plc4xCurveDataService service;
-    @Autowired
-    private Plc4xTestService testService;
+//    @Autowired
+//    private Plc4xTestService testService;
 
     @Test
     public void testSql() {
-//        List<PressureCurveEntity>  curveEntityList = service.getCurveDatas();
-        List<PlcEntity> testList = testService.getDatas();
+        service.getCurveDatasFromPlc();
+        List<PressureCurveEntity>  curveEntityList = service.getCurveDatas();
+//        List<PlcEntity> testList = testService.getDatas();
         System.out.println("END----------------");
     }
 

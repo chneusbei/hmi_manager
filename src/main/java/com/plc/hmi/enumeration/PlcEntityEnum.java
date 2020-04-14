@@ -3,6 +3,9 @@ package com.plc.hmi.enumeration;
 public enum PlcEntityEnum {
     //设备信息-操作
     equipment_operation_productNo("productNo", "零件号"),
+    //曲线信息-状态
+    curve_status_curve_recording("curveRecording", "曲线记录开始"),
+
 
     //曲线信息-数据 curve_data
     curve_data_curPosition("curPosition", "当前位置"),

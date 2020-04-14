@@ -8,6 +8,8 @@ import java.util.Date;
 public class PressureCurveEntity extends AbstractBaseEntity {
     //位置/压力曲线ID
     private Long pressDataId;
+    //曲线记录开始状态
+    private Boolean curveRecording;
     //位置点序号
     private int recordNo;
     //位置
@@ -130,5 +132,13 @@ public class PressureCurveEntity extends AbstractBaseEntity {
 
     public void setShortPressDate(BigDecimal shortPressDate) {
         this.shortPressDate = shortPressDate;
+    }
+
+    public Boolean getCurveRecording() {
+        return curveRecording;
+    }
+
+    public void setCurveRecording(Boolean curveRecording) {
+        this.curveRecording = curveRecording;
     }
 }
