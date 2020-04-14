@@ -67,4 +67,8 @@ public class PressureCurveDao extends AbstractHmiBaseDao {
         pressureCurveMapper.insert(entity);
     }
 
+    public void batchInsert(List<PressureCurveEntity> entityList) {
+        pressureCurveMapper.batchInsert(entityList);
+    }
+
 }

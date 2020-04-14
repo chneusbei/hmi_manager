@@ -45,4 +45,8 @@ public class PressureCurveService extends AbstractBaseService{
     public void insert(PressureCurveEntity entity) {
         pressureCurveDao.insert(entity);
     }
+
+    public void batchInsert(List<PressureCurveEntity> entityList) {
+        pressureCurveDao.batchInsert(entityList);
+    }
 }

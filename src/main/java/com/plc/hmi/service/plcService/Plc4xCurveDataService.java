@@ -44,10 +44,10 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      * @return
      */
     public List<PressureCurveEntity> getCurveDatas() {
-        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
+//        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
         List<PressureCurveEntity> list = curveMap.get(productNo);
         if(!CollectionUtils.isEmpty(list)) {
-            System.out.println("size = "+list.size()+", totalTime="+(endTime-startTime) );
+//            System.out.println("size = "+list.size()+", totalTime="+(endTime-startTime) );
         } else {
 
         }
@@ -87,7 +87,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 endTime = this.startTime > 0 ? System.currentTimeMillis() : endTime;
             }
         }
-        System.out.println("every time spend time = "+(System.currentTimeMillis() - peerStartTime));
+//        System.out.println("every time spend time = "+(System.currentTimeMillis() - peerStartTime));
 
 //        try {
 //            //每20毫秒获取一次数据

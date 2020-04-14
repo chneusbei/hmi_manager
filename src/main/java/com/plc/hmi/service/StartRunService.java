@@ -26,8 +26,8 @@ public class StartRunService implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        while (true){
-            plc4xCurveDataService.getCurveDatasFromPlc();
-        }
+//        while (true){
+//            plc4xCurveDataService.getCurveDatasFromPlc();
+//        }
     }
 }

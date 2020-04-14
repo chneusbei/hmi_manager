@@ -32,7 +32,7 @@ public class TagsInfoTest {
         entity.setCreateBy("SYS");
         entity.setCreateTime(new Date());
         entity.setUpdateTime(new Date());
-        service.insert(entity);
+//        service.insert(entity);
         List<TagsInfoEntity> result = service.getTags();
 //        entity.setTagName("Tag2");
 //        entity.setTagTypeId(11);

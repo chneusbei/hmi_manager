@@ -26,9 +26,9 @@ public class TagTypeTest {
         entity.setCreateBy("chensubei");
         entity.setCreateTime(new Date());
         entity.setUpdateTime(new Date());
-        service.insert(entity);
+//        service.insert(entity);
         List<TagTypeEntity> result = service.getTagType();
-        service.delete(entity);
+//        service.delete(entity);
 //        service.deleteProduct(entity);
 
 
