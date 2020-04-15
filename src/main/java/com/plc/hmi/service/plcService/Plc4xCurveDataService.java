@@ -4,10 +4,15 @@ import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.enumeration.PlcEntityEnum;
+import com.plc.hmi.service.StartRunService;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.SocketUtils;
 
+import javax.sound.midi.Soundbank;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,8 +25,10 @@ import java.util.Map;
 @Service
 @Component
 public class Plc4xCurveDataService extends Plc4xBaseService{
+    private final Log logger = LogFactory.getLog(Plc4xCurveDataService.class);
     public static final String tagGroup = HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode();
     public static Map<Long, List<PressureCurveEntity>> curveMap = new HashMap<Long, List<PressureCurveEntity>>();
+    public static Long productNo;
     /**
      *  获取设备状态
      *  频率是每秒钟一次
@@ -37,18 +44,35 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      * @return
      */
     public List<PressureCurveEntity> getCurveDatas() {
-        List<PlcEntity> plcEntityList = this.getDatas();
-        PressureCurveEntity curve = plc2Curve(plcEntityList);
-        if(CollectionUtils.isEmpty(curveMap.get(curve.getPressDataId()))) {
-            //TODO
-            //需要将除当前当前零件外的其他信息全部入库并从map中去除。
-            curveMap.clear();
-            List<PressureCurveEntity>  curveEntityList = new ArrayList<PressureCurveEntity>();
-            curveEntityList.add(curve);
-            curveMap.put(curve.getPressDataId(),curveEntityList);
-        }
-        return curveMap.get(curve.getPressDataId());
+        return curveMap.get(productNo);
     }
+
+    /**
+     * 获取实时曲线信息
+     * @return
+     */
+    public void getCurveDatasFromPlc() {
+        System.out.println("get data from plc >>>>>>>>>>>>>>>>>>>>>>>>");
+//        List<PlcEntity> plcEntityList = this.getDatas();
+//        PressureCurveEntity curve = plc2Curve(plcEntityList);
+//        if(CollectionUtils.isEmpty(curveMap.get(curve.getPressDataId()))) {
+//            //TODO
+//            //需要将除当前当前零件外的其他信息全部入库并从map中去除。
+//            curveMap.clear();
+//            List<PressureCurveEntity>  curveEntityList = new ArrayList<PressureCurveEntity>();
+//            curveEntityList.add(curve);
+//            curveMap.put(curve.getPressDataId(),curveEntityList);
+//        } else {
+//            curveMap.get(curve.getPressDataId()).add(curve);
+//        }
+        try {
+            //每20毫秒获取一次数据
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * 将PLC信息对象转换为曲线对象
