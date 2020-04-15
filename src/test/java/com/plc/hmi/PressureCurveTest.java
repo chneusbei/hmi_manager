@@ -3,6 +3,7 @@ package com.plc.hmi;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.PressureDataEntity;
 import com.plc.hmi.service.PressureCurveService;
+import com.plc.hmi.thread.PressCurveThread;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,10 +18,13 @@ public class PressureCurveTest {
     @Autowired
     private PressureCurveService service;
 
+    PressCurveThread pressCurveThread;
+
 
 
     @Test
     public void testSql() {
+
         List<PressureCurveEntity> entityList = new ArrayList<PressureCurveEntity>();
         for(int i=1; i<11; i++) {
             PressureCurveEntity entity = new PressureCurveEntity();
@@ -38,19 +42,49 @@ public class PressureCurveTest {
             entity.setUpdateTime(new Date());
             entityList.add(entity);
         }
-        service.batchInsert(entityList);
+        service.curve2Db(entityList);
+        pressCurveThread = new PressCurveThread(service) ;
+        pressCurveThread.run();
+//        service.batchInsert(entityList);
 //        service.insert(entity);
 //        List<PressureCurveEntity> resultList = service.getCurrDate();
 //        List<PressureCurveEntity> hisList =service.getHisDateByCode(1L);
         System.out.println("END----------------");
+
+        /*
+        java.util.concurrent.ConcurrentLinkedDeque<String>
+                deque = new java.util.concurrent.ConcurrentLinkedDeque<String>();
+        List<String> list = new ArrayList<String>();
+        List<String> list1 = new ArrayList<String>();
+        for(int i=0; i<5; i++) {
+            list.add("String"+(i+1));
+            list1.add("BBBB"+(i+1));
+        }
+        deque.addAll(list);
+        deque.addAll(list1);
+        deque.addFirst("frist");
+        deque.addLast("last");
+        list1.clear();
+        String temp = deque.getFirst();
+        String temp0 = deque.getLast();
+        String temp1=deque.peek();
+        String temp2=deque.peekFirst();
+        String temp3 =deque.peekLast();
+        String temp4=deque.removeFirst();//这个
+        String temp7=deque.removeLast();
+        String temp9=deque.remove();
+        System.out.println("END----------------");
+
+         */
     }
 
-    private void testQueue() {
-//        java.util.concurrent.ConcurrentLinkedQueue quee ;
-        java.util.concurrent.ConcurrentLinkedDeque deque;
-
-
-    }
+//    @Test
+//    private void testQueue() {
+////        java.util.concurrent.ConcurrentLinkedQueue quee ;
+//
+//
+//
+//    }
 
 
 }

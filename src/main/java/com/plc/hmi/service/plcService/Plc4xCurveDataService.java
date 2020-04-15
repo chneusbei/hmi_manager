@@ -4,10 +4,12 @@ import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.enumeration.PlcEntityEnum;
+import com.plc.hmi.service.PressureCurveService;
 import com.plc.hmi.service.StartRunService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jvnet.hk2.annotations.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.SocketUtils;
@@ -22,10 +24,13 @@ import java.util.*;
 @Service
 @Component
 public class Plc4xCurveDataService extends Plc4xBaseService{
+    @Autowired
+    private PressureCurveService pressureCurveService;
+
     private final Log logger = LogFactory.getLog(Plc4xCurveDataService.class);
     public static final String tagGroup = HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode();
     public static Map<Long, List<PressureCurveEntity>> curveMap = new HashMap<Long, List<PressureCurveEntity>>();
-    public static Long productNo;
+    public static Long productNo=0L;
     private static Long startTime= 0L;
     private static Long endTime= 0L;
     private static Long peerStartTime= 0L;
@@ -79,10 +84,13 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             }else {
                curveMap.get(curve.getPressDataId()).add(curve);
            }
-            //TODO
-            //需要将除当前当前零件外的其他信息全部入库并从map中去除。
-//            curveMap.clear();
+
         } else {
+            //需要将除当前当前零件外的其他信息全部入库并从map中去除。
+            if(!curveMap.isEmpty()) {
+                pressureCurveService.curve2Db(curveMap.get(productNo));
+                curveMap.clear();
+            }
             if(endTime ==0) {
                 endTime = this.startTime > 0 ? System.currentTimeMillis() : endTime;
             }
