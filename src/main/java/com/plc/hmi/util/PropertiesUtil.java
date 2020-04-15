@@ -1,8 +1,11 @@
 package com.plc.hmi.util;
 
+import org.springframework.context.annotation.Configuration;
+
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-
+@Configuration
 public class PropertiesUtil {
     static Properties properties = new Properties();
 

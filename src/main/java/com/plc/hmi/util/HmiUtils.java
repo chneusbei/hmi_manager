@@ -17,7 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class HmiUtils extends LongTypeHandler {
+public class HmiUtils  {
     static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//注意月份是MM
     private static Logger logger = LoggerFactory.getLogger(HmiUtils.class);
     public static final Date getDate(Object obj) {

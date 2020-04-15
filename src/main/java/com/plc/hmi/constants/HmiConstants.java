@@ -87,7 +87,7 @@ public class HmiConstants {
 
         public static PlcClientDatatype getTypeByCode(String code) {
             if (StringUtils.isNotBlank(code)) {
-                for (PLC_DATA_TYPE ele : PLC_DATA_TYPE.values()) {
+                for (PLC_DATA_TYPE ele : PLC_DATA_TYPE.values()) {/*获得枚举类中的所有枚举*/
                     if ((ele.getCode()).equals(code)) {
                         return ele.getValue();
                     }
@@ -97,6 +97,4 @@ public class HmiConstants {
         }
 
     }
-
-
 }
