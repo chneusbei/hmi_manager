@@ -90,6 +90,7 @@
                 stress:'5.642',
                 speed:'1.04'
             },
+            intervalId: null,
             listPlcEntity1:{},
             listPlcEntity2:{}
         },methods:{
@@ -97,10 +98,22 @@
                 axios.get("/getEquipmentStatus").then(result=>{
                     this.listPlcEntity1=result.data;
                 })
+            },
+            timer(){
+                if (this.intervalId!=null){/*代表计时器已经启动*/
+                    return ;
+                }
+                this.intervalId = setInterval(() => {
+                   this.getEquipmentStatus()
+                }, 3000);
             }
         }, created(){
+            this.timer();
             this.getEquipmentStatus();
-        }
+        },destroyed () {
+               // （很重要）当跳转到其他页面的时候，要在生命周期的destroyed里清空this.cdTimer，不然会出错
+               clearTimeout(this.intervalId)
+             },
     })
 </script>
 </body>
