@@ -13,41 +13,10 @@
     <script src="axios.min.js"></script>
 </head>
 <body>
-<!--<div style="display: inline-block;">
- <iframe style="width:50%;height:500px; display: inline-block;"   scrolling="yes" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" src="public.html "></iframe>
-</div>-->
-
 <div id="app">
     <div class="lyear-layout-web">
         <div class="lyear-layout-container">
             <script src="test.js"></script>
-           <!-- <iframe style="width:100%;scrolling:yes ;frameborder:0 ;marginheight:0 ;marginwidth:0;"    src="public.html ">
-
-
-
-            </iframe>-->
-       <!-- <aside class="lyear-layout-sidebar" >
-            &lt;!&ndash; logo &ndash;&gt;
-            <div id="logo" class="sidebar-header">
-                <a target="_parent" href="index.html"><h2>HMI监控系统</h2></a>
-            </div>
-            <div class="lyear-layout-sidebar-scroll">
-
-                <iframe   scrolling="yes" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" src="public.html "></iframe>
-
-</div>
-        </aside>-->
-       <!-- <header class="lyear-layout-header">
-            <nav class="navbar navbar-default">
-                <iframe scrolling="yes" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="50%" src="publichead.html "></iframe>
-            </nav>
-        </header>-->
-
-
-
-
-
-
             <main  class="lyear-layout-content">
                 <div class="container-fluid">
 
@@ -114,8 +83,6 @@
     <script type="text/javascript" src="js/main.min.js"></script>
 </div>
 <script type="module">
-
-        $("#test").load("public.html");
     new Vue({
         el: "#app",
         data: {
@@ -123,7 +90,6 @@
            userName:null
         }, methods: {
             getUser(index=1){
-                alert(index)
                 let params = new URLSearchParams();
                 params.append('userName', this.userName);
                 params.append('index', index);
