@@ -20,6 +20,7 @@ public class Plc4xCurveStatusService extends Plc4xBaseService{
      *  高频查询，需要先获得 PlcReadRequest.Builder
      */
     public List<PlcEntity> getDatas() {
+
        super.initQuereyList(tagGroup);
        return super.getDataByBuilder();
     }

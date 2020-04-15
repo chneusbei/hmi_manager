@@ -13,6 +13,11 @@ public class initialController {
     public String logins(){
         return "index";
     }
+    @RequestMapping("/public")
+    public String getpublic(){
+        System.out.println("----");
+        return "public";
+    }
     @RequestMapping("/getpressresults")
     public String getpressresults(){
         return "getpressresults";

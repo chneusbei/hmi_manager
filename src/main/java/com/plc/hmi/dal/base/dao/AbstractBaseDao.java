@@ -35,7 +35,7 @@ public abstract class AbstractBaseDao<T extends AbstractBaseEntity> {
      * 插入
      */
     protected void insert(String sqlId, Map<String, Object> param) {
-        String sqlString =getSqlId(sqlId);
+       String sqlString =getSqlId(sqlId);
        getSqlMapClientTemplate().insert(sqlString, param);
     }
     /**

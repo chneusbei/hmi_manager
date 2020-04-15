@@ -79,7 +79,7 @@ public class Plc4xConnectorService {
         if (!isConnected()) {
             connect2Plc();
         }
-
+        System.out.println(plcConnection);
         if (!plcConnection.getMetadata().canRead()) {/*判断数据是否可以读取*/
             logger.info("This connection doesn't support reading.");
             return null;
@@ -102,7 +102,7 @@ public class Plc4xConnectorService {
     }
 
     /**
-     * 不需要重复创建builder， 适用于频繁查询场景
+     * 不需要重复创建builder,适用于频繁查询场景
      * @param builder
      */
     public List<PlcEntity> queryData(PlcReadRequest.Builder builder) {
