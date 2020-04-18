@@ -45,18 +45,21 @@
                     <tr>
                         <td colspan="9" align="center"><h4>IO状态</h4></td>
                     </tr>
-                    <tr>
-                        <td colspan="9" align="left" style="background-color: #b5cfd2" >INPUT</td>
-                    </tr>
-                    <tr >
-                        <td align="center" v-for="o in list1">{{o.name}}</td>
-                    </tr>
-                    <tr>
+                    <div v-for="item in listPlcEntity">
+                        <tr>
+                            <td colspan="9" align="left" style="background-color: #b5cfd2" >{{item.name}}</td>
+                        </tr>
+                        <tr >
+                            <td align="center">{{o.valueOjb}}</td>
+                        </tr>
+                    </div>
+
+               <!--     <tr>
                         <td colspan="9" align="left" style="background-color: #b5cfd2" >OUTPUT</td>
                     </tr>
                     <tr >
                         <td align="center" v-for="o in list2">{{o.name}}</td>
-                    </tr>
+                    </tr>-->
                 </table>
             </main>
             <!--End 页面主要内容-->
@@ -71,7 +74,7 @@
 <script type="module">
     new Vue({
         el:"#app",
-        data:{
+        data:{listPlcEntity:{}/*
             list1:[
                 {
                     name:'DDFAFA'
@@ -138,8 +141,13 @@
                     name:'DFHE'
                 }
             ]
-        },methods:{
-
+        }*/,methods:{
+                getEquipmentIoStatus(){
+                    axios.get("/EquipmentIoStatus").then(result=>{
+                        this.listPlcEntity=result.data;
+                    });
+                }
+            }
         }
     })
 </script>
