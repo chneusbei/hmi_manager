@@ -8,18 +8,19 @@
     <script th:src="@{/vue.min.js}"></script>
     <script th:src="@{/axios.min.js}"></script>
     <script src="js/form.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
 </head>
 <body>
 <div class="form" style="position:relative" id="app">
 
     <!--注册表单-->
     <div class="form_register" style="height:0;">
-        <form action="#">
+        <form action="/createUser" method="post" @submit="submit">
             <h1>注册</h1>
-            <div class="form_item">
+            <div class="">
                 <label for="username">角色：</label>
-                <select  class="form-control" id="type">
-                    <option v-for="o in list1"  v-model="o.id">{{o.name}}</option>
+                <select name="id" class="form-control" id="type" style="height: 35px">
+                    <option v-for="r in roleList" :value="r.id">{{r.roleName}}</option>
                 </select>
             </div>
             <div class="form_item">
@@ -31,10 +32,14 @@
                 <input type="password" name="pwd" id="pwd" placeholder="请输入密码名" required>
             </div>
             <div class="form_item">
-                <label for="password">确认新密码：</label>
+                <label for="password">确认密码：</label>
                 <input type="password" name="pwd2" id="pwd2" placeholder="请再次输入密码名" required>
             </div>
             <div class="form_item">
+                <label for="password">创建人：</label>
+                <input type="text" name="createname" id="createname" placeholder="请输入创建人姓名" required>
+            </div>
+            <div class="form_item"  @click="createuser">
                 <input type="submit" value="注册">
             </div>
         </form>
@@ -44,18 +49,18 @@
     <!--登录表单-->
     <div class="form_login" style="position:absolute ">
 
-        <form action="/login">
+        <form action="/loginUser" method="post">
             <h1>登录</h1>
             <div class="form_item">
                 <label for="username">用户名：</label>
-                <input type="text" name="username" id="username" placeholder="请输入用户名" required>
+                <input type="text" name="username" id="username" ref="username" placeholder="请输入用户名" required>
             </div>
             <div class="form_item">
                 <label for="password">密码：</label>
-                <input type="password" name="password" id="password" placeholder="请输入密码名" required>
+                <input type="password" name="password" id="password" ref="password" placeholder="请输入密码名" required >
             </div>
-            <div class="form_item">
-                <input type="submit" value="登录">
+            <div class="form_item" >
+                <input type="submit" value="登录" @click="loginUser" >
             </div>
         </form>
         <div class="info">没有账号？点击<span class="switch register_Btn">注册账号</span></div>
@@ -65,22 +70,72 @@
     new Vue({
         el: "#app",
         data: {
-            list1:[
-                {id:1,name:'管理员'},
-                {id:2,name:'设备维护员'},
-                {id:3,name:'操作员'}
-            ],
-            user:{
-                id:1,
-                name:'王五',
-                password:"123456"
-            }
+            roleList:[],
         }, methods: {
+            initRole(){
+                axios.get("/queryRole").then(response=>{
+                    this.roleList=response.data;
+                }).catch(function(error){
+                    alert(error)
+                })
+            },submit(){
+                var pwd=$("#pwd").val();
+                var pwds=$("#pwd2").val();
+                var uname=$("#name").val();
+                var cname=$("#createname").val();
+                if(pwd===pwds){
+                    window.event.returnValue = true;
+                }else{
+                    alert("你的密码不一致！")
+                    window.event.returnValue = false;
+                }
 
+            },loginUser(){
+                if(this.$refs.username.value===''){
+                    alert("账号不能为空！")
+                }else if(this.$refs.password.value===''){
+                    alert("密码不能为空！")
+                }else{
+                    let requestDate={
+                        username:this.$refs.username.value,
+                        password:this.$refs.password.value
+                    }
+                    axios("/UserQuery",{params: requestDate}).then(response=>{
+                        if(response.data.id==undefined){
+                            alert("账号或密码不正确！")
+                        }
+
+                    }).catch(function(error){
+                        alert(error);
+                    })
+                }
+
+            },createuser(){
+                var pwd=$("#pwd").val();
+                var pwds=$("#pwd2").val();
+                var uname=$("#name").val();
+                var cname=$("#createname").val();
+                if(pwd===pwds){
+                    if( cname!=undefined){
+                        let requestDate={
+                            uname:uname
+                        }
+                        axios("/UserFlag",{params: requestDate}).then(response=>{
+                            alert(response.data)
+
+                        }).catch(function(error){
+                            alert(error);
+                        })
+                    }
+
+                }
+            }
+
+        },created(){
+            this.initRole();
         }
     })
 </script>
 </body>
-</html><SCRIPT Language=VBScript><!--
-
-//--></SCRIPT>
+</html>
+</html>

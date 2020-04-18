@@ -42,7 +42,11 @@ public class PressureCurveTest {
             entity.setUpdateTime(new Date());
             entityList.add(entity);
         }
+<<<<<<< HEAD
         /*service.curve2Db(entityList);*/
+=======
+        service.curve2queue(entityList);
+>>>>>>> 6739d312db7e63fab2f2ef9a2d351f47bbca8b3e
         pressCurveThread = new PressCurveThread(service) ;
         pressCurveThread.run();
 //        service.batchInsert(entityList);

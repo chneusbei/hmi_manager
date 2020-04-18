@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class initialController {
     @RequestMapping("/logins")
     public String logins(){
-        return "index";
+        return "logins";
     }
     @RequestMapping("/public")
     public String getpublic(){
@@ -79,8 +79,9 @@ public class initialController {
         return "accountManagement";
     }
     @RequestMapping("/OperatorRole")
-    public String OperatorRole(@RequestParam(value = "id",required = false) Long id, HttpServletRequest request){
-        request.setAttribute("id",id);
+    public String OperatorRole(HttpServletRequest request){
+        long id2=(long)request.getSession().getAttribute("userid");
+        request.setAttribute("id",id2);
         return "OperatorRole";
     }
     @RequestMapping("/createAnAccount")
