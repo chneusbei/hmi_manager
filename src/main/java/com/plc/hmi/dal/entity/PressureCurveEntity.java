@@ -38,6 +38,32 @@ public class PressureCurveEntity extends AbstractBaseEntity {
     //reserve2
     private BigDecimal reserve2;
 
+
+    /**
+     * 为界面画公差窗口添加的属性
+     */
+    //是否是公差曲线， 为true时用黑色线paint，为false时，用蓝色线paint
+    private boolean isErrant;
+    //是否是实线， 如果是false， 需要画为虚线。 只有是公差曲线即isErrant=true时，才可能是false
+    private boolean isSolidLine;
+
+
+    public boolean isErrant() {
+        return isErrant;
+    }
+
+    public void setErrant(boolean errant) {
+        isErrant = errant;
+    }
+
+    public boolean isSolidLine() {
+        return isSolidLine;
+    }
+
+    public void setSolidLine(boolean solidLine) {
+        isSolidLine = solidLine;
+    }
+
     public BigDecimal getReserve0() {
         return reserve0;
     }

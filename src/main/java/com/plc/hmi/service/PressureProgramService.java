@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Component
@@ -18,8 +20,15 @@ public class PressureProgramService extends AbstractBaseService{
     @Resource
     PressureProgramDao pressureProgramDao;
 
+    //所有公差窗口数据缓存
+    private static Map<Long, PressureProgramEntity> programMap = new HashMap<Long, PressureProgramEntity>();
+
     public List<PressureProgramEntity> getWithProductId(Long productId) {
         return pressureProgramDao.getWithProductId(productId);
+    }
+
+    public Map<Long, List<PressureProgramEntity>> getAllDatas() {
+        return pressureProgramDao.getAllDatas();
     }
 
     public void save(PressureProgramEntity entity) {

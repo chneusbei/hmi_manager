@@ -2,19 +2,17 @@ package com.plc.hmi.service.plcService;
 
 import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
+import com.plc.hmi.dal.entity.PressureProgramEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.enumeration.PlcEntityEnum;
 import com.plc.hmi.service.PressureCurveService;
-import com.plc.hmi.service.StartRunService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.SocketUtils;
 
-import javax.sound.midi.Soundbank;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -34,6 +32,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     private static Long startTime= 0L;
     private static Long endTime= 0L;
     private static Long peerStartTime= 0L;
+
     /**
      *  获取设备状态
      *  频率是每秒钟一次
@@ -88,7 +87,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         } else {
             //需要将除当前当前零件外的其他信息全部入库并从map中去除。
             if(!curveMap.isEmpty()) {
-                pressureCurveService.curve2Db(curveMap.get(productNo));
+                pressureCurveService.curve2queue(curveMap.get(productNo));
                 curveMap.clear();
             }
             if(endTime ==0) {
@@ -146,4 +145,22 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         }
         return curveEntity;
     }
+
+
+    /**
+     * 获取实时曲线信息+公差窗口
+     * @return
+     */
+    public List<List<PressureCurveEntity>> getCurveDatasAndErrand() {
+//        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
+        List<PressureCurveEntity> list = curveMap.get(productNo);
+        if(!CollectionUtils.isEmpty(list)) {
+//            System.out.println("size = "+list.size()+", totalTime="+(endTime-startTime) );
+        } else {
+
+        }
+//        return curveMap.get(productNo);
+        return null;
+    }
+
 }
