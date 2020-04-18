@@ -5,11 +5,13 @@ import com.plc.hmi.dal.mapper.PressureProgramMapper;
 import com.plc.hmi.enumeration.PressureProgramEntityEnum;
 import com.plc.hmi.util.HmiUtils;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class PressureProgramDao extends AbstractHmiBaseDao {
@@ -18,6 +20,19 @@ public class PressureProgramDao extends AbstractHmiBaseDao {
 
     public List<PressureProgramEntity> getWithProductId(Long productId) {
         return this.getEntityList(pressureProgramMapper.getWithProductId(productId));
+    }
+
+    public Map<Long, List<PressureProgramEntity>> getAllDatas() {
+        List<PressureProgramEntity> programList = this.getEntityList(pressureProgramMapper.getAllDatas());
+        if(CollectionUtils.isEmpty(programList)) {
+            return null;
+        }
+        Map<Long, List<PressureProgramEntity>> programMap = new HashMap<Long, List<PressureProgramEntity>>();
+        for(PressureProgramEntity program : programList) {
+
+        }
+//        return programMap;
+        return null;
     }
 
     @Override

@@ -51,14 +51,26 @@ public class PressureCurveService extends AbstractBaseService{
         pressureCurveDao.insert(entity);
     }
 
+    /**
+     * 批量入库
+     * @param entityList
+     */
     public void batchInsert(List<PressureCurveEntity> entityList) {
         pressureCurveDao.batchInsert(entityList);
     }
 
-    public void curve2Db(List<PressureCurveEntity> entityList) {
+    /**
+     * 实时数据加入入库队列
+     * @param entityList
+     */
+    public void curve2queue(List<PressureCurveEntity> entityList) {
         synCurveDeque.addAll(entityList);
     }
 
+
+    /**
+     * 自动批量入库
+     */
     public void autoBatchInsert() {
         if(!synCurveDeque.isEmpty()) {
             List<PressureCurveEntity> entityList = new ArrayList<PressureCurveEntity>();
@@ -71,8 +83,6 @@ public class PressureCurveService extends AbstractBaseService{
             }
         }
     }
-
-
 
 
 }
