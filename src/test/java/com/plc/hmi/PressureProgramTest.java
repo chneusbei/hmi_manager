@@ -110,31 +110,31 @@ public class PressureProgramTest {
         entity.setProtectPosition8(new BigDecimal(8.6));
         entity.setProtectTime8(new BigDecimal(8));
 
-        entity.setErrandType1("0");
+        entity.setErrandType1(0);
         entity.setPositionMin1(new BigDecimal(1));
         entity.setPositionMax1(new BigDecimal(9.1));
         entity.setPressMin1(new BigDecimal(1.1));
         entity.setPressMax1(new BigDecimal(99.1));
 
-        entity.setErrandType2("2");
+        entity.setErrandType2(2);
         entity.setPositionMin2(new BigDecimal(2));
         entity.setPositionMax2(new BigDecimal(9.2));
         entity.setPressMin2(new BigDecimal(2.2));
         entity.setPressMax2(new BigDecimal(99.2));
 
-        entity.setErrandType3("3");
+        entity.setErrandType3(3);
         entity.setPositionMin3(new BigDecimal(2));
         entity.setPositionMax3(new BigDecimal(9.3));
         entity.setPressMin3(new BigDecimal(3.3));
         entity.setPressMax3(new BigDecimal(99.3));
 
-        entity.setErrandType4("4");
+        entity.setErrandType4(4);
         entity.setPositionMin4(new BigDecimal(2));
         entity.setPositionMax4(new BigDecimal(9.4));
         entity.setPressMin4(new BigDecimal(4.4));
         entity.setPressMax4(new BigDecimal(99.4));
 
-        entity.setErrandType5("5");
+        entity.setErrandType5(5);
         entity.setPositionMin5(new BigDecimal(2));
         entity.setPositionMax5(new BigDecimal(9.5));
         entity.setPressMin5(new BigDecimal(5.5));

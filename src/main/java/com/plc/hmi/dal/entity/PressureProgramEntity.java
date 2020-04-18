@@ -171,7 +171,7 @@ public class PressureProgramEntity extends AbstractBaseEntity {
     private BigDecimal protectTime8;
 
     //程序类型 窗口类型_10:disable;1-12:见：公差窗口判据说明
-    private String errandType1;
+    private int errandType1;
     // '位置下限_1'
     private BigDecimal  positionMin1;
     // '位置上限_1'
@@ -181,44 +181,44 @@ public class PressureProgramEntity extends AbstractBaseEntity {
     // '压力上限_1'
     private BigDecimal  pressMax1;
     //程序类型 窗口类型_10:disable;1-12:见：公差窗口判据说明
-    private String errandType2;
-    // '位置下限_1'
+    private int errandType2;
+    // '位置下限'
     private BigDecimal  positionMin2;
-    // '位置上限_1'
+    // '位置上限'
     private BigDecimal  positionMax2;
-    // '压力下限_1'
+    // '压力下限'
     private BigDecimal  pressMin2;
-    // '压力上限_1'
+    // '压力上限'
     private BigDecimal  pressMax2;
     //程序类型 窗口类型_10:disable;1-12:见：公差窗口判据说明
-    private String errandType3;
-    // '位置下限_1'
+    private int errandType3;
+    // '位置下限'
     private BigDecimal  positionMin3;
-    // '位置上限_1'
+    // '位置上限'
     private BigDecimal  positionMax3;
-    // '压力下限_1'
+    // '压力下限'
     private BigDecimal  pressMin3;
-    // '压力上限_1'
+    // '压力上限'
     private BigDecimal  pressMax3;
     //程序类型 窗口类型_10:disable;1-12:见：公差窗口判据说明
-    private String errandType4;
-    // '位置下限_1'
+    private int errandType4;
+    // '位置下限'
     private BigDecimal  positionMin4;
-    // '位置上限_1'
+    // '位置上限'
     private BigDecimal  positionMax4;
-    // '压力下限_1'
+    // '压力下限'
     private BigDecimal  pressMin4;
-    // '压力上限_1'
+    // '压力上限'
     private BigDecimal  pressMax4;
     //程序类型 窗口类型_10:disable;1-12:见：公差窗口判据说明
-    private String errandType5;
-    // '位置下限_1'
+    private int errandType5;
+    // '位置下限'
     private BigDecimal  positionMin5;
-    // '位置上限_1'
+    // '位置上限'
     private BigDecimal  positionMax5;
-    // '压力下限_1'
+    // '压力下限'
     private BigDecimal  pressMin5;
-    // '压力上限_1'
+    // '压力上限'
     private BigDecimal  pressMax5;
 
 
@@ -878,11 +878,11 @@ public class PressureProgramEntity extends AbstractBaseEntity {
         this.protectTime8 = protectTime8;
     }
 
-    public String getErrandType1() {
+    public int getErrandType1() {
         return errandType1;
     }
 
-    public void setErrandType1(String errandType1) {
+    public void setErrandType1(int errandType1) {
         this.errandType1 = errandType1;
     }
 
@@ -918,11 +918,11 @@ public class PressureProgramEntity extends AbstractBaseEntity {
         this.pressMax1 = pressMax1;
     }
 
-    public String getErrandType2() {
+    public int getErrandType2() {
         return errandType2;
     }
 
-    public void setErrandType2(String errandType2) {
+    public void setErrandType2(int errandType2) {
         this.errandType2 = errandType2;
     }
 
@@ -958,11 +958,11 @@ public class PressureProgramEntity extends AbstractBaseEntity {
         this.pressMax2 = pressMax2;
     }
 
-    public String getErrandType3() {
+    public int getErrandType3() {
         return errandType3;
     }
 
-    public void setErrandType3(String errandType3) {
+    public void setErrandType3(int errandType3) {
         this.errandType3 = errandType3;
     }
 
@@ -998,11 +998,11 @@ public class PressureProgramEntity extends AbstractBaseEntity {
         this.pressMax3 = pressMax3;
     }
 
-    public String getErrandType4() {
+    public int getErrandType4() {
         return errandType4;
     }
 
-    public void setErrandType4(String errandType4) {
+    public void setErrandType4(int errandType4) {
         this.errandType4 = errandType4;
     }
 
@@ -1038,11 +1038,11 @@ public class PressureProgramEntity extends AbstractBaseEntity {
         this.pressMax4 = pressMax4;
     }
 
-    public String getErrandType5() {
+    public int getErrandType5() {
         return errandType5;
     }
 
-    public void setErrandType5(String errandType5) {
+    public void setErrandType5(int errandType5) {
         this.errandType5 = errandType5;
     }
 

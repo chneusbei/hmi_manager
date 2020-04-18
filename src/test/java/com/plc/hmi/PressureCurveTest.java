@@ -1,7 +1,6 @@
 package com.plc.hmi;
 
 import com.plc.hmi.dal.entity.PressureCurveEntity;
-import com.plc.hmi.dal.entity.PressureDataEntity;
 import com.plc.hmi.service.PressureCurveService;
 import com.plc.hmi.thread.PressCurveThread;
 import org.junit.jupiter.api.Test;
@@ -42,13 +41,9 @@ public class PressureCurveTest {
             entity.setUpdateTime(new Date());
             entityList.add(entity);
         }
-/*<<<<<<< HEAD
-        *//*service.curve2Db(entityList);*//*
-=======
         service.curve2queue(entityList);
->>>>>>> 6739d312db7e63fab2f2ef9a2d351f47bbca8b3e
         pressCurveThread = new PressCurveThread(service) ;
-        pressCurveThread.run();*/
+        pressCurveThread.run();
 //        service.batchInsert(entityList);
 //        service.insert(entity);
 //        List<PressureCurveEntity> resultList = service.getCurrDate();
