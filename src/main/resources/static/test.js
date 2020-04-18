@@ -12,7 +12,7 @@ document.writeln("                    <ul class=\'nav nav-subnav\'>");
 document.writeln("                        <li> <a   href=\'/equipmentStatusMonitoring\'>设备状态监控</a> </li>");
 document.writeln("                        <li> <a   href=\'/ioequipmentStatusMonitoring\'>设备IO状态监控</a> </li>");
 document.writeln("                        <li> <a   href=\'/safetyMonitoring\'>安全监控操作</a> </li>");
-document.writeln("                        <li> <a   href=\'/curveMonitoring\'>压装曲线监控</a> </li>");
+document.writeln("                        <li> <a   href=\'/curveQuery\'>压装曲线监控</a> </li>");
 document.writeln("                    </ul>");
 document.writeln("                </li>");
 document.writeln("                <li class=\'nav-item nav-item-has-subnav\'>");

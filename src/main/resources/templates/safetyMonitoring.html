@@ -53,11 +53,8 @@
                         <td colspan="3" align="center"><h4>安全监控</h4></td>
                     </tr>
                     <tr>
-                        <td align="center">光栅屏蔽&nbsp;&nbsp;<input type="radio"></td>
-                        <td align="center">安全门屏蔽&nbsp;&nbsp;<input type="radio"></td>
-                        <td align="center">蜂鸣器屏蔽&nbsp;&nbsp;<input type="radio"></td>
+                        <td v-for="item in listPlcEntity" align="center">{{item.name}}&nbsp;&nbsp;<input type="radio" :checked="item.valueOjb"></td>
                     </tr>
-
                 </table>
             </main>
             <!--End 页面主要内容-->
@@ -73,13 +70,15 @@
     new Vue({
         el:"#app",
         data:{
-            monitoring:{
-                place:'3.124',
-                stress:'5.642',
-                speed:'1.04'
-            }
+           listPlcEntity:{}
         },methods:{
-
+            getOperation(){
+axios.get("/getOperation").then(result=>{
+    this.listPlcEntity=result.data;
+})
+            }
+        },created(){
+            this.getOperation();
         }
     })
 </script>

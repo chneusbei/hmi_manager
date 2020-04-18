@@ -35,6 +35,8 @@
                 <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
                 <script type="text/javascript" src="js/main.min.js"></script>
                 <script type="text/javascript">
+
+
                     function getQueryVariable(variable)
                     {
                         var query = window.location.search.substring(1);
@@ -54,10 +56,10 @@
                     if(pressDataId==false){
                         pressDataId=0;
                     }
-                    $.ajax({
+                   /* $.ajax({
                         type : "post",
                         async : false, //同步执行
-                        url : "http://localhost:8080/getHisDateByCode?pressDataId="+pressDataId,
+                        url : "http://localhost:8080/getHisDateByCode1?pressDataId="+pressDataId,
                         data : {},
                         dataType : "json", //返回数据形式为json
                         success : function(result) {
@@ -70,17 +72,62 @@
                             alert("获取图表请求数据失败!");
                             myChart.hideLoading();
                         }
-                    })
-                    var arr=[];
+                    })*/
+
+                    var series1=[];
+
                     $.ajax({
                         type : "post",
                         async : false, //同步执行
-                        url : "http://localhost:8080/getHisDateByCode?pressDataId="+pressDataId,
+                        url : "http://localhost:8080/getCurveQueryByCode",
                         data : {},
                         dataType : "json", //返回数据形式为json
                         success : function(result) {
+
                             for(var i=0;i<result.length;i++){
-                                arr.push(result[i].pressForce);//y
+                                 var arr=[];
+                                var isErrant=true;
+                                var isSolidLine=true;
+
+                                  for(var j=0;j<result[i].length;j++){
+                                      /*alert(i+"-----"+j+"----");
+                                      alert(i+"-----"+j+"----"+result[i][j].pressForce);*/
+                                      arr.push(result[i][j].pressForce);//y
+                                      if(j==0){
+                                          isErrant=result[i][j].errant;
+                                          isSolidLine=result[i][j].solidLine;
+                                      }
+                                }
+                                  var color="";
+                                  if(isErrant){
+                                      color="black";
+                                  }else{
+                                      color="blue";
+                                  }
+                                var type="";
+                                if(isSolidLine){
+                                    type="solid";
+                                }else{
+                                    type="dotted";
+                                }
+
+                                series1.push({
+                                    data:arr,/*需要显示的数据*/
+                                    type: 'line',/*以什么方式展示*/
+                                    color:color,  //折线条的颜色
+                                    smooth:false,   //关键点，为true是不支持虚线的，实线就用true
+                                    // 显示数值
+                                    itemStyle:{
+                                        normal:{
+                                            lineStyle:{
+                                                width:2,
+                                                type:type  //'dotted'虚线 'solid'实线
+                                            },label : {show: true}
+                                        }
+                                    }
+                                });
+
+
                             }
                             console.log("arr=>"+arr);
                         },
@@ -88,7 +135,8 @@
                             alert("获取图表请求数据失败!");
                             myChart.hideLoading();
                         }
-                    })
+                    });
+
                     // 指定图表的配置项和数据
                     option = {
                         xAxis: {
@@ -98,12 +146,29 @@
                         yAxis: {
                             type: 'value'
                         },
-                        series: [{
-                            data:arr,/*需要显示的数据*/
-                            type: 'bar',/*以什么方式展示*/
+                        series:series1
+                       /* series: [{
+                            data:arr,/!*需要显示的数据*!/
+                            type: 'line',/!*以什么方式展示*!/
+                            color:['red'],  //折线条的颜色
+                            smooth:false,   //关键点，为true是不支持虚线的，实线就用true
                             // 显示数值
-                            itemStyle : { normal: {label : {show: true}}}/*是否把数值显示在曲线上 */
-                        }]
+                            itemStyle:{
+                                normal:{
+                                    lineStyle:{
+                                        width:2,
+                                        type:'dotted'  //'dotted'虚线 'solid'实线
+                                    },label : {show: true}
+                                }
+                            }
+                        },
+                            {
+                                name: '联盟广告',
+                                type: 'line',
+                                stack: '总量',
+                                data: [3, 5, 7, 8, 2, 5, 33]
+                            }
+                        ]*/
                     };
 
                     // 使用刚指定的配置项和数据显示图表。

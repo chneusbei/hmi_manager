@@ -93,7 +93,7 @@
     new Vue({
         el:"#app",
         data:{
-            systemParameter:null
+            systemParameter:{}
         },methods:{
             getSystemParameter(){
                 axios.get("/getSystemParameter").then(result=>{
