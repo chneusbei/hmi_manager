@@ -33,7 +33,7 @@ public class UserDao extends AbstractHmiBaseDao {
     }
 
     public PageInfo<UserEntity> getUserList(String userName,Integer index) {
-        PageHelper.startPage(index,1);
+        PageHelper.startPage(index,2);
         List<UserEntity> userList = userMapper.getUserList(userName);
         PageInfo<UserEntity> page = new PageInfo<UserEntity>(userList);
         if(page.getList() != null && !page.getList().isEmpty()) {
@@ -73,5 +73,18 @@ public class UserDao extends AbstractHmiBaseDao {
         userMapper.delete(entity);
     }
 
+    public UserEntity loginUser(String name,String pwd){
+        HashMap hashMap=userMapper.loginUser(name,pwd);
+        UserEntity userEntity=null;
+        if(hashMap==null){
+            userEntity=null;
+        }else{
+            userEntity=this.getEntity(userMapper.loginUser(name,pwd));
+        }
+        return userEntity;
+    }
+    public void  updateUser(int rid,long uid, String name, String pwd){
+        userMapper.updateUser(rid,uid,name,pwd);
+    }
 
 }

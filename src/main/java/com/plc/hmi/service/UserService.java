@@ -50,4 +50,10 @@ public class UserService extends AbstractBaseService{
     public void delete(UserEntity entity) {
         userDao.delete(entity);
     }
+    public UserEntity loginUser(String name,String pwd){
+        return userDao.loginUser(name,pwd);
+    };
+    public void  updateUser(int rid,long uid, String name, String pwd){
+        userDao.updateUser(rid,uid,name,pwd);
+    };
 }

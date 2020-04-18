@@ -49,27 +49,26 @@ public class UserControler {
     }
 
     @RequestMapping("/updateUser")
-    public String updateUser(@RequestParam Map<String,Object> map, HttpServletRequest request){
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUserName(HmiUtils.getString(map.get("userName")));
-        userEntity.setUserPassword(HmiUtils.getString(map.get("userPassword")));
-        userEntity.setRoleId(HmiUtils.getIntValue(map.get("roleId")));
-        userEntity.setId(HmiUtils.getLongValue(map.get("id")));
-        userEntity.setUpdateBy("");
-        userService.update(userEntity);
-        request.setAttribute("id",userEntity.getId());
-        return "/OperatorRole";
+    public String updateUser(String userName,String userPassword,int rid,long uid, HttpServletRequest request){
+        userService.updateUser(rid,uid,userName,userPassword);
+        return "accountManagement";
     }
 
 
     @RequestMapping("/addUser")
-    public String addUser(int roleId,String userName,String userPassWord){
+    public String addUser(int roleId,String userName,String userPassWord,String createby){
         UserEntity userEntity=new UserEntity();
         userEntity.setRoleId(roleId);
-        userEntity.setCreateBy("");
+        userEntity.setCreateBy(createby);
         userEntity.setUserPassword(userPassWord);
         userEntity.setUserName(userName);
-        userService.insert(userEntity);
-        return "accountManagement";
+        UserEntity userEntity1=userService.getUser(userName);
+        if(userEntity1==null){
+            userService.insert(userEntity);
+            return "accountManagement";
+        }else{
+            return "createAnAccount";
+        }
+
     }
 }
