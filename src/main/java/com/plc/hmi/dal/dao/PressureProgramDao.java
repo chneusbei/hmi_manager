@@ -9,6 +9,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,17 +23,17 @@ public class PressureProgramDao extends AbstractHmiBaseDao {
         return this.getEntityList(pressureProgramMapper.getWithProductId(productId));
     }
 
-    public Map<Long, List<PressureProgramEntity>> getAllDatas() {
+    public Map<Long, PressureProgramEntity> getAllDatas() {
         List<PressureProgramEntity> programList = this.getEntityList(pressureProgramMapper.getAllDatas());
         if(CollectionUtils.isEmpty(programList)) {
             return null;
         }
-        Map<Long, List<PressureProgramEntity>> programMap = new HashMap<Long, List<PressureProgramEntity>>();
-        for(PressureProgramEntity program : programList) {
+        Map<Long, PressureProgramEntity> programMap = new HashMap<Long, PressureProgramEntity>();
 
+        for(PressureProgramEntity program : programList) {
+            programMap.put(program.getProductId(), program);
         }
-//        return programMap;
-        return null;
+        return programMap;
     }
 
     @Override
@@ -129,31 +130,31 @@ public class PressureProgramDao extends AbstractHmiBaseDao {
         entity.setProtectPosition8(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.PROTECT_POSITION_8.getCode())));
         entity.setProtectTime8(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.PROTECT_TIME_8.getCode())));
 
-        entity.setErrandType1(HmiUtils.getString(map.get(PressureProgramEntityEnum.ERRAND_TYPE_1.getCode())));
+        entity.setErrandType1(HmiUtils.getIntValue(map.get(PressureProgramEntityEnum.ERRAND_TYPE_1.getCode())));
         entity.setPositionMin1(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.POSITION_MIN_1.getCode())));
         entity.setPositionMax1(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.POSITION_MAX_1.getCode())));
         entity.setPressMin1(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.PRESS_MIN_1.getCode())));
         entity.setPressMax1(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.PRESS_MAX_1.getCode())));
 
-        entity.setErrandType2(HmiUtils.getString(map.get(PressureProgramEntityEnum.ERRAND_TYPE_2.getCode())));
+        entity.setErrandType2(HmiUtils.getIntValue(map.get(PressureProgramEntityEnum.ERRAND_TYPE_2.getCode())));
         entity.setPositionMin2(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.POSITION_MIN_2.getCode())));
         entity.setPositionMax2(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.POSITION_MAX_2.getCode())));
         entity.setPressMin2(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.PRESS_MIN_2.getCode())));
         entity.setPressMax2(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.PRESS_MAX_2.getCode())));
 
-        entity.setErrandType3(HmiUtils.getString(map.get(PressureProgramEntityEnum.ERRAND_TYPE_3.getCode())));
+        entity.setErrandType3(HmiUtils.getIntValue(map.get(PressureProgramEntityEnum.ERRAND_TYPE_3.getCode())));
         entity.setPositionMin3(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.POSITION_MIN_3.getCode())));
         entity.setPositionMax3(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.POSITION_MAX_3.getCode())));
         entity.setPressMin3(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.PRESS_MIN_3.getCode())));
         entity.setPressMax3(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.PRESS_MAX_3.getCode())));
 
-        entity.setErrandType4(HmiUtils.getString(map.get(PressureProgramEntityEnum.ERRAND_TYPE_4.getCode())));
+        entity.setErrandType4(HmiUtils.getIntValue(map.get(PressureProgramEntityEnum.ERRAND_TYPE_4.getCode())));
         entity.setPositionMin4(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.POSITION_MIN_4.getCode())));
         entity.setPositionMax4(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.POSITION_MAX_4.getCode())));
         entity.setPressMin4(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.PRESS_MIN_4.getCode())));
         entity.setPressMax4(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.PRESS_MAX_4.getCode())));
 
-        entity.setErrandType5(HmiUtils.getString(map.get(PressureProgramEntityEnum.ERRAND_TYPE_5.getCode())));
+        entity.setErrandType5(HmiUtils.getIntValue(map.get(PressureProgramEntityEnum.ERRAND_TYPE_5.getCode())));
         entity.setPositionMin5(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.POSITION_MIN_5.getCode())));
         entity.setPositionMax5(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.POSITION_MAX_5.getCode())));
         entity.setPressMin5(HmiUtils.getBigDicimal(map.get(PressureProgramEntityEnum.PRESS_MIN_5.getCode())));
