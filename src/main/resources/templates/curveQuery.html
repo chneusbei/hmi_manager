@@ -182,7 +182,7 @@
                             data : {},
                             dataType : "json", //返回数据形式为json
                             success : function(result) {
-
+                                names=[];//重置为空
                                 for(var i=0;i<result.length;i++){
                                     var arr=[];
                                     var isErrant=true;
@@ -196,7 +196,11 @@
                                             isErrant=result[i][j].errant;
                                             isSolidLine=result[i][j].solidLine;
                                         }
+                                        if(result[i][j].errant==false){
+                                            names.push(result[i][j].position); //x名称显示
+                                        }
                                     }
+                                   // alert(names);
                                     var color="";
                                     if(isErrant){
                                         color="black";
