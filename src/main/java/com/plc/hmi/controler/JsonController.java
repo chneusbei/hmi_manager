@@ -3,6 +3,7 @@ package com.plc.hmi.controler;
 import com.alibaba.fastjson.JSON;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.service.PressureCurveService;
+import com.plc.hmi.service.PressureProgramService;
 import com.plc.hmi.service.plcService.Plc4xCurveDataService;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class JsonController {
     PressureCurveService pressureCurveService;
     @Autowired
     Plc4xCurveDataService curveDataService;
+    @Autowired
+    PressureProgramService programService;
     @RequestMapping("/getHisDateByCode")
     public String getHisDateByCode(@RequestParam(value = "pressDataId") Long pressDataId){
         pressDataId = 1L;
@@ -32,11 +35,13 @@ public class JsonController {
 
     @RequestMapping("/getCurveQueryByCode")
     public String getCurveQueryByCode(){
-        List<List<PressureCurveEntity>> lists=new ArrayList<List<PressureCurveEntity>>();
+//        List<List<PressureCurveEntity>> lists=new ArrayList<List<PressureCurveEntity>>();
         // lists=curveDataService.getCurveDatas();
 
-       List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(1L, 1l);
-
+//       List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(1L, 1l);
+       List<List<PressureCurveEntity>>  errantList = programService.getDataforChart(1L);
+//       errantList.add(list);
+/*
         List<PressureCurveEntity> list1=new ArrayList<PressureCurveEntity>();
         PressureCurveEntity pc=new PressureCurveEntity();
         pc.setErrant(false);
@@ -70,7 +75,10 @@ public class JsonController {
 
 
         String json = JSON.toJSONString(lists);
+        */
+        String json = JSON.toJSONString(errantList);
         System.out.println(json);
+        System.out.println("-----------------------------------------");
         return json;
     }
 }

@@ -1,5 +1,6 @@
 package com.plc.hmi;
 
+import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.PressureProgramEntity;
 import com.plc.hmi.service.PressureProgramService;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ public class PressureProgramTest {
 
     @Test
     public void testSql() {
+        /*
         PressureProgramEntity entity = new PressureProgramEntity();
         entity.setId(2L);
         entity.setProductId(1L);
@@ -151,6 +153,8 @@ public class PressureProgramTest {
 //        service.update(entity);
 //        service.delete(entity);
 
+*/
+        List<List<PressureCurveEntity>>  errantList = service.getDataforChart(1L);
 
         System.out.println("END----------------");
     }

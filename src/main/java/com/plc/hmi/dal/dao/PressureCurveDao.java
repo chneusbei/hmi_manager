@@ -51,6 +51,8 @@ public class PressureCurveDao extends AbstractHmiBaseDao {
         entity.setHandleDate(HmiUtils.getString(map.get(PressureCurveEntityEnum.HANDLE_DATE.getCode())));
         entity.setPressDate(HmiUtils.getBigDicimal(map.get(PressureCurveEntityEnum.PRESS_DATE.getCode())));
         entity.setCurSpeed(HmiUtils.getBigDicimal(map.get(PressureCurveEntityEnum.PRESS_DATE.getCode())));
+        entity.setErrant(false);
+        entity.setSolidLine(true);
         String dateString = entity.getPressDate().toString();
         if(null != dateString) {
             //20200409232605003
