@@ -14,12 +14,13 @@ public class PlcPressCurveThread implements Runnable {
     public void run() {
         while(true) {
             service.getCurveDatasFromPlc();
-//            try {
-//                //休眠两秒
-//                Thread.sleep(2000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                //休眠
+//                System.out.println("获取plc曲线数据。。。。。。。。。。。。。。。。。。。。。");
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

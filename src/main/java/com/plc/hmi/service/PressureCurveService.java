@@ -65,6 +65,7 @@ public class PressureCurveService extends AbstractBaseService{
      */
     public void curve2queue(List<PressureCurveEntity> entityList) {
         synCurveDeque.addAll(entityList);
+        System.out.println("add data to queue  size :" + entityList.size());
     }
 
 
@@ -72,6 +73,7 @@ public class PressureCurveService extends AbstractBaseService{
      * 自动批量入库
      */
     public void autoBatchInsert() {
+        System.out.println("批量插入操作。。。。。。。。。。。。。。。。。。。。。 sie = " + synCurveDeque.size());
         if(!synCurveDeque.isEmpty()) {
             List<PressureCurveEntity> entityList = new ArrayList<PressureCurveEntity>();
             while(!synCurveDeque.isEmpty()) {

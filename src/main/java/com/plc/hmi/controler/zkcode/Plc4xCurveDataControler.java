@@ -16,6 +16,8 @@ public class Plc4xCurveDataControler {
 
     @Resource
     Plc4xCurveDataService plc4xCurveDataService;
+    @Resource
+    Plc4xEquipmentOperationService plc4xEquipmentOperationService;
     @ResponseBody
     @PostMapping("/getCurveData")
     PressureCurveEntity getcurrDate(){
@@ -156,7 +158,7 @@ public class Plc4xCurveDataControler {
     }
 
 
-    Plc4xEquipmentOperationService plc4xEquipmentOperationService;
+
 
     /**
      *  获得安全监控
@@ -164,6 +166,7 @@ public class Plc4xCurveDataControler {
      */
     @GetMapping("/getOperation")
     public List<PlcEntity> getDatas(){
+        System.out.println("getOperation");
         List<PlcEntity> datas = plc4xEquipmentOperationService.getDatas();
         datas.stream().forEach(p->{
             if ("productNo".equals(p.getName())){

@@ -24,6 +24,10 @@ public class TagsInfoDao extends AbstractHmiBaseDao {
         return this.getEntityList(tagsInfoMapper.getTagsInfoByGroup(tagGroup));
     }
 
+    public List<TagsInfoEntity> getTagsByGroupAndName(String tagGroup, String tagEnName) {
+        return this.getEntityList(tagsInfoMapper.getTagsInfoByGroupAndName(tagGroup, tagEnName));
+    }
+
 
 
     @Override

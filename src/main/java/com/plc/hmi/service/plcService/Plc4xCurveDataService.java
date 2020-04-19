@@ -48,12 +48,12 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      * @return
      */
     public List<PressureCurveEntity> getCurveDatas() {
-        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
+//        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
         List<PressureCurveEntity> list = curveMap.get(productNo);
         if(!CollectionUtils.isEmpty(list)) {
-            System.out.println("size = "+list.size()+", totalTime="+(endTime-startTime) );
+//            System.out.println("size = "+list.size()+", totalTime="+(endTime-startTime) );
         } else {
-            System.out.println("curvel data is null" );
+//            System.out.println("curvel data is null" );
         }
         return curveMap.get(productNo);
     }
@@ -68,13 +68,13 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         List<PlcEntity> plcEntityList = this.getDatas();
         PressureCurveEntity curve = plc2Curve(plcEntityList);
         if(curve.getCurveRecording()) {
-             System.out.println("getCurveRecording = true ******** ");
+//             System.out.println("getCurveRecording = true ******** ");
         } else {
 //            System.out.println("getCurveRecording = false ");
         }
         if(curve.getCurveRecording()) {
             startTime =  this.startTime > 0 ? startTime : System.currentTimeMillis();
-            System.out.println("******productNo="+curve.getPressDataId()+" , position="+curve.getPosition());
+//            System.out.println("******productNo="+curve.getPressDataId()+" , position="+curve.getPosition());
             productNo = curve.getPressDataId();
            if(CollectionUtils.isEmpty(curveMap.get(curve.getPressDataId()))) {
                List<PressureCurveEntity>  curveEntityList = new ArrayList<PressureCurveEntity>();
@@ -87,14 +87,16 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         } else {
             //需要将除当前当前零件外的其他信息全部入库并从map中去除。
             if(!curveMap.isEmpty()) {
-                pressureCurveService.curve2queue(curveMap.get(productNo));
+//                System.out.println("set curve data to batch insert thread*************************");
+//                pressureCurveService.curve2queue(curveMap.get(productNo));
+                pressureCurveService.batchInsert(curveMap.get(productNo));
                 curveMap.clear();
             }
             if(endTime ==0) {
                 endTime = this.startTime > 0 ? System.currentTimeMillis() : endTime;
             }
         }
-        System.out.println("every time spend time = "+(System.currentTimeMillis() - peerStartTime));
+//        System.out.println("every time spend time = "+(System.currentTimeMillis() - peerStartTime));
 
 //        try {
 //            //每20毫秒获取一次数据
@@ -143,6 +145,11 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             }
 
         }
+        curveEntity.setIsDeleted("0");
+        curveEntity.setCreateBy("SYS");
+        curveEntity.setUpdateBy("SYS");
+        curveEntity.setCreateTime(new Date());
+        curveEntity.setUpdateTime(new Date());
         return curveEntity;
     }
 
@@ -161,6 +168,16 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         }
 //        return curveMap.get(productNo);
         return null;
+    }
+
+    /**
+     * 设置曲线开始开关
+     */
+    public void setDatas() {
+        Map<String, String> paraMap = new HashMap<>();
+        paraMap.put("choice", "true");
+        super.initWriteList(tagGroup, paraMap);
+        super.setPlcData();
     }
 
 }

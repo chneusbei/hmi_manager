@@ -157,7 +157,7 @@ public class Plc4xConnectorService {
 
 
     /**
-     * 不需要重复创建builder， 适用于频繁查询场景
+     * 写入PLC
      * @param queryList
      */
     public void setData(List<PlcEntity> queryList) {
@@ -169,18 +169,19 @@ public class Plc4xConnectorService {
             logger.info("This connection doesn't support write.");
         }
         PlcWriteRequest.Builder writeBuilder = plcConnection.writeRequestBuilder();
-        for(PlcEntity query : queryList)
-            writeBuilder.addItem(query.getName(),query.getFieldQuery(),query.getValueOjb());
+        for(PlcEntity query : queryList) {
+//            query.setFieldQuery("%DB300.DBX3.0:BOOL");
+            writeBuilder.addItem(query.getName(), query.getFieldQuery(), query.getValueOjb());
+        }
         PlcWriteRequest writeRequest = writeBuilder.build();
         PlcWriteResponse response = null;
 
         try {
             response = writeRequest.execute().get();
-
-            List<String> fieldNames = (List<String>) response.getFieldNames();
+            java.util.LinkedHashSet fieldNames = (java.util.LinkedHashSet) response.getFieldNames();
             if(!CollectionUtils.isEmpty(fieldNames)) {
-                for(String fieldName : fieldNames) {
-                    logger.info("fieldName = %， returnCode = %" +fieldName+",  "+ response.getResponseCode(fieldName));
+                for(Object fieldName : fieldNames) {
+                    logger.info("fieldName = %， returnCode = %" +fieldName+",  "+ response.getResponseCode(String.valueOf(fieldName)));
                 }
             }
 

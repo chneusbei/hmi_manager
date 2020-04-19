@@ -22,11 +22,14 @@
                 监控-压装曲线监控
                 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
                 <div id="main" style="width: 90%;height:600px;"></div>
-                <form action="/curveMonitoring">
+                <form action="/curveQuery">
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;
-                        X轴起始值：<input type="text" name="pressDataId"  th:value="${param.pressDataId}" > <input type="submit" value="确定"></div>
+                        X轴起始值：<input type="text" name="pressDataId"  th:value="${param.pressDataId}" > <input type="submit" value="确定">
+                        <input type="submit" onClick="startPlc()"  value="启动PLC">
+                    </div>
+
                 </form>
 
 
@@ -184,11 +187,13 @@
                             success : function(result) {
                                 names=[];//重置为空
                                 for(var i=0;i<result.length;i++){
+                                    names=[];//重置为空
                                     var arr=[];
                                     var isErrant=true;
                                     var isSolidLine=true;
 
                                     for(var j=0;j<result[i].length;j++){
+
                                         /*alert(i+"-----"+j+"----");
                                         alert(i+"-----"+j+"----"+result[i][j].pressForce);*/
                                         arr.push(result[i][j].pressForce);//y
@@ -196,9 +201,9 @@
                                             isErrant=result[i][j].errant;
                                             isSolidLine=result[i][j].solidLine;
                                         }
-                                        if(result[i][j].errant==false){
+                                        // if(result[i][j].errant==false){
                                             names.push(result[i][j].position); //x名称显示
-                                        }
+                                        // }
                                     }
                                    // alert(names);
                                     var color="";
@@ -235,7 +240,7 @@
                                 console.log("arr=>"+arr);
                             },
                             error : function(errorMsg) {
-                                alert("获取图表请求数据失败!");
+                                // alert("获取图表请求数据失败!");
                                 myChart.hideLoading();
                             }
                         });
@@ -284,6 +289,24 @@
                         t = setInterval("setgraph()", 1000);
 
                     })
+
+
+                    function startPlc() {
+                        // alert("页面启动PLC！");
+                        $.ajax({
+                            type : "post",
+                            async : false, //同步执行
+                            url : "http://localhost:8080/startPlc",
+                            data : {},
+                            dataType : "json", //返回数据形式为json
+                            success : function(result) {
+                            },
+                            error : function(errorMsg) {
+                                // alert("获取图表请求数据失败!");
+                                myChart.hideLoading();
+                            }
+                        });
+                    }
                 </script>
 
             </main>

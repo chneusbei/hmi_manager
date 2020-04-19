@@ -5,6 +5,7 @@ import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.TagsInfoEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.service.TagsInfoService;
+import com.plc.hmi.util.HmiUtils;
 import org.apache.plc4x.java.api.messages.PlcReadRequest;
 import org.apache.plc4x.java.api.types.PlcClientDatatype;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +68,7 @@ public class Plc4xBaseService {
 
     //修改PLC上数据， 通用方法， 支持批量模式
     protected  boolean setPlcData() {
-        //TODO
+        plc4xConnectorService.setData(writeQueryList);
         return true;
     }
 
@@ -80,6 +81,14 @@ public class Plc4xBaseService {
             return;
         }
         List<TagsInfoEntity> tags = tagsInfoService.getTagsByGroup(tagGroup);
+        setQueryList(tags);
+    }
+
+    /**
+     * 查询queryList初始化
+     * @param tags
+     */
+    protected void setQueryList(List<TagsInfoEntity> tags) {
         if(CollectionUtils.isEmpty(tags)) {
             return;
         }
@@ -103,10 +112,10 @@ public class Plc4xBaseService {
 
 
     /**
-     * 查询queryList初始化
+     * 插入ueryList初始化
      * @param tagGroup
      */
-    protected void initReadList(String tagGroup, Map<String, String> paraMap) {
+    protected void initWriteList(String tagGroup, Map<String, String> paraMap) {
         if(!CollectionUtils.isEmpty(writeQueryList)) {
             return;
         }
@@ -118,16 +127,21 @@ public class Plc4xBaseService {
         writeQueryList = new ArrayList<PlcEntity>();
         for(TagsInfoEntity tag : tags) {
 //            builder.addItem("shuru2", "%I0.1:BOOL");
+            if(null == paraMap.get(tag.getTagEnName())) {
+                continue;
+            }
             PlcEntity query = new PlcEntity();
             query.setName(tag.getTagEnName());
             StringBuffer sb =new StringBuffer();
-            sb.append("%").append(tag.getTagAreaName()).append(tag.getAdderss()).append(".").append(tag.getTagBit());
+//            %db298.0
+            sb.append(HmiConstants.PLC_QUERY_PREFIX).append(tag.getTagAreaName()).append(tag.getAdderss()).append(HmiConstants.POINT).append(tag.getTagBit())
+                    .append(":").append(tag.getTagTypeDes());
             query.setFieldQuery(sb.toString());
-            query.setPosition(tag.getAdderss()+"."+tag.getTagBit());
+            query.setPosition(tag.getAdderss()+HmiConstants.POINT+tag.getTagBit());
             query.setDataType(tag.getTagTypeDes());
             Object value = setUploadValue(tag.getTagTypeDes(), paraMap.get(tag.getTagEnName()));
             query.setValueOjb(value);
-            readQueryList.add(query);
+            writeQueryList.add(query);
         }
     }
 
@@ -138,7 +152,7 @@ public class Plc4xBaseService {
             return null;
         }
         value = value.trim();
-        Object objValue = null;
+        Object objValue = value;
 //        BOOL("BOOL", PlcClientDatatype.BOOLEAN),
 //                BYTE("BYTE", PlcClientDatatype.BYTE),
 //                CHAR("CHAR", PlcClientDatatype.STRING),
@@ -159,6 +173,8 @@ public class Plc4xBaseService {
         if(HmiConstants.PLC_DATA_TYPE.BOOL.getCode().equalsIgnoreCase(typeDes)){
             if( "true".equalsIgnoreCase(value) || "1".equalsIgnoreCase(value)) {
                 objValue= Boolean.TRUE;
+            } else {
+                objValue = Boolean.FALSE;
             }
         }else if(HmiConstants.PLC_DATA_TYPE.BYTE.getCode().equalsIgnoreCase(typeDes)){
             objValue = value.getBytes();
@@ -169,8 +185,9 @@ public class Plc4xBaseService {
         }else if(HmiConstants.PLC_DATA_TYPE.DINT.getCode().equalsIgnoreCase(typeDes)){
 //            objValue = ;
         }else if(HmiConstants.PLC_DATA_TYPE.DWORD.getCode().equalsIgnoreCase(typeDes)){
-//            objValue = ;
+            objValue = value;
         }else if(HmiConstants.PLC_DATA_TYPE.INT.getCode().equalsIgnoreCase(typeDes)){
+            objValue= HmiUtils.getIntValue(value);
 //            objValue = ; //Java4个字节plc2个字节
         }else if(HmiConstants.PLC_DATA_TYPE.LINT.getCode().equalsIgnoreCase(typeDes)){
 //            objValue = ;
@@ -179,11 +196,11 @@ public class Plc4xBaseService {
         }else if(HmiConstants.PLC_DATA_TYPE.LWORD.getCode().equalsIgnoreCase(typeDes)){
 //            objValue = ;
         }else if(HmiConstants.PLC_DATA_TYPE.REAL.getCode().equalsIgnoreCase(typeDes)){
-//            objValue = ;
+                objValue = value;
         }else if(HmiConstants.PLC_DATA_TYPE.SINT.getCode().equalsIgnoreCase(typeDes)){
 //            objValue = ;
         }else if(HmiConstants.PLC_DATA_TYPE.TIME.getCode().equalsIgnoreCase(typeDes)){
-//            objValue = ;
+            objValue = value;
         }else if(HmiConstants.PLC_DATA_TYPE.UINT.getCode().equalsIgnoreCase(typeDes)){
 //            objValue = ;
         }else if(HmiConstants.PLC_DATA_TYPE.ULINT.getCode().equalsIgnoreCase(typeDes)){
@@ -191,10 +208,10 @@ public class Plc4xBaseService {
         }else if(HmiConstants.PLC_DATA_TYPE.USINT.getCode().equalsIgnoreCase(typeDes)){
 //            objValue = ;
         }else if(HmiConstants.PLC_DATA_TYPE.WORD.getCode().equalsIgnoreCase(typeDes)){
-
+             objValue = value;
         }
 
-        return null;
+        return objValue;
     }
 
 
