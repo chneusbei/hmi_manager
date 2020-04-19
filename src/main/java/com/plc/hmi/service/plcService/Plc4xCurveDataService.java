@@ -48,12 +48,12 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      * @return
      */
     public List<PressureCurveEntity> getCurveDatas() {
-//        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
+        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
         List<PressureCurveEntity> list = curveMap.get(productNo);
         if(!CollectionUtils.isEmpty(list)) {
-//            System.out.println("size = "+list.size()+", totalTime="+(endTime-startTime) );
+            System.out.println("size = "+list.size()+", totalTime="+(endTime-startTime) );
         } else {
-
+            System.out.println("curvel data is null" );
         }
         return curveMap.get(productNo);
     }
@@ -67,14 +67,14 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 //        System.out.println("get data from plc >>>>>>>>>>>>>>>>>>>>>>>>");
         List<PlcEntity> plcEntityList = this.getDatas();
         PressureCurveEntity curve = plc2Curve(plcEntityList);
-//        if(curve.getCurveRecording()) {
-//             System.out.println("true ******** ");
-//        } else {
-////            System.out.println("false ");
-//        }
+        if(curve.getCurveRecording()) {
+             System.out.println("getCurveRecording = true ******** ");
+        } else {
+//            System.out.println("getCurveRecording = false ");
+        }
         if(curve.getCurveRecording()) {
             startTime =  this.startTime > 0 ? startTime : System.currentTimeMillis();
-//            System.out.println("******productNo="+curve.getPressDataId()+" , position="+curve.getPosition());
+            System.out.println("******productNo="+curve.getPressDataId()+" , position="+curve.getPosition());
             productNo = curve.getPressDataId();
            if(CollectionUtils.isEmpty(curveMap.get(curve.getPressDataId()))) {
                List<PressureCurveEntity>  curveEntityList = new ArrayList<PressureCurveEntity>();
@@ -94,7 +94,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 endTime = this.startTime > 0 ? System.currentTimeMillis() : endTime;
             }
         }
-//        System.out.println("every time spend time = "+(System.currentTimeMillis() - peerStartTime));
+        System.out.println("every time spend time = "+(System.currentTimeMillis() - peerStartTime));
 
 //        try {
 //            //每20毫秒获取一次数据

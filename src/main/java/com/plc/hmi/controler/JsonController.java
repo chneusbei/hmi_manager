@@ -7,6 +7,7 @@ import com.plc.hmi.service.PressureProgramService;
 import com.plc.hmi.service.plcService.Plc4xCurveDataService;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,17 +30,25 @@ public class JsonController {
         pressDataId = 1L;
 //        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(1L, pressDataId);
         List<PressureCurveEntity> list =curveDataService.getCurveDatas();
-                String json = JSON.toJSONString(list);
+        List<List<PressureCurveEntity>>  errantList = programService.getDataforChart(1L);
+        errantList.add(list);
+        String json = JSON.toJSONString(list);
         return json;
     }
 
     @RequestMapping("/getCurveQueryByCode")
     public String getCurveQueryByCode(){
+        List<PressureCurveEntity> list =curveDataService.getCurveDatas();
+        List<List<PressureCurveEntity>>  errantList = new  ArrayList<List<PressureCurveEntity>>();
+//        List<List<PressureCurveEntity>>  errantList = programService.getDataforChart(1L);
+        if(!CollectionUtils.isEmpty(list)) {
+            errantList.add(list);
+        }
 //        List<List<PressureCurveEntity>> lists=new ArrayList<List<PressureCurveEntity>>();
         // lists=curveDataService.getCurveDatas();
 
 //       List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(1L, 1l);
-       List<List<PressureCurveEntity>>  errantList = programService.getDataforChart(1L);
+//       List<List<PressureCurveEntity>>  errantList = programService.getDataforChart(1L);
 //       errantList.add(list);
 /*
         List<PressureCurveEntity> list1=new ArrayList<PressureCurveEntity>();
@@ -77,8 +86,8 @@ public class JsonController {
         String json = JSON.toJSONString(lists);
         */
         String json = JSON.toJSONString(errantList);
-        System.out.println(json);
-        System.out.println("-----------------------------------------");
+//        System.out.println(json);
+//        System.out.println("-----------------------------------------");
         return json;
     }
 }
