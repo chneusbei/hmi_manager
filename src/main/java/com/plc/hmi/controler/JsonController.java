@@ -31,7 +31,7 @@ public class JsonController {
     }
 
     @RequestMapping("/getCurveQueryByCode")
-    public String getHisDateByCode1(){
+    public String getCurveQueryByCode(){
         List<List<PressureCurveEntity>> lists=new ArrayList<List<PressureCurveEntity>>();
         // lists=curveDataService.getCurveDatas();
 
