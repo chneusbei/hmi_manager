@@ -75,13 +75,13 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         if(curve.getCurveRecording()) {
             startTime =  this.startTime > 0 ? startTime : System.currentTimeMillis();
 //            System.out.println("******productNo="+curve.getPressDataId()+" , position="+curve.getPosition());
-            productNo = curve.getPressDataId();
-           if(CollectionUtils.isEmpty(curveMap.get(curve.getPressDataId()))) {
+            productNo = curve.getProductId();
+           if(CollectionUtils.isEmpty(curveMap.get(curve.getProductId()))) {
                List<PressureCurveEntity>  curveEntityList = new ArrayList<PressureCurveEntity>();
                curveEntityList.add(curve);
-               curveMap.put(curve.getPressDataId(),curveEntityList);
+               curveMap.put(curve.getProductId(),curveEntityList);
             }else {
-               curveMap.get(curve.getPressDataId()).add(curve);
+               curveMap.get(curve.getProductId()).add(curve);
            }
 
         } else {
@@ -136,9 +136,9 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                     curveEntity.setReserve2(new BigDecimal(plcEntity.getValueOjb().toString()));
                 } else if(PlcEntityEnum.equipment_operation_productNo.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //零件号
-                    curveEntity.setPressDataId(new Long(plcEntity.getValueOjb().toString()));
+                    curveEntity.setProductId(new Long(plcEntity.getValueOjb().toString()));
                 }else if(PlcEntityEnum.curve_status_curve_recording.getCode().equalsIgnoreCase(plcEntity.getName())) {
-                    //零件号
+                    //启动标识
                     curveEntity.setCurveRecording(new Boolean(plcEntity.getValueOjb().toString()));
                 }
 
@@ -150,6 +150,8 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         curveEntity.setUpdateBy("SYS");
         curveEntity.setCreateTime(new Date());
         curveEntity.setUpdateTime(new Date());
+        curveEntity.setSolidLine(true);
+        curveEntity.setErrant(false);
         return curveEntity;
     }
 

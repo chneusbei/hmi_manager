@@ -26,8 +26,8 @@ public abstract class AbstractHmiBaseDao <T extends AbstractBaseEntity>{
         entity.setIsDeleted(String.valueOf(order.get(BaseEntityEnum.IS_DELETED.getCode())));
         entity.setCreateBy(String.valueOf(order.get(BaseEntityEnum.CREATE_BY.getCode())));
         entity.setUpdateBy(String.valueOf(order.get(BaseEntityEnum.UPDATE_BY.getCode())));
-        entity.setUpdateTime(HmiUtils.getDate(order.get(BaseEntityEnum.UPDATE_TIME.getCode())));
-        entity.setCreateTime(HmiUtils.getDate(order.get(BaseEntityEnum.CREATE_TIME.getCode())));
+//        entity.setUpdateTime(HmiUtils.getDate(order.get(BaseEntityEnum.UPDATE_TIME.getCode())));
+//        entity.setCreateTime(HmiUtils.getDate(order.get(BaseEntityEnum.CREATE_TIME.getCode())));
     }
 }
 

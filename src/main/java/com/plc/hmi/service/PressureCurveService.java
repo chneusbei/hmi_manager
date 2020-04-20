@@ -2,11 +2,17 @@ package com.plc.hmi.service;
 
 import com.plc.hmi.dal.dao.PressureCurveDao;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
+import com.plc.hmi.dal.entity.PressureDataEntity;
+import com.plc.hmi.util.HmiUtils;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +23,8 @@ import java.util.List;
 public class PressureCurveService extends AbstractBaseService{
     @Resource
     PressureCurveDao pressureCurveDao;
+    @Resource
+    PressureDataService pressureDataService;
 
     //用户存储实时PLC曲线信息。线程安全的链表容器
     private static java.util.concurrent.ConcurrentLinkedDeque<PressureCurveEntity>
@@ -56,7 +64,47 @@ public class PressureCurveService extends AbstractBaseService{
      * @param entityList
      */
     public void batchInsert(List<PressureCurveEntity> entityList) {
+        if(CollectionUtils.isEmpty(entityList)) {
+            return;
+        }
+        //需要对应插入一条数据到pressure_data, 同时建立pressure_data和pressure_curve的关联关系
+        /**
+         *  1 插入pressure_data
+         */
+        InsertPressureDate(entityList);
+        /**
+         * 1 插入pressure_curve
+         */
         pressureCurveDao.batchInsert(entityList);
+    }
+
+    private void InsertPressureDate(List<PressureCurveEntity> entityList) {
+        //生成 RECORD_ID， 一个产品一次压装对应一个RECORD_ID,一个产品可以进行多次压装
+        //RECORD_ID生成规则，产品ID+当前时间戳
+        Long productId = entityList.get(0).getProductId();
+        StringBuffer recordIdBuffer = new StringBuffer();
+        recordIdBuffer.append(productId);
+        recordIdBuffer.append(HmiUtils.getFormatDateString());
+        String recordId = recordIdBuffer.toString();
+        //获取最大压力及最大压力时位移。
+        PressureCurveEntity MaxPresscurve = entityList.get(0);
+        for(PressureCurveEntity curveEntity : entityList) {
+            curveEntity.setRecordId(recordId);
+            MaxPresscurve=MaxPresscurve.getPressForce().compareTo(curveEntity.getPressForce()) < 0 ? curveEntity : MaxPresscurve;
+        }
+        PressureDataEntity pressureDataEntity = new PressureDataEntity();
+        pressureDataEntity.setProductId(productId);
+        pressureDataEntity.setRecordId(recordId);
+        pressureDataEntity.setPressResult("1");//需要从PLC曲线信息中的OK/NOk 获取？ 还是从公差窗口计算
+        pressureDataEntity.setMaxPress(MaxPresscurve.getPressForce());
+        pressureDataEntity.setPositionOfMaxPress(MaxPresscurve.getPosition());
+        pressureDataEntity.setStartDate(new BigDecimal(HmiUtils.getMillFormatDateString(entityList.get(0).getCreateTime())));
+        pressureDataEntity.setEndDate(new BigDecimal(HmiUtils.getMillFormatDateString(entityList.get(entityList.size()-1).getCreateTime())));
+        pressureDataEntity.setCreateBy("SYS");
+        pressureDataEntity.setUpdateBy("SYS");
+        pressureDataEntity.setCreateTime(new Date());
+        pressureDataEntity.setUpdateTime(new Date());
+        pressureDataService.insert(pressureDataEntity);
     }
 
     /**

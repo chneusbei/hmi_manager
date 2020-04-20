@@ -50,7 +50,7 @@ public class PressureDataDao extends AbstractHmiBaseDao {
         entity.setProductId(HmiUtils.getLongValue(map.get(PressureDataEntityEnum.PRODUCT_ID.getCode())));
         entity.setProductNo(HmiUtils.getString(map.get(PressureDataEntityEnum.RECORD_ID.getCode())));
         entity.setPressResult(HmiUtils.getString(map.get(PressureDataEntityEnum.PRESS_RESULT.getCode())));
-        entity.setRecordId(HmiUtils.getLongValue(map.get(PressureDataEntityEnum.RECORD_ID.getCode())));
+        entity.setRecordId(HmiUtils.getString(map.get(PressureDataEntityEnum.RECORD_ID.getCode())));
         entity.setStartDate(HmiUtils.getBigDicimal(map.get(PressureDataEntityEnum.START_DATE.getCode())));
         entity.setEndDate(HmiUtils.getBigDicimal(map.get(PressureDataEntityEnum.END_DATE.getCode())));
         entity.setMaxPress(HmiUtils.getBigDicimal(map.get(PressureDataEntityEnum.MAX_PRESS.getCode())));

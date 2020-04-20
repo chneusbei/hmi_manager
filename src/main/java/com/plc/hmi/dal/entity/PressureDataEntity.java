@@ -13,7 +13,7 @@ public class PressureDataEntity extends AbstractBaseEntity {
     //压装结果 0失败 1成功
     private String pressResult;
     //位置/压力曲线ID
-    private Long recordId;
+    private String recordId;
     //数据开始时间
     private BigDecimal startDate;
     //数据结束时间
@@ -71,11 +71,11 @@ public class PressureDataEntity extends AbstractBaseEntity {
         this.pressResult = pressResult;
     }
 
-    public Long getRecordId() {
+    public String getRecordId() {
         return recordId;
     }
 
-    public void setRecordId(Long recordId) {
+    public void setRecordId(String recordId) {
         this.recordId = recordId;
     }
 

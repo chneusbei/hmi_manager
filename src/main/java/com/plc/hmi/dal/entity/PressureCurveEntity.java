@@ -7,7 +7,9 @@ import java.util.Date;
 
 public class PressureCurveEntity extends AbstractBaseEntity {
     //位置/压力曲线ID
-    private Long pressDataId;
+    private String recordId;
+    //产品ID
+    private Long productId;
     //曲线记录开始状态
     private Boolean curveRecording;
     //位置点序号
@@ -46,7 +48,6 @@ public class PressureCurveEntity extends AbstractBaseEntity {
     private boolean isErrant;
     //是否是实线， 如果是false， 需要画为虚线。 只有是公差曲线即isErrant=true时，才可能是false
     private boolean isSolidLine;
-
 
     public boolean isErrant() {
         return isErrant;
@@ -112,12 +113,12 @@ public class PressureCurveEntity extends AbstractBaseEntity {
         this.handleDate = handleDate;
     }
 
-    public Long getPressDataId() {
-        return pressDataId;
+    public String getRecordId() {
+        return recordId;
     }
 
-    public void setPressDataId(Long pressDataId) {
-        this.pressDataId = pressDataId;
+    public void setRecordId(String recordId) {
+        this.recordId = recordId;
     }
 
     public int getRecordNo() {
@@ -166,5 +167,13 @@ public class PressureCurveEntity extends AbstractBaseEntity {
 
     public void setCurveRecording(Boolean curveRecording) {
         this.curveRecording = curveRecording;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 }

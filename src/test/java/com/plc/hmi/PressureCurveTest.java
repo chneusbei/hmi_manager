@@ -28,7 +28,7 @@ public class PressureCurveTest {
         for(int i=1; i<11; i++) {
             PressureCurveEntity entity = new PressureCurveEntity();
 //        entity.setId(1L);
-            entity.setPressDataId(1L);
+            entity.setProductId(1L);
             entity.setRecordNo(3);
             entity.setPosition(new BigDecimal(3.0*i));
             entity.setPressForce(new BigDecimal(0.5*i));

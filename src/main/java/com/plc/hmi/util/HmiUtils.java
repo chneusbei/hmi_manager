@@ -19,6 +19,8 @@ import java.util.Date;
 
 public class HmiUtils  {
     static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//注意月份是MM
+    static final SimpleDateFormat dateFormatYYYYMMDDHHMMSS = new SimpleDateFormat("yyyyMMddHHmmss");//注意月份是MM
+    static final SimpleDateFormat dateFormatYYYYMMDDHHMMSSSSS = new SimpleDateFormat("yyyyMMddHHmmssSSS");//注意月份是MM
     private static Logger logger = LoggerFactory.getLogger(HmiUtils.class);
     public static final Date getDate(Object obj) {
         if(null == obj) {
@@ -41,6 +43,14 @@ public class HmiUtils  {
             logger.error("DateFormat ERROR ",e.getStackTrace());
           return null;
         }
+    }
+
+    public static String getFormatDateString() {
+        return dateFormatYYYYMMDDHHMMSS.format(new Date());
+    }
+
+    public static String getMillFormatDateString(Date date) {
+        return dateFormatYYYYMMDDHHMMSSSSS.format(date);
     }
 
     public static final String getString(Object obj) {

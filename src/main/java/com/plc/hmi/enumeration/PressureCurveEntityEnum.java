@@ -2,7 +2,8 @@ package com.plc.hmi.enumeration;
 
 public enum PressureCurveEntityEnum {
     //数据库字段
-    PRESS_DATA_ID("PRESS_DATA_ID", "位置/压力曲线ID"),
+    RECORD_ID("RECORD_ID", "位置/压力曲线ID"),
+    PRODUCT_ID("PRODUCT_ID", "产品ID"),
     RECORD_NO("RECORD_NO", "位置点序号"),
     POSITION("POSITION", "位置"),
     PRESS_FORCE("PRESS_FORCE", "压力"),

@@ -24,7 +24,7 @@ public class PressureDataTest {
         entity.setProductId(1L);
         entity.setProductNo("product0001");
         entity.setPressResult("1");
-        entity.setRecordId(1L);
+        entity.setRecordId("1");
         entity.setStartDate(new BigDecimal(20200409232605003L));
         entity.setEndDate(new BigDecimal(20200409232608003L));
         entity.setMaxPress(new BigDecimal(100L));
@@ -33,8 +33,8 @@ public class PressureDataTest {
         entity.setCreateBy("SYS");
         entity.setCreateTime(new Date());
         entity.setUpdateTime(new Date());
-//        service.insert(entity);
-        List<PressureDataEntity> resultList = service.getPressureData(1L);
+        service.insert(entity);
+//        List<PressureDataEntity> resultList = service.getPressureData(1L);
 //        service.delete(entity);
 
 

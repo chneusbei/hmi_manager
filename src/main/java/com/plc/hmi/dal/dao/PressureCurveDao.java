@@ -3,9 +3,9 @@ package com.plc.hmi.dal.dao;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.mapper.PressureCurveMapper;
 import com.plc.hmi.enumeration.PressureCurveEntityEnum;
+import com.plc.hmi.enumeration.PressureDataEntityEnum;
 import com.plc.hmi.util.HmiUtils;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
@@ -44,7 +44,8 @@ public class PressureCurveDao extends AbstractHmiBaseDao {
     protected PressureCurveEntity getEntity(HashMap map) {
         PressureCurveEntity entity = new PressureCurveEntity();
         super.setEntityBase(entity, map);
-        entity.setPressDataId(HmiUtils.getLongValue(map.get(PressureCurveEntityEnum.PRESS_DATA_ID.getCode())));
+        entity.setRecordId(HmiUtils.getString(map.get(PressureCurveEntityEnum.RECORD_ID.getCode())));
+        entity.setProductId(HmiUtils.getLongValue(map.get(PressureCurveEntityEnum.PRODUCT_ID.getCode())));
         entity.setPosition(HmiUtils.getBigDicimal(map.get(PressureCurveEntityEnum.POSITION.getCode())));
         entity.setPressForce(HmiUtils.getBigDicimal(map.get(PressureCurveEntityEnum.PRESS_FORCE.getCode())));
         entity.setRecordNo(HmiUtils.getIntValue(map.get(PressureCurveEntityEnum.RECORD_NO.getCode())));
