@@ -35,8 +35,8 @@ public class StartRunService implements ApplicationRunner {
 //            plc4xCurveDataService.getCurveDatasFromPlc();
 //        }
         //启动事实曲线获取线程
-        PlcPressCurveThread plcPressCurveThread = new PlcPressCurveThread(plc4xCurveDataService);
-        plcPressCurveThread.run();
+//        PlcPressCurveThread plcPressCurveThread = new PlcPressCurveThread(plc4xCurveDataService);
+//        plcPressCurveThread.run();
 
 ////        启动曲线自动入库线程, 启动失败， 好想不能启动两个线程。
 //        PressCurveThread pressCurveThread = new PressCurveThread(pressureCurveService) ;

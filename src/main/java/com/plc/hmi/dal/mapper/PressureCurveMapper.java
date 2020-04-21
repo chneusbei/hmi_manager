@@ -13,8 +13,8 @@ import java.util.List;
 
 @Mapper
 public interface PressureCurveMapper {
-    @Select("select * from pressure_curve where is_deleted='0' and PRESS_DATA_ID=#{pressDataId}")
-    List<HashMap> getCurveData(@Param("pressDataId") Long pressDataId);
+    @Select("select * from pressure_curve where is_deleted='0' and RECORD_ID=#{recordId}")
+    List<HashMap> getCurveData(@Param("recordId") Long recordId);
 
 //    @Select("select * from pressure_curve where is_deleted='0' and HANDLE_DATE=#{handleDate}")
 //    List<HashMap> getPressureCurveWithDate(@Param("handleDate") String handleDate);

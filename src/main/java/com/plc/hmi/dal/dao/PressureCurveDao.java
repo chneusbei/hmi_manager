@@ -17,8 +17,8 @@ public class PressureCurveDao extends AbstractHmiBaseDao {
     @Resource
     PressureCurveMapper pressureCurveMapper;
 
-    public List<PressureCurveEntity> getCurveData(Long pressDataId, Long xStart) {
-        List<PressureCurveEntity> list = this.getEntityList(pressureCurveMapper.getCurveData(pressDataId));
+    public List<PressureCurveEntity> getCurveData(Long recordId, Long xStart) {
+        List<PressureCurveEntity> list = this.getEntityList(pressureCurveMapper.getCurveData(recordId));
 //        if(!CollectionUtils.isEmpty(list)) {
 //            for(PressureCurveEntity entity : list) {
 //                if(entity.getShortPressDate().compareTo(new BigDecimal(xStart)) == -1) {
@@ -55,6 +55,7 @@ public class PressureCurveDao extends AbstractHmiBaseDao {
         entity.setErrant(false);
         entity.setSolidLine(true);
         String dateString = entity.getPressDate().toString();
+        /*
         if(null != dateString) {
             //20200409232605003
             String shortString = dateString.substring(10, dateString.length());
@@ -62,6 +63,7 @@ public class PressureCurveDao extends AbstractHmiBaseDao {
         }  else {
             entity.setShortPressDate(new BigDecimal(0));
         }
+        */
 
         return entity;
     }
