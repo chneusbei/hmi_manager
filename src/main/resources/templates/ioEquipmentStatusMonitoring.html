@@ -45,15 +45,12 @@
                     <tr>
                         <td colspan="9" align="center"><h4>IO状态</h4></td>
                     </tr>
-                    <div v-for="item in listPlcEntity">
-                        <tr>
-                            <td colspan="9" align="left" style="background-color: #b5cfd2" >{{item.name}}</td>
+                        <tr v-for="(o,index) in listPlcEntity">
+                            <td colspan="9" align="left" style="background-color: #b5cfd2" >{{o.name}}</td>
                         </tr>
-                        <tr >
+                        <tr v-for="(o,index) in listPlcEntity">
                             <td align="center">{{o.valueOjb}}</td>
                         </tr>
-                    </div>
-
                <!--     <tr>
                         <td colspan="9" align="left" style="background-color: #b5cfd2" >OUTPUT</td>
                     </tr>
@@ -74,80 +71,16 @@
 <script type="module">
     new Vue({
         el:"#app",
-        data:{listPlcEntity:{}/*
-            list1:[
-                {
-                    name:'DDFAFA'
-                },
-                {
-                    name:'FSGGA'
-                },
-                {
-                    name:'JJTRFDA'
-                },
-                {
-                    name:'KGGGDA'
-                },
-                {
-                    name:'NNVVDA'
-                }
-                ,
-                {
-                    name:'NNVVDA'
-                }
-                ,
-                {
-                    name:'NNVVDA'
-                }
-                ,
-                {
-                    name:'NNVVDA'
-                }
-                ,
-                {
-                    name:'NNVVDA'
-                }
-            ],
-            list2:[
-                {
-                    name:'POI'
-                },
-                {
-                    name:'OOUJ'
-                },
-                {
-                    name:'HTTGH'
-                },
-                {
-                    name:'KJDD'
-                },
-                {
-                    name:'DFHE'
-                }
-                ,
-                {
-                    name:'DFHE'
-                }
-                ,
-                {
-                    name:'DFHE'
-                }
-                ,
-                {
-                    name:'DFHE'
-                }
-                ,
-                {
-                    name:'DFHE'
-                }
-            ]
-        }*/,methods:{
+        data:{listPlcEntity:{},o:{}}
+        ,methods:{
                 getEquipmentIoStatus(){
                     axios.get("/EquipmentIoStatus").then(result=>{
                         this.listPlcEntity=result.data;
                     });
                 }
-            }
+            },
+        created(){
+            this.getEquipmentIoStatus();
         }
     })
 </script>

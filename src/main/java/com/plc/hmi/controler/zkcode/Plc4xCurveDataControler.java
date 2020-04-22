@@ -37,7 +37,7 @@ public class Plc4xCurveDataControler {
     @ResponseBody
     @GetMapping("/getEquipmentStatus")
     List<PlcEntity> getEquipmentDatas(){
-        List<PlcEntity> datas=new ArrayList<>();
+       /* List<PlcEntity> datas=new ArrayList<>();
         PlcEntity plcEntity=new PlcEntity();
         plcEntity.setName("onLine");
         plcEntity.setValueOjb(true);
@@ -73,9 +73,9 @@ public class Plc4xCurveDataControler {
         PlcEntity plcEntity6=new PlcEntity();
         plcEntity6.setName("3");
         plcEntity6.setValueOjb(false);
-        datas.add(plcEntity6);
+        datas.add(plcEntity6);*/
 
-        /* List<PlcEntity> datas = plc4xEquipmentStatusService.getDatas();*/
+         List<PlcEntity> datas = plc4xEquipmentStatusService.getDatas();
         datas.stream().forEach(p -> {
             if ("onLine".equals(p.getName())) {
                 p.setName("在线");
@@ -106,6 +106,7 @@ public class Plc4xCurveDataControler {
 
     @Resource
     Plc4xEquipmentIoStatusService plc4xEquipmentIoStatusService;
+    @ResponseBody
     @GetMapping("/EquipmentIoStatus")
     /**
      * 获取设备io监控
@@ -122,7 +123,17 @@ public class Plc4xCurveDataControler {
      页面中文LABEL: 输出_4 ,值变量名: output4 ,值类型 WORD
      */
     List<PlcEntity> getEquipmentIo(){
+
+/*
         List<PlcEntity> datas = plc4xEquipmentIoStatusService.getDatas();
+*/
+        List<PlcEntity> datas = new ArrayList<>();
+        PlcEntity plcEntity=new PlcEntity();
+        plcEntity.setName("input0");
+        plcEntity.setValueOjb("asd ");
+        datas.add(plcEntity);
+
+
         datas.stream().forEach(p-> {
             if ("input0".equals(p.getName())) {
                 p.setName("输入_0");
@@ -164,10 +175,19 @@ public class Plc4xCurveDataControler {
      *  获得安全监控
      * @return
      */
+    @ResponseBody
     @GetMapping("/getOperation")
     public List<PlcEntity> getDatas(){
-        System.out.println("getOperation");
+
+/*
         List<PlcEntity> datas = plc4xEquipmentOperationService.getDatas();
+*/
+        List<PlcEntity> datas = new ArrayList<>();
+        PlcEntity plcEntity=new PlcEntity();
+        plcEntity.setValueOjb(true);
+        plcEntity.setName("零件号");
+        datas.add(plcEntity);
+
         datas.stream().forEach(p->{
             if ("productNo".equals(p.getName())){
                 p.setName("零件号");
