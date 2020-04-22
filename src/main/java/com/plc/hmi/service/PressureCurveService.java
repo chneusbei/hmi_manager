@@ -3,17 +3,18 @@ package com.plc.hmi.service;
 import com.plc.hmi.dal.dao.PressureCurveDao;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.PressureDataEntity;
+import com.plc.hmi.dal.entity.PressureProgramEntity;
 import com.plc.hmi.util.HmiUtils;
 import org.jvnet.hk2.annotations.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+
+import static java.lang.Boolean.TRUE;
 
 /**
  * 压力曲线服务
@@ -25,6 +26,8 @@ public class PressureCurveService extends AbstractBaseService{
     PressureCurveDao pressureCurveDao;
     @Resource
     PressureDataService pressureDataService;
+    @Resource
+    PressureProgramService programService;
 
     //用户存储实时PLC曲线信息。线程安全的链表容器
     private static java.util.concurrent.ConcurrentLinkedDeque<PressureCurveEntity>
@@ -88,6 +91,17 @@ public class PressureCurveService extends AbstractBaseService{
         String recordId = recordIdBuffer.toString();
         //获取最大压力及最大压力时位移。
         PressureCurveEntity MaxPresscurve = entityList.get(0);
+
+        //获取公差窗口信息
+        PressureProgramEntity pressureProgramEntity = programService.getErrandData(productId);
+        //公差窗口计算结果
+        Map<Integer, List<Boolean>> errandResltMap = new HashMap<Integer, List<Boolean>>();
+        errandResltMap.put(1,new ArrayList<Boolean>());
+        errandResltMap.put(2,new ArrayList<Boolean>());
+        errandResltMap.put(3,new ArrayList<Boolean>());
+        errandResltMap.put(4,new ArrayList<Boolean>());
+        errandResltMap.put(5,new ArrayList<Boolean>());
+
         for(PressureCurveEntity curveEntity : entityList) {
             curveEntity.setRecordId(recordId);
             MaxPresscurve=MaxPresscurve.getPressForce().compareTo(curveEntity.getPressForce()) < 0 ? curveEntity : MaxPresscurve;
@@ -95,7 +109,7 @@ public class PressureCurveService extends AbstractBaseService{
         PressureDataEntity pressureDataEntity = new PressureDataEntity();
         pressureDataEntity.setProductId(productId);
         pressureDataEntity.setRecordId(recordId);
-        pressureDataEntity.setPressResult("1");//需要从PLC曲线信息中的OK/NOk 获取？ 还是从公差窗口计算
+        pressureDataEntity.setPressResult("1");//需要从从公差窗口计算
         pressureDataEntity.setMaxPress(MaxPresscurve.getPressForce());
         pressureDataEntity.setPositionOfMaxPress(MaxPresscurve.getPosition());
         pressureDataEntity.setStartDate(new BigDecimal(HmiUtils.getMillFormatDateString(entityList.get(0).getCreateTime())));
@@ -105,6 +119,107 @@ public class PressureCurveService extends AbstractBaseService{
         pressureDataEntity.setCreateTime(new Date());
         pressureDataEntity.setUpdateTime(new Date());
         pressureDataService.insert(pressureDataEntity);
+    }
+
+    /***
+     * 根据公差窗口确定曲线是否压装是成功的
+     */
+    private void setCurveResultStatus( Map<Integer, List<Boolean>> errandResltMap, PressureCurveEntity curveEntity, PressureProgramEntity pressureProgramEntity) {
+        if(pressureProgramEntity.getErrandType1()>=0) {
+            setCurveResultStatus(errandResltMap,0, curveEntity, pressureProgramEntity.getErrandType1(),
+                    pressureProgramEntity.getPositionMin1(), pressureProgramEntity.getPositionMax1(),
+                    pressureProgramEntity.getPressMin1(), pressureProgramEntity.getPressMax1());
+        } else  if(pressureProgramEntity.getErrandType2()>=0) {
+            setCurveResultStatus(errandResltMap,1,curveEntity, pressureProgramEntity.getErrandType2(),
+                    pressureProgramEntity.getPositionMin2(), pressureProgramEntity.getPositionMax2(),
+                    pressureProgramEntity.getPressMin2(), pressureProgramEntity.getPressMax2());
+        } else  if(pressureProgramEntity.getErrandType3()>=0) {
+            setCurveResultStatus(errandResltMap,2,curveEntity, pressureProgramEntity.getErrandType3(),
+                    pressureProgramEntity.getPositionMin3(), pressureProgramEntity.getPositionMax3(),
+                    pressureProgramEntity.getPressMin3(), pressureProgramEntity.getPressMax3());
+        } else  if(pressureProgramEntity.getErrandType4()>=0) {
+            setCurveResultStatus(errandResltMap,3,curveEntity, pressureProgramEntity.getErrandType4(),
+                    pressureProgramEntity.getPositionMin4(), pressureProgramEntity.getPositionMax4(),
+                    pressureProgramEntity.getPressMin4(), pressureProgramEntity.getPressMax4());
+        } else  if(pressureProgramEntity.getErrandType5()>=0) {
+            setCurveResultStatus(errandResltMap,4,curveEntity, pressureProgramEntity.getErrandType5(),
+                    pressureProgramEntity.getPositionMin5(), pressureProgramEntity.getPositionMax5(),
+                    pressureProgramEntity.getPressMin5(), pressureProgramEntity.getPressMax5());
+        }
+    }
+
+    private void setCurveResultStatus(Map<Integer, List<Boolean>> errandResltMap, int index, PressureCurveEntity curveEntity, int errandType,
+                                      BigDecimal positionMin, BigDecimal positionMax,
+                                      BigDecimal pressMin, BigDecimal pressMax) {
+        switch(errandType) {
+            case 0 :
+                //最大位移窗口
+                //成功条件：1.最大位移大于positionMin  2.最大位移小于positionMax
+                if(errandResltMap.get(index).size() ==0) {
+                    errandResltMap.get(index).add(false);
+                    errandResltMap.get(index).add(true);
+                }
+                if(!errandResltMap.get(index).get(0)) {
+                    if(curveEntity.getPosition().compareTo(positionMin) >=0) {
+                       boolean b= errandResltMap.get(index).get(0) ;
+                       b =true;
+                    }
+                }
+
+                if(errandResltMap.get(index).get(1)) {
+                    if(curveEntity.getPosition().compareTo(positionMax) >0) {
+                        boolean b= errandResltMap.get(index).get(0) ;
+//                        b =falsedddd;
+                    }
+                }
+
+                break;
+            case 1 :
+                //最大压力窗口
+
+                break;
+            case 2 :
+                //配合窗口
+
+                break;
+            case 3 :
+                //右-下限制窗口
+
+                break;
+            case 4 :
+                //穿越窗口
+
+                break;
+            case 5 :
+                //峰值窗口
+
+                break;
+            case 6 :
+                //左-上限制窗口
+
+                break;
+            case 7 :
+                //右-上限制窗口
+
+                break;
+            case 8 :
+                //顶部结束窗口
+
+                break;
+            case 9 :
+                //右侧结束窗口
+
+                break;
+            case 10 :
+                //平均值窗口
+
+                break;
+            case 11 :
+                //拐点窗口
+
+                break;
+        }
+
     }
 
     /**

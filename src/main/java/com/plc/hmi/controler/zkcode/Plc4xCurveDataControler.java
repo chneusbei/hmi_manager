@@ -18,6 +18,9 @@ public class Plc4xCurveDataControler {
     Plc4xCurveDataService plc4xCurveDataService;
     @Resource
     Plc4xEquipmentOperationService plc4xEquipmentOperationService;
+    @Resource
+    Plc4xCurveStatusService plc4xCurveStatusService;
+
     @ResponseBody
     @PostMapping("/getCurveData")
     PressureCurveEntity getcurrDate(){
@@ -76,6 +79,7 @@ public class Plc4xCurveDataControler {
         datas.add(plcEntity6);*/
 
          List<PlcEntity> datas = plc4xEquipmentStatusService.getDatas();
+
         datas.stream().forEach(p -> {
             if ("onLine".equals(p.getName())) {
                 p.setName("在线");
@@ -94,14 +98,29 @@ public class Plc4xCurveDataControler {
         return datas;
     }
     /**
-     *
-     * @return 获取服务器上当前的数据
+     * PLC曲线数据信息
+     *获取服务器上当前的数据
+     * @return
      */
-    @Resource
-    Plc4xCurveStatusService plc4xCurveStatusService;
+    @ResponseBody
+    @GetMapping("/getCurrentCurve")
+    PressureCurveEntity getCurrentCurve(){
+        PressureCurveEntity  curve = plc4xCurveDataService.getCurrentCurve();
+        return curve;
+    }
+
+    /**
+     * PLC曲线状态信息
+     *获取服务器上当前的数据
+     * @return
+     */
     @GetMapping("/getCurveStatus")
     List<PlcEntity> getCurveData(){
-        return plc4xCurveStatusService.getDatas();
+        List<PlcEntity> plcEntityList = plc4xCurveStatusService.getDatas();
+        for(PlcEntity entity:plcEntityList) {
+            entity.setValueOjb(new Boolean(true));
+        }
+        return plcEntityList;
     }
 
     @Resource
@@ -124,14 +143,14 @@ public class Plc4xCurveDataControler {
      */
     List<PlcEntity> getEquipmentIo(){
 
-/*
+
         List<PlcEntity> datas = plc4xEquipmentIoStatusService.getDatas();
-*/
-        List<PlcEntity> datas = new ArrayList<>();
-        PlcEntity plcEntity=new PlcEntity();
-        plcEntity.setName("input0");
-        plcEntity.setValueOjb("asd ");
-        datas.add(plcEntity);
+
+//        List<PlcEntity> datas = new ArrayList<>();
+//        PlcEntity plcEntity=new PlcEntity();
+//        plcEntity.setName("input0");
+//        plcEntity.setValueOjb("asd ");
+//        datas.add(plcEntity);
 
 
         datas.stream().forEach(p-> {
@@ -145,8 +164,8 @@ public class Plc4xCurveDataControler {
                 p.setName("输入_3");
             } else if ("input4".equals(p.getName())) {
                 p.setName("输入_4");
-            } else if ("输出_0".equals(p.getName())) {
-                p.setName("output0");
+            } else if ("output0".equals(p.getName())) {
+                p.setName("输出_0");
             } else if ("output1".equals(p.getName())) {
                 p.setName("输出_1");
             } else if ("output2".equals(p.getName())) {
@@ -160,48 +179,48 @@ public class Plc4xCurveDataControler {
 
         return datas;
     }
-    @GetMapping("/getCurveDatas")
+
     /**
      * 获取压装曲线监控
      */
+    @GetMapping("/getCurveDatas")
     List<PressureCurveEntity> getCurveDatas(){
         return plc4xCurveDataService.getCurveDatas();
     }
 
 
-
-
     /**
-     *  获得安全监控
+     * 获得安全监控
      * @return
      */
     @ResponseBody
     @GetMapping("/getOperation")
     public List<PlcEntity> getDatas(){
 
-/*
+
         List<PlcEntity> datas = plc4xEquipmentOperationService.getDatas();
-*/
-        List<PlcEntity> datas = new ArrayList<>();
-        PlcEntity plcEntity=new PlcEntity();
-        plcEntity.setValueOjb(true);
-        plcEntity.setName("零件号");
-        datas.add(plcEntity);
+
+//        List<PlcEntity> datas = new ArrayList<>();
+//        PlcEntity plcEntity=new PlcEntity();
+//        plcEntity.setValueOjb(true);
+//        plcEntity.setName("零件号");
+//        datas.add(plcEntity);
 
         datas.stream().forEach(p->{
-            if ("productNo".equals(p.getName())){
+            if ("productNo".equals(p.getName())){//
                 p.setName("零件号");
-            }else if ("indenterChoice".equals(p.getName())){
+            }else if ("indenterChoice".equals(p.getName())){// 返回结果时ArrayList size=8
                 p.setName("压头选择");
-            }else if ("choicePositive".equals(p.getName())){
+                p.setValueOjb(((ArrayList)p.getValueOjb()).get(0));
+            }else if ("choicePositive".equals(p.getName())){//
                 p.setName("选择正压");
-            }else if ("choiceNegative".equals(p.getName())){
+            }else if ("choiceNegative".equals(p.getName())){//
                 p.setName("选择反压");
-            }else if ("rasterClose".equals(p.getName())){
+            }else if ("rasterClose".equals(p.getName())){//
                 p.setName("光栅屏蔽");
-            }else if ("safeDoorClose".equals(p.getName())){
+            }else if ("safeDoorClose".equals(p.getName())){//
                 p.setName("安全门屏蔽");
-            }else if ("buzzerClose".equals(p.getName())){
+            }else if ("buzzerClose".equals(p.getName())){//
                 p.setName("蜂鸣器屏蔽");
             };
         });

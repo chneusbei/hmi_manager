@@ -31,7 +31,7 @@ public class JsonController {
         pressDataId = 1L;
 //        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(1L, pressDataId);
         List<PressureCurveEntity> list = plc4xCurveDataService.getCurveDatas();
-        List<List<PressureCurveEntity>>  errantList = programService.getDataforChart(1L);
+        List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart(1L);
         errantList.add(list);
         String json = JSON.toJSONString(list);
         return json;
@@ -39,10 +39,10 @@ public class JsonController {
 
     @RequestMapping("/getCurveQueryByCode")
     public String getCurveQueryByCode(){
-//        List<PressureCurveEntity> list = plc4xCurveDataService.getCurveDatas();
-        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(0L, 1L);
-//        List<List<PressureCurveEntity>>  errantList = new  ArrayList<List<PressureCurveEntity>>();
-        List<List<PressureCurveEntity>>  errantList = programService.getDataforChart(1L);
+        List<PressureCurveEntity> list = plc4xCurveDataService.getCurveDatas();
+//        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(0L, 1L);
+//        List<List<PressureCurveEntity>>  errantList = new ArrayList<List<PressureCurveEntity>>();
+        List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart(1L);
         if(!CollectionUtils.isEmpty(list)) {
             errantList.add(list);
         }

@@ -2,7 +2,6 @@ package com.plc.hmi.service.plcService;
 
 import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
-import com.plc.hmi.dal.entity.PressureProgramEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.enumeration.PlcEntityEnum;
 import com.plc.hmi.service.PressureCurveService;
@@ -28,10 +27,20 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     private final Log logger = LogFactory.getLog(Plc4xCurveDataService.class);
     public static final String tagGroup = HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode();
     public static Map<Long, List<PressureCurveEntity>> curveMap = new HashMap<Long, List<PressureCurveEntity>>();
+    public static PressureCurveEntity currentCurve = new PressureCurveEntity();
     public static Long productNo=0L;
     private static Long startTime= 0L;
     private static Long endTime= 0L;
     private static Long peerStartTime= 0L;
+
+
+    /**
+     * 获取实时单条曲线信息
+     * @return
+     */
+    public PressureCurveEntity getCurrentCurve() {
+        return currentCurve;
+    }
 
     /**
      *  获取设备状态
@@ -42,6 +51,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         super.initQuereyList(tagGroup);
         return super.getDataByBuilder();
     }
+
 
     /**
      * 获取实时曲线信息
@@ -67,6 +77,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 //        System.out.println("get data from plc >>>>>>>>>>>>>>>>>>>>>>>>");
         List<PlcEntity> plcEntityList = this.getDatas();
         PressureCurveEntity curve = plc2Curve(plcEntityList);
+        currentCurve = curve;
         if(curve.getCurveRecording()) {
 //             System.out.println("getCurveRecording = true ******** ");
         } else {
@@ -125,6 +136,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 } else if(PlcEntityEnum.curve_data_curSpeed.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //当前速度	Real
                     curveEntity.setSpeed(new BigDecimal(plcEntity.getValueOjb().toString()));
+                    curveEntity.setCurSpeed(curveEntity.getSpeed());
                 } else if(PlcEntityEnum.curve_data_reserve0.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //预留_0
                     curveEntity.setReserve0(new BigDecimal(plcEntity.getValueOjb().toString()));

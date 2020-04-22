@@ -1,14 +1,11 @@
 package com.plc.hmi;
 
 import com.plc.hmi.dal.entity.PressureCurveEntity;
-import com.plc.hmi.dal.entity.PressureProgramEntity;
 import com.plc.hmi.service.PressureProgramService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -154,7 +151,7 @@ public class PressureProgramTest {
 //        service.delete(entity);
 
 */
-        List<List<PressureCurveEntity>>  errantList = service.getDataforChart(1L);
+        List<List<PressureCurveEntity>>  errantList = service.getErrandDataforChart(1L);
 
         System.out.println("END----------------");
     }

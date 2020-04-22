@@ -35,7 +35,7 @@ public class Plc4xBaseService {
      *  获取设 PlcReadRequest.Builder
      *  高频查询，需要先获得 PlcReadRequest.Builder
      */
-    public PlcReadRequest.Builder initReadBuilder(List<PlcEntity> queryList, boolean force){
+    public synchronized PlcReadRequest.Builder initReadBuilder(List<PlcEntity> queryList, boolean force){
         if(force || null == builder) {
             builder = plc4xConnectorService.getReadBuilder(queryList);
             builderTime = System.currentTimeMillis();

@@ -62,11 +62,11 @@
                     <td colspan="2" align="center"><h4>当前数据</h4></td>
                 </tr>
                 <tr>
-                    <td  align="center">当前位置&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="monitoring.place">&nbsp;&nbsp;mm </td>
-                    <td>当前压力&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="monitoring.stress">&nbsp;&nbsp;kn</td>
+                    <td  align="center">当前位置&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="curve.position">&nbsp;&nbsp;mm </td>
+                    <td>当前压力&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="curve.pressForce">&nbsp;&nbsp;kn</td>
                 </tr>
                 <tr>
-                    <td align="center">&nbsp;&nbsp;&nbsp;当前速度&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="monitoring.speed">&nbsp;&nbsp;mm/s </td>
+                    <td align="center">&nbsp;&nbsp;&nbsp;当前速度&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="curve.curSpeed">&nbsp;&nbsp;mm/s </td>
                     <td></td>
                 </tr>
             </table>
@@ -86,21 +86,21 @@
         el:"#app",
         data:{
             monitoring:{
-                place:'3.124',
-                stress:'5.642',
-                speed:'1.04'
+                place:'1',
+                stress:'2',
+                speed:'3'
             },
             intervalId: null,
             listPlcEntity1:{},
-            listPlcEntity2:{}
+            curve:{}
         },methods:{
             getEquipmentStatus(){
                 axios.get("/getEquipmentStatus").then(result=>{
                     this.listPlcEntity1=result.data;
                 })
             },getCurveStatus(){
-                axios.get("/getCurveStatus").then(result=>{
-                    this.listPlcEntity2=result.data;
+                axios.get("/getCurrentCurve").then(result=>{
+                    this.curve=result.data;
                 })
     },
             timer(){
