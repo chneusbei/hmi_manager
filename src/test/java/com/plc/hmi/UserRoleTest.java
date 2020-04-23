@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Date;
+import java.util.List;
 
 @SpringBootTest
 public class UserRoleTest {
@@ -26,7 +27,8 @@ public class UserRoleTest {
         entity.setCreateTime(new Date());
         entity.setUpdateTime(new Date());
 //        service.insert(entity);
-        UserRoleEntity result = service.getUserRole(1L);
+         UserRoleEntity  result = service.getUserRole(1);
+        List<UserRoleEntity> resultList = service.getUserRoleList();
 //        service.update(entity);
 //        service.delete(entity);
 

@@ -25,7 +25,7 @@ public class TagsInfoTest {
         entity.setTagTypeDes("bool");
         entity.setTagArea("Ox84");
         entity.setDbNo(300);
-        entity.setAdderss(100);
+        entity.setAddress(100);
         entity.setTagBit(0);
         entity.setTagGroup("group");
         entity.setUpdateBy("SYS");
@@ -34,6 +34,8 @@ public class TagsInfoTest {
         entity.setUpdateTime(new Date());
 //        service.insert(entity);
         List<TagsInfoEntity> result = service.getTags();
+        List<TagsInfoEntity> result1 = service.getTagsByGroup("equipment_operation");
+        TagsInfoEntity result2 = service.getTagsByGroupAndName("equipment_operation","productNo");
 //        entity.setTagName("Tag2");
 //        entity.setTagTypeId(11);
 //        entity.setTagArea("Ox81");

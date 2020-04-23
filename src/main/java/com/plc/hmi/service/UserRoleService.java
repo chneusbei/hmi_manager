@@ -15,12 +15,22 @@ public class UserRoleService extends AbstractBaseService{
     @Resource
     UserRoleDao dao;
 
+    /**
+     * 查询userRoller
+     * @param roleId
+     * @return
+     */
     public UserRoleEntity getUserRole(long roleId) {
         return dao.getUserRole(roleId);
     }
 
+    /**
+     * 查询userRoleList
+     * @param
+     * @return
+     */
     public List<UserRoleEntity> getUserRoleList() {
-        return dao.getUserRole(null);
+        return dao.getUserRoleList();
     }
 
     public void insert(UserRoleEntity entity) {

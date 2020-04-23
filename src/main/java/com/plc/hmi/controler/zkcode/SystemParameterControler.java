@@ -17,7 +17,7 @@ private SystemParameterService systemParameterService;
     @ResponseBody
     @GetMapping("/getSystemParameter")
     public SystemParameterEntity getSystemParameter(){
-    return  systemParameterService.getSystemParameters().get(0);
+        return systemParameterService.getSystemParameters();
     }
 
     @RequestMapping("/updateSystemParameter")

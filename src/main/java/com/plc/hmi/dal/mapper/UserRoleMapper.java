@@ -10,14 +10,24 @@ import java.util.List;
 @Mapper
 public interface UserRoleMapper {
 
-    @Select(
-                    {"<script>",
-                    "select * from user_role where is_deleted='0' ",
-                    "<if test='roleId!=null' >",
-                    "and id=#{roleId}",
-                    "</if>",
-                    "</script>" })
-    List<HashMap> getUserRole(Long roleId);
+//    @Select({"<script>",
+//            "select * from user_role where is_deleted='0' ",
+//            "<if test='roleId!=null' >",
+//            "and id=#{roleId}",
+//            "</if>",
+//            "</script>" })
+    @Select("select * from user_role where is_deleted='0'")
+    @Results({
+            @Result(column = "id",property = "id"),
+            @Result(column = "ROLE_NAME",property = "roleName"),
+            @Result(column = "ROLE_DESCRIPTION",property = "roleDescription"),
+            @Result(column = "CREATE_BY",property = "createBy"),
+            @Result(column = "UPDATE_BY",property = "updateBy"),
+            @Result(column = "CREATE_TIME",property = "createTime"),
+            @Result(column = "UPDATE_TIME",property = "updateTime"),
+            @Result(column ="IS_DELETED",property = "isDeleted"),
+    })
+    List<UserRoleEntity> getUserRoleList();
 
 
     @Select("select * from user_role where is_deleted='0' and id=#{roleId}")
@@ -29,6 +39,7 @@ public interface UserRoleMapper {
             @Result(column = "UPDATE_BY",property = "updateBy"),
             @Result(column = "CREATE_TIME",property = "createTime"),
             @Result(column = "UPDATE_TIME",property = "updateTime"),
+            @Result(column ="IS_DELETED",property = "isDeleted"),
     })
     UserRoleEntity getUserRoleOne(long roleId);
 
@@ -42,9 +53,5 @@ public interface UserRoleMapper {
 
     @Update({"update user_role set ROLE_DESCRIPTION=#{roleDescription}, UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where ID=#{id}"})
     void update(UserRoleEntity entity);
-
-    @Select("select * from user_role where is_deleted='0'")
-    List<HashMap> getUserRoleList();
-
 
 }
