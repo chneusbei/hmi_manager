@@ -37,7 +37,7 @@ public class Plc4xCurveDataControler {
     @ResponseBody
     @GetMapping("/getEquipmentStatus")
     List<PlcEntity> getEquipmentDatas(){
-       /* List<PlcEntity> datas=new ArrayList<>();
+        List<PlcEntity> datas=new ArrayList<>();
         PlcEntity plcEntity=new PlcEntity();
         plcEntity.setName("onLine");
         plcEntity.setValueOjb(true);
@@ -73,9 +73,11 @@ public class Plc4xCurveDataControler {
         PlcEntity plcEntity6=new PlcEntity();
         plcEntity6.setName("3");
         plcEntity6.setValueOjb(false);
-        datas.add(plcEntity6);*/
+        datas.add(plcEntity6);
 
+/*
          List<PlcEntity> datas = plc4xEquipmentStatusService.getDatas();
+*/
         datas.stream().forEach(p -> {
             if ("onLine".equals(p.getName())) {
                 p.setName("在线");
@@ -97,11 +99,38 @@ public class Plc4xCurveDataControler {
      *
      * @return 获取服务器上当前的数据
      */
+
     @Resource
     Plc4xCurveStatusService plc4xCurveStatusService;
+    @ResponseBody
     @GetMapping("/getCurveStatus")
     List<PlcEntity> getCurveData(){
-        return plc4xCurveStatusService.getDatas();
+/*
+        List<PlcEntity> datas = plc4xCurveStatusService.getDatas();
+*/
+List<PlcEntity> datas=new ArrayList<>();
+PlcEntity plcEntity=new PlcEntity();
+plcEntity.setName("position");
+PlcEntity plcEntity1=new PlcEntity();
+plcEntity1.setName("pressForce");
+PlcEntity plcEntity2=new PlcEntity();
+plcEntity2.setName("curSpeed");
+plcEntity2.setValueOjb(56456);
+datas.add(plcEntity);
+datas.add(plcEntity1);
+datas.add(plcEntity2);
+        datas.stream().forEach(p->{
+            if ("position".equals(p.getName())){
+                p.setName("当前位置");
+            }
+            else if ("pressForce".equals(p.getName())){
+                p.setName("当前压力");
+            }
+            else if ("curSpeed".equals(p.getName())){
+                p.setName("当前速度");
+            }
+        });
+return datas;
     }
 
     @Resource
@@ -130,8 +159,16 @@ public class Plc4xCurveDataControler {
         List<PlcEntity> datas = new ArrayList<>();
         PlcEntity plcEntity=new PlcEntity();
         plcEntity.setName("input0");
-        plcEntity.setValueOjb("asd ");
+        plcEntity.setValueOjb(true);
+        PlcEntity plcEntity1=new PlcEntity();
+        plcEntity1.setName("input1");
+        plcEntity1.setValueOjb(false);
+        PlcEntity plcEntity2=new PlcEntity();
+        plcEntity2.setName("input2");
+        plcEntity2.setValueOjb(true);
         datas.add(plcEntity);
+        datas.add(plcEntity1);
+        datas.add(plcEntity2);
 
 
         datas.stream().forEach(p-> {

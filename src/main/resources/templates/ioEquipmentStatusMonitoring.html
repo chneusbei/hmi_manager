@@ -43,14 +43,15 @@
                <br>
                 <table class="imagetable">
                     <tr>
-                        <td colspan="9" align="center"><h4>IO状态</h4></td>
+                        <td colspan="9" style="" align="center"><h4>IO状态</h4></td>
                     </tr>
                         <tr v-for="(o,index) in listPlcEntity">
-                            <td colspan="9" align="left" style="background-color: #b5cfd2" >{{o.name}}</td>
+                            <td  v-if="o.valueOjb"   colspan="9" align="left" style="background-color: #73d251" >{{o.name}}</td>
+                            <td  v-else colspan="9"  align="left" style="background-color: #b5cfd2" >{{o.name}}</td>
                         </tr>
-                        <tr v-for="(o,index) in listPlcEntity">
-                            <td align="center">{{o.valueOjb}}</td>
-                        </tr>
+                        <!--<tr v-for="(o,index) in listPlcEntity">
+
+                        </tr>-->
                <!--     <tr>
                         <td colspan="9" align="left" style="background-color: #b5cfd2" >OUTPUT</td>
                     </tr>

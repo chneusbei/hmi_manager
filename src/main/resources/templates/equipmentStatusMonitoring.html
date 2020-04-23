@@ -52,24 +52,42 @@
                 <tr>
                     <td colspan="4" align="center"><h4>设备状态</h4></td>
                 </tr>
-                <tr v-for="(item,index) in listPlcEntity1" >
+               <!-- <tr  >
+                    <template v-for="(item,index) in listPlcEntity1">
                         <td height="50px" align="align">{{item.name}}&nbsp;<input type="radio" :checked="item.valueOjb">
+                    </template>
+                </tr>-->
+
+
+
+
+                <tr>
+                    <template v-for="(item,index) in listPlcEntity1.slice(0, 3)">
+                        <td >{{item.name}}&nbsp;<input type="radio" :checked="item.valueOjb">
+                    </template>
                 </tr>
+                <tr>
+                    <template v-for="(item,index) in listPlcEntity1.slice(3, 6)">
+                        <td >{{item.name}}&nbsp;<input type="radio"></td>
+                    </template>
+                </tr>
+
+
+
+
             </table>
             <br>
-            <table class="imagetable">
-                <tr>
-                    <td colspan="2" align="center"><h4>当前数据</h4></td>
-                </tr>
-                <tr>
-                    <td  align="center">当前位置&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="monitoring.place">&nbsp;&nbsp;mm </td>
-                    <td>当前压力&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="monitoring.stress">&nbsp;&nbsp;kn</td>
-                </tr>
-                <tr>
-                    <td align="center">&nbsp;&nbsp;&nbsp;当前速度&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="monitoring.speed">&nbsp;&nbsp;mm/s </td>
-                    <td></td>
-                </tr>
-            </table>
+            <div class="imagetable">
+                <div>
+                    <div colspan="2" align="center"><h4>当前数据</h4></div>
+                </div>
+                <span v-for="(item,index) in listPlcEntity2">
+                    <span  align="center">{{item.name}}&nbsp;&nbsp;<input type="text" v-model="item.valueOjb"  disabled="disabled"  style="width: 80px" >&nbsp;&nbsp;<span v-if="item.name=='当前位置'">mm</span>
+                                                                                                                                                                     <span v-if="item.name=='当前压力'">kn</span>
+                                                                                                                                                                     <span v-if="item.name=='当前速度'">mm/s</span>           </span>
+                    <div v-if="index%2==0"></div>
+                </span>
+            </div>
         </main>
         <!--End 页面主要内容-->
     </div>
