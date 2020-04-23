@@ -108,17 +108,17 @@ public class Plc4xCurveDataControler {
 /*
         List<PlcEntity> datas = plc4xCurveStatusService.getDatas();
 */
-List<PlcEntity> datas=new ArrayList<>();
-PlcEntity plcEntity=new PlcEntity();
-plcEntity.setName("position");
-PlcEntity plcEntity1=new PlcEntity();
-plcEntity1.setName("pressForce");
-PlcEntity plcEntity2=new PlcEntity();
-plcEntity2.setName("curSpeed");
-plcEntity2.setValueOjb(56456);
-datas.add(plcEntity);
-datas.add(plcEntity1);
-datas.add(plcEntity2);
+        List<PlcEntity> datas=new ArrayList<>();
+        PlcEntity plcEntity=new PlcEntity();
+        plcEntity.setName("position");
+        PlcEntity plcEntity1=new PlcEntity();
+        plcEntity1.setName("pressForce");
+        PlcEntity plcEntity2=new PlcEntity();
+        plcEntity2.setName("curSpeed");
+        plcEntity2.setValueOjb(56456);
+        datas.add(plcEntity);
+        datas.add(plcEntity1);
+        datas.add(plcEntity2);
         datas.stream().forEach(p->{
             if ("position".equals(p.getName())){
                 p.setName("当前位置");
@@ -130,7 +130,7 @@ datas.add(plcEntity2);
                 p.setName("当前速度");
             }
         });
-return datas;
+        return datas;
     }
 
     @Resource

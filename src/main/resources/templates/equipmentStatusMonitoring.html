@@ -19,84 +19,84 @@
             margin-left: 100px;
         }
         table.imagetable {
-                     font-family: verdana,arial,sans-serif;
-                     font-size:15px;
-                     color:#333333;
-                     border-width: 1px;
-                     border-color: black;
-                     border-collapse: collapse;
-                }
-             table.imagetable th {
-                            background:#b5cfd2;
-                            border-width: 1px;
-                             padding: 8px;
-                            border-style: solid;
-                           border-color: #999999;
-                        }
-             table.imagetable td {
-                            background:white ;
-                            border-width: 1px;
-                            border-color: #999999;
-                        }
+            font-family: verdana,arial,sans-serif;
+            font-size:15px;
+            color:#333333;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table.imagetable th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+        }
+        table.imagetable td {
+            background:white ;
+            border-width: 1px;
+            border-color: #999999;
+        }
 
     </style>
 </head>
 <body>
 <div id="app">
-<div class="lyear-layout-web">
-    <div class="lyear-layout-container">
-        <script src="test.js"></script>
-        <main class="lyear-layout-content">
-            <br>
-            <table class="imagetable">
-                <tr>
-                    <td colspan="4" align="center"><h4>设备状态</h4></td>
-                </tr>
-               <!-- <tr  >
-                    <template v-for="(item,index) in listPlcEntity1">
-                        <td height="50px" align="align">{{item.name}}&nbsp;<input type="radio" :checked="item.valueOjb">
-                    </template>
-                </tr>-->
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+            <script src="test.js"></script>
+            <main class="lyear-layout-content">
+                <br>
+                <table class="imagetable">
+                    <tr>
+                        <td colspan="4" align="center"><h4>设备状态</h4></td>
+                    </tr>
+                    <!-- <tr  >
+                         <template v-for="(item,index) in listPlcEntity1">
+                             <td height="50px" align="align">{{item.name}}&nbsp;<input type="radio" :checked="item.valueOjb">
+                         </template>
+                     </tr>-->
 
 
 
 
-                <tr>
-                    <template v-for="(item,index) in listPlcEntity1.slice(0, 3)">
-                        <td >{{item.name}}&nbsp;<input type="radio" :checked="item.valueOjb">
-                    </template>
-                </tr>
-                <tr>
-                    <template v-for="(item,index) in listPlcEntity1.slice(3, 6)">
-                        <td >{{item.name}}&nbsp;<input type="radio"></td>
-                    </template>
-                </tr>
+                    <tr>
+                        <template v-for="(item,index) in listPlcEntity1.slice(0, 3)">
+                            <td >{{item.name}}&nbsp;<input type="radio" :checked="item.valueOjb">
+                        </template>
+                    </tr>
+                    <tr>
+                        <template v-for="(item,index) in listPlcEntity1.slice(3, 6)">
+                            <td >{{item.name}}&nbsp;<input type="radio"></td>
+                        </template>
+                    </tr>
 
 
 
 
-            </table>
-            <br>
-            <div class="imagetable">
-                <div>
-                    <div colspan="2" align="center"><h4>当前数据</h4></div>
-                </div>
-                <span v-for="(item,index) in listPlcEntity2">
+                </table>
+                <br>
+                <div class="imagetable">
+                    <div>
+                        <div colspan="2" align="center"><h4>当前数据</h4></div>
+                    </div>
+                    <span v-for="(item,index) in listPlcEntity2">
                     <span  align="center">{{item.name}}&nbsp;&nbsp;<input type="text" v-model="item.valueOjb"  disabled="disabled"  style="width: 80px" >&nbsp;&nbsp;<span v-if="item.name=='当前位置'">mm</span>
                                                                                                                                                                      <span v-if="item.name=='当前压力'">kn</span>
                                                                                                                                                                      <span v-if="item.name=='当前速度'">mm/s</span>           </span>
                     <div v-if="index%2==0"></div>
                 </span>
-            </div>
-        </main>
-        <!--End 页面主要内容-->
+                </div>
+            </main>
+            <!--End 页面主要内容-->
+        </div>
     </div>
-</div>
 
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
-<script type="text/javascript" src="js/main.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
 </div>
 <script type="module">
     var end=-1
@@ -120,24 +120,24 @@
                 axios.get("/getCurveStatus").then(result=>{
                     this.listPlcEntity2=result.data;
                 })
-    },
+            },
             timer(){
                 if (this.intervalId!=null){/*代表计时器已经启动*/
                     return ;
                 }
                 this.intervalId = setInterval(() => {
-                   this.getEquipmentStatus();
-                   this.getCurveStatus();
+                    this.getEquipmentStatus();
+                    this.getCurveStatus();
                 }, 1000);
             }
         }, created(){
             this.timer();
             this.getEquipmentStatus();
         },destroyed () {
-               // （很重要）当跳转到其他页面的时候，要在生命周期的destroyed里清空this.cdTimer，不然会出错
-               clearTimeout(this.intervalId)
+            // （很重要）当跳转到其他页面的时候，要在生命周期的destroyed里清空this.cdTimer，不然会出错
+            clearTimeout(this.intervalId)
 
-             },
+        },
     })
 </script>
 </body>

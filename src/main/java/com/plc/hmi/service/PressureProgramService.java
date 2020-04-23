@@ -33,12 +33,11 @@ public class PressureProgramService extends AbstractBaseService{
     }
 
     /**
-     * 获取在界面chart中画公差窗口所需数据
-     * 这里将PressureProgramEntity对象转化成了PressureCurveEntity对象， 用户chart paint时统一渲染规则
+     * 获取在公差所需数据
      * @param productId
      * @return
      */
-    public List<List<PressureCurveEntity>> getDataforChart(Long productId) {
+    public PressureProgramEntity getErrandData(Long productId) {
         boolean refresh =false;
         if(refreshTimeMillion > 0) {
             //5分钟从数据库获取一次
@@ -51,7 +50,17 @@ public class PressureProgramService extends AbstractBaseService{
             programMap = pressureProgramDao.getAllDatas();
             refreshTimeMillion = System.currentTimeMillis();
         }
-        return toChartData(this.programMap.get(productId));
+         return programMap.get(productId);
+    }
+
+    /**
+     * 获取在界面chart中画公差窗口所需数据
+     * 这里将PressureProgramEntity对象转化成了PressureCurveEntity对象， 用户chart paint时统一渲染规则
+     * @param productId
+     * @return
+     */
+    public List<List<PressureCurveEntity>> getErrandDataforChart(Long productId) {
+        return toChartData( getErrandData(productId));
     }
 
     /**
