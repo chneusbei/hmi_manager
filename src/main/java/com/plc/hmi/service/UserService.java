@@ -31,10 +31,6 @@ public class UserService extends AbstractBaseService{
         return userDao.getUserList(userName,index);
     }
 
-//    public List<UserEntity> getUserList() {
-//        return userDao.getUserList();
-//    }
-
     public void insert(UserEntity entity) {
         userDao.insert(entity);
     }
@@ -50,6 +46,7 @@ public class UserService extends AbstractBaseService{
     public void delete(UserEntity entity) {
         userDao.delete(entity);
     }
+
     public UserEntity loginUser(String name,String pwd){
         return userDao.loginUser(name,pwd);
     };

@@ -18,7 +18,7 @@ public class SystemParameterService extends AbstractBaseService{
     @Resource
     SystemParameterDao dao;
 
-    public List<SystemParameterEntity> getSystemParameters() {
+    public SystemParameterEntity getSystemParameters() {
         return dao.getSystemParameters();
     }
 

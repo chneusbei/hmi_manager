@@ -18,7 +18,7 @@ public class TagsInfoEntity extends AbstractBaseEntity {
     //数据块地址
     private int dbNo;
     //地址
-    private int adderss;
+    private int address;
     //位
     private int tagBit;
     //分组
@@ -80,12 +80,12 @@ public class TagsInfoEntity extends AbstractBaseEntity {
         this.dbNo = dbNo;
     }
 
-    public int getAdderss() {
-        return adderss;
+    public int getAddress() {
+        return address;
     }
 
-    public void setAdderss(int adderss) {
-        this.adderss = adderss;
+    public void setAddress(int address) {
+        this.address = address;
     }
 
     public int getTagBit() {

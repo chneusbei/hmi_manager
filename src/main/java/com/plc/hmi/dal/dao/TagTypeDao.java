@@ -12,22 +12,12 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public class TagTypeDao extends AbstractHmiBaseDao {
+public class TagTypeDao {
     @Resource
     TagTypeMapper tagTypeMapper;
 
-    public  List<TagTypeEntity>  getTagType() {
-        return  this.getEntityList(tagTypeMapper.getTagType());
-    }
-
-
-    @Override
-    protected TagTypeEntity getEntity(HashMap map) {
-        TagTypeEntity entity = new TagTypeEntity();
-        super.setEntityBase(entity, map);
-        entity.setDataType(HmiUtils.getString(map.get(TagTypeEntityEnum.DATA_TYPE.getCode())));
-        entity.setDataLength(HmiUtils.getIntValue(map.get(TagTypeEntityEnum.DATA_LENGTH.getCode())));
-        return entity;
+    public List<TagTypeEntity> getTagType() {
+        return  tagTypeMapper.getTagType();
     }
 
     public void insert(TagTypeEntity entity) {

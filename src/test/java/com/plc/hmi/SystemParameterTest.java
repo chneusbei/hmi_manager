@@ -28,16 +28,14 @@ public class SystemParameterTest {
         entity.setCreateBy("chensubei");
         entity.setCreateTime(new Date());
         entity.setUpdateTime(new Date());
-        service.insert(entity);
-        List<SystemParameterEntity> list=  service.getSystemParameters();
+//        service.insert(entity);
+         SystemParameterEntity  list=  service.getSystemParameters();
         entity.setMaxDistance(new BigDecimal(1.1));
         entity.setMaxSpeed(new BigDecimal(2.1));
         entity.setMaxForce(new BigDecimal(3.1));
         entity.setDefaultBackSpeed(new BigDecimal(4.1));
-        service.update(entity);
-        service.delete(entity);
-
-
+//        service.update(entity);
+//        service.delete(entity);
 
         System.out.println("END----------------");
     }

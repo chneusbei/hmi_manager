@@ -96,15 +96,16 @@
                 }else if(this.$refs.password.value===''){
                     alert("密码不能为空！")
                 }else{
+                    alert("请求后台1 ")
                     let requestDate={
                         username:this.$refs.username.value,
                         password:this.$refs.password.value
                     }
-                    axios("/UserQuery",{params: requestDate}).then(response=>{
+                    axios("/userLogin",{params: requestDate}).then(response=>{
+                        alert("请求后台2 ")
                         if(response.data.id==undefined){
                             alert("账号或密码不正确！")
                         }
-
                     }).catch(function(error){
                         alert(error);
                     })
