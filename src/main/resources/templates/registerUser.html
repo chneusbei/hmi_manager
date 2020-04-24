@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="css/style1.css">
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <script src="js/form.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="form" style="position:relative" id="app">
+
+    <!--注册表单-->
+    <div class="form_register" style="position:absolute">
+        <form action="/createUser" method="post" @submit="submit" >
+            <h1>注册</h1>
+            <div class="">
+                <label>角色：</label>
+                <select name="id" class="form-control" id="type" style="height: 35px">
+                    <option v-for="r in roleList" :value="r.id">{{r.roleName}}</option>
+                </select>
+            </div>
+            <div class="form_item">
+                <label>用户名：</label>
+                <input type="text" name="name" id="name" placeholder="请输入用户名" required >
+            </div>
+            <div class="form_item">
+                <label>密码：</label>
+                <input type="password" name="pwd" id="pwd" placeholder="请输入密码名" required>
+            </div>
+            <div class="form_item">
+                <label >确认密码：</label>
+                <input type="password" name="pwd2" id="pwd2" placeholder="请再次输入密码名" required>
+            </div>
+            <div class="form_item">
+                <label>创建人：</label>
+                <input type="text" name="createname" id="createname" placeholder="请输入创建人姓名" required>
+            </div>
+            <div class="form_item"  @click="createuser">
+                <input type="submit" value="注册">
+            </div>
+        </form>
+        <div class="info">已有账号？点击<a href="/logins">登录</a></div>
+    </div>
+
+
+</div>
+<script type="module">
+    new Vue({
+        el: "#app",
+        data: {
+            roleList:[],
+        }, methods: {
+            initRole(){
+                axios.get("/queryRole").then(response=>{
+                    this.roleList=response.data;
+                }).catch(function(error){
+                    alert(error)
+                })
+            },createuser(){
+                var pwd=$("#pwd").val();
+                var pwds=$("#pwd2").val();
+                var uname=$("#name").val();
+                var cname=$("#createname").val();
+                if(pwd===pwds){
+                    if( cname!=''){
+                        let requestDate={
+                            uname:uname
+                        }
+                        axios("/UserFlag",{params: requestDate}).then(response=>{
+                            alert(response.data)
+
+                        }).catch(function(error){
+                            alert(error);
+                        })
+                    }
+
+                }
+            },submit(){
+                var pwd=$("#pwd").val();
+                var pwds=$("#pwd2").val();
+                if(pwd===pwds){
+                    window.event.returnValue = true;
+                }else{
+                    alert("你的密码不一致！")
+                    window.event.returnValue = false;
+                }
+
+            }
+
+        },created(){
+            this.initRole();
+        }
+    })
+</script>
+</body>
+</html>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

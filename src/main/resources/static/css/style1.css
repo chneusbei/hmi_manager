@@ -9,16 +9,17 @@ body{
     height: 600px;
     margin: 30px auto;
 }
-.form_register,.form_login{
+.form_login{
     width: 500px;
     background-color:rgba(0, 188, 212, 0.7);
     border-radius: 5px;
-    box-shadow: 0 0 3px #ccc;  
-    overflow: hidden;
-    transition: height 1s;
+    box-shadow: 0 0 3px #ccc;
 }
 .form_register{
-    height: 548px;
+    width: 500px;
+    background-color:rgba(0, 188, 212, 0.7);
+    border-radius: 5px;
+    box-shadow: 0 0 3px #ccc;
 }
 
 .form form{

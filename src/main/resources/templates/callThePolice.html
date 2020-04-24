@@ -81,15 +81,15 @@
                     <tr>
                         <td>开始时间：
                             <div class="card">
-                                <input class="form-control js-datepicker m-b-10" type="text" id="example-datepicker" name="example-datepicker" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd" />
+                                <input class="form-control js-datepicker m-b-10" type="text" ref="start" id="example-datepicker" name="example-datepicker" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd" />
                             </div>
                         </td>
                         <td>结束时间：
                             <div class="card">
-                                <input class="form-control js-datepicker m-b-10" type="text" id="" name="example-datepicker" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd" />
+                                <input class="form-control js-datepicker m-b-10" type="text" ref="stop" id="" name="example-datepicker" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd" />
                             </div>
                         </td>
-                        <td><input type="button" value="查询" style="background-color: #33CABB;width: 70px;height: 35px;color: white" id="daochu" ></td>
+                        <td><input type="button" value="查询" style="background-color: #33CABB;width: 70px;height: 35px;color: white" @click="queryHisAlarm" ></td>
                     </tr>
                 </table>
                 <br>
@@ -135,10 +135,10 @@
     new Vue({
         el:"#app",
         data:{
-            listAlarm:null,
+            listAlarm:[],
         },methods:{
             getAlarm(){
-                axios.get("/getAlarm").then(result=>{
+                axios.get("/getHisAlarm").then(result=>{
                     this.listAlarm=result.data;
                     for (let i in this.listAlarm) {
                        if (this.listAlarm[i].alarmType==="E"){
@@ -149,6 +149,16 @@
                            this.listAlarm[i]["impression"]="RGB(192,192,192)"
                        }
                     }
+                })
+            },queryHisAlarm(){
+                let requestData={
+                    start:this.$refs.start.value,
+                    stop:this.$refs.stop.value
+                }
+                axios.get("/queryHisAlarm",{params:requestData}).then(response=>{
+                    alert(response.data);
+                }).catch(function(error){
+                    alert(error)
                 })
             }
         },created(){/*vue钩子*/
