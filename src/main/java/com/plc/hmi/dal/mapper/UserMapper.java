@@ -18,9 +18,32 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     @Select("select * from USER where is_deleted='0' and USER_NAME=#{userName}")
-    List<HashMap> getUser(String userName);
+    @Results({
+            @Result(id=true,column = "ID",property = "id" ),
+            @Result(column ="USER_NAME",property = "userName"),
+            @Result(column ="USER_PASSWORD",property = "userPassword"),
+            @Result(column ="CREATE_BY",property = "createBy"),
+            @Result(column ="UPDATE_BY",property = "updateBy"),
+            @Result(column ="CREATE_TIME",property = "createTime"),
+            @Result(column ="UPDATE_TIME",property = "updateTime"),
+            @Result(column ="IS_DELETED",property = "isDeleted"),
+            @Result(column = "ROLE_ID",property="roleId"),
+    })
+    UserEntity getUser(String userName);
+
     @Select("select * from USER where is_deleted='0' and ID=#{id}")
-    List<HashMap> getUserId(Long id);
+    @Results({
+            @Result(id=true,column = "ID",property = "id" ),
+            @Result(column ="USER_NAME",property = "userName"),
+            @Result(column ="USER_PASSWORD",property = "userPassword"),
+            @Result(column ="CREATE_BY",property = "createBy"),
+            @Result(column ="UPDATE_BY",property = "updateBy"),
+            @Result(column ="CREATE_TIME",property = "createTime"),
+            @Result(column ="UPDATE_TIME",property = "updateTime"),
+            @Result(column ="IS_DELETED",property = "isDeleted"),
+            @Result(column = "ROLE_ID",property="roleId"),
+    })
+    UserEntity getUserById(Long id);
     /*新增查询所有用户*/
     @Select({"<script>",
             "select * from USER where USER.IS_DELETED='0'",
@@ -36,6 +59,7 @@ public interface UserMapper {
             @Result(column ="UPDATE_BY",property = "updateBy"),
             @Result(column ="CREATE_TIME",property = "createTime"),
             @Result(column ="UPDATE_TIME",property = "updateTime"),
+            @Result(column ="IS_DELETED",property = "isDeleted"),
             @Result(column = "ROLE_ID",property="userRoleEntity",one =@One(select = "com.plc.hmi.dal.mapper.UserRoleMapper.getUserRoleOne")),
     })
     List<UserEntity> getUserList(String userName);
@@ -55,7 +79,18 @@ public interface UserMapper {
     @Update({"update USER set  IS_DELETED='1', UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where ID=#{id}"})
     void delete(UserEntity entity);
     @Select("SELECT * FROM `user` WHERE USER_NAME=#{name} and USER_PASSWORD=#{pwd} and is_deleted='0'")
-    HashMap loginUser(@Param("name") String name,@Param("pwd") String pwd);
+    @Results({
+            @Result(id=true,column = "ID",property = "id" ),
+            @Result(column ="USER_NAME",property = "userName"),
+            @Result(column ="USER_PASSWORD",property = "userPassword"),
+            @Result(column ="CREATE_BY",property = "createBy"),
+            @Result(column ="UPDATE_BY",property = "updateBy"),
+            @Result(column ="CREATE_TIME",property = "createTime"),
+            @Result(column ="UPDATE_TIME",property = "updateTime"),
+            @Result(column ="IS_DELETED",property = "isDeleted"),
+            @Result(column = "ROLE_ID",property="roleId"),
+    })
+    UserEntity loginUser(@Param("name") String name,@Param("pwd") String pwd);
     @Update({"UPDATE USER SET ROLE_ID=#{rid},USER_NAME=#{name},USER_PASSWORD=#{pwd},UPDATE_TIME=now() where ID=#{uid}"})
     void updateUser(@Param("rid") int rid,@Param("uid")long uid,@Param("name") String name,@Param("pwd") String pwd);
 }

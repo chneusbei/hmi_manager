@@ -34,6 +34,4 @@ public class TagTypeTest {
 
         System.out.println("END----------------");
     }
-
-
 }

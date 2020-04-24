@@ -22,7 +22,7 @@ public class TagsInfoService extends AbstractBaseService{
         return tagsInfoDao.getTagsByGroup(tagGroup);
     }
 
-    public List<TagsInfoEntity> getTagsByGroupAndName(String tagGroup, String tagEnName) {
+    public TagsInfoEntity getTagsByGroupAndName(String tagGroup, String tagEnName) {
         return tagsInfoDao.getTagsByGroupAndName(tagGroup, tagEnName);
     }
 

@@ -21,10 +21,23 @@ public class UserControler {
     private UserService userService;
 
     @ResponseBody
+    @RequestMapping("/userLogin")
+    public UserEntity operatorRole(@RequestParam("username") String userName, @RequestParam("password")String password){
+        System.out.println("user log in : username="+userName +".password"+password);
+        UserEntity user = userService.getUser(userName);
+        if(null != user) {
+            if(!password.equalsIgnoreCase(user.getUserPassword())) {
+                //密码错误， 返回空值
+                user = null;
+            }
+        }
+        return user;
+    }
+
+    @ResponseBody
     @PostMapping("/getUserList")
     public PageInfo<UserEntity> getUserList(@RequestParam (value = "userName") String userName,
                                             @RequestParam (value = "index")Integer index){
-
         return  userService.getUserList(userName,index);
     }
 

@@ -29,6 +29,8 @@ public class UserTest {
 //        service.updatePassword(entity);
 //        service.delete(entity);
         UserEntity userEntity =service.getUser("admin");
+        UserEntity userEntity1 =service.getUser(1L);
+        UserEntity userEntity2 =service.loginUser("admin","admin");
 
 
         System.out.println("END----------------");

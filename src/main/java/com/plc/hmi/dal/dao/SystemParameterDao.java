@@ -11,20 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public class SystemParameterDao extends AbstractHmiBaseDao {
+public class SystemParameterDao {
     @Resource
     SystemParameterMapper mapper;
-
-    @Override
-    protected SystemParameterEntity getEntity(HashMap map) {
-        SystemParameterEntity entity = new SystemParameterEntity();
-        super.setEntityBase(entity, map);
-        entity.setMaxDistance(HmiUtils.getBigDicimal(map.get(SystemParameterEntityEnum.MAX_DISTANCE.getCode())));
-        entity.setMaxForce(HmiUtils.getBigDicimal(map.get(SystemParameterEntityEnum.MAX_FORCE.getCode())));
-        entity.setMaxSpeed(HmiUtils.getBigDicimal(map.get(SystemParameterEntityEnum.MAX_SPEED.getCode())));
-        entity.setDefaultBackSpeed(HmiUtils.getBigDicimal(map.get(SystemParameterEntityEnum.DEFAULT_BACK_SPEED.getCode())));
-        return entity;
-    }
 
     public void insert(SystemParameterEntity entity) {
         mapper.insert(entity);
@@ -38,8 +27,8 @@ public class SystemParameterDao extends AbstractHmiBaseDao {
         mapper.delete(entity);
     }
 
-    public  List<SystemParameterEntity> getSystemParameters() {
-        return this.getEntityList( mapper.getSystemParameters());
+    public  SystemParameterEntity getSystemParameters() {
+        return mapper.getSystemParameters();
     }
 
 

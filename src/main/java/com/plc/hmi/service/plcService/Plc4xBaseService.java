@@ -100,10 +100,10 @@ public class Plc4xBaseService {
             query.setName(tag.getTagEnName());
             StringBuffer sb =new StringBuffer();
 //            %db298.0
-            sb.append(HmiConstants.PLC_QUERY_PREFIX).append(tag.getTagAreaName()).append(tag.getAdderss()).append(HmiConstants.POINT).append(tag.getTagBit())
+            sb.append(HmiConstants.PLC_QUERY_PREFIX).append(tag.getTagAreaName()).append(tag.getAddress()).append(HmiConstants.POINT).append(tag.getTagBit())
                     .append(":").append(tag.getTagTypeDes());
             query.setFieldQuery(sb.toString());
-            query.setPosition(tag.getAdderss()+HmiConstants.POINT+tag.getTagBit());
+            query.setPosition(tag.getAddress()+HmiConstants.POINT+tag.getTagBit());
             query.setDataType(tag.getTagTypeDes());
             readQueryList.add(query);
         }
@@ -134,10 +134,10 @@ public class Plc4xBaseService {
             query.setName(tag.getTagEnName());
             StringBuffer sb =new StringBuffer();
 //            %db298.0
-            sb.append(HmiConstants.PLC_QUERY_PREFIX).append(tag.getTagAreaName()).append(tag.getAdderss()).append(HmiConstants.POINT).append(tag.getTagBit())
+            sb.append(HmiConstants.PLC_QUERY_PREFIX).append(tag.getTagAreaName()).append(tag.getAddress()).append(HmiConstants.POINT).append(tag.getTagBit())
                     .append(":").append(tag.getTagTypeDes());
             query.setFieldQuery(sb.toString());
-            query.setPosition(tag.getAdderss()+HmiConstants.POINT+tag.getTagBit());
+            query.setPosition(tag.getAddress()+HmiConstants.POINT+tag.getTagBit());
             query.setDataType(tag.getTagTypeDes());
             Object value = setUploadValue(tag.getTagTypeDes(), paraMap.get(tag.getTagEnName()));
             query.setValueOjb(value);
