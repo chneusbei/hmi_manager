@@ -3,11 +3,13 @@ import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.service.plcService.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
@@ -18,11 +20,15 @@ public class Plc4xCurveDataControler {
     @Resource
     Plc4xEquipmentOperationService plc4xEquipmentOperationService;
     @ResponseBody
-    @PostMapping("/getCurveData")
-    PressureCurveEntity getcurrDate(){
+    @GetMapping("/getCurrentDate")
+    PressureCurveEntity getCurrentDate(){
         List<PressureCurveEntity> curveDatas = plc4xCurveDataService1.getCurveDatas();
 //        System.out.println(curveDatas);
-        return curveDatas.get(0);
+        if(CollectionUtils.isEmpty(curveDatas)) {
+            return new PressureCurveEntity();
+        } else {
+            return curveDatas.get(0);
+        }
     }
 
 
@@ -184,8 +190,8 @@ public class Plc4xCurveDataControler {
                 p.setName("输入_3");
             } else if ("input4".equals(p.getName())) {
                 p.setName("输入_4");
-            } else if ("输出_0".equals(p.getName())) {
-                p.setName("output0");
+            } else if ("output0".equals(p.getName())) {
+                p.setName("输出_0");
             } else if ("output1".equals(p.getName())) {
                 p.setName("输出_1");
             } else if ("output2".equals(p.getName())) {

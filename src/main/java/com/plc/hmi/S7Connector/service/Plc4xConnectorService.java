@@ -72,7 +72,7 @@ public class Plc4xConnectorService {
         return plcConnection.isConnected();
     }
 
-    public PlcReadRequest.Builder getReadBuilder(List<PlcEntity> queryList) {
+    public synchronized PlcReadRequest.Builder getReadBuilder(List<PlcEntity> queryList) {
         if(queryList == null || queryList.size() == 0) {
             logger.info("plcInfoQueryEntity is empty!");
         }

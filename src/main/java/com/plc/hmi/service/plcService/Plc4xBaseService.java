@@ -47,7 +47,7 @@ public class Plc4xBaseService {
      * 通过 PlcReadRequest.Builder从PLC获取数据
      * 通用方法， 批量模式
      */
-    protected List<PlcEntity>  getDataByBuilder() {
+    protected synchronized List<PlcEntity>  getDataByBuilder() {
         if(null == builder) {
             this.initReadBuilder(readQueryList, false);
         }

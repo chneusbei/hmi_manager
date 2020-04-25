@@ -83,17 +83,32 @@
 
                 </table>
                 <br>
-                <div class="imagetable">
-                    <div>
-                        <div colspan="2" align="center"><h4>当前数据</h4></div>
-                    </div>
-                    <span v-for="(item,index) in curve">
-                    <span  align="center">{{item.name}}&nbsp;&nbsp;<input type="text" v-model="item.valueOjb"  disabled="disabled"  style="width: 80px" >&nbsp;&nbsp;<span v-if="item.name=='当前位置'">mm</span>
-                                                                                                                                                                     <span v-if="item.name=='当前压力'">kn</span>
-                                                                                                                                                                     <span v-if="item.name=='当前速度'">mm/s</span>           </span>
-                    <div v-if="index%2==0"></div>
-                </span>
-                </div>
+<!--                <div class="imagetable">-->
+<!--                    <div>-->
+<!--                        <div colspan="2" align="center"><h4>当前数据</h4></div>-->
+<!--                    </div>-->
+<!--                    <span v-for="(item,index) in curve">-->
+<!--                    <span  align="center">{{item.name}}&nbsp;&nbsp;<input type="text" v-model="item.valueOjb"  disabled="disabled"  style="width: 80px" >&nbsp;&nbsp;-->
+<!--                         <span v-if="item.name=='当前位置'">mm</span>-->
+<!--                         <span v-if="item.name=='当前压力'">kn</span>-->
+<!--                         <span v-if="item.name=='当前速度'">mm/s</span>-->
+<!--                         </span>-->
+<!--                    <div v-if="index%2==0"></div>-->
+<!--                </span>-->
+<!--                </div>-->
+                <table class="imagetable">
+                    <tr>
+                        <td colspan="2" align="center"><h4>当前数据</h4></td>
+                    </tr>
+                    <tr>
+                        <td  align="center">当前位置&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="curve.position">&nbsp;&nbsp;mm </td>
+                        <td>当前压力&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="curve.pressForce">&nbsp;&nbsp;kn</td>
+                    </tr>
+                    <tr>
+                        <td align="center">&nbsp;&nbsp;&nbsp;当前速度&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="curve.curSpeed">&nbsp;&nbsp;mm/s </td>
+                        <td></td>
+                    </tr>
+                </table>
             </main>
             <!--End 页面主要内容-->
         </div>
@@ -123,7 +138,7 @@
                     this.listPlcEntity1=result.data;
                 })
             },getCurveStatus(){
-                axios.get("/getCurveStatus").then(result=>{
+                axios.get("/getCurrentDate").then(result=>{
                     this.curve=result.data;
                 })
             },
