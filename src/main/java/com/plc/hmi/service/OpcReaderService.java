@@ -1,5 +1,6 @@
 package com.plc.hmi.service;
 
+import com.plc.hmi.dal.entity.HisAlarmEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
