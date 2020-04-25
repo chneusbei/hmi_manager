@@ -35,11 +35,11 @@ public class PressureCurveService extends AbstractBaseService{
 
     /**
      * 获取产品压力曲线信息
-     * @param pressDataId
+     * @param recordId
      * @return
      */
-    public List<PressureCurveEntity> getHisDateByCode(Long  pressDataId, Long xStart) {
-        return pressureCurveDao.getCurveData(pressDataId, xStart);
+    public List<PressureCurveEntity> getHisDateByCode(Long  recordId) {
+        return pressureCurveDao.getCurveData(recordId);
     }
 
 //    public List<PressureCurveEntity> getPressureCurveWithDate(String handleDate) {

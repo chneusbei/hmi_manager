@@ -11,26 +11,14 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public class ProductParameterDao extends AbstractHmiBaseDao {
+public class ProductParameterDao {
+    /*
     @Resource
     ProductParameterMapper productParameterMapper;
 
     public List<ProductParameterEntity> getProductParameterWithProductCode(String prodctCode) {
-        return this.getEntityList(productParameterMapper.getProductParameterWithProductCode(prodctCode));
+        return productParameterMapper.getProductParameterWithProductCode(prodctCode);
     }
-
-    @Override
-    protected ProductParameterEntity getEntity(HashMap map) {
-        ProductParameterEntity entity = new ProductParameterEntity();
-        super.setEntityBase(entity, map);
-//        entity.setProductCode(HmiUtils.getString(map.get(ProductParameterEntityEnum.PRODUCT_CODE.getCode())));
-//        entity.setMaxDistance(HmiUtils.getBigDicimal(map.get(ProductParameterEntityEnum.MAX_DISTANCE.getCode())));
-//        entity.setMaxForce(HmiUtils.getBigDicimal(map.get(ProductParameterEntityEnum.MAX_FORCE.getCode())));
-//        entity.setMaxSpeed(HmiUtils.getBigDicimal(map.get(ProductParameterEntityEnum.MAX_SPEED.getCode())));
-//        entity.setDefaultBackSpeed(HmiUtils.getBigDicimal(map.get(ProductParameterEntityEnum.DEFAULT_BACK_SPEED.getCode())));
-        return entity;
-    }
-
     public void insert(ProductParameterEntity entity) {
         productParameterMapper.insert(entity);
     }
@@ -42,7 +30,7 @@ public class ProductParameterDao extends AbstractHmiBaseDao {
     public void delete(ProductParameterEntity entity) {
         productParameterMapper.delete(entity);
     }
-
+*/
 
 
 }

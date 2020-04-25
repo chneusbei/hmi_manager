@@ -15,12 +15,12 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public class PressureDataDao extends AbstractHmiBaseDao {
+public class PressureDataDao {
     @Resource
     PressureDataMapper pressureDataMapper;
 
     public List<PressureDataEntity> getPressureData(Long productId) {
-        return this.getEntityList(pressureDataMapper.getPressureData(productId));
+        return pressureDataMapper.getPressureData(productId);
     }
 
     public PressureStatisticalDataEntity getPressureStatisticalData() {
@@ -40,21 +40,6 @@ public class PressureDataDao extends AbstractHmiBaseDao {
             }
         }
         entity.setTotalAmount(entity.getSuccessAmount().add(entity.getFailAmount()));
-        return entity;
-    }
-
-    @Override
-    protected PressureDataEntity getEntity(HashMap map) {
-        PressureDataEntity entity = new PressureDataEntity();
-        super.setEntityBase(entity, map);
-        entity.setProductId(HmiUtils.getLongValue(map.get(PressureDataEntityEnum.PRODUCT_ID.getCode())));
-        entity.setProductNo(HmiUtils.getString(map.get(PressureDataEntityEnum.RECORD_ID.getCode())));
-        entity.setPressResult(HmiUtils.getString(map.get(PressureDataEntityEnum.PRESS_RESULT.getCode())));
-        entity.setRecordId(HmiUtils.getString(map.get(PressureDataEntityEnum.RECORD_ID.getCode())));
-        entity.setStartDate(HmiUtils.getBigDicimal(map.get(PressureDataEntityEnum.START_DATE.getCode())));
-        entity.setEndDate(HmiUtils.getBigDicimal(map.get(PressureDataEntityEnum.END_DATE.getCode())));
-        entity.setMaxPress(HmiUtils.getBigDicimal(map.get(PressureDataEntityEnum.MAX_PRESS.getCode())));
-        entity.setPositionOfMaxPress(HmiUtils.getBigDicimal(map.get(PressureDataEntityEnum.POSITION_OF_MAX_PRESS.getCode())));
         return entity;
     }
 

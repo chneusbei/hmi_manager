@@ -12,24 +12,12 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public class HisAlarmDao extends AbstractHmiBaseDao {
+public class HisAlarmDao {
     @Resource
     HisAlarmMapper hisAlarmMapper;
 
     public List<HisAlarmEntity> getHisAlarm() {
-        return this.getEntityList(hisAlarmMapper.getHisAlarm());
-    }
-
-    @Override
-    protected HisAlarmEntity getEntity(HashMap map) {
-        HisAlarmEntity entity = new HisAlarmEntity();
-        super.setEntityBase(entity, map);
-        entity.setAlarmId(HmiUtils.getLongValue(map.get(HisAlarmEntityEnum.ALARM_ID.getCode())));
-        entity.setAlarmStartTime(HmiUtils.getDate(map.get(HisAlarmEntityEnum.ALARM_START_TIME.getCode())));
-        entity.setAlarmStopTime(HmiUtils.getDate(map.get(HisAlarmEntityEnum.ALARM_STOP_TIME.getCode())));
-        entity.setAlarmStatus(HmiUtils.getString(map.get(HisAlarmEntityEnum.ALARM_STATUS.getCode())));
-        entity.setAlarmCfmStatus(HmiUtils.getString(map.get(HisAlarmEntityEnum.ALARM_CFM_STATUS.getCode())));
-        return entity;
+        return hisAlarmMapper.getHisAlarm();
     }
 
     public void insert(HisAlarmEntity entity) {

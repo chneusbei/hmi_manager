@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public abstract class AbstractHmiBaseDao <T extends AbstractBaseEntity>{
+    /*
 
     protected abstract T getEntity(HashMap map);
 
@@ -29,5 +30,7 @@ public abstract class AbstractHmiBaseDao <T extends AbstractBaseEntity>{
 //        entity.setUpdateTime(HmiUtils.getDate(order.get(BaseEntityEnum.UPDATE_TIME.getCode())));
 //        entity.setCreateTime(HmiUtils.getDate(order.get(BaseEntityEnum.CREATE_TIME.getCode())));
     }
+
+     */
 }
 
