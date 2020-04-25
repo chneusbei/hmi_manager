@@ -15,13 +15,15 @@ public class SystemParameterControler {
 @Resource
 private SystemParameterService systemParameterService;
     @ResponseBody
-    @GetMapping("/getSystemParameter")
+//    @GetMapping("/getSystemParameter")
+    @GetMapping("/getDbSystemParameter")
     public SystemParameterEntity getSystemParameter(){
         return systemParameterService.getSystemParameters();
     }
 
-    @RequestMapping("/updateSystemParameter")
-    public String updateSystemParameter( SystemParameterEntity systemParameterEntity){
+//    @RequestMapping("/updateSystemParameter")
+    @RequestMapping("/updateDbSystemParameter")
+    public String updateSystemParameter(SystemParameterEntity systemParameterEntity){
         systemParameterService.update(systemParameterEntity);
         return "parameterSetting";
     }

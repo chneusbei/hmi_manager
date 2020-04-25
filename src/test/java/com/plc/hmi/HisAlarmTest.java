@@ -19,8 +19,14 @@ public class HisAlarmTest {
     @Test
     public void testSql() {
         HisAlarmEntity entity = new HisAlarmEntity();
-        entity.setId(1L);
-        entity.setAlarmId(10032L);
+//        entity.setId(1L);
+        entity.setAlarmId(10035L);
+        entity.setAlarmInfo("TEST 4");
+        entity.setTriggerDb(1);
+        entity.setTriggerOffset(2);
+        entity.setTriggerBit(3);
+        entity.setAlarmType("E");
+        entity.setAlarmGroup(7);
         entity.setAlarmStartTime(new Date());
         entity.setAlarmStopTime(new Date());
         entity.setAlarmStatus("0");
@@ -29,7 +35,7 @@ public class HisAlarmTest {
         entity.setCreateBy("chensubei");
         entity.setCreateTime(new Date());
         entity.setUpdateTime(new Date());
-//        service.insert(entity);
+        service.insert(entity);
         List<HisAlarmEntity> result = service.getHisAlarm();
 //        entity.setAlarmStatus("1");
 //        entity.setAlarmCfmStatus("0");

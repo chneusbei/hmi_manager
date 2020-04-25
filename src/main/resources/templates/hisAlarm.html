@@ -155,7 +155,7 @@
                     start:this.$refs.start.value,
                     stop:this.$refs.stop.value
                 }
-                axios.get("/queryHisAlarm",{params:requestData}).then(response=>{
+                axios.get("/getHisAlarm",{params:requestData}).then(response=>{
                     alert(response.data);
                 }).catch(function(error){
                     alert(error)

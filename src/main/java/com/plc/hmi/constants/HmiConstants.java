@@ -28,6 +28,7 @@ public class HmiConstants {
         SERVO_STATUS("servo_status", "伺服信息_状态"),
         SERVO_LIMIT_SET("servo_limit_set", "伺服信息_限定设置"),
         CURVE_DATA("curve_data", "曲线信息_数据"),
+        CURVE_DATA_2("curve_data_2", "曲线信息_数据"),//双压头时第二个压头
         CURVE_STATUS("curve_status", "曲线信息_状态"),
         CURVE_PROGRAM("curve_program", "曲线信息_程序"),
         CURVE_ERRAND("curve_errand", "曲线信息_公差窗口");

@@ -13,6 +13,12 @@ public interface HisAlarmMapper {
     @Results({
             @Result(id=true,column = "ID",property = "id" ),
             @Result(column = "ALARM_ID",property ="alarmId"),
+            @Result(column = "ALARM_INFO",property ="alarmInfo"),
+            @Result(column = "TRIGGER_DB",property ="triggerDb"),
+            @Result(column = "TRIGGER_OFFSET",property ="triggerOffset"),
+            @Result(column = "TRIGGER_BIT",property ="triggerBit"),
+            @Result(column = "ALARM_TYPE",property ="alarmType"),
+            @Result(column = "ALARM_GROUP",property ="alarmGroup"),
             @Result(column = "ALARM_START_TIME",property ="alarmStartTime"),
             @Result(column = "ALARM_STOP_TIME",property ="alarmStopTime"),
             @Result(column = "ALARM_STATUS",property ="alarmStatus"),
@@ -25,7 +31,7 @@ public interface HisAlarmMapper {
     })
     List<HisAlarmEntity> getHisAlarm();
 
-    @Insert({"insert into his_alarm_info(id, ALARM_ID, ALARM_START_TIME, ALARM_STOP_TIME,ALARM_STATUS,ALARM_CFM_STATUS, IS_DELETED, CREATE_BY, UPDATE_BY,CREATE_TIME,UPDATE_TIME) values(null, #{alarmId}, #{alarmStartTime}, #{alarmStopTime}, #{alarmStatus}, #{alarmCfmStatus}, '0', #{createBy}, #{createBy}, now(), now())"})
+    @Insert({"insert into his_alarm_info(id, ALARM_ID, ALARM_INFO,TRIGGER_DB,TRIGGER_OFFSET,TRIGGER_BIT,ALARM_TYPE, ALARM_GROUP,ALARM_START_TIME, ALARM_STOP_TIME,ALARM_STATUS,ALARM_CFM_STATUS, IS_DELETED, CREATE_BY, UPDATE_BY,CREATE_TIME,UPDATE_TIME) values(null, #{alarmId}, #{alarmInfo}, #{triggerDb}, #{triggerOffset}, #{triggerBit}, #{alarmType}, #{alarmGroup},#{alarmStartTime}, #{alarmStopTime}, #{alarmStatus}, #{alarmCfmStatus}, '0', #{createBy}, #{createBy}, now(), now())"})
     void insert(HisAlarmEntity  entity);
 
     @Update({"update his_alarm_info set ALARM_STATUS=#{alarmStatus}, ALARM_CFM_STATUS=#{alarmCfmStatus}, UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where ID=#{id}"})

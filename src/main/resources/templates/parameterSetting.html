@@ -49,7 +49,7 @@
             <script src="test.js"></script>
             <main class="lyear-layout-content">
                 <br>
-                <form action="/updateSystemParameter" method="post"
+                <form action="/ServoLimitSet/updateSystemParameter" method="post"
 
                 >
                 <table class="imagetable">
@@ -96,12 +96,12 @@
             systemParameter:{}
         },methods:{
             getSystemParameter(){
-                axios.get("/getSystemParameter").then(result=>{
+                axios.get("/ServoLimitSet/getSystemParameter").then(result=>{
                     this.systemParameter=result.data;
                 })
             },
             updateSystemParameter(){
-                axios.patch("/getSystemParameter",{"systemParameter":this.systemParameter}).then(alert("保存成功"))
+                axios.patch("/ServoLimitSet/getSystemParameter",{"systemParameter":this.systemParameter}).then(alert("保存成功"))
             }
         },
         created(){

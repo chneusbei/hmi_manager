@@ -18,21 +18,18 @@ import java.util.*;
 /***
  * 曲线信息-数据
  */
-@Service
-@Component
 public class Plc4xCurveDataService extends Plc4xBaseService{
     @Autowired
     private PressureCurveService pressureCurveService;
 
     private final Log logger = LogFactory.getLog(Plc4xCurveDataService.class);
-    public static final String tagGroup = HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode();
+    public static String tagGroup = HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode();
     public static Map<Long, List<PressureCurveEntity>> curveMap = new HashMap<Long, List<PressureCurveEntity>>();
     public static PressureCurveEntity currentCurve = new PressureCurveEntity();
     public static Long productNo=0L;
     private static Long startTime= 0L;
     private static Long endTime= 0L;
     private static Long peerStartTime= 0L;
-
 
     /**
      * 获取实时单条曲线信息
@@ -73,6 +70,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      * @return
      */
     public void getCurveDatasFromPlc() {
+//        System.out.println(">>>>>>>>>>>>>>>tagGroup = "+tagGroup);
         peerStartTime = System.currentTimeMillis();
 //        System.out.println("get data from plc >>>>>>>>>>>>>>>>>>>>>>>>");
         List<PlcEntity> plcEntityList = this.getDatas();
@@ -187,11 +185,13 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     /**
      * 设置曲线开始开关
      */
-    public void setDatas() {
-        Map<String, String> paraMap = new HashMap<>();
-        paraMap.put("choice", "true");
+    public void setDatas(Map<String, String> paraMap) {
         super.initWriteList(tagGroup, paraMap);
         super.setPlcData();
     }
 
+
+    public  void setTagGroup(String tagGroup) {
+        Plc4xCurveDataService.tagGroup = tagGroup;
+    }
 }

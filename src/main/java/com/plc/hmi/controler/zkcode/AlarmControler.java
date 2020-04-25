@@ -18,18 +18,18 @@ public class AlarmControler {
     @GetMapping("/getAlarm")
     public List<AlarmEntity> getAlarm(){
         List<AlarmEntity> alarm = alarmService.getAlarm();
-        AlarmEntity alarmEntity=new AlarmEntity();
-        alarmEntity.setAlarmStatus("0");
-        alarmEntity.setAlarmInfo("dasfas");
-        alarmEntity.setAlarmType("W");
-        alarmEntity.setCreateTime(new Date());
-        AlarmEntity alarmEntity2=new AlarmEntity();
-        alarmEntity2.setAlarmStatus("1");
-        alarmEntity2.setAlarmInfo("jhfdhgf");
-        alarmEntity2.setAlarmType("I");
-        alarmEntity2.setCreateTime(new Date());
-        alarm.add(alarmEntity);
-        alarm.add(alarmEntity2);
+//        AlarmEntity alarmEntity=new AlarmEntity();
+//        alarmEntity.setAlarmStatus("0");
+//        alarmEntity.setAlarmInfo("dasfas");
+//        alarmEntity.setAlarmType("W");
+//        alarmEntity.setCreateTime(new Date());
+//        AlarmEntity alarmEntity2=new AlarmEntity();
+//        alarmEntity2.setAlarmStatus("1");
+//        alarmEntity2.setAlarmInfo("jhfdhgf");
+//        alarmEntity2.setAlarmType("I");
+//        alarmEntity2.setCreateTime(new Date());
+//        alarm.add(alarmEntity);
+//        alarm.add(alarmEntity2);
         return alarm;
     }
 

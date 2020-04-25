@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -171,7 +172,12 @@ public class Plc4xConnectorService {
         PlcWriteRequest.Builder writeBuilder = plcConnection.writeRequestBuilder();
         for(PlcEntity query : queryList) {
 //            query.setFieldQuery("%DB300.DBX3.0:BOOL");
-            writeBuilder.addItem(query.getName(), query.getFieldQuery(), query.getValueOjb());
+            if("REAL".equalsIgnoreCase(query.getDataType())) {
+                writeBuilder.addItem(query.getName(), query.getFieldQuery(), Float.valueOf(query.getValueOjb().toString()).floatValue());
+            } else if("BOOL".equalsIgnoreCase(query.getDataType())) {
+                writeBuilder.addItem(query.getName(), query.getFieldQuery(), query.getValueOjb());
+            }
+
         }
         PlcWriteRequest writeRequest = writeBuilder.build();
         PlcWriteResponse response = null;
