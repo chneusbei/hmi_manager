@@ -1,22 +1,22 @@
-package com.plc.hmi.controler.zkcode;
+package com.plc.hmi.controler.lsjcode;
 
 import com.plc.hmi.dal.entity.AlarmEntity;
 import com.plc.hmi.service.AlarmService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
-
 @RestController
-public class AlarmControler {
-
+public class HisAlarmController {
 
     @Autowired
     private AlarmService alarmService;
-    @GetMapping("/getAlarm")
-    public List<AlarmEntity> getAlarm(){
+    @GetMapping("/getHisAlarm")
+    public List<AlarmEntity> getHisAlarm(){
         List<AlarmEntity> alarm = alarmService.getAlarm();
         AlarmEntity alarmEntity=new AlarmEntity();
         alarmEntity.setAlarmStatus("0");
@@ -32,8 +32,10 @@ public class AlarmControler {
         alarm.add(alarmEntity2);
         return alarm;
     }
-
-  /*  public List<AlarmEntity> getAlarm(){
-    return alarmService.getAlarm();
-    }*/
+    @RequestMapping("/queryHisAlarm")
+    public  List<AlarmEntity> queryHisAlarm(String start,String stop){
+        System.out.println(start);
+        System.out.println(stop);
+        return null;
+    }
 }

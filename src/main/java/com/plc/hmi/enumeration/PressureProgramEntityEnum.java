@@ -1,5 +1,11 @@
 package com.plc.hmi.enumeration;
 
+import com.plc.hmi.util.HmiUtils;
+
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
 public enum PressureProgramEntityEnum {
     PRODUCT_ID("PRODUCT_ID", "产品表ID"),
     PRODUCT_CODE("PRODUCT_CODE", "产品代码"),
@@ -118,10 +124,21 @@ public enum PressureProgramEntityEnum {
         this.value = value;
     }
 
+    public static Map<String, String> getLookup() {
+        return lookup;
+    }
+
     //获得code属性的值
     public String getCode() { return this.code; }
 
     //获得value属性的值
     public String getValue() { return this.value; }
 
+
+    private static final Map<String, String> lookup = new HashMap<String, String>();
+    static {
+        for (PressureProgramEntityEnum s : EnumSet.allOf(PressureProgramEntityEnum.class)) {
+            lookup.put(s.getValue(),HmiUtils.lineToHump(s.getCode()));
+        }
+    }
 }

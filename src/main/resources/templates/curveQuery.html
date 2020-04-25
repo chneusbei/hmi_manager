@@ -72,7 +72,6 @@
                             data : {},
                             dataType : "json", //返回数据形式为json
                             success : function(result) {
-                                names=[];//重置为空
                                 for(var i=0;i<result.length;i++){
                                     names=[];//重置为空
                                     var arr=[];
@@ -80,14 +79,10 @@
                                     var isSolidLine=true;
 
                                     for(var j=0;j<result[i].length;j++){
-
                                         arr.push([result[i][j].position,result[i][j].pressForce]);
                                         if(j==0){
                                             isErrant=result[i][j].errant;
                                             isSolidLine=result[i][j].solidLine;
-                                        }
-                                        if(result[i][j].errant==false){
-                                     /*   names.push(result[i][j].position); //x名称显示*/
                                         }
                                     }
                                     var color="";

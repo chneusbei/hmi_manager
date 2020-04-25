@@ -110,7 +110,7 @@
     new Vue({
         el:"#app",
         data: {
-            listAlarm:{}
+            listAlarm:[]
         },methods:{
             getAlarm(){
                 axios.get("/getAlarm").then(result=>{

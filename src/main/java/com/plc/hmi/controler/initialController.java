@@ -13,6 +13,10 @@ public class initialController {
     public String logins(){
         return "logins";
     }
+    @RequestMapping("/registerUser")
+    public String registerUser(){
+        return "registerUser";
+    }
     @RequestMapping("/public")
     public String getpublic(){
         System.out.println("----");
