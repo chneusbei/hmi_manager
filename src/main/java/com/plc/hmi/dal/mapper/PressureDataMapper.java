@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface PressureDataMapper {
-    @Select("select * from pressure_data where is_deleted='0' and PRODUCT_ID=#{productId}")
+    @Select("select * from pressure_data where is_deleted='0' and RECORD_ID=#{recordId}")
     @Results({
             @Result(id=true,column = "ID",property = "id" ),
             @Result(column = "PRODUCT_ID",property ="productId"),
@@ -27,7 +27,7 @@ public interface PressureDataMapper {
             @Result(column = "UPDATE_TIME",property = "updateTime"),
             @Result(column = "IS_DELETED",property = "isDeleted"),
     })
-    List<PressureDataEntity>  getPressureData(@Param("productId") Long productId);
+    List<PressureDataEntity>  getPressureData(@Param("recordId") Long recordId);
 
     @Select("select PRESS_RESULT, count(1) as COUNT from pressure_data where is_deleted='0' group by PRESS_RESULT")
     List<HashMap> getPressureStatisticalData();

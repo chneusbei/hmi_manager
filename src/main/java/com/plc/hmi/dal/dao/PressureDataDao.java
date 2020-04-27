@@ -19,8 +19,8 @@ public class PressureDataDao {
     @Resource
     PressureDataMapper pressureDataMapper;
 
-    public List<PressureDataEntity> getPressureData(Long productId) {
-        return pressureDataMapper.getPressureData(productId);
+    public List<PressureDataEntity> getPressureData(Long recordId) {
+        return pressureDataMapper.getPressureData(recordId);
     }
 
     public PressureStatisticalDataEntity getPressureStatisticalData() {
