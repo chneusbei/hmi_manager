@@ -1,9 +1,11 @@
 package com.plc.hmi.dal.dao;
 
 import com.plc.hmi.dal.entity.PressureCurveEntity;
+import com.plc.hmi.dal.entity.PressureDataEntity;
 import com.plc.hmi.dal.mapper.PressureCurveMapper;
 import com.plc.hmi.enumeration.PressureCurveEntityEnum;
 import com.plc.hmi.enumeration.PressureDataEntityEnum;
+import com.plc.hmi.service.PressureDataService;
 import com.plc.hmi.util.HmiUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
@@ -17,6 +19,8 @@ import java.util.List;
 public class PressureCurveDao{
     @Resource
     PressureCurveMapper pressureCurveMapper;
+
+
 
     public List<PressureCurveEntity> getCurveData(Long recordId) {
         List<PressureCurveEntity> list = pressureCurveMapper.getCurveData(recordId);

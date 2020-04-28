@@ -36,7 +36,7 @@ document.writeln("                    <ul class=\'nav nav-subnav\'>");
 // document.writeln("                        <li> <a  href=\'/curveAcquisition\'>曲线采集</a> </li>");
 // document.writeln("                        <li> <a  href=\'/curveStorage\'>曲线存储</a> </li>");
 document.writeln("                        <li> <a  href=\'/dataQuery\'>历史汇总数据查询</a> </li>");
-document.writeln("                        <li> <a  href=\'/curveQuery\'>历史曲线查询</a> </li>");
+document.writeln("                        <li> <a  href=\'/hiscurveQuery\'>历史曲线查询</a> </li>");
 document.writeln("                        <li> <a  href=\'/dataExport\'>历史数据导出</a> </li>");
 document.writeln("                    </ul>");
 document.writeln("                </li>");

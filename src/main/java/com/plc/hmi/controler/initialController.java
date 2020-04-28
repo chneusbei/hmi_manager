@@ -106,4 +106,8 @@ public class initialController {
     public String curveQuery(){
         return "curveQuery";
     }
+    @RequestMapping("/hiscurveQuery")
+    public String hiscurveQuery(){
+        return "hiscurveQuery";
+    }
 }

@@ -2,7 +2,10 @@ package com.plc.hmi.controler;
 
 import com.alibaba.fastjson.JSON;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
+import com.plc.hmi.dal.entity.PressureDataEntity;
+import com.plc.hmi.dal.entity.base.AbstractBaseEntity;
 import com.plc.hmi.service.PressureCurveService;
+import com.plc.hmi.service.PressureDataService;
 import com.plc.hmi.service.PressureProgramService;
 import com.plc.hmi.service.plcService.Plc4xCurveDataService;
 import com.plc.hmi.service.plcService.Plc4xCurveDataService1;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,14 +33,18 @@ public class JsonController {
     PressureProgramService programService;
     @Autowired
     Plc4xCurveStatusService plc4xCurveStatusService;
+
+    @Resource
+    PressureDataService pressureDataService;
     @RequestMapping("/getHisDateByCode")
-    public String getHisDateByCode(@RequestParam(value = "pressDataId") Long pressDataId){
-        pressDataId = 1L;
-//        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(1L, pressDataId);
-        List<PressureCurveEntity> list = plc4xCurveDataService1.getCurveDatas();
-        List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart(1L);
-        errantList.add(list);
-        String json = JSON.toJSONString(list);
+    public String getHisDateByCode(@RequestParam(value = "pressDataId",required = false) Long pressDataId){
+        System.out.println(pressDataId);
+        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(pressDataId);
+        List<PressureDataEntity> pressureData = pressureDataService.getPressureData(pressDataId);
+        List<List<? extends AbstractBaseEntity>> list1=new ArrayList<>();
+        list1.add(pressureData);
+        list1.add(list);
+        String json = JSON.toJSONString(list1);
         return json;
     }
 
