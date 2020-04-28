@@ -1,6 +1,7 @@
 package com.plc.hmi;
 
 import com.plc.hmi.dal.entity.PressureDataEntity;
+import com.plc.hmi.dal.entity.PressureStatisticalDataEntity;
 import com.plc.hmi.service.PressureDataService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,9 @@ public class PressureDataTest {
         entity.setCreateBy("SYS");
         entity.setCreateTime(new Date());
         entity.setUpdateTime(new Date());
-        service.insert(entity);
-//        List<PressureDataEntity> resultList = service.getPressureData(1L);
+//        service.insert(entity);
+        List<PressureDataEntity> resultList = service.getPressureData(1L);
+        PressureStatisticalDataEntity pressureStatisticalDataEntity  = service.getPressureStatisticalData();
 //        service.delete(entity);
 
 

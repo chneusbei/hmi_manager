@@ -6,6 +6,7 @@ import org.jvnet.hk2.annotations.Service;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 /***
  * 设备信息--IO状态
@@ -24,8 +25,9 @@ public class Plc4xServoLimitSetService extends Plc4xBaseService{
        return super.getDataByBuilder();
     }
 
-    public void setDatas(List<PlcEntity> queryList) {
-
+    public void setDatas(Map<String, String> paraMap) {
+        super.initWriteList(tagGroup, paraMap);
+        super.setPlcData();
     }
 
 }

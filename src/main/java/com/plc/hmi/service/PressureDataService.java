@@ -17,11 +17,11 @@ public class PressureDataService extends AbstractBaseService{
 
     /**
      * 获取产品压装结果信息
-     * @param productId
+     * @param recordId
      * @return
      */
-    public List<PressureDataEntity> getPressureData(Long productId) {
-        return pressureDataDao.getPressureData(productId);
+    public List<PressureDataEntity> getPressureData(Long recordId) {
+        return pressureDataDao.getPressureData(recordId);
     }
 
 

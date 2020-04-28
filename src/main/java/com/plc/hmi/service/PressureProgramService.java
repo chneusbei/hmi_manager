@@ -60,7 +60,7 @@ public class PressureProgramService extends AbstractBaseService{
      * @return
      */
     public List<List<PressureCurveEntity>> getErrandDataforChart(Long productId) {
-        return toChartData( getErrandData(productId));
+        return toChartData(getErrandData(productId));
     }
 
     /**

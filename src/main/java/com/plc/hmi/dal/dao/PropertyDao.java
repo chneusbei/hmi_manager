@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public class PropertyDao extends AbstractHmiBaseDao {
+public class PropertyDao {
     @Resource
     PropertyMapper propertyMapper;
 
@@ -28,23 +28,10 @@ public class PropertyDao extends AbstractHmiBaseDao {
     }
 
     public List<PropertyEntity> getProperties() {
-        return this.getEntityList(propertyMapper.getPropertyConfig());
+        return propertyMapper.getPropertyConfig();
     }
 
     public List<PropertyEntity> getPropertiesWithGroup(String group) {
-        return this.getEntityList(propertyMapper.getPropertyWithGroup(group));
+        return propertyMapper.getPropertyWithGroup(group);
     }
-
-
-    @Override
-    protected PropertyEntity getEntity(HashMap map) {
-        PropertyEntity entity = new PropertyEntity();
-        super.setEntityBase(entity, map);
-        entity.setPropName(HmiUtils.getString(map.get(PropertyConfigEntityEnum.PROP_NAME.getCode())));
-        entity.setPropValue(HmiUtils.getString(map.get(PropertyConfigEntityEnum.PROP_VALUE.getCode())));
-        entity.setPropGroup(HmiUtils.getString(map.get(PropertyConfigEntityEnum.PROP_GROUP.getCode())));
-        entity.setDescription(HmiUtils.getString(map.get(PropertyConfigEntityEnum.DESCRIPTION.getCode())));
-        return entity;
-    }
-
 }

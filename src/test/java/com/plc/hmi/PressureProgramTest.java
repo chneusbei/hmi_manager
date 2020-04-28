@@ -1,6 +1,7 @@
 package com.plc.hmi;
 
 import com.plc.hmi.dal.entity.PressureCurveEntity;
+import com.plc.hmi.dal.entity.PressureProgramEntity;
 import com.plc.hmi.service.PressureProgramService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,11 +147,12 @@ public class PressureProgramTest {
         entity.setCreateTime(new Date());
         entity.setUpdateTime(new Date());
 //        service.insert(entity);
-        List<PressureProgramEntity> result = service.getWithProductId(1L);
+//        List<PressureProgramEntity> result = service.getWithProductId(1L);
 //        service.update(entity);
 //        service.delete(entity);
 
 */
+        List<PressureProgramEntity> result = service.getWithProductId(1L);
         List<List<PressureCurveEntity>>  errantList = service.getErrandDataforChart(1L);
 
         System.out.println("END----------------");

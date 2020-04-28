@@ -11,27 +11,12 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public class ProductDao extends AbstractHmiBaseDao {
+public class ProductDao {
     @Resource
     ProductMapper productMapper;
 
     public ProductEntity getProduct(String productCode) {
-        List<ProductEntity> productList = this.getEntityList(productMapper.getProduct(productCode));
-        if(productList != null && !productList.isEmpty()) {
-            return productList.get(0);
-        } else {
-            return null;
-        }
-    }
-
-
-    @Override
-    protected ProductEntity getEntity(HashMap map) {
-        ProductEntity entity = new ProductEntity();
-        super.setEntityBase(entity, map);
-        entity.setProductCode(HmiUtils.getString(map.get(ProductEntityEnum.PRODUCT_CODE.getCode())));
-        entity.setProductType(HmiUtils.getString(map.get(ProductEntityEnum.PRODUCT_TYPE.getCode())));
-        return entity;
+        return productMapper.getProduct(productCode);
     }
 
     public void insert(ProductEntity entity) {

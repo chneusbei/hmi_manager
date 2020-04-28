@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 19/04/2020 12:12:20
+ Date: 25/04/2020 20:44:37
 */
 
 SET NAMES utf8mb4;
@@ -50,13 +50,19 @@ CREATE TABLE `his_alarm_info`  (
   `ALARM_ID` bigint(0) NOT NULL COMMENT '警报信息ID',
   `ALARM_START_TIME` datetime(0) DEFAULT NULL COMMENT '警报开始时间',
   `ALARM_STOP_TIME` datetime(0) DEFAULT NULL COMMENT '警报结束时间',
-  `ALARM_STATUS` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '警报状态 0历史 1当前',
-  `ALARM_CFM_STATUS` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '警报确认状态 0已确认 1待确认 ',
-  `CREATE_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '创建人',
+  `ALARM_INFO` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '警报内容 ',
+  `ALARM_TYPE` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '警报类型 E：ERROR，W:WARNING,I:INFO',
+  `ALARM_STATUS` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '警报状态 0历史 1当前',
+  `ALARM_CFM_STATUS` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '警报确认状态 0已确认 1待确认 ',
+  `CREATE_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
   `UPDATE_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '修改人',
-  `CREATE_TIME` datetime(0) NOT NULL COMMENT '创建时间',
+  `CREATE_TIME` datetime(0) DEFAULT NULL COMMENT '创建时间',
   `UPDATE_TIME` datetime(0) DEFAULT NULL COMMENT '修改时间',
-  `IS_DELETED` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '删除标志(0否1是)',
+  `IS_DELETED` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '删除标志(0否1是)',
+  `TRIGGER_DB` int(0) DEFAULT NULL COMMENT '触发DB 报警是由哪个地址触发的',
+  `TRIGGER_OFFSET` int(0) DEFAULT NULL COMMENT '触发DB偏移 报警是由哪个地址触发的',
+  `TRIGGER_BIT` int(0) DEFAULT NULL COMMENT '触发位 报警是由哪个地址触发的',
+  `ALARM_GROUP` int(0) DEFAULT NULL COMMENT '报警组 0--100',
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '历史报警信息' ROW_FORMAT = Dynamic;
 
@@ -66,8 +72,9 @@ CREATE TABLE `his_alarm_info`  (
 DROP TABLE IF EXISTS `pressure_curve`;
 CREATE TABLE `pressure_curve`  (
   `ID` bigint(0) NOT NULL AUTO_INCREMENT,
-  `PRESS_DATA_ID` bigint(0) DEFAULT NULL COMMENT '位置/压力曲线ID 压装数据表ID',
-  `RECORD_NO` int(0) DEFAULT NULL COMMENT '位置点序号 采集的序列号。1-N递增',
+  `RECORD_ID` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '位置/压力曲线ID 压装数据表RECORD_ID',
+  `PRODUCT_ID` int(0) DEFAULT NULL COMMENT '产品ID',
+  `RECORD_NO` bigint(0) DEFAULT NULL COMMENT '位置点序号 采集的序列号。1-N递增',
   `POSITION` decimal(10, 4) DEFAULT NULL COMMENT '位置 mm',
   `PRESS_FORCE` decimal(10, 4) DEFAULT NULL COMMENT '压力 KN',
   `CUR_SPEED` decimal(10, 4) DEFAULT NULL COMMENT '当前速度',
@@ -78,8 +85,9 @@ CREATE TABLE `pressure_curve`  (
   `CREATE_TIME` datetime(0) NOT NULL COMMENT '创建时间',
   `UPDATE_TIME` datetime(0) DEFAULT NULL COMMENT '修改时间',
   `IS_DELETED` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '删除标志(0否1是)',
-  PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '压力曲线表' ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`ID`) USING BTREE,
+  INDEX `IDX_RECORD_ID`(`RECORD_ID`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 25040 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '压力曲线表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for pressure_data
@@ -88,8 +96,8 @@ DROP TABLE IF EXISTS `pressure_data`;
 CREATE TABLE `pressure_data`  (
   `ID` bigint(0) NOT NULL AUTO_INCREMENT,
   `PRODUCT_ID` bigint(0) DEFAULT NULL COMMENT '产品表ID',
-  `RECORD_ID` bigint(0) DEFAULT NULL COMMENT '位置/压力曲线ID',
-  `PRODUCT_NO` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '产品二维码',
+  `RECORD_ID` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '位置/压力曲线ID',
+  `PRODUCT_NO` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '产品二维码',
   `PRESS_RESULT` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '压装结果',
   `MAX_PRESS` decimal(8, 0) DEFAULT NULL COMMENT '最大压力值',
   `POSITION_OF_MAX_PRESS` decimal(8, 0) DEFAULT NULL COMMENT '最大压力时位移',
@@ -101,7 +109,7 @@ CREATE TABLE `pressure_data`  (
   `UPDATE_TIME` datetime(0) DEFAULT NULL COMMENT '修改时间',
   `IS_DELETED` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '删除标志(0否1是)',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品压装数据表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '产品压装数据表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for pressure_program
@@ -256,7 +264,7 @@ CREATE TABLE `property_config`  (
   `CREATE_BY` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
   `DESCRIPTION` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '属性描述',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '配置信息表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '配置信息表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for public_errand
@@ -335,7 +343,7 @@ CREATE TABLE `tags_info`  (
   `UPDATE_TIME` datetime(0) DEFAULT NULL COMMENT '修改时间',
   `IS_DELETED` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '删除标志(0否1是)',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 495 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'IO变量表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 496 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'IO变量表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for user
@@ -352,7 +360,7 @@ CREATE TABLE `user`  (
   `UPDATE_TIME` datetime(0) DEFAULT NULL COMMENT '修改时间',
   `IS_DELETED` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '删除标志(0否1是)',
   PRIMARY KEY (`ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for user_role

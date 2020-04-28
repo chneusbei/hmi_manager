@@ -2,10 +2,8 @@ package com.plc.hmi.controler;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class initialController {
@@ -96,9 +94,9 @@ public class initialController {
     public String EquipmentFaultAlarm(){
         return "equipmentFaultAlarm";
     }
-    @RequestMapping("/callThePolice")
-    public String callThePolice(){
-        return "callThePolice";
+    @RequestMapping("/hisAlarm")
+    public String hisAlarm(){
+        return "hisAlarm";
     }
     @RequestMapping("/safetyMonitoring")
     public String safetyMonitoring(){

@@ -3,26 +3,32 @@ import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.service.plcService.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Controller
 public class Plc4xCurveDataControler {
 
     @Resource
-    Plc4xCurveDataService plc4xCurveDataService;
+    Plc4xCurveDataService1 plc4xCurveDataService1;
     @Resource
     Plc4xEquipmentOperationService plc4xEquipmentOperationService;
     @ResponseBody
-    @PostMapping("/getCurveData")
-    PressureCurveEntity getcurrDate(){
-        List<PressureCurveEntity> curveDatas = plc4xCurveDataService.getCurveDatas();
-        System.out.println(curveDatas);
-        return curveDatas.get(0);
+    @GetMapping("/getCurrentDate")
+    PressureCurveEntity getCurrentDate(){
+        List<PressureCurveEntity> curveDatas = plc4xCurveDataService1.getCurveDatas();
+//        System.out.println(curveDatas);
+        if(CollectionUtils.isEmpty(curveDatas)) {
+            return new PressureCurveEntity();
+        } else {
+            return curveDatas.get(0);
+        }
     }
 
 
@@ -36,6 +42,7 @@ public class Plc4xCurveDataControler {
     @ResponseBody
     @GetMapping("/getEquipmentStatus")
     List<PlcEntity> getEquipmentDatas(){
+        /*
         List<PlcEntity> datas=new ArrayList<>();
         PlcEntity plcEntity=new PlcEntity();
         plcEntity.setName("onLine");
@@ -73,10 +80,10 @@ public class Plc4xCurveDataControler {
         plcEntity6.setName("3");
         plcEntity6.setValueOjb(false);
         datas.add(plcEntity6);
-
-/*
-         List<PlcEntity> datas = plc4xEquipmentStatusService.getDatas();
 */
+
+         List<PlcEntity> datas = plc4xEquipmentStatusService.getDatas();
+
         datas.stream().forEach(p -> {
             if ("onLine".equals(p.getName())) {
                 p.setName("在线");
@@ -104,9 +111,9 @@ public class Plc4xCurveDataControler {
     @ResponseBody
     @GetMapping("/getCurveStatus")
     List<PlcEntity> getCurveData(){
-/*
+
         List<PlcEntity> datas = plc4xCurveStatusService.getDatas();
-*/
+/*
         List<PlcEntity> datas=new ArrayList<>();
         PlcEntity plcEntity=new PlcEntity();
         plcEntity.setName("position");
@@ -118,6 +125,8 @@ public class Plc4xCurveDataControler {
         datas.add(plcEntity);
         datas.add(plcEntity1);
         datas.add(plcEntity2);
+
+ */
         datas.stream().forEach(p->{
             if ("position".equals(p.getName())){
                 p.setName("当前位置");
@@ -152,9 +161,9 @@ public class Plc4xCurveDataControler {
      */
     List<PlcEntity> getEquipmentIo(){
 
-/*
+
         List<PlcEntity> datas = plc4xEquipmentIoStatusService.getDatas();
-*/
+/*
         List<PlcEntity> datas = new ArrayList<>();
         PlcEntity plcEntity=new PlcEntity();
         plcEntity.setName("input0");
@@ -168,7 +177,7 @@ public class Plc4xCurveDataControler {
         datas.add(plcEntity);
         datas.add(plcEntity1);
         datas.add(plcEntity2);
-
+*/
 
         datas.stream().forEach(p-> {
             if ("input0".equals(p.getName())) {
@@ -181,8 +190,8 @@ public class Plc4xCurveDataControler {
                 p.setName("输入_3");
             } else if ("input4".equals(p.getName())) {
                 p.setName("输入_4");
-            } else if ("输出_0".equals(p.getName())) {
-                p.setName("output0");
+            } else if ("output0".equals(p.getName())) {
+                p.setName("输出_0");
             } else if ("output1".equals(p.getName())) {
                 p.setName("输出_1");
             } else if ("output2".equals(p.getName())) {
@@ -201,7 +210,7 @@ public class Plc4xCurveDataControler {
      * 获取压装曲线监控
      */
     List<PressureCurveEntity> getCurveDatas(){
-        return plc4xCurveDataService.getCurveDatas();
+        return plc4xCurveDataService1.getCurveDatas();
     }
 
 
@@ -215,15 +224,15 @@ public class Plc4xCurveDataControler {
     @GetMapping("/getOperation")
     public List<PlcEntity> getDatas(){
 
-/*
+
         List<PlcEntity> datas = plc4xEquipmentOperationService.getDatas();
-*/
+/*
         List<PlcEntity> datas = new ArrayList<>();
         PlcEntity plcEntity=new PlcEntity();
         plcEntity.setValueOjb(true);
         plcEntity.setName("零件号");
         datas.add(plcEntity);
-
+*/
         datas.stream().forEach(p->{
             if ("productNo".equals(p.getName())){
                 p.setName("零件号");

@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 @Component
 public class ProductParameterService extends AbstractBaseService{
+    /*
     @Resource
     ProductParameterDao productParameterDao;
 
@@ -32,5 +33,5 @@ public class ProductParameterService extends AbstractBaseService{
     public void delete(ProductParameterEntity entity) {
         productParameterDao.delete(entity);
     }
-
+*/
 }

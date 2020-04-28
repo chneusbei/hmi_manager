@@ -2,10 +2,7 @@ package com.plc.hmi.dal.mapper;
 
 import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.PropertyEntity;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -14,7 +11,23 @@ import java.util.List;
 @Mapper
 public interface PressureCurveMapper {
     @Select("select * from pressure_curve where is_deleted='0' and RECORD_ID=#{recordId}")
-    List<HashMap> getCurveData(@Param("recordId") Long recordId);
+    @Results({
+            @Result(id=true,column = "ID",property = "id" ),
+            @Result(column = "RECORD_ID",property ="recordId"),
+            @Result(column = "PRODUCT_ID",property ="productId"),
+            @Result(column = "RECORD_NO",property ="recordNo"),
+            @Result(column = "POSITION",property ="position"),
+            @Result(column = "PRESS_FORCE",property ="pressForce"),
+            @Result(column = "CUR_SPEED",property ="curSpeed"),
+            @Result(column = "HANDLE_DATE",property ="handleDate"),
+            @Result(column = "PRESS_DATE",property ="pressDate"),
+            @Result(column = "CREATE_BY",property = "createBy"),
+            @Result(column = "UPDATE_BY",property = "updateBy"),
+            @Result(column = "CREATE_TIME",property = "createTime"),
+            @Result(column = "UPDATE_TIME",property = "updateTime"),
+            @Result(column = "IS_DELETED",property = "isDeleted"),
+    })
+    List<PressureCurveEntity> getCurveData(@Param("recordId") Long recordId);
 
 //    @Select("select * from pressure_curve where is_deleted='0' and HANDLE_DATE=#{handleDate}")
 //    List<HashMap> getPressureCurveWithDate(@Param("handleDate") String handleDate);
