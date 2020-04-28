@@ -1,4 +1,4 @@
-document.writeln("<aside class=\'lyear-layout-sidebar\' style=\'height:500px;\' >");
+document.writeln("<aside class=\'lyear-layout-sidebar\'  >");
 document.writeln("    <!-- logo -->");
 document.writeln("    <div id=\'logo\' class=\'sidebar-header\'>");
 document.writeln("        <a  href=\'index.html\'><h2>HMI监控系统</h2></a>");

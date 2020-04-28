@@ -42,7 +42,6 @@ public class Plc4xCurveDataControler {
     @ResponseBody
     @GetMapping("/getEquipmentStatus")
     List<PlcEntity> getEquipmentDatas(){
-        /*
         List<PlcEntity> datas=new ArrayList<>();
         PlcEntity plcEntity=new PlcEntity();
         plcEntity.setName("onLine");
@@ -80,9 +79,10 @@ public class Plc4xCurveDataControler {
         plcEntity6.setName("3");
         plcEntity6.setValueOjb(false);
         datas.add(plcEntity6);
-*/
 
+/*
          List<PlcEntity> datas = plc4xEquipmentStatusService.getDatas();
+*/
 
         datas.stream().forEach(p -> {
             if ("onLine".equals(p.getName())) {
@@ -225,14 +225,14 @@ public class Plc4xCurveDataControler {
     public List<PlcEntity> getDatas(){
 
 
-        List<PlcEntity> datas = plc4xEquipmentOperationService.getDatas();
 /*
+        List<PlcEntity> datas = plc4xEquipmentOperationService.getDatas();
+*/
         List<PlcEntity> datas = new ArrayList<>();
         PlcEntity plcEntity=new PlcEntity();
         plcEntity.setValueOjb(true);
         plcEntity.setName("零件号");
         datas.add(plcEntity);
-*/
         datas.stream().forEach(p->{
             if ("productNo".equals(p.getName())){
                 p.setName("零件号");
