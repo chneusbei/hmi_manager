@@ -107,110 +107,345 @@
                     </tr>
                      </table>-->
                    <input type="submit" value="插入步骤" style="width: 100px;height:30px;background-color: #33CABB;color: white" >
-
+                        <div><label>产品代码：</label><input name="productCode" ></div>
                     <div>产品压装程序设置
                         <br>
 
 
-
-                    <span style="margin-right: 60px;">步骤</span>&nbsp; <span style="margin-right: 50px;">程序类型</span>
+                    <span style="margin-right: 50px;">步骤</span>&nbsp; <span style="margin-right: 40px;">程序类型</span>
            &nbsp; <span style="margin-right: 50px;">参数值</span>
            &nbsp; <span style="margin-right: 50px;">速度</span>
            &nbsp; <span style="margin-right: 50px;">报警处理方式</span>
            &nbsp; <span style="margin-right: 50px;">位置</span>
            &nbsp; <span style="margin-right: 50px;">保护压力值</span>
            &nbsp; <span style="margin-right: 50px;">压力</span>
-           &nbsp; <span style="margin-right: 50px;">保护位置值</span>
+           &nbsp; <span style="margin-right: 40px;">保护位置值</span>
            &nbsp; <span style="margin-right: 50px;">保压时间值</span>
                         <br>
                         <label>步骤1</label>
-                        &nbsp;<input style="width: 50px;margin-right: 60px;margin-left: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 50px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
+                        &nbsp;
+                        <select name="programType1" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                            <option value="1">绝对位置方式</option>
+                            <option value="2">压力方式</option>
+                            <option value="4">保压时间</option>
+                            <option value="0">END</option>
+                        </select>
+                        &nbsp;<input name="programValue1" style="width: 50px;margin-right: 40px;">
+                        &nbsp;<input name="speed1" style="width: 50px;margin-right: 60px;">
+                        &nbsp;<select name="alarmDealType1" style="width: 50px;margin-right: 36px;">
+                            <option value="1">停止</option>
+                            <option value="2">返回原点</option>
+                            <option value="4">继续</option>
+                        </select>
+                        <!--位置-->&nbsp;<input name="position1" style="width: 50px;margin-right: 60px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress1" style="width: 50px;margin-right: 60px;">
+                        <!--压力-->&nbsp;<input name="press1" style="width: 50px;margin-right: 50px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition1" style="width: 50px;margin-right: 40px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime1" style="width: 50px;margin-right: 60px;">
                         <br>
                         <label>步骤2</label>
-                        &nbsp;<input style="width: 50px;margin-right: 60px;margin-left: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 50px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
+                        &nbsp;
+                        <select name="programType2" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                            <option value="1">绝对位置方式</option>
+                            <option value="2">压力方式</option>
+                            <option value="4">保压时间</option>
+                            <option value="0">END</option>
+                        </select>
+                        &nbsp;<input name="programValue2" style="width: 50px;margin-right: 40px;">
+                        &nbsp;<input name="speed2" style="width: 50px;margin-right: 60px;">
+                        &nbsp;<select name="alarmDealType2" style="width: 50px;margin-right: 36px;">
+                            <option value="1">停止</option>
+                            <option value="2">返回原点</option>
+                            <option value="4">继续</option>
+                        </select>
+                        <!--位置-->&nbsp;<input name="position2" style="width: 50px;margin-right: 60px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress2" style="width: 50px;margin-right: 60px;">
+                        <!--压力-->&nbsp;<input name="press2" style="width: 50px;margin-right: 50px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition2" style="width: 50px;margin-right: 40px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime2" style="width: 50px;margin-right: 60px;">
                         <br>
                         <label>步骤3</label>
-                        &nbsp;<input style="width: 50px;margin-right: 60px;margin-left: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 50px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
+                        &nbsp;
+                        <select name="programType3" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                            <option value="1">绝对位置方式</option>
+                            <option value="2">压力方式</option>
+                            <option value="4">保压时间</option>
+                            <option value="0">END</option>
+                        </select>
+                        &nbsp;<input name="programValue3" style="width: 50px;margin-right: 40px;">
+                        &nbsp;<input name="speed3" style="width: 50px;margin-right: 60px;">
+                        &nbsp;<select name="alarmDealType3" style="width: 50px;margin-right: 36px;">
+                            <option value="1">停止</option>
+                            <option value="2">返回原点</option>
+                            <option value="4">继续</option>
+                        </select>
+                        <!--位置-->&nbsp;<input name="position3" style="width: 50px;margin-right: 60px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress3" style="width: 50px;margin-right: 60px;">
+                        <!--压力-->&nbsp;<input name="press3" style="width: 50px;margin-right: 50px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition3" style="width: 50px;margin-right: 40px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime3" style="width: 50px;margin-right: 60px;">
                         <br>
+
+
+
                         <label>步骤4</label>
-                        &nbsp;<input style="width: 50px;margin-right: 60px;margin-left: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 50px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
+                        &nbsp;
+
+                        <select name="programType4" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                            <option value="1">绝对位置方式</option>
+                            <option value="2">压力方式</option>
+                            <option value="4">保压时间</option>
+                            <option value="0">END</option>
+                        </select>
+                        &nbsp;<input name="programValue4" style="width: 50px;margin-right: 40px;">
+                        &nbsp;<input name="speed4" style="width: 50px;margin-right: 60px;">
+                        &nbsp;<select name="alarmDealType4" style="width: 50px;margin-right: 36px;">
+                            <option value="1">停止</option>
+                            <option value="2">返回原点</option>
+                            <option value="4">继续</option>
+                        </select>
+                        <!--位置-->&nbsp;<input name="position4" style="width: 50px;margin-right: 60px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress4" style="width: 50px;margin-right: 60px;">
+                        <!--压力-->&nbsp;<input name="press4" style="width: 50px;margin-right: 50px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition4" style="width: 50px;margin-right: 40px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime4" style="width: 50px;margin-right: 60px;">
                         <br>
+
+
+
                         <label>步骤5</label>
-                        &nbsp;<input style="width: 50px;margin-right: 60px;margin-left: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 50px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
+                        &nbsp;
+                        <select name="programType5" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                            <option value="1">绝对位置方式</option>
+                            <option value="2">压力方式</option>
+                            <option value="4">保压时间</option>
+                            <option value="0">END</option>
+                        </select>
+                        &nbsp;<input name="programValue5" style="width: 50px;margin-right: 40px;">
+                        &nbsp;<input name="speed5" style="width: 50px;margin-right: 60px;">
+                        &nbsp;<select name="alarmDealType5" style="width: 50px;margin-right: 36px;">
+                            <option value="1">停止</option>
+                            <option value="2">返回原点</option>
+                            <option value="4">继续</option>
+                        </select>
+                        <!--位置-->&nbsp;<input name="position5" style="width: 50px;margin-right: 60px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress5" style="width: 50px;margin-right: 60px;">
+                        <!--压力-->&nbsp;<input name="press5" style="width: 50px;margin-right: 50px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition5" style="width: 50px;margin-right: 40px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime5" style="width: 50px;margin-right: 60px;">
                         <br>
                         <label>步骤6</label>
-                        &nbsp;<input style="width: 50px;margin-right: 60px;margin-left: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 50px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
+                        &nbsp;
+                        <select name="programType6" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                            <option value="1">绝对位置方式</option>
+                            <option value="2">压力方式</option>
+                            <option value="4">保压时间</option>
+                            <option value="0">END</option>
+                        </select>
+                        &nbsp;<input name="programValue6" style="width: 50px;margin-right: 40px;">
+                        &nbsp;<input name="speed6" style="width: 50px;margin-right: 60px;">
+                        &nbsp;<select name="alarmDealType6" style="width: 50px;margin-right: 36px;">
+                            <option value="1">停止</option>
+                            <option value="2">返回原点</option>
+                            <option value="4">继续</option>
+                        </select>
+                        <!--位置-->&nbsp;<input name="position6" style="width: 50px;margin-right: 60px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress6" style="width: 50px;margin-right: 60px;">
+                        <!--压力-->&nbsp;<input name="press6" style="width: 50px;margin-right: 50px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition6" style="width: 50px;margin-right: 40px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime6" style="width: 50px;margin-right: 60px;">
                         <br>
                         <label>步骤7</label>
-                        &nbsp;<input style="width: 50px;margin-right: 60px;margin-left: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 50px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
+                        &nbsp;
+                        <select name="programType7" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                            <option value="1">绝对位置方式</option>
+                            <option value="2">压力方式</option>
+                            <option value="4">保压时间</option>
+                            <option value="0">END</option>
+                        </select>
+                        &nbsp;<input name="programValue7" style="width: 50px;margin-right: 40px;">
+                        &nbsp;<input name="speed7" style="width: 50px;margin-right: 60px;">
+                        &nbsp;<select name="alarmDealType7" style="width: 50px;margin-right: 36px;">
+                            <option value="1">停止</option>
+                            <option value="2">返回原点</option>
+                            <option value="4">继续</option>
+                        </select>
+                        <!--位置-->&nbsp;<input name="position7" style="width: 50px;margin-right: 60px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress7" style="width: 50px;margin-right: 60px;">
+                        <!--压力-->&nbsp;<input name="press7" style="width: 50px;margin-right: 50px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition7" style="width: 50px;margin-right: 40px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime7" style="width: 50px;margin-right: 60px;">
                         <br>
                         <label>步骤8</label>
-                        &nbsp;<input style="width: 50px;margin-right: 60px;margin-left: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 50px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
-                        &nbsp;<input style="width: 50px;margin-right: 60px;">
+                        &nbsp;
+                        <select name="programType8" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                            <option value="1">绝对位置方式</option>
+                            <option value="2">压力方式</option>
+                            <option value="4">保压时间</option>
+                            <option value="0">END</option>
+                        </select>
+                        &nbsp;<input name="programValue8" style="width: 50px;margin-right: 40px;">
+                        &nbsp;<input name="speed8" style="width: 50px;margin-right: 60px;">
+                        &nbsp;<select name="alarmDealType8" style="width: 50px;margin-right: 36px;">
+                            <option value="1">停止</option>
+                            <option value="2">返回原点</option>
+                            <option value="4">继续</option>
+                        </select>
+                        <!--位置-->&nbsp;<input name="position8" style="width: 50px;margin-right: 60px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress8" style="width: 50px;margin-right: 60px;">
+                        <!--压力-->&nbsp;<input name="press8" style="width: 50px;margin-right: 50px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition8" style="width: 50px;margin-right: 40px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime8" style="width: 50px;margin-right: 60px;">
                         <br>
+                    </div>
+
+                    <div>
+                        公差窗口设置
+                        <br>
+                        <span style="margin-right: 40px;">窗口</span>&nbsp;
+                        &nbsp; <span style="margin-right: 50px;">窗口类型</span>
+                        &nbsp; <span style="margin-right: 30px;">位置下限</span>
+                        &nbsp; <span style="margin-right: 43px;">位置上限</span>
+                        &nbsp; <span style="margin-right: 45px;">压力下限</span>
+                        &nbsp; <span style="margin-right: 30px;">压力上限</span>
+                        <br>
+                        <label>窗口0</label>
+                        &nbsp;<select name="errandType1" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <option value="0">最大位移窗口</option>
+                        <option value="1">最大力窗口</option>
+                        <option value="2">配合窗口</option>
+                        <option value="3">右-下限制窗口</option>
+                        <option value="4">穿越窗口</option>
+                        <option value="5">峰值窗口(左、上、右限制)</option>
+                        <option value="6">左-上限制窗口</option>
+                        <option value="7">右-上限制窗口</option>
+                        <option value="8">顶部结束窗口</option>
+                        <option value="9">右侧结束窗口</option>
+                        <option value="10">平均值窗口</option>
+                        <option value="11">拐点窗口</option>
+                    </select>
+                        <!--位置下限-->&nbsp;<input name="positionMin1" style="width: 50px;margin-right: 40px;">
+                        <!--位置上限-->&nbsp;<input name=" positionMax1" style="width: 50px;margin-right: 60px;">
+                        <!--压力下限_1-->&nbsp;<input name="pressMin1" style="width: 50px;margin-right: 60px;">
+                        <!--压力上限-->&nbsp;<input name="pressMax1" style="width: 50px;margin-right: 60px;">
+                        <br>
+
+
+
+
+
+                        <label>窗口1</label>
+                        &nbsp;<select name="errandType2" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <option value="0">最大位移窗口</option>
+                        <option value="1">最大力窗口</option>
+                        <option value="2">配合窗口</option>
+                        <option value="3">右-下限制窗口</option>
+                        <option value="4">穿越窗口</option>
+                        <option value="5">峰值窗口(左、上、右限制)</option>
+                        <option value="6">左-上限制窗口</option>
+                        <option value="7">右-上限制窗口</option>
+                        <option value="8">顶部结束窗口</option>
+                        <option value="9">右侧结束窗口</option>
+                        <option value="10">平均值窗口</option>
+                        <option value="11">拐点窗口</option>
+                    </select>
+                        <!--位置下限-->&nbsp;<input name="positionMin2" style="width: 50px;margin-right: 40px;">
+                        <!--位置上限-->&nbsp;<input name=" positionMax2" style="width: 50px;margin-right: 60px;">
+                        <!--压力下限_1-->&nbsp;<input name="pressMin2" style="width: 50px;margin-right: 60px;">
+                        <!--压力上限-->&nbsp;<input name="pressMax2" style="width: 50px;margin-right: 60px;">
+                        <br>
+
+
+
+
+                        <label>窗口2</label>
+                        &nbsp;<select name="errandType3" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <option value="0">最大位移窗口</option>
+                        <option value="1">最大力窗口</option>
+                        <option value="2">配合窗口</option>
+                        <option value="3">右-下限制窗口</option>
+                        <option value="4">穿越窗口</option>
+                        <option value="5">峰值窗口(左、上、右限制)</option>
+                        <option value="6">左-上限制窗口</option>
+                        <option value="7">右-上限制窗口</option>
+                        <option value="8">顶部结束窗口</option>
+                        <option value="9">右侧结束窗口</option>
+                        <option value="10">平均值窗口</option>
+                        <option value="11">拐点窗口</option>
+                    </select>
+                        <!--位置下限-->&nbsp;<input name="positionMin3" style="width: 50px;margin-right: 40px;">
+                        <!--位置上限-->&nbsp;<input name=" positionMax3" style="width: 50px;margin-right: 60px;">
+                        <!--压力下限_1-->&nbsp;<input name="pressMin3" style="width: 50px;margin-right: 60px;">
+                        <!--压力上限-->&nbsp;<input name="pressMax3" style="width: 50px;margin-right: 60px;">
+                        <br>
+                        <label>窗口3</label>
+                        &nbsp;<select name="errandType4" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <option value="0">最大位移窗口</option>
+                        <option value="1">最大力窗口</option>
+                        <option value="2">配合窗口</option>
+                        <option value="3">右-下限制窗口</option>
+                        <option value="4">穿越窗口</option>
+                        <option value="5">峰值窗口(左、上、右限制)</option>
+                        <option value="6">左-上限制窗口</option>
+                        <option value="7">右-上限制窗口</option>
+                        <option value="8">顶部结束窗口</option>
+                        <option value="9">右侧结束窗口</option>
+                        <option value="10">平均值窗口</option>
+                        <option value="11">拐点窗口</option>
+                    </select>
+                        <!--位置下限-->&nbsp;<input name="positionMin4" style="width: 50px;margin-right: 40px;">
+                        <!--位置上限-->&nbsp;<input name=" positionMax4" style="width: 50px;margin-right: 60px;">
+                        <!--压力下限_1-->&nbsp;<input name="pressMin4" style="width: 50px;margin-right: 60px;">
+                        <!--压力上限-->&nbsp;<input name="pressMax4" style="width: 50px;margin-right: 60px;">
+                        <br>
+
+
+
+                        <label>窗口4</label>
+                        &nbsp;<select name="errandType5" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <option value="0">最大位移窗口</option>
+                        <option value="1">最大力窗口</option>
+                        <option value="2">配合窗口</option>
+                        <option value="3">右-下限制窗口</option>
+                        <option value="4">穿越窗口</option>
+                        <option value="5">峰值窗口(左、上、右限制)</option>
+                        <option value="6">左-上限制窗口</option>
+                        <option value="7">右-上限制窗口</option>
+                        <option value="8">顶部结束窗口</option>
+                        <option value="9">右侧结束窗口</option>
+                        <option value="10">平均值窗口</option>
+                        <option value="11">拐点窗口</option>
+                    </select>
+                        <!--位置下限-->&nbsp;<input name="positionMin5" style="width: 50px;margin-right: 40px;">
+                        <!--位置上限-->&nbsp;<input name=" positionMax5" style="width: 50px;margin-right: 60px;">
+                        <!--压力下限_1-->&nbsp;<input name="pressMin5" style="width: 50px;margin-right: 60px;">
+                        <!--压力上限-->&nbsp;<input name="pressMax5" style="width: 50px;margin-right: 60px;">
+                        <br>
+
+
+
+
+                        <label>窗口5</label>
+                        &nbsp;<select name="errandType6" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <option value="0">最大位移窗口</option>
+                        <option value="1">最大力窗口</option>
+                        <option value="2">配合窗口</option>
+                        <option value="3">右-下限制窗口</option>
+                        <option value="4">穿越窗口</option>
+                        <option value="5">峰值窗口(左、上、右限制)</option>
+                        <option value="6">左-上限制窗口</option>
+                        <option value="7">右-上限制窗口</option>
+                        <option value="8">顶部结束窗口</option>
+                        <option value="9">右侧结束窗口</option>
+                        <option value="10">平均值窗口</option>
+                        <option value="11">拐点窗口</option>
+                    </select>
+                        <!--位置下限-->&nbsp;<input name="positionMin6" style="width: 50px;margin-right: 40px;">
+                        <!--位置上限-->&nbsp;<input name=" positionMax6" style="width: 50px;margin-right: 60px;">
+                        <!--压力下限_1-->&nbsp;<input name="pressMin6" style="width: 50px;margin-right: 60px;">
+                        <!--压力上限-->&nbsp;<input name="pressMax6" style="width: 50px;margin-right: 60px;">
+                        <br>
+
                     </div>
 
                 </form>
