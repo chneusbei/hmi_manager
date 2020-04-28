@@ -42,9 +42,15 @@ public class PressureProgramControler {
 
     @ResponseBody
     @RequestMapping("/getProgram")
-    Map<String, String> getProgram(){
-        Map<String, String> lookup = PressureProgramEntityEnum.getLookup();
-        System.out.println(JSON.toJSONString(lookup));
-        return lookup;
+    List<Map<String, String>> getProgram(){
+        /*List<Map<String, String>> list = PressureProgramEntityEnum.getLIST();
+        System.out.println(JSON.toJSONString(list));*/
+        return null;
+    }
+    @ResponseBody
+    @RequestMapping("/setProgram")
+    String setProgram(PressureProgramEntity pressureProgramEntity){
+        System.out.println(pressureProgramEntity.toString());
+        return "";
     }
 }
