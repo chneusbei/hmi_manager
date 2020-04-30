@@ -37,10 +37,10 @@ public class JsonController {
     @Resource
     PressureDataService pressureDataService;
     @RequestMapping("/getHisDateByCode")
-    public String getHisDateByCode(@RequestParam(value = "pressDataId",required = false) Long pressDataId){
-        System.out.println(pressDataId);
-        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(pressDataId);
-        List<PressureDataEntity> pressureData = pressureDataService.getPressureData(pressDataId);
+    public String getHisDateByCode(@RequestParam(value = "recordId",required = false) Long recordId){
+//        System.out.println(pressDataId);
+        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(recordId);
+        List<PressureDataEntity> pressureData = pressureDataService.getPressureData(recordId);
         List<List<? extends AbstractBaseEntity>> list1=new ArrayList<>();
         list1.add(pressureData);
         list1.add(list);
@@ -50,6 +50,19 @@ public class JsonController {
 
     @RequestMapping("/getCurveQueryByCode")
     public String getCurveQueryByCode(){
+        /*
+        0
+            1
+            2
+            5
+
+            下进右出
+            下进下出
+            左进右出
+            左进上出
+            下进不出
+            左进右不出
+         */
         List<PressureCurveEntity> list = plc4xCurveDataService1.getCurveDatas();
 //        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(0L, 1L);
 //        List<List<PressureCurveEntity>>  errantList = new ArrayList<List<PressureCurveEntity>>();

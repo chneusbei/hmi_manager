@@ -26,33 +26,26 @@
                 <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;
-                    程序号：<input type="text" v-model="pressDataId" > <!--<input type="submit" value="确定">-->
+                    程序号：<input type="text" v-model="recordId" > <!--<input type="submit" value="确定">-->
                     <input   type="button" @click="getgraph()" value="查询">
                 </div>
                 <div >
                     <!--<label>产品代码：{{pressureData}}</label>-->
-                    <div  v-if="pressureData!=null" style="
-    padding-left: 500px;
-">
-                        <span id="data" style="font-size: 25px">
-                    最大压力值:
-                    <br>
-                    {{pressureData.maxPress}}kn
-                    <br>
-                    最大压力时位移
-                    <br>
+                    <div id="main" style="width: 90%;height:600px; "></div>
+                    <div  v-if="pressureData!=null" style="padding-left: 500px;">
+                        <span id="data" style="font-size: 25px" >
+                    最大压力值: {{pressureData.maxPress}}kn
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x
+                    最大压力时位移:
                     {{pressureData.positionOfMaxPress}}mm
                     <br>
-                    压装开始时间
-                    <br>
+                    压装开始时间:
                     {{pressureData.startDate}}
-                    <br>
-                    压装结束
-                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    压装结束时间:
                     {{pressureData.endDate}}
                         </span>
-                </div>
-                    <div id="main" style="width: 90%;height:600px; "></div>
+                    </div>
                 </div>
 
 
@@ -74,14 +67,14 @@
     new Vue({
         el:"#app",
         data:{
-            pressDataId:null,
+            recordId:null,
             pressureData:null,
             series1:[],
         },methods:{
             getgraph() {
                 let arr=[];
                 let myChart= echarts.init(document.getElementById('main'));
-                axios.get("/getHisDateByCode",{params:{pressDataId:this.pressDataId}}).then(result=>{
+                axios.get("/getHisDateByCode",{params:{recordId:this.recordId}}).then(result=>{
                     result =result.data;
                     for(let i in result){
                         if (i==0){

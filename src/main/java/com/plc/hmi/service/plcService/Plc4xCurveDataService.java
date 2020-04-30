@@ -69,7 +69,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      * 获取实时曲线信息
      * @return
      */
-    public void getCurveDatasFromPlc() {
+    public  synchronized  void  getCurveDatasFromPlc() {
 //        System.out.println(">>>>>>>>>>>>>>>tagGroup = "+tagGroup);
         peerStartTime = System.currentTimeMillis();
 //        System.out.println("get data from plc >>>>>>>>>>>>>>>>>>>>>>>>");

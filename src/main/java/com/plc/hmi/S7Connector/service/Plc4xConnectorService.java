@@ -4,6 +4,8 @@ import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.PropertyEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.service.PropertyService;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.plc4x.java.PlcDriverManager;
@@ -173,7 +175,14 @@ public class Plc4xConnectorService {
         for(PlcEntity query : queryList) {
 //            query.setFieldQuery("%DB300.DBX3.0:BOOL");
             if("REAL".equalsIgnoreCase(query.getDataType())) {
-                writeBuilder.addItem(query.getName(), query.getFieldQuery(), Float.valueOf(query.getValueOjb().toString()).floatValue());
+//                ByteBuf buf = Unpooled.buffer(4);
+//                buf.writeFloat(Float.valueOf(query.getValueOjb().toString()).floatValue());
+//                byte[] bytes = buf.array();
+//                writeBuilder.addItem(query.getName(), query.getFieldQuery(), new BigDecimal(query.getValueOjb().toString()));
+//                writeBuilder.addItem(query.getName(), query.getFieldQuery(), Integer.valueOf(query.getValueOjb().toString()).intValue());
+//                writeBuilder.addItem(query.getName(), query.getFieldQuery(), bytes);
+                  writeBuilder.addItem(query.getName(), query.getFieldQuery(),Float.valueOf(query.getValueOjb().toString()).floatValue());
+
             } else if("BOOL".equalsIgnoreCase(query.getDataType())) {
                 writeBuilder.addItem(query.getName(), query.getFieldQuery(), query.getValueOjb());
             }

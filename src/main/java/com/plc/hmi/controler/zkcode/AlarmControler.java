@@ -1,9 +1,12 @@
 package com.plc.hmi.controler.zkcode;
 
 import com.plc.hmi.dal.entity.AlarmEntity;
+import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.service.AlarmService;
+import com.plc.hmi.service.plcService.Plc4xEquipmentAlarmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
@@ -15,8 +18,13 @@ public class AlarmControler {
 
     @Autowired
     private AlarmService alarmService;
+    @Autowired
+    private Plc4xEquipmentAlarmService plc4xEquipmentAlarmService;
+
+    @ResponseBody
     @GetMapping("/getAlarm")
     public List<AlarmEntity> getAlarm(){
+        List<PlcEntity> plcEntities= plc4xEquipmentAlarmService.getDatas();
         List<AlarmEntity> alarm = alarmService.getAlarm();
 //        AlarmEntity alarmEntity=new AlarmEntity();
 //        alarmEntity.setAlarmStatus("0");

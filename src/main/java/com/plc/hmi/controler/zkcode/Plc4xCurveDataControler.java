@@ -42,63 +42,58 @@ public class Plc4xCurveDataControler {
     @ResponseBody
     @GetMapping("/getEquipmentStatus")
     List<PlcEntity> getEquipmentDatas(){
-        List<PlcEntity> datas=new ArrayList<>();
-        PlcEntity plcEntity=new PlcEntity();
-        plcEntity.setName("onLine");
-        plcEntity.setValueOjb(true);
-        datas.add(plcEntity);
-
-        PlcEntity plcEntity1=new PlcEntity();
-        plcEntity1.setName("6");
-        plcEntity1.setValueOjb(false);
-        datas.add(plcEntity1);
-
-        PlcEntity plcEntity2=new PlcEntity();
-        plcEntity2.setName("5");
-        plcEntity2.setValueOjb(false);
-        datas.add(plcEntity2);
-
-        PlcEntity plcEntity3=new PlcEntity();
-        plcEntity3.setName("4");
-        plcEntity3.setValueOjb(false);
-        datas.add(plcEntity3);
-
-
-        PlcEntity plcEntity4=new PlcEntity();
-        plcEntity4.setName("1");
-        plcEntity4.setValueOjb(false);
-        datas.add(plcEntity4);
-
-
-        PlcEntity plcEntity5=new PlcEntity();
-        plcEntity5.setName("2");
-        plcEntity5.setValueOjb(false);
-        datas.add(plcEntity5);
-
-        PlcEntity plcEntity6=new PlcEntity();
-        plcEntity6.setName("3");
-        plcEntity6.setValueOjb(false);
-        datas.add(plcEntity6);
-
-/*
          List<PlcEntity> datas = plc4xEquipmentStatusService.getDatas();
-*/
+         if(CollectionUtils.isEmpty(datas)) {
+             List<PlcEntity> defalutDatas=new ArrayList<>();
+             PlcEntity plcEntity=new PlcEntity();
+             plcEntity.setName("在线");
+             plcEntity.setValueOjb(false);
+             defalutDatas.add(plcEntity);
 
-        datas.stream().forEach(p -> {
-            if ("onLine".equals(p.getName())) {
-                p.setName("在线");
-            }else if ("running".equals(p.getName())){
-                p.setName("运行中");
-            }else if ("humanModel".equals(p.getName())){
-                p.setName("手动操作");
-            }else if ("autoModel".equals(p.getName())){
-                p.setName("自动操作");
-            }else if ("systemAlarm".equals(p.getName())){
-                p.setName("系统报警");
-            }else if ("safeAlarm".equals(p.getName())){
-                p.setName("安全报警");
-            }
-        });
+             PlcEntity plcEntity1=new PlcEntity();
+             plcEntity1.setName("运行中");
+             plcEntity1.setValueOjb(false);
+             defalutDatas.add(plcEntity1);
+
+             PlcEntity plcEntity2=new PlcEntity();
+             plcEntity2.setName("手动操作");
+             plcEntity2.setValueOjb(false);
+             defalutDatas.add(plcEntity2);
+
+             PlcEntity plcEntity3=new PlcEntity();
+             plcEntity3.setName("自动操作");
+             plcEntity3.setValueOjb(false);
+             defalutDatas.add(plcEntity3);
+
+
+             PlcEntity plcEntity4=new PlcEntity();
+             plcEntity4.setName("系统报警");
+             plcEntity4.setValueOjb(false);
+             defalutDatas.add(plcEntity4);
+
+
+             PlcEntity plcEntity5=new PlcEntity();
+             plcEntity5.setName("安全报警");
+             plcEntity5.setValueOjb(false);
+             defalutDatas.add(plcEntity5);
+             datas=defalutDatas;
+         } else {
+             datas.stream().forEach(p -> {
+                 if ("onLine".equals(p.getName())) {
+                     p.setName("在线");
+                 } else if ("running".equals(p.getName())) {
+                     p.setName("运行中");
+                 } else if ("humanModel".equals(p.getName())) {
+                     p.setName("手动操作");
+                 } else if ("autoModel".equals(p.getName())) {
+                     p.setName("自动操作");
+                 } else if ("systemAlarm".equals(p.getName())) {
+                     p.setName("系统报警");
+                 } else if ("safeAlarm".equals(p.getName())) {
+                     p.setName("安全报警");
+                 }
+             });
+         }
         return datas;
     }
     /**
@@ -160,8 +155,6 @@ public class Plc4xCurveDataControler {
      页面中文LABEL: 输出_4 ,值变量名: output4 ,值类型 WORD
      */
     List<PlcEntity> getEquipmentIo(){
-
-
         List<PlcEntity> datas = plc4xEquipmentIoStatusService.getDatas();
 /*
         List<PlcEntity> datas = new ArrayList<>();
@@ -223,33 +216,58 @@ public class Plc4xCurveDataControler {
     @ResponseBody
     @GetMapping("/getOperation")
     public List<PlcEntity> getDatas(){
-
-
-/*
         List<PlcEntity> datas = plc4xEquipmentOperationService.getDatas();
-*/
-        List<PlcEntity> datas = new ArrayList<>();
-        PlcEntity plcEntity=new PlcEntity();
-        plcEntity.setValueOjb(true);
-        plcEntity.setName("零件号");
-        datas.add(plcEntity);
-        datas.stream().forEach(p->{
-            if ("productNo".equals(p.getName())){
-                p.setName("零件号");
-            }else if ("indenterChoice".equals(p.getName())){
-                p.setName("压头选择");
-            }else if ("choicePositive".equals(p.getName())){
-                p.setName("选择正压");
-            }else if ("choiceNegative".equals(p.getName())){
-                p.setName("选择反压");
-            }else if ("rasterClose".equals(p.getName())){
-                p.setName("光栅屏蔽");
-            }else if ("safeDoorClose".equals(p.getName())){
-                p.setName("安全门屏蔽");
-            }else if ("buzzerClose".equals(p.getName())){
-                p.setName("蜂鸣器屏蔽");
-            };
-        });
+        if(CollectionUtils.isEmpty(datas)) {
+            List<PlcEntity> defaultDatas = new ArrayList<>();
+            PlcEntity plcEntity=new PlcEntity();
+            plcEntity.setValueOjb(false);
+            plcEntity.setName("零件号");
+            PlcEntity plcEntity1=new PlcEntity();
+            plcEntity1.setValueOjb(false);
+            plcEntity1.setName("压头选择");
+            PlcEntity plcEntity2=new PlcEntity();
+            plcEntity2.setValueOjb(false);
+            plcEntity2.setName("选择正压");
+            PlcEntity plcEntity3=new PlcEntity();
+            plcEntity3.setValueOjb(false);
+            plcEntity3.setName("选择反压");
+            PlcEntity plcEntity4=new PlcEntity();
+            plcEntity4.setValueOjb(false);
+            plcEntity4.setName("光栅屏蔽");
+            PlcEntity plcEntity5=new PlcEntity();
+            plcEntity5.setValueOjb(false);
+            plcEntity5.setName("安全门屏蔽");
+            PlcEntity plcEntity6=new PlcEntity();
+            plcEntity6.setValueOjb(false);
+            plcEntity6.setName("蜂鸣器屏蔽");
+
+            defaultDatas.add(plcEntity);
+            defaultDatas.add(plcEntity1);
+            defaultDatas.add(plcEntity2);
+            defaultDatas.add(plcEntity3);
+            defaultDatas.add(plcEntity4);
+            defaultDatas.add(plcEntity5);
+            defaultDatas.add(plcEntity6);
+            datas = defaultDatas;
+        } else {
+            datas.stream().forEach(p->{
+                if ("productNo".equals(p.getName())){
+                    p.setName("零件号");
+                }else if ("indenterChoice".equals(p.getName())){
+                    p.setName("压头选择");
+                }else if ("choicePositive".equals(p.getName())){
+                    p.setName("选择正压");
+                }else if ("choiceNegative".equals(p.getName())){
+                    p.setName("选择反压");
+                }else if ("rasterClose".equals(p.getName())){
+                    p.setName("光栅屏蔽");
+                }else if ("safeDoorClose".equals(p.getName())){
+                    p.setName("安全门屏蔽");
+                }else if ("buzzerClose".equals(p.getName())){
+                    p.setName("蜂鸣器屏蔽");
+                };
+            });
+        }
 
         return datas;
     }
