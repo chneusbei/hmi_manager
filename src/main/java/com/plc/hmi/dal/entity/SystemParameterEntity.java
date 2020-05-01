@@ -45,4 +45,14 @@ public class SystemParameterEntity extends AbstractBaseEntity {
     public void setDefaultBackSpeed(BigDecimal defaultBackSpeed) {
         this.defaultBackSpeed = defaultBackSpeed;
     }
+
+    @Override
+    public String toString() {
+        return "SystemParameterEntity{" +
+                "maxDistance=" + maxDistance +
+                ", maxForce=" + maxForce +
+                ", maxSpeed=" + maxSpeed +
+                ", defaultBackSpeed=" + defaultBackSpeed +
+                '}';
+    }
 }

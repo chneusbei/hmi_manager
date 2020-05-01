@@ -45,11 +45,13 @@ public class Plc4xServoLimitSetControler {
                 }
             }
         }
+        System.out.println(entity.toString());
         return  entity;
     }
 
     @RequestMapping("/updateSystemParameter")
     public String updateSystemParameter(SystemParameterEntity systemParameterEntity){
+        System.out.println(systemParameterEntity.toString());
         Map<String, String> paraMap = new HashMap<>();
         if(null != systemParameterEntity.getMaxDistance()) {
             paraMap.put("maxForce", systemParameterEntity.getMaxDistance().toString());
@@ -65,6 +67,6 @@ public class Plc4xServoLimitSetControler {
         }
 
         plc4xServoLimitSetService.setDatas(paraMap);
-        return "";
+        return "parameterSetting";
     }
 }
