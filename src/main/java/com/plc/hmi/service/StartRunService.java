@@ -37,12 +37,12 @@ public class StartRunService implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         //启动事实曲线获取线程
-//        plc4xCurveDataService1.setTagGroup();
-//        PlcPressCurveThread plcPressCurveThread1 = new PlcPressCurveThread(plc4xCurveDataService1);
-//        plcPressCurveThread1.run();
-//        plc4xCurveDataService2.setTagGroup();
-//        PlcPressCurveThread plcPressCurveThread2 = new PlcPressCurveThread(plc4xCurveDataService2);
-//        plcPressCurveThread2.run();
+        plc4xCurveDataService1.setTagGroup();
+        PlcPressCurveThread plcPressCurveThread1 = new PlcPressCurveThread(plc4xCurveDataService1);
+        plcPressCurveThread1.run();
+        plc4xCurveDataService2.setTagGroup();
+        PlcPressCurveThread plcPressCurveThread2 = new PlcPressCurveThread(plc4xCurveDataService2);
+        plcPressCurveThread2.run();
 
 //        while (true){
 //            plc4xCurveDataService.getCurveDatasFromPlc();
