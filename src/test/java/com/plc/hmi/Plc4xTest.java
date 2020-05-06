@@ -11,17 +11,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class Plc4xTest {
-    @Autowired
-    private Plc4xCurveDataService service;
+//    @Autowired
+//    private Plc4xCurveDataService service;
 //    @Autowired
 //    private Plc4xTestService testService;
 
-    @Test
+//    @Test
     public void testSql() {
-        service.getCurveDatasFromPlc();
-        List<PressureCurveEntity>  curveEntityList = service.getCurveDatas();
+//        service.getCurveDatasFromPlc();
+//        List<PressureCurveEntity>  curveEntityList = service.getCurveDatas();
 //        List<PlcEntity> testList = testService.getDatas();
         System.out.println("END----------------");
     }

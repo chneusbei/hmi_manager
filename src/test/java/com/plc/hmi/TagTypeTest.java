@@ -9,15 +9,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Date;
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class TagTypeTest {
     @Autowired
     private TagTypeService service;
 
 
 
-    @Test
-    public void testSql() {
+//    @Test
+    public void testSql() {/*
         TagTypeEntity entity = new TagTypeEntity();
         entity.setId(1L);
         entity.setDataType("bool");
@@ -31,7 +31,7 @@ public class TagTypeTest {
 //        service.delete(entity);
 //        service.deleteProduct(entity);
 
-
+*/
         System.out.println("END----------------");
     }
 }

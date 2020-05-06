@@ -10,8 +10,10 @@
     </parent>
     <groupId>com.plc</groupId>
     <artifactId>hmi</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1</version>
     <name>hmi</name>
+    <!-- 用于生成war包 -->
+<!--    <packaging>war</packaging>-->
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -19,7 +21,12 @@
     </properties>
 
     <dependencies>
-
+        <!-- 用于生成war包 -->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.maven.plugins</groupId>-->
+<!--            <artifactId>maven-war-plugin</artifactId>-->
+<!--            <version>3.0.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -36,7 +43,31 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+<!--            <scope>provided</scope>-->
+<!--             移除嵌入式tomcat插件-->
+<!--            <exclusions>-->
+<!--                <exclusion>-->
+<!--                    <groupId>org.springframework.boot</groupId>-->
+<!--                    <artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--                </exclusion>-->
+<!--            </exclusions>-->
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.tomcat.embed</groupId>-->
+<!--            <artifactId>tomcat-embed-jasper</artifactId>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>javax.servlet</groupId>-->
+<!--            <artifactId>javax.servlet-api</artifactId>-->
+<!--            <version>3.1.0</version>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--            <scope>provided</scope>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web-services</artifactId>
@@ -80,11 +111,11 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>com.github.s7connector</groupId>
-            <artifactId>s7connector</artifactId>
-            <version>2.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.github.s7connector</groupId>-->
+<!--            <artifactId>s7connector</artifactId>-->
+<!--            <version>2.1</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>org.apache.plc4x</groupId>
@@ -227,6 +258,13 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.60</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on -->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk15on</artifactId>
+            <version>1.50</version>
+        </dependency>
+
     </dependencies>
 
       <build>
@@ -252,47 +290,47 @@
                       <target>1.8</target>
                   </configuration>
               </plugin>
-              <plugin>
-                  <groupId>com.github.eirslett</groupId>
-                  <artifactId>frontend-maven-plugin</artifactId>
-                  <version>1.6</version>
-                  <configuration>
-                       <installDirectory>target</installDirectory>
-                      <!-- <workingDirectory>hmi_manager</workingDirectory> -->
-                   </configuration>
-                <executions>
-                    <execution>
-                        <id>install node and npm</id>
-                        <goals>
-                            <goal>install-node-and-npm</goal>
-                        </goals>
-                        <configuration>
-                            <nodeVersion>v8.11.1</nodeVersion>
-                            <npmVersion>5.6.0</npmVersion>
-                            <nodeDownloadRoot>http://npm.taobao.org/mirrors/node/</nodeDownloadRoot>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>npm install</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>install</arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>npm run-script build</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <arguments>run-script build</arguments>
-                        </configuration>
-                    </execution>
-                </executions>
+<!--              <plugin>-->
+<!--                  <groupId>com.github.eirslett</groupId>-->
+<!--                  <artifactId>frontend-maven-plugin</artifactId>-->
+<!--                  <version>1.6</version>-->
+<!--                  <configuration>-->
+<!--                       <installDirectory>target</installDirectory>-->
+<!--                      &lt;!&ndash; <workingDirectory>hmi_manager</workingDirectory> &ndash;&gt;-->
+<!--                   </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>install node and npm</id>-->
+<!--                        <goals>-->
+<!--                            <goal>install-node-and-npm</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <nodeVersion>v8.11.1</nodeVersion>-->
+<!--                            <npmVersion>5.6.0</npmVersion>-->
+<!--                            <nodeDownloadRoot>http://npm.taobao.org/mirrors/node/</nodeDownloadRoot>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>npm install</id>-->
+<!--                        <goals>-->
+<!--                            <goal>npm</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <arguments>install</arguments>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>npm run-script build</id>-->
+<!--                        <goals>-->
+<!--                            <goal>npm</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <arguments>run-script build</arguments>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
 
-           </plugin>
+<!--           </plugin>-->
        </plugins>
    </build>
 

@@ -10,14 +10,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class SystemParameterTest {
     @Autowired
     private SystemParameterService service;
 
-    @Test
+//    @Test
     public void testSql() {
-
+/*
         SystemParameterEntity entity = new SystemParameterEntity();
         entity.setId(1L);
         entity.setMaxDistance(new BigDecimal(1));
@@ -36,7 +36,7 @@ public class SystemParameterTest {
         entity.setDefaultBackSpeed(new BigDecimal(4.1));
 //        service.update(entity);
 //        service.delete(entity);
-
+*/
         System.out.println("END----------------");
     }
 

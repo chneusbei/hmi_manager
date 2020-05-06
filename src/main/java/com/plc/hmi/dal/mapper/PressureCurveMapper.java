@@ -29,6 +29,34 @@ public interface PressureCurveMapper {
     })
     List<PressureCurveEntity> getCurveData(@Param("recordId") Long recordId);
 
+
+    @Select({"<script>",
+            "select * from pressure_curve where IS_DELETED='0'",
+            "<if test='startDate!=null' >",
+            "and HANDLE_DATE=#{startDate}",
+            "</if>",
+            "<if test='endDate!=null' >",
+            "and HANDLE_DATE=#{endDate}",
+            "</if>",
+            "</script>" })
+    @Results({
+            @Result(id=true,column = "ID",property = "id" ),
+            @Result(column = "RECORD_ID",property ="recordId"),
+            @Result(column = "PRODUCT_ID",property ="productId"),
+            @Result(column = "RECORD_NO",property ="recordNo"),
+            @Result(column = "POSITION",property ="position"),
+            @Result(column = "PRESS_FORCE",property ="pressForce"),
+            @Result(column = "CUR_SPEED",property ="curSpeed"),
+            @Result(column = "HANDLE_DATE",property ="handleDate"),
+            @Result(column = "PRESS_DATE",property ="pressDate"),
+            @Result(column = "CREATE_BY",property = "createBy"),
+            @Result(column = "UPDATE_BY",property = "updateBy"),
+            @Result(column = "CREATE_TIME",property = "createTime"),
+            @Result(column = "UPDATE_TIME",property = "updateTime"),
+            @Result(column = "IS_DELETED",property = "isDeleted"),
+    })
+    List<PressureCurveEntity> getCurveDataWithDate(@Param("startDate") String startDate, @Param("endDate") String endDate);
+
 //    @Select("select * from pressure_curve where is_deleted='0' and HANDLE_DATE=#{handleDate}")
 //    List<HashMap> getPressureCurveWithDate(@Param("handleDate") String handleDate);
 

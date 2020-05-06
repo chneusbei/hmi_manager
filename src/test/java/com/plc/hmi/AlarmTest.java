@@ -9,15 +9,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Date;
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class AlarmTest {
     @Autowired
     private AlarmService service;
 
 
 
-    @Test
+//    @Test
     public void testSql() {
+        /*
         AlarmEntity entity = new AlarmEntity();
         entity.setId(1L);
         entity.setTriggerDb(100);
@@ -38,7 +39,7 @@ public class AlarmTest {
 //        entity.setAlarmStatus("1");
 //        service.update(entity);
 //        service.delete(entity);
-
+*/
 
         System.out.println("END----------------");
     }

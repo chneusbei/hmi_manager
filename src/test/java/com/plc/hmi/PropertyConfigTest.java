@@ -17,6 +17,7 @@ public class PropertyConfigTest {
 
     @Test
     public void testSql() {
+
         PropertyEntity entity = new PropertyEntity();
         entity.setPropGroup("groupT");
         entity.setPropName("testPropNEW");

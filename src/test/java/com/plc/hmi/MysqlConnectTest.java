@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class MysqlConnectTest {
 
     @Autowired
@@ -25,8 +25,9 @@ public class MysqlConnectTest {
     @Autowired
     private ProductParameterService productParameterService;
 
-    @Test
+//    @Test
     public void testSql() {
+        /*
         //        ProductParameterEntity  entity = new ProductParameterEntity();
 //        entity.setId(1L);
 //        entity.setCreateBy("chensubei");

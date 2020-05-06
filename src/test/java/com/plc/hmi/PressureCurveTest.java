@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class PressureCurveTest {
     @Autowired
     private PressureCurveService service;
@@ -21,9 +21,9 @@ public class PressureCurveTest {
 
 
 
-    @Test
+//    @Test
     public void testSql() {
-
+/*
         List<PressureCurveEntity> entityList = new ArrayList<PressureCurveEntity>();
         for(int i=1; i<11; i++) {
             PressureCurveEntity entity = new PressureCurveEntity();

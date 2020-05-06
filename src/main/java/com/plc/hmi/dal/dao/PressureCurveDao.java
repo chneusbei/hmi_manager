@@ -35,9 +35,9 @@ public class PressureCurveDao{
        return list;
     }
 
-//    public List<PressureCurveEntity> getPressureCurveWithDate(String handleDate) {
-//        return this.getEntityList(pressureCurveMapper.getPressureCurveWithDate(handleDate));
-//    }
+    public List<PressureCurveEntity> getPressureCurveWithDate(String startDate, String endDate) {
+        return pressureCurveMapper.getCurveDataWithDate(startDate, endDate);
+    }
 //
 //    public List<PressureCurveEntity> getPressureCurveWithDateStart(String handleDate) {
 //        return this.getEntityList(pressureCurveMapper.getPressureCurveWithDateStart(handleDate));

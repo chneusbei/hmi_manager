@@ -8,15 +8,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Date;
 
-@SpringBootTest
+//@SpringBootTest
 public class ProductTest {
     @Autowired
     private ProductService service;
 
 
 
-    @Test
+//    @Test
     public void testSql() {
+        /*
         ProductEntity entity = new ProductEntity();
         entity.setId(1L);
         entity.setProductCode("TestProduct");
@@ -28,7 +29,7 @@ public class ProductTest {
 //        service.insert(entity);
         ProductEntity result = service.getProduct("TestProduct");
 //        service.delete(entity);
-
+*/
 
         System.out.println("END----------------");
     }

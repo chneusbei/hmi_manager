@@ -11,15 +11,16 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class PressureDataTest {
     @Autowired
     private PressureDataService service;
 
 
 
-    @Test
+//    @Test
     public void testSql() {
+        /*
         PressureDataEntity entity = new PressureDataEntity();
         entity.setId(1L);
         entity.setProductId(1L);
@@ -38,7 +39,7 @@ public class PressureDataTest {
         List<PressureDataEntity> resultList = service.getPressureData(1L);
         PressureStatisticalDataEntity pressureStatisticalDataEntity  = service.getPressureStatisticalData();
 //        service.delete(entity);
-
+*/
 
         System.out.println("END----------------");
     }

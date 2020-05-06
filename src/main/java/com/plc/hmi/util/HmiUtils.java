@@ -1,18 +1,9 @@
 package com.plc.hmi.util;
 
-import org.apache.ibatis.type.BaseTypeHandler;
-import org.apache.ibatis.type.JdbcType;
-import org.apache.ibatis.type.LongTypeHandler;
-import org.apache.ibatis.type.TypeHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.plugin.com.Utils;
 
 import java.math.BigDecimal;
-import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +14,7 @@ public class HmiUtils  {
     static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//注意月份是MM
     static final SimpleDateFormat dateFormatYYYYMMDDHHMMSS = new SimpleDateFormat("yyyyMMddHHmmss");//注意月份是MM
     static final SimpleDateFormat dateFormatYYYYMMDDHHMMSSSSS = new SimpleDateFormat("yyyyMMddHHmmssSSS");//注意月份是MM
+    static final SimpleDateFormat dateFormatYYYYMMDD = new SimpleDateFormat("yyyyMMdd");//注意月份是MM
     private static Logger logger = LoggerFactory.getLogger(HmiUtils.class);
     public static final Date getDate(Object obj) {
         if(null == obj) {
@@ -49,6 +41,9 @@ public class HmiUtils  {
 
     public static String getFormatDateString() {
         return dateFormatYYYYMMDDHHMMSS.format(new Date());
+    }
+    public static String getYYYYMMDDString(Date date) {
+        return dateFormatYYYYMMDD.format(new Date());
     }
 
     public static String getMillFormatDateString(Date date) {

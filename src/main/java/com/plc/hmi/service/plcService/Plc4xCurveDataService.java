@@ -5,6 +5,7 @@ import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.enumeration.PlcEntityEnum;
 import com.plc.hmi.service.PressureCurveService;
+import com.plc.hmi.util.HmiUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jvnet.hk2.annotations.Service;
@@ -160,6 +161,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         curveEntity.setUpdateBy("SYS");
         curveEntity.setCreateTime(new Date());
         curveEntity.setUpdateTime(new Date());
+        curveEntity.setHandleDate(HmiUtils.getYYYYMMDDString(curveEntity.getCreateTime()));
         curveEntity.setSolidLine(true);
         curveEntity.setErrant(false);
         return curveEntity;

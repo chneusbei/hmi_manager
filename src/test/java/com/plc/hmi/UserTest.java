@@ -7,14 +7,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Date;
 
-@SpringBootTest
+//@SpringBootTest
 public class UserTest {
     @Autowired
     private UserService service;
 
-    @Test
+//    @Test
     public void testSql() {
-
+/*
         UserEntity entity = new UserEntity();
         entity.setId(1L);
         entity.setUserName("admin");
@@ -32,7 +32,7 @@ public class UserTest {
         UserEntity userEntity1 =service.getUser(1L);
         UserEntity userEntity2 =service.loginUser("admin","admin");
 
-
+*/
         System.out.println("END----------------");
     }
 

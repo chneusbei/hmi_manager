@@ -2,7 +2,6 @@ package com.plc.hmi.dal.mapper;
 
 import com.plc.hmi.dal.entity.PropertyEntity;
 import org.apache.ibatis.annotations.*;
-import java.util.HashMap;
 import java.util.List;
 @Mapper
 public interface PropertyMapper{

@@ -1,12 +1,17 @@
 package com.plc.hmi.controler;
 
+import com.plc.hmi.dal.entity.PressureCurveEntity;
+import com.plc.hmi.service.PressureCurveService;
+import com.plc.hmi.service.PressureProgramService;
 import com.plc.hmi.util.CsvExportUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -16,12 +21,22 @@ import java.util.Map;
 
 @RestController
 public class ExportController {
+    @Resource
+    PressureCurveService pressureCurveService;
+    @Resource
+    PressureProgramService pressureProgramService;
+
     private static Logger logger = LoggerFactory.getLogger(ExportController.class);
     @GetMapping("/export")
-    public String export(HttpServletResponse response) {
+    public String export(HttpServletResponse response,
+                         @RequestParam(value = "startDate",required = false) String startDate,
+                         @RequestParam(value = "endDate",required = false) String endDate) {
 
         // 查询需要导出的数据
-        List<Map<String, Object>> dataList = null;
+        List<Map<String, Object>> dataList  = null;
+//        List<PressureCurveEntity> dataList  = pressureCurveService.getHisDate(startDate, endDate);
+
+
 
         if (CollectionUtils.isEmpty(dataList)) {
             return   "无可用数据";

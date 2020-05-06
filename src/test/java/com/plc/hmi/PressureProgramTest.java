@@ -9,12 +9,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class PressureProgramTest {
     @Autowired
     private PressureProgramService service;
 
-    @Test
+//    @Test
     public void testSql() {
         /*
         PressureProgramEntity entity = new PressureProgramEntity();
@@ -151,10 +151,10 @@ public class PressureProgramTest {
 //        service.update(entity);
 //        service.delete(entity);
 
-*/
+
         List<PressureProgramEntity> result = service.getWithProductId(1L);
         List<List<PressureCurveEntity>>  errantList = service.getErrandDataforChart(1L);
-
+*/
         System.out.println("END----------------");
     }
 

@@ -1,11 +1,10 @@
 package com.plc.hmi.S7Connector.service;
+
 import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.PropertyEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.service.PropertyService;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.plc4x.java.PlcDriverManager;
@@ -20,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

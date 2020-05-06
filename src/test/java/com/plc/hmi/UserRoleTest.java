@@ -9,15 +9,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Date;
 import java.util.List;
 
-@SpringBootTest
+//@SpringBootTest
 public class UserRoleTest {
     @Autowired
     private UserRoleService service;
 
 
 
-    @Test
+//    @Test
     public void testSql() {
+        /*
         UserRoleEntity entity = new UserRoleEntity();
         entity.setId(1L);
         entity.setRoleName("admin");
@@ -32,7 +33,7 @@ public class UserRoleTest {
 //        service.update(entity);
 //        service.delete(entity);
 
-
+*/
         System.out.println("END----------------");
     }
 

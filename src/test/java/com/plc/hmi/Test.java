@@ -8,10 +8,11 @@ import io.netty.buffer.Unpooled;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+
 import java.math.BigDecimal;
 import java.util.*;
 
-@SpringBootTest
+//@SpringBootTest
 public class Test {
 //    @Autowired
 //    Plc4xCurveDataService plc4xEquipmentOperationService;
@@ -21,6 +22,8 @@ public class Test {
 
     @org.junit.jupiter.api.Test
     public void testSql() {
+//        PersistenceExceptionTranslationPostProcessor p;
+        /*
          int a = Integer.valueOf(123).intValue();
          float f = 100.01f;
          BigDecimal b = new BigDecimal(1.00);
@@ -28,7 +31,7 @@ public class Test {
         buf.writeFloat(f);
         byte[] bytes = buf.array();
         System.out.println(bytes);
-
+*/
 //       String str =  HmiUtils.getFormatDateString();
 //        String str = HmiUtils.getMillFormatDateString(new Date());
 //        BigDecimal one = new BigDecimal(1L);
