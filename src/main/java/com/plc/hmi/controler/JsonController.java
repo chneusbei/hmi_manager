@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +42,20 @@ public class JsonController {
 //        System.out.println(pressDataId);
         List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(recordId);
         List<PressureDataEntity> pressureData = pressureDataService.getPressureData(recordId);
+        if(CollectionUtils.isEmpty(list)) {
+            list = new  ArrayList<PressureCurveEntity>();
+            PressureCurveEntity pressureCurveEntity = new PressureCurveEntity();
+            pressureCurveEntity.setSolidLine(true);
+            pressureCurveEntity.setErrant(false);
+            pressureCurveEntity.setPosition(new BigDecimal(100));
+            pressureCurveEntity.setPressForce(new BigDecimal(100));
+            list.add(pressureCurveEntity);
+        }
+        if(CollectionUtils.isEmpty(pressureData)) {
+           pressureData = new ArrayList<PressureDataEntity>();
+            PressureDataEntity pressureDataEntity = new PressureDataEntity();
+            pressureData.add(pressureDataEntity);
+        }
         List<List<? extends AbstractBaseEntity>> list1=new ArrayList<>();
         list1.add(pressureData);
         list1.add(list);

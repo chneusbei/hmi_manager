@@ -28,8 +28,8 @@ import java.util.List;
 public class StartRunService implements ApplicationRunner {
     @Resource
     Plc4xCurveDataService1 plc4xCurveDataService1;
-    @Resource
-    Plc4xCurveDataService2 plc4xCurveDataService2;
+//    @Resource
+//    Plc4xCurveDataService2 plc4xCurveDataService2;
 //    @Resource
 //    private PressureCurveService pressureCurveService;
     private final Log logger = LogFactory.getLog(StartRunService.class);
@@ -37,12 +37,15 @@ public class StartRunService implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         //启动事实曲线获取线程
-//        plc4xCurveDataService1.setTagGroup();
-//        PlcPressCurveThread plcPressCurveThread1 = new PlcPressCurveThread(plc4xCurveDataService1);
-//        plcPressCurveThread1.run();
+        plc4xCurveDataService1.setTagGroup();
+        PlcPressCurveThread plcPressCurveThread1 = new PlcPressCurveThread(plc4xCurveDataService1);
+        plcPressCurveThread1.run();
+//        System.out.println("1="+plcPressCurveThread1.getService().getTagGroup());
 //        plc4xCurveDataService2.setTagGroup();
 //        PlcPressCurveThread plcPressCurveThread2 = new PlcPressCurveThread(plc4xCurveDataService2);
 //        plcPressCurveThread2.run();
+
+
 
 //        while (true){
 //            plc4xCurveDataService.getCurveDatasFromPlc();

@@ -77,23 +77,24 @@ public class Plc4xCurveDataControler {
              plcEntity5.setValueOjb(false);
              defalutDatas.add(plcEntity5);
              datas=defalutDatas;
-         } else {
-             datas.stream().forEach(p -> {
-                 if ("onLine".equals(p.getName())) {
-                     p.setName("在线");
-                 } else if ("running".equals(p.getName())) {
-                     p.setName("运行中");
-                 } else if ("humanModel".equals(p.getName())) {
-                     p.setName("手动操作");
-                 } else if ("autoModel".equals(p.getName())) {
-                     p.setName("自动操作");
-                 } else if ("systemAlarm".equals(p.getName())) {
-                     p.setName("系统报警");
-                 } else if ("safeAlarm".equals(p.getName())) {
-                     p.setName("安全报警");
-                 }
-             });
          }
+
+         datas.stream().forEach(p -> {
+             if ("onLine".equals(p.getName())) {
+                 p.setName("在线");
+             } else if ("running".equals(p.getName())) {
+                 p.setName("运行中");
+             } else if ("humanModel".equals(p.getName())) {
+                 p.setName("手动操作");
+             } else if ("autoModel".equals(p.getName())) {
+                 p.setName("自动操作");
+             } else if ("systemAlarm".equals(p.getName())) {
+                 p.setName("系统报警");
+             } else if ("safeAlarm".equals(p.getName())) {
+                 p.setName("安全报警");
+             }
+         });
+
         return datas;
     }
     /**
@@ -156,21 +157,50 @@ public class Plc4xCurveDataControler {
      */
     List<PlcEntity> getEquipmentIo(){
         List<PlcEntity> datas = plc4xEquipmentIoStatusService.getDatas();
-/*
-        List<PlcEntity> datas = new ArrayList<>();
-        PlcEntity plcEntity=new PlcEntity();
-        plcEntity.setName("input0");
-        plcEntity.setValueOjb(true);
-        PlcEntity plcEntity1=new PlcEntity();
-        plcEntity1.setName("input1");
-        plcEntity1.setValueOjb(false);
-        PlcEntity plcEntity2=new PlcEntity();
-        plcEntity2.setName("input2");
-        plcEntity2.setValueOjb(true);
-        datas.add(plcEntity);
-        datas.add(plcEntity1);
-        datas.add(plcEntity2);
-*/
+        if(CollectionUtils.isEmpty(datas)) {
+            List<PlcEntity> defalutDates = new ArrayList<PlcEntity>();
+            PlcEntity plcEntity=new PlcEntity();
+            plcEntity.setName("input0");
+            plcEntity.setValueOjb(false);
+            PlcEntity plcEntity1=new PlcEntity();
+            plcEntity1.setName("input1");
+            plcEntity1.setValueOjb(false);
+            PlcEntity plcEntity2=new PlcEntity();
+            plcEntity2.setName("input2");
+            plcEntity2.setValueOjb(false);
+            PlcEntity plcEntity3=new PlcEntity();
+            plcEntity3.setName("input3");
+            plcEntity3.setValueOjb(false);
+            PlcEntity plcEntity4=new PlcEntity();
+            plcEntity4.setName("input4");
+            plcEntity4.setValueOjb(false);
+            PlcEntity plcEntity5=new PlcEntity();
+            plcEntity5.setName("output0");
+            plcEntity5.setValueOjb(false);
+            PlcEntity plcEntity6=new PlcEntity();
+            plcEntity6.setName("output1");
+            plcEntity6.setValueOjb(false);
+            PlcEntity plcEntity7=new PlcEntity();
+            plcEntity7.setName("output2");
+            plcEntity7.setValueOjb(false);
+            PlcEntity plcEntity8=new PlcEntity();
+            plcEntity8.setName("output3");
+            plcEntity8.setValueOjb(false);
+            PlcEntity plcEntity9=new PlcEntity();
+            plcEntity9.setName("output4");
+            plcEntity9.setValueOjb(false);
+            defalutDates.add(plcEntity);
+            defalutDates.add(plcEntity1);
+            defalutDates.add(plcEntity2);
+            defalutDates.add(plcEntity3);
+            defalutDates.add(plcEntity4);
+            defalutDates.add(plcEntity5);
+            defalutDates.add(plcEntity6);
+            defalutDates.add(plcEntity7);
+            defalutDates.add(plcEntity8);
+            defalutDates.add(plcEntity9);
+            datas = defalutDates;
+        }
 
         datas.stream().forEach(p-> {
             if ("input0".equals(p.getName())) {

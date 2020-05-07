@@ -45,7 +45,7 @@ public class Plc4xServoLimitSetControler {
                 }
             }
         }
-        System.out.println(entity.toString());
+//        System.out.println(entity.toString());
         return  entity;
     }
 

@@ -51,7 +51,11 @@ public class Plc4xBaseService {
         if(null == builder) {
             this.initReadBuilder(readQueryList, false);
         }
-        return plc4xConnectorService.queryData(builder);
+        if(null == builder) {
+            return null;
+        } else {
+            return plc4xConnectorService.queryData(builder);
+        }
     }
 
     /**
@@ -77,6 +81,8 @@ public class Plc4xBaseService {
      * @param tagGroup
      */
     protected void initQuereyList(String tagGroup) {
+//        System.out.println(">>>>>>>>>>>>>tagGroup"+tagGroup);
+//        System.out.println(">>>>>>>>>>readQueryList.isEmpty()"+CollectionUtils.isEmpty(readQueryList));
         if(!CollectionUtils.isEmpty(readQueryList)) {
             return;
         }

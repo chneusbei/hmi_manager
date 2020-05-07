@@ -11,16 +11,24 @@ public class PlcPressCurveThread implements Runnable {
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         while(true) {
             service.getCurveDatasFromPlc();
             try {
                 //休眠
 //                System.out.println("获取plc曲线数据。。。。。。。。。。。。。。。。。。。。。");
-                Thread.sleep(1);
+                Thread.sleep(2);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public Plc4xCurveDataService getService() {
+        return service;
+    }
+
+    public void setService(Plc4xCurveDataService service) {
+        this.service = service;
     }
 }

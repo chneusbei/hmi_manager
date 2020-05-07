@@ -33,7 +33,7 @@ public class Plc4xConnectorService {
     private final Log logger = LogFactory.getLog(Plc4xConnectorService.class);
     private String HOST =  null; //"s7://192.168.1.1/2/1"; 参数 第一个是机架rock, 第二个是插槽slot
     private PlcConnection plcConnection = null;
-    private synchronized void connect2Plc() {
+    private synchronized boolean connect2Plc() {
         if(this.plcConnection == null ||  !plcConnection.isConnected()) {
             PlcDriverManager plcDriverManager =new PlcDriverManager();
             setHost();
@@ -42,9 +42,15 @@ public class Plc4xConnectorService {
             } catch (PlcConnectionException e) {
                 logger.info("connect to server error" );
                 e.printStackTrace();
+                return false;
+            } catch (Exception e) {
+                logger.info("connect to server error" );
+                e.printStackTrace();
+                return false;
             }
             logger.info("connect to server status  = "+isConnected());
         }
+        return true;
     }
 
     private  void setHost() {
@@ -78,13 +84,17 @@ public class Plc4xConnectorService {
         }
 
         if (!isConnected()) {
-            connect2Plc();
+           boolean connected = connect2Plc();
+           if(!connected) {
+               return null;
+           }
         }
-        System.out.println(plcConnection);
+    //        System.out.println(plcConnection);
         if (!plcConnection.getMetadata().canRead()) {/*判断数据是否可以读取*/
             logger.info("This connection doesn't support reading.");
             return null;
         }
+
         PlcReadRequest.Builder builder = plcConnection.readRequestBuilder();
         for(PlcEntity queryEntity : queryList) {
             builder.addItem(queryEntity.getName(), queryEntity.getFieldQuery());
@@ -164,6 +174,10 @@ public class Plc4xConnectorService {
     public void setData(List<PlcEntity> queryList) {
         if (!isConnected()) {
             connect2Plc();
+        }
+        if (!isConnected()) {
+            logger.error("PLC 连接失败！");
+            return;
         }
 
         if (!plcConnection.getMetadata().canWrite()) {

@@ -26,7 +26,7 @@ document.writeln("                <li class=\'nav-item nav-item-has-subnav \'>")
 document.writeln("                    <a   href=\'javascript:void(0)\'><i class=\'mdi mdi-file-outline\'></i>产品压装程序设置</a>");
 document.writeln("                    <ul class=\'nav nav-subnav\'>");
 // document.writeln("                        <li> <a  href=\'/programMing\'>压装程序编写</a> </li>");
-document.writeln("                        <li> <a  href=\'/parameterCompilation\'>产品压装程序编写</a> </li>");
+document.writeln("                        <li> <a  href=\'/programMing\'>产品压装程序编写</a> </li>");
 // document.writeln("                        <li> <a  href=\'/parameterStorage\'>产品压装参数存储</a> </li>");
 document.writeln("                    </ul>");
 document.writeln("                </li>");

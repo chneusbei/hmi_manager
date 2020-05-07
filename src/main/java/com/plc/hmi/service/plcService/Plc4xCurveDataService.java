@@ -45,7 +45,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      *  频率是每秒钟一次
      *  高频查询，需要先获得 PlcReadRequest.Builder
      */
-    public List<PlcEntity> getDatas() {
+    public synchronized List<PlcEntity> getDatas() {
         super.initQuereyList(tagGroup);
         return super.getDataByBuilder();
     }
@@ -194,6 +194,10 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 
 
     public  void setTagGroup(String tagGroup) {
-        Plc4xCurveDataService.tagGroup = tagGroup;
+        this.tagGroup = tagGroup;
+    }
+
+    public  String getTagGroup() {
+        return tagGroup;
     }
 }
