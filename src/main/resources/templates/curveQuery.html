@@ -26,7 +26,7 @@
                     <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;
-                        X轴起始值：<input type="text" name="pressDataId"  th:value="${param.pressDataId}" > <input type="submit" value="确定">
+                        X轴起始值：<input type="text" name="xMin"  th:value="${param.xMin}" > <input type="submit" value="确定">
                         <input type="submit" onClick="startPlc()"  value="启动PLC">
                     </div>
 
@@ -55,9 +55,9 @@
                     // 基于准备好的dom，初始化echarts实例 以后做的所有echarts操作都在ID为main这个模块下
                     var myChart = echarts.init(document.getElementById('main'));
 
-                    var pressDataId=getQueryVariable("pressDataId");
-                    if(pressDataId==false){
-                        pressDataId=0;
+                    var xMin=getQueryVariable("xMin");
+                    if(xMin==false){
+                        xMin=0;
                     }
 
 
@@ -102,13 +102,15 @@
                                         type:'line',/*以什么方式展示*/
                                         color:color,  //折线条的颜色
                                         smooth:false,   //关键点，为true是不支持虚线的，实线就用true
+                                        show:false, //曲线上各点数值显示
+                                        symbol:"none",//曲线上圆圈显示
                                         // 显示数值
                                         itemStyle:{
                                             normal:{
                                                 lineStyle:{
                                                     width:2,/*设置单个虚线原点的宽度*/
                                                     type:type  //'dotted'虚线 'solid'实线
-                                                },label: {show: true}
+                                                },label: {show: false}
                                             }
                                         }
                                     });
@@ -125,7 +127,10 @@
                         names=null;
                         option = {
                             xAxis: {
+                                min:xMin,
+                                max:400,
                                 type: 'value',
+                                scale: true
                             },
                             yAxis: {
                                 type: 'value',
