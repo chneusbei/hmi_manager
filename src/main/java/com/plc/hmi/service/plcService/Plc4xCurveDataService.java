@@ -77,6 +77,9 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         List<PlcEntity> plcEntityList = this.getDatas();
         PressureCurveEntity curve = plc2Curve(plcEntityList);
         currentCurve = curve;
+        if(null == curve) {
+            return;
+        }
         if(curve.getCurveRecording()) {
 //             System.out.println("getCurveRecording = true ******** ");
         } else {
@@ -164,6 +167,9 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         curveEntity.setHandleDate(HmiUtils.getYYYYMMDDString(curveEntity.getCreateTime()));
         curveEntity.setSolidLine(true);
         curveEntity.setErrant(false);
+        if(null == curveEntity.getCurveRecording()) {
+            curveEntity.setCurveRecording(false);
+        }
         return curveEntity;
     }
 

@@ -10,14 +10,13 @@ import java.util.Date;
 import java.util.List;
 
 
-@SpringBootTest
+//@SpringBootTest
 public class PropertyConfigTest {
     @Autowired
     private PropertyService service;
 
-    @Test
-    public void testSql() {
-
+//    @Test
+    public void testSql() {/*
         PropertyEntity entity = new PropertyEntity();
         entity.setPropGroup("groupT");
         entity.setPropName("testPropNEW");
@@ -31,7 +30,7 @@ public class PropertyConfigTest {
         List<PropertyEntity> list = service.getProperties();
         List<PropertyEntity> list2 = service.getPropertyWithGroup("group1");
 
-
+*/
         System.out.println("END----------------");
     }
 

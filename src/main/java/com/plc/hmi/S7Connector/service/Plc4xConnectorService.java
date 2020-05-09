@@ -29,7 +29,6 @@ import java.util.concurrent.ExecutionException;
 public class Plc4xConnectorService {
     @Autowired
     private PropertyService propertyService;
-
     private final Log logger = LogFactory.getLog(Plc4xConnectorService.class);
     private String HOST =  null; //"s7://192.168.1.1/2/1"; 参数 第一个是机架rock, 第二个是插槽slot
     private PlcConnection plcConnection = null;
@@ -40,11 +39,11 @@ public class Plc4xConnectorService {
             try {
                 plcConnection=  plcDriverManager.getConnection(HOST);
             } catch (PlcConnectionException e) {
-                logger.info("connect to server error" );
-                e.printStackTrace();
+                logger.info("connect to server error " );
+//                e.printStackTrace();
                 return false;
             } catch (Exception e) {
-                logger.info("connect to server error" );
+                logger.info("connect to server error, system sleep 30 seconds" );
                 e.printStackTrace();
                 return false;
             }
@@ -72,7 +71,7 @@ public class Plc4xConnectorService {
     }
 
     public boolean isConnected() {
-        if(plcConnection == null) {
+        if(null == plcConnection) {
             return false;
         }
         return plcConnection.isConnected();

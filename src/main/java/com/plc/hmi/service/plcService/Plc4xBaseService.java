@@ -220,6 +220,9 @@ public class Plc4xBaseService {
         return objValue;
     }
 
+    public boolean isPlcConnected() {
+        return this.plc4xConnectorService.isConnected();
+    }
 
 
 }
