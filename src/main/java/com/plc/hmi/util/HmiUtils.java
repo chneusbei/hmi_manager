@@ -58,6 +58,14 @@ public class HmiUtils  {
         }
     }
 
+    public static final String getStringNoNull(Object obj) {
+        if(obj == null) {
+            return "";
+        } else {
+            return String.valueOf(obj);
+        }
+    }
+
     public static final long getLongValue(Object obj) {
         if(obj == null) {
             return 0;

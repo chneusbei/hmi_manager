@@ -23,6 +23,12 @@ public class PressureDataDao {
         return pressureDataMapper.getPressureData(recordId);
     }
 
+    public List<PressureDataEntity> getPressureData(String startDate, String endDate) {
+        return pressureDataMapper.getPressureDataByDate(startDate, endDate);
+    }
+
+
+
     public PressureStatisticalDataEntity getPressureStatisticalData() {
         List<HashMap> resList = pressureDataMapper.getPressureStatisticalData();
         PressureStatisticalDataEntity entity = new PressureStatisticalDataEntity();

@@ -33,10 +33,10 @@ public interface PressureCurveMapper {
     @Select({"<script>",
             "select * from pressure_curve where IS_DELETED='0'",
             "<if test='startDate!=null' >",
-            "and HANDLE_DATE=#{startDate}",
+            "and HANDLE_DATE &gt;= #{startDate}",
             "</if>",
             "<if test='endDate!=null' >",
-            "and HANDLE_DATE=#{endDate}",
+            "and HANDLE_DATE &lt;= #{endDate}",
             "</if>",
             "</script>" })
     @Results({

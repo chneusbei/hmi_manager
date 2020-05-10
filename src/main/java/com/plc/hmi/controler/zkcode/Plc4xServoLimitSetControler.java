@@ -51,7 +51,7 @@ public class Plc4xServoLimitSetControler {
 
     @RequestMapping("/updateSystemParameter")
     public String updateSystemParameter(SystemParameterEntity systemParameterEntity){
-        System.out.println(systemParameterEntity.toString());
+//        System.out.println(systemParameterEntity.toString());
         Map<String, String> paraMap = new HashMap<>();
         if(null != systemParameterEntity.getMaxDistance()) {
             paraMap.put("maxForce", systemParameterEntity.getMaxDistance().toString());

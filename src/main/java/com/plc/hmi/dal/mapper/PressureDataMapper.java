@@ -29,6 +29,33 @@ public interface PressureDataMapper {
     })
     List<PressureDataEntity>  getPressureData(@Param("recordId") Long recordId);
 
+    @Select({"<script>",
+            "select * from pressure_data where IS_DELETED='0'",
+            "<if test='startDate!=null' >",
+            "and END_DATE &gt;= #{startDate}",
+            "</if>",
+            "<if test='endDate!=null' >",
+            "and END_DATE &lt;= #{endDate}",
+            "</if>",
+            "</script>" })
+    @Results({
+            @Result(id=true,column = "ID",property = "id" ),
+            @Result(column = "PRODUCT_ID",property ="productId"),
+            @Result(column = "PRODUCT_NO",property ="productNo"),
+            @Result(column = "PRESS_RESULT",property ="pressResult"),
+            @Result(column = "RECORD_ID",property ="recordId"),
+            @Result(column = "START_DATE",property ="startDate"),
+            @Result(column = "END_DATE",property ="endDate"),
+            @Result(column = "MAX_PRESS",property ="maxPress"),
+            @Result(column = "POSITION_OF_MAX_PRESS",property ="positionOfMaxPress"),
+            @Result(column = "CREATE_BY",property = "createBy"),
+            @Result(column = "UPDATE_BY",property = "updateBy"),
+            @Result(column = "CREATE_TIME",property = "createTime"),
+            @Result(column = "UPDATE_TIME",property = "updateTime"),
+            @Result(column = "IS_DELETED",property = "isDeleted"),
+    })
+    List<PressureDataEntity>  getPressureDataByDate(@Param("startDate") String startDate, @Param("endDate") String endDate);
+
     @Select("select PRESS_RESULT, count(1) as COUNT from pressure_data where is_deleted='0' group by PRESS_RESULT")
     List<HashMap> getPressureStatisticalData();
 

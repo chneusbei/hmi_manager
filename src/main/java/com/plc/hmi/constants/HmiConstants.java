@@ -15,8 +15,20 @@ public class HmiConstants {
     public static final String PLC_QUERY_PREFIX ="%";
     //英文点
     public static final String POINT = ".";
+    //英文逗号
+    public static final String COMMA = ",";
     //反斜杠
     public static final String SEPARATE = "/";
+
+    //文件行分隔符
+    public static final String CSV_ROW_SEPARATOR = "\r\n";
+
+    //CSV导出文件头
+    public static final String CURVE_TITLES = "ID, 压力曲线ID, 产品ID, 位置点序号, 位置, 压力, 速度, 压装时间点";
+    public static final String DATA_TITLES = "ID, 产品ID, 压力曲线ID, 压装结果, 最大压力值, 最大压力时候位移,压装开始时间,压装结束时间";
+    //CSV 文件写入地址
+    public static final String CSV_OUTPUT_PATH="D:/csv";
+
 
     public enum PLC_TAG_GROUP {
         EQUIPMENT_OPERATION("equipment_operation", "设备信息_操作"),
