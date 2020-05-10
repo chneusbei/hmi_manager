@@ -19,8 +19,8 @@ public class PressureProgramDao {
     @Resource
     PressureProgramMapper pressureProgramMapper;
 
-    public List<PressureProgramEntity> getWithProductId(Long productId) {
-        return pressureProgramMapper.getWithProductId(productId);
+    public PressureProgramEntity getWithProgramCode(String programCode) {
+        return pressureProgramMapper.getWithProgramCode(programCode);
     }
 
     public Map<Long, PressureProgramEntity> getAllDatas() {

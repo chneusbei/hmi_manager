@@ -67,30 +67,34 @@
         <div class="lyear-layout-container">
             <script src="test.js"></script>
             <main class="lyear-layout-content">
+                <form action="/curveDataExport" method="post">
                 <br>
                 <table class="imagetable">
                     <tr>
                         <td>开始时间：
                                 <div class="card">
-                                        <input class="form-control js-datepicker m-b-10" type="text" id="example-datepicker" name="example-datepicker" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd" />
+                                        <input class="form-control js-datepicker m-b-10" type="text" id="example-datepicker"
+                                               name="startDate" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd" v-model="startDate"/>
                                 </div>
                         </td>
                         <td>结束时间：
                                 <div class="card">
-                                    <input class="form-control js-datepicker m-b-10" type="text" id="" name="example-datepicker" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd" />
+                                    <input class="form-control js-datepicker m-b-10" type="text" id=""
+                                           name="endDate" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd"  v-model="endDate"/>
                                 </div>
                         </td>
-                        <td><input type="button" value="导出" style="background-color: #33CABB;width: 70px;height: 35px;color: white" id="daochu" ></td>
+                        <td><input type="submit" @click="getSystemParameter()" value="导出" style="background-color: #33CABB;width: 70px;height: 35px;color: white" id="daochu" ></td>
                     </tr>
                 </table>
                 <br>
-                <form  enctype="multipart/form-data" action="#" method="post">
-                <table class="imagetable" id="imagetable">
-                    <tr>
-                        <td align="right"><input style="background-color: #33CABB;color: white"   type="file" name="fileUpload" value="选择路径" ></td>
-                        <td><input type="submit" value="导出" style="background-color: #33CABB;width: 70px;height: 35px;color: white"  /></td>
-                    </tr>
-                </table>
+<!--                <form  enctype="multipart/form-data" action="#" method="post">-->
+<!--                <table class="imagetable" id="imagetable">-->
+<!--                    <tr>-->
+<!--                        <td align="right"><input style="background-color: #33CABB;color: white"   type="file" name="fileUpload" value="选择路径" ></td>-->
+<!--                        <td><input type="submit" value="导出" style="background-color: #33CABB;width: 70px;height: 35px;color: white"  /></td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+<!--                </form>-->
                 </form>
             </main>
             <!--End 页面主要内容-->
@@ -113,9 +117,19 @@
     new Vue({
         el:"#app",
         data:{
-
+            // systemParameter:{},
+            startDate:'',
+            endDate:''
         },methods:{
-
+            // getSystemParameter(){
+            //     axios.get("/curveDataExport").then(result=>{
+            //         this.curveDataCvs=result.data;
+            //     })
+            // },
+            getSystemParameter(){
+                alert("export curvel to D:/csv/ started...");
+                // axios.get("/curveDataExport",{"systemParameter":this.systemParameter}).then(alert("export curvel to D:/csv/ started..."))
+            }
         }
     })
 </script>

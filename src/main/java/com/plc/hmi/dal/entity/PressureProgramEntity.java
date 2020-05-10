@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 public class PressureProgramEntity extends AbstractBaseEntity {
     private Long productId;
     //产品代码
-    private String productCode;
+    private String programCode;
 
     //步骤
     private int step1;
@@ -230,12 +230,12 @@ public class PressureProgramEntity extends AbstractBaseEntity {
         this.productId = productId;
     }
 
-    public String getProductCode() {
-        return productCode;
+    public String getProgramCode() {
+        return programCode;
     }
 
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
+    public void setProgramCode(String programCode) {
+        this.programCode = programCode;
     }
 
     public int getStep1() {
@@ -1082,7 +1082,7 @@ public class PressureProgramEntity extends AbstractBaseEntity {
     public String toString() {
         return "PressureProgramEntity{" +
                 "productId=" + productId +
-                ", productCode='" + productCode + '\'' +
+                ", programCode='" + programCode + '\'' +
                 ", step1=" + step1 +
                 ", programType1='" + programType1 + '\'' +
                 ", programValue1=" + programValue1 +

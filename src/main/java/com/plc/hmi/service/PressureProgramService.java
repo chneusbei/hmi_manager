@@ -28,8 +28,8 @@ public class PressureProgramService extends AbstractBaseService{
     //所有公差窗口数据缓存
     private static Map<Long, PressureProgramEntity> programMap = new HashMap<Long, PressureProgramEntity>();
 
-    public List<PressureProgramEntity> getWithProductId(Long productId) {
-        return pressureProgramDao.getWithProductId(productId);
+    public PressureProgramEntity getWithProgramCode(String programCode) {
+        return pressureProgramDao.getWithProgramCode(programCode);
     }
 
     /**
@@ -350,17 +350,17 @@ public class PressureProgramService extends AbstractBaseService{
 
     public void save(PressureProgramEntity entity) {
 //    如果这个产品数据不存在就做insert， 如果有，就做update
-        if(null ==entity.getProductId()) {
-            logger.info("productId is null! exist.");
+        if(null ==entity.getProgramCode()) {
+            logger.info("programCode is null! exist.");
             return;
         }
 
         if(null == entity.getId()) {
-            List<PressureProgramEntity>  entityList = getWithProductId(entity.getProductId());
-            if(CollectionUtils.isEmpty(entityList)) {
+            PressureProgramEntity  dbEntity = getWithProgramCode(entity.getProgramCode());
+            if(null == dbEntity) {
                 insert(entity);
             } else {
-                entity.setId(entityList.get(0).getId());
+                entity.setId(dbEntity.getId());
                 update(entity);
             }
         } else {

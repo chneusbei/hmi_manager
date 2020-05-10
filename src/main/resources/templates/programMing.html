@@ -49,7 +49,7 @@
             <script src="test.js"></script>
             <main class="lyear-layout-content">
                 <br>
-                <form action="/setProgram" method="get">
+                <form action="/setProgram" method="post">
                <!-- <table class="imagetable">
                     <tr>
                         <td height="50px" align="left" colspan="10">产品代码：P00001</td>
@@ -106,348 +106,328 @@
                         <td height="50px" align="center" colspan="10"><input type="submit" value="插入步骤" style="width: 100px;height:30px;background-color: #33CABB;color: white" ></td>
                     </tr>
                      </table>-->
-                   <input type="submit" value="插入步骤" style="width: 100px;height:30px;background-color: #33CABB;color: white" >
-                        <div><label>产品代码：</label><input name="productCode" ></div>
-                    <div>产品压装程序设置
+
+<!--                    <input type="submit" value="提交修改" style="width: 100px;height:30px;background-color: #33CABB;color: white" >-->
+                        <div>
+                            <label>程序号：</label>
+                            <select name="programCode" v-model="list.programCode"  @change='getProgram()' style="width: 50px;margin-right: 30px;margin-left: 10px;">
+                                <option value="p1">p1</option>
+                                <option value="p2">p2</option>
+                                <option value="p3">p3</option>
+                                <option value="p4">p4</option>
+                            </select>
+                            <input name="id" v-model="list.id" type="hidden" >
+                        </div>
+                    <div>
+                        产品压装程序设置
                         <br>
 
 
-                    <span style="margin-right: 50px;">步骤</span>&nbsp; <span style="margin-right: 40px;">程序类型</span>
-           &nbsp; <span style="margin-right: 50px;">参数值</span>
-           &nbsp; <span style="margin-right: 50px;">速度</span>
-           &nbsp; <span style="margin-right: 50px;">报警处理方式</span>
-           &nbsp; <span style="margin-right: 50px;">位置</span>
-           &nbsp; <span style="margin-right: 50px;">保护压力值</span>
-           &nbsp; <span style="margin-right: 50px;">压力</span>
-           &nbsp; <span style="margin-right: 40px;">保护位置值</span>
-           &nbsp; <span style="margin-right: 50px;">保压时间值</span>
+                    <span style="margin-right: 50px;">步骤</span>
+            &nbsp;<span style="margin-right:85px;">程序类型</span>
+           &nbsp; <span style="margin-right: 60px;">参数值</span>
+           &nbsp; <span style="margin-right: 60px;">速度</span>
+           &nbsp; <span style="margin-right: 30px;">报警处理方式</span>
+           &nbsp; <span style="margin-right: 55px;">位置</span>
+           &nbsp; <span style="margin-right: 30px;">保护压力值</span>
+           &nbsp; <span style="margin-right: 80px;">压力</span>
+           &nbsp; <span style="margin-right: 30px;">保护位置值</span>
+           &nbsp; <span style="margin-right: 30px;">保压时间值</span>
+                        <br>
+                        <label>步骤0</label>
+                        <select name="programType1" v-model="list.programType1" style="width: 130px;margin-right: 30px;margin-left: 30px;">
+                            <option value="1">绝对位置方式</option>
+                            <option value="2">压力方式</option>
+                            <option value="4">保压时间</option>
+                            <option value="0">END</option>
+                        </select>
+                        &nbsp;<input name="programValue1" v-model="list.programValue1" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<input name="speed1" v-model="list.speed1" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<select name="alarmDealType1" v-model="list.alarmDealType1" style="width: 80px;margin-right: 30px;">
+                            <option value="1">停止</option>
+                            <option value="2">返回原点</option>
+                            <option value="4">继续</option>
+                        </select>
+                        <!--位置-->&nbsp;<input name="position1" v-model="list.position1" style="width: 80px;margin-right: 30px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress1" v-model="list.protectPress1" style="width: 80px;margin-right: 30px;">
+                        <!--压力-->&nbsp;<input name="press1" v-model="list.press1" style="width: 80px;margin-right: 30px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition1" v-model="list.protectPosition1" style="width: 80px;margin-right: 30px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime1" v-model="list.protectTime1" style="width: 130px;margin-right: 30px;">
                         <br>
                         <label>步骤1</label>
-                        &nbsp;
-                        <select name="programType1" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <select name="programType2" v-model="list.programType2" style="width: 130px;margin-right: 30px;margin-left: 30px;">
                             <option value="1">绝对位置方式</option>
                             <option value="2">压力方式</option>
                             <option value="4">保压时间</option>
                             <option value="0">END</option>
                         </select>
-                        &nbsp;<input name="programValue1" style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input name="speed1" style="width: 50px;margin-right: 60px;">
-                        &nbsp;<select name="alarmDealType1" style="width: 50px;margin-right: 36px;">
+                        &nbsp;<input name="programValue2" v-model="list.programValue2" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<input name="speed2" v-model="list.speed2" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<select name="alarmDealType2" v-model="list.alarmDealType2" style="width: 80px;margin-right: 30px;">
                             <option value="1">停止</option>
                             <option value="2">返回原点</option>
                             <option value="4">继续</option>
                         </select>
-                        <!--位置-->&nbsp;<input name="position1" style="width: 50px;margin-right: 60px;">
-                        <!--保护压力值-->&nbsp;<input name="protectPress1" style="width: 50px;margin-right: 60px;">
-                        <!--压力-->&nbsp;<input name="press1" style="width: 50px;margin-right: 50px;">
-                        <!--保护位置值-->&nbsp;<input name="protectPosition1" style="width: 50px;margin-right: 40px;">
-                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime1" style="width: 50px;margin-right: 60px;">
+                        <!--位置-->&nbsp;<input name="position2" v-model="list.position2" style="width: 80px;margin-right: 30px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress2" v-model="list.protectPress2" style="width: 80px;margin-right: 30px;">
+                        <!--压力-->&nbsp;<input name="press2" v-model="list.press2" style="width: 80px;margin-right: 30px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition2" v-model="list.protectPosition2" style="width: 80px;margin-right: 30px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime2" v-model="list.protectTime2" style="width: 130px;margin-right: 30px;">
                         <br>
+
                         <label>步骤2</label>
-                        &nbsp;
-                        <select name="programType2" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <select name="programType3" v-model="list.programType3" style="width: 130px;margin-right: 30px;margin-left: 30px;">
                             <option value="1">绝对位置方式</option>
                             <option value="2">压力方式</option>
                             <option value="4">保压时间</option>
                             <option value="0">END</option>
                         </select>
-                        &nbsp;<input name="programValue2" style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input name="speed2" style="width: 50px;margin-right: 60px;">
-                        &nbsp;<select name="alarmDealType2" style="width: 50px;margin-right: 36px;">
+                        &nbsp;<input name="programValue3" v-model="list.programValue3" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<input name="speed3" v-model="list.speed3" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<select name="alarmDealType3" v-model="list.alarmDealType3" style="width: 80px;margin-right: 30px;">
                             <option value="1">停止</option>
                             <option value="2">返回原点</option>
                             <option value="4">继续</option>
                         </select>
-                        <!--位置-->&nbsp;<input name="position2" style="width: 50px;margin-right: 60px;">
-                        <!--保护压力值-->&nbsp;<input name="protectPress2" style="width: 50px;margin-right: 60px;">
-                        <!--压力-->&nbsp;<input name="press2" style="width: 50px;margin-right: 50px;">
-                        <!--保护位置值-->&nbsp;<input name="protectPosition2" style="width: 50px;margin-right: 40px;">
-                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime2" style="width: 50px;margin-right: 60px;">
+                        <!--位置-->&nbsp;<input name="position3" v-model="list.position3" style="width: 80px;margin-right: 30px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress3" v-model="list.protectPress3" style="width: 80px;margin-right: 30px;">
+                        <!--压力-->&nbsp;<input name="press3" v-model="list.press3" style="width: 80px;margin-right: 30px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition3" v-model="list.protectPosition3" style="width: 80px;margin-right: 30px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime3" v-model="list.protectTime3" style="width: 130px;margin-right: 30px;">
                         <br>
                         <label>步骤3</label>
-                        &nbsp;
-                        <select name="programType3" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <select name="programType4" v-model="list.programType4" style="width: 130px;margin-right: 30px;margin-left: 30px;">
                             <option value="1">绝对位置方式</option>
                             <option value="2">压力方式</option>
                             <option value="4">保压时间</option>
                             <option value="0">END</option>
                         </select>
-                        &nbsp;<input name="programValue3" style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input name="speed3" style="width: 50px;margin-right: 60px;">
-                        &nbsp;<select name="alarmDealType3" style="width: 50px;margin-right: 36px;">
+                        &nbsp;<input name="programValue4" v-model="list.programValue4" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<input name="speed4" v-model="list.speed4" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<select name="alarmDealType4" v-model="list.alarmDealType4" style="width: 80px;margin-right: 30px;">
                             <option value="1">停止</option>
                             <option value="2">返回原点</option>
                             <option value="4">继续</option>
                         </select>
-                        <!--位置-->&nbsp;<input name="position3" style="width: 50px;margin-right: 60px;">
-                        <!--保护压力值-->&nbsp;<input name="protectPress3" style="width: 50px;margin-right: 60px;">
-                        <!--压力-->&nbsp;<input name="press3" style="width: 50px;margin-right: 50px;">
-                        <!--保护位置值-->&nbsp;<input name="protectPosition3" style="width: 50px;margin-right: 40px;">
-                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime3" style="width: 50px;margin-right: 60px;">
+                        <!--位置-->&nbsp;<input name="position4" v-model="list.position4" style="width: 80px;margin-right: 30px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress4" v-model="list.protectPress4" style="width: 80px;margin-right: 30px;">
+                        <!--压力-->&nbsp;<input name="press4" v-model="list.press4" style="width: 80px;margin-right: 30px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition4" v-model="list.protectPosition4" style="width: 80px;margin-right: 30px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime4" v-model="list.protectTime4" style="width: 130px;margin-right: 30px;">
                         <br>
-
-
-
                         <label>步骤4</label>
-                        &nbsp;
-
-                        <select name="programType4" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <select name="programType5" v-model="list.programType5" style="width: 130px;margin-right: 30px;margin-left: 30px;">
                             <option value="1">绝对位置方式</option>
                             <option value="2">压力方式</option>
                             <option value="4">保压时间</option>
                             <option value="0">END</option>
                         </select>
-                        &nbsp;<input name="programValue4" style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input name="speed4" style="width: 50px;margin-right: 60px;">
-                        &nbsp;<select name="alarmDealType4" style="width: 50px;margin-right: 36px;">
+                        &nbsp;<input name="programValue5" v-model="list.programValue5" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<input name="speed5" v-model="list.speed5" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<select name="alarmDealType5" v-model="list.alarmDealType5" style="width: 80px;margin-right: 30px;">
                             <option value="1">停止</option>
                             <option value="2">返回原点</option>
                             <option value="4">继续</option>
                         </select>
-                        <!--位置-->&nbsp;<input name="position4" style="width: 50px;margin-right: 60px;">
-                        <!--保护压力值-->&nbsp;<input name="protectPress4" style="width: 50px;margin-right: 60px;">
-                        <!--压力-->&nbsp;<input name="press4" style="width: 50px;margin-right: 50px;">
-                        <!--保护位置值-->&nbsp;<input name="protectPosition4" style="width: 50px;margin-right: 40px;">
-                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime4" style="width: 50px;margin-right: 60px;">
+                        <!--位置-->&nbsp;<input name="position5" v-model="list.position5" style="width: 80px;margin-right: 30px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress5" v-model="list.protectPress5" style="width: 80px;margin-right: 30px;">
+                        <!--压力-->&nbsp;<input name="press5" v-model="list.press5" style="width: 80px;margin-right: 30px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition5" v-model="list.protectPosition5" style="width: 80px;margin-right: 30px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime5" v-model="list.protectTime5" style="width: 130px;margin-right: 30px;">
                         <br>
-
-
-
                         <label>步骤5</label>
-                        &nbsp;
-                        <select name="programType5" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <select name="programType6" v-model="list.programType6" style="width: 130px;margin-right: 30px;margin-left: 30px;">
                             <option value="1">绝对位置方式</option>
                             <option value="2">压力方式</option>
                             <option value="4">保压时间</option>
                             <option value="0">END</option>
                         </select>
-                        &nbsp;<input name="programValue5" style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input name="speed5" style="width: 50px;margin-right: 60px;">
-                        &nbsp;<select name="alarmDealType5" style="width: 50px;margin-right: 36px;">
+                        &nbsp;<input name="programValue6" v-model="list.programValue6" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<input name="speed6" v-model="list.speed6" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<select name="alarmDealType6" v-model="list.alarmDealType6" style="width: 80px;margin-right: 30px;">
                             <option value="1">停止</option>
                             <option value="2">返回原点</option>
                             <option value="4">继续</option>
                         </select>
-                        <!--位置-->&nbsp;<input name="position5" style="width: 50px;margin-right: 60px;">
-                        <!--保护压力值-->&nbsp;<input name="protectPress5" style="width: 50px;margin-right: 60px;">
-                        <!--压力-->&nbsp;<input name="press5" style="width: 50px;margin-right: 50px;">
-                        <!--保护位置值-->&nbsp;<input name="protectPosition5" style="width: 50px;margin-right: 40px;">
-                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime5" style="width: 50px;margin-right: 60px;">
+                        <!--位置-->&nbsp;<input name="position6" v-model="list.position6" style="width: 80px;margin-right: 30px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress6" v-model="list.protectPress6" style="width: 80px;margin-right: 30px;">
+                        <!--压力-->&nbsp;<input name="press6" v-model="list.press6" style="width: 80px;margin-right: 30px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition6" v-model="list.protectPosition6" style="width: 80px;margin-right: 30px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime6" v-model="list.protectTime6" style="width: 130px;margin-right: 30px;">
                         <br>
                         <label>步骤6</label>
-                        &nbsp;
-                        <select name="programType6" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <select name="programType7" v-model="list.programType7" style="width: 130px;margin-right: 30px;margin-left: 30px;">
                             <option value="1">绝对位置方式</option>
                             <option value="2">压力方式</option>
                             <option value="4">保压时间</option>
                             <option value="0">END</option>
                         </select>
-                        &nbsp;<input name="programValue6" style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input name="speed6" style="width: 50px;margin-right: 60px;">
-                        &nbsp;<select name="alarmDealType6" style="width: 50px;margin-right: 36px;">
+                        &nbsp;<input name="programValue7" v-model="list.programValue7" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<input name="speed7" v-model="list.speed7" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<select name="alarmDealType7" v-model="list.alarmDealType7" style="width: 80px;margin-right: 30px;">
                             <option value="1">停止</option>
                             <option value="2">返回原点</option>
                             <option value="4">继续</option>
                         </select>
-                        <!--位置-->&nbsp;<input name="position6" style="width: 50px;margin-right: 60px;">
-                        <!--保护压力值-->&nbsp;<input name="protectPress6" style="width: 50px;margin-right: 60px;">
-                        <!--压力-->&nbsp;<input name="press6" style="width: 50px;margin-right: 50px;">
-                        <!--保护位置值-->&nbsp;<input name="protectPosition6" style="width: 50px;margin-right: 40px;">
-                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime6" style="width: 50px;margin-right: 60px;">
+                        <!--位置-->&nbsp;<input name="position7" v-model="list.position7" style="width: 80px;margin-right: 30px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress7" v-model="list.protectPress7" style="width: 80px;margin-right: 30px;">
+                        <!--压力-->&nbsp;<input name="press7" v-model="list.press7" style="width: 80px;margin-right: 30px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition7" v-model="list.protectPosition7" style="width: 80px;margin-right: 30px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime7" v-model="list.protectTime7" style="width: 130px;margin-right: 30px;">
                         <br>
                         <label>步骤7</label>
-                        &nbsp;
-                        <select name="programType7" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <select name="programType8" v-model="list.programType8" style="width: 130px;margin-right: 30px;margin-left: 30px;">
                             <option value="1">绝对位置方式</option>
                             <option value="2">压力方式</option>
                             <option value="4">保压时间</option>
                             <option value="0">END</option>
                         </select>
-                        &nbsp;<input name="programValue7" style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input name="speed7" style="width: 50px;margin-right: 60px;">
-                        &nbsp;<select name="alarmDealType7" style="width: 50px;margin-right: 36px;">
+                        &nbsp;<input name="programValue8" v-model="list.programValue8" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<input name="speed8" v-model="list.speed8" style="width: 80px;margin-right: 30px;">
+                        &nbsp;<select name="alarmDealType8" v-model="list.alarmDealType8" style="width: 80px;margin-right: 30px;">
                             <option value="1">停止</option>
                             <option value="2">返回原点</option>
                             <option value="4">继续</option>
                         </select>
-                        <!--位置-->&nbsp;<input name="position7" style="width: 50px;margin-right: 60px;">
-                        <!--保护压力值-->&nbsp;<input name="protectPress7" style="width: 50px;margin-right: 60px;">
-                        <!--压力-->&nbsp;<input name="press7" style="width: 50px;margin-right: 50px;">
-                        <!--保护位置值-->&nbsp;<input name="protectPosition7" style="width: 50px;margin-right: 40px;">
-                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime7" style="width: 50px;margin-right: 60px;">
-                        <br>
-                        <label>步骤8</label>
-                        &nbsp;
-                        <select name="programType8" style="width: 50px;margin-right: 60px;margin-left: 36px;">
-                            <option value="1">绝对位置方式</option>
-                            <option value="2">压力方式</option>
-                            <option value="4">保压时间</option>
-                            <option value="0">END</option>
-                        </select>
-                        &nbsp;<input name="programValue8" style="width: 50px;margin-right: 40px;">
-                        &nbsp;<input name="speed8" style="width: 50px;margin-right: 60px;">
-                        &nbsp;<select name="alarmDealType8" style="width: 50px;margin-right: 36px;">
-                            <option value="1">停止</option>
-                            <option value="2">返回原点</option>
-                            <option value="4">继续</option>
-                        </select>
-                        <!--位置-->&nbsp;<input name="position8" style="width: 50px;margin-right: 60px;">
-                        <!--保护压力值-->&nbsp;<input name="protectPress8" style="width: 50px;margin-right: 60px;">
-                        <!--压力-->&nbsp;<input name="press8" style="width: 50px;margin-right: 50px;">
-                        <!--保护位置值-->&nbsp;<input name="protectPosition8" style="width: 50px;margin-right: 40px;">
-                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime8" style="width: 50px;margin-right: 60px;">
+                        <!--位置-->&nbsp;<input name="position8" v-model="list.position8" style="width: 80px;margin-right: 30px;">
+                        <!--保护压力值-->&nbsp;<input name="protectPress8" v-model="list.protectPress8" style="width: 80px;margin-right: 30px;">
+                        <!--压力-->&nbsp;<input name="press8" v-model="list.press8" style="width: 80px;margin-right: 30px;">
+                        <!--保护位置值-->&nbsp;<input name="protectPosition8" v-model="list.protectPosition8" style="width: 80px;margin-right: 30px;">
+                        <!--保压时间值 timer类型-->&nbsp;<input name="protectTime8" v-model="list.protectTime8" style="width: 130px;margin-right: 30px;">
                         <br>
                     </div>
+
+                    <br>
+                    <br>
 
                     <div>
                         公差窗口设置
                         <br>
                         <span style="margin-right: 40px;">窗口</span>&nbsp;
-                        &nbsp; <span style="margin-right: 50px;">窗口类型</span>
-                        &nbsp; <span style="margin-right: 30px;">位置下限</span>
-                        &nbsp; <span style="margin-right: 43px;">位置上限</span>
+                        &nbsp; <span style="margin-right: 80px;">窗口类型</span>
+                        &nbsp; <span style="margin-right: 45px;">位置下限</span>
+                        &nbsp; <span style="margin-right: 45px;">位置上限</span>
                         &nbsp; <span style="margin-right: 45px;">压力下限</span>
                         &nbsp; <span style="margin-right: 30px;">压力上限</span>
                         <br>
                         <label>窗口0</label>
-                        &nbsp;<select name="errandType1" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <select name="errandType1" v-model="list.errandType1" style="width: 130px;margin-right: 30px;margin-left: 30px;">
+                        <option value="-1">不设置</option>
                         <option value="0">最大位移窗口</option>
                         <option value="1">最大力窗口</option>
                         <option value="2">配合窗口</option>
                         <option value="3">右-下限制窗口</option>
-                        <option value="4">穿越窗口</option>
+<!--                        <option value="4">穿越窗口</option>-->
                         <option value="5">峰值窗口(左、上、右限制)</option>
                         <option value="6">左-上限制窗口</option>
-                        <option value="7">右-上限制窗口</option>
+<!--                        <option value="7">右-上限制窗口</option>-->
                         <option value="8">顶部结束窗口</option>
                         <option value="9">右侧结束窗口</option>
-                        <option value="10">平均值窗口</option>
-                        <option value="11">拐点窗口</option>
+<!--                        <option value="10">平均值窗口</option>-->
+<!--                        <option value="11">拐点窗口</option>-->
                     </select>
-                        <!--位置下限-->&nbsp;<input name="positionMin1" style="width: 50px;margin-right: 40px;">
-                        <!--位置上限-->&nbsp;<input name=" positionMax1" style="width: 50px;margin-right: 60px;">
-                        <!--压力下限_1-->&nbsp;<input name="pressMin1" style="width: 50px;margin-right: 60px;">
-                        <!--压力上限-->&nbsp;<input name="pressMax1" style="width: 50px;margin-right: 60px;">
+                        <!--位置下限-->&nbsp;<input name="positionMin1" v-model="list.positionMin1" style="width: 80px;margin-right: 30px;">
+                        <!--位置上限-->&nbsp;<input name="positionMax1" v-model="list.positionMax1" style="width: 80px;margin-right: 30px;">
+                        <!--压力下限_1-->&nbsp;<input name="pressMin1" v-model="list.pressMin1" style="width: 80px;margin-right: 30px;">
+                        <!--压力上限-->&nbsp;<input name="pressMax1" v-model="list.pressMax1" style="width: 80px;margin-right: 30px;">
                         <br>
 
 
-
-
-
                         <label>窗口1</label>
-                        &nbsp;<select name="errandType2" style="width: 50px;margin-right: 60px;margin-left: 36px;">
-                        <option value="0">最大位移窗口</option>
-                        <option value="1">最大力窗口</option>
-                        <option value="2">配合窗口</option>
-                        <option value="3">右-下限制窗口</option>
-                        <option value="4">穿越窗口</option>
-                        <option value="5">峰值窗口(左、上、右限制)</option>
-                        <option value="6">左-上限制窗口</option>
-                        <option value="7">右-上限制窗口</option>
-                        <option value="8">顶部结束窗口</option>
-                        <option value="9">右侧结束窗口</option>
-                        <option value="10">平均值窗口</option>
-                        <option value="11">拐点窗口</option>
-                    </select>
-                        <!--位置下限-->&nbsp;<input name="positionMin2" style="width: 50px;margin-right: 40px;">
-                        <!--位置上限-->&nbsp;<input name=" positionMax2" style="width: 50px;margin-right: 60px;">
-                        <!--压力下限_1-->&nbsp;<input name="pressMin2" style="width: 50px;margin-right: 60px;">
-                        <!--压力上限-->&nbsp;<input name="pressMax2" style="width: 50px;margin-right: 60px;">
+                        <select name="errandType2" v-model="list.errandType2" style="width: 130px;margin-right: 30px;margin-left: 30px;">
+                            <option value="-1">不设置</option>
+                            <option value="0">最大位移窗口</option>
+                            <option value="1">最大力窗口</option>
+                            <option value="2">配合窗口</option>
+                            <option value="3">右-下限制窗口</option>
+<!--                            <option value="4">穿越窗口</option>-->
+                            <option value="5">峰值窗口(左、上、右限制)</option>
+                            <option value="6">左-上限制窗口</option>
+<!--                            <option value="7">右-上限制窗口</option>-->
+                            <option value="8">顶部结束窗口</option>
+                            <option value="9">右侧结束窗口</option>
+<!--                            <option value="10">平均值窗口</option>-->
+<!--                            <option value="11">拐点窗口</option>-->
+                        </select>
+                        <!--位置下限-->&nbsp;<input name="positionMin2" v-model="list.positionMin2" style="width: 80px;margin-right: 30px;">
+                        <!--位置上限-->&nbsp;<input name="positionMax2" v-model="list.positionMax2" style="width: 80px;margin-right: 30px;">
+                        <!--压力下限_1-->&nbsp;<input name="pressMin2" v-model="list.pressMin2" style="width: 80px;margin-right: 30px;">
+                        <!--压力上限-->&nbsp;<input name="pressMax2" v-model="list.pressMax2" style="width: 80px;margin-right: 30px;">
                         <br>
 
 
 
 
                         <label>窗口2</label>
-                        &nbsp;<select name="errandType3" style="width: 50px;margin-right: 60px;margin-left: 36px;">
-                        <option value="0">最大位移窗口</option>
-                        <option value="1">最大力窗口</option>
-                        <option value="2">配合窗口</option>
-                        <option value="3">右-下限制窗口</option>
-                        <option value="4">穿越窗口</option>
-                        <option value="5">峰值窗口(左、上、右限制)</option>
-                        <option value="6">左-上限制窗口</option>
-                        <option value="7">右-上限制窗口</option>
-                        <option value="8">顶部结束窗口</option>
-                        <option value="9">右侧结束窗口</option>
-                        <option value="10">平均值窗口</option>
-                        <option value="11">拐点窗口</option>
-                    </select>
-                        <!--位置下限-->&nbsp;<input name="positionMin3" style="width: 50px;margin-right: 40px;">
-                        <!--位置上限-->&nbsp;<input name=" positionMax3" style="width: 50px;margin-right: 60px;">
-                        <!--压力下限_1-->&nbsp;<input name="pressMin3" style="width: 50px;margin-right: 60px;">
-                        <!--压力上限-->&nbsp;<input name="pressMax3" style="width: 50px;margin-right: 60px;">
+                        <select name="errandType3" v-model="list.errandType3" style="width: 130px;margin-right: 30px;margin-left: 30px;">
+                            <option value="-1">不设置</option>
+                            <option value="0">最大位移窗口</option>
+                            <option value="1">最大力窗口</option>
+                            <option value="2">配合窗口</option>
+                            <option value="3">右-下限制窗口</option>
+<!--                            <option value="4">穿越窗口</option>-->
+                            <option value="5">峰值窗口(左、上、右限制)</option>
+                            <option value="6">左-上限制窗口</option>
+<!--                            <option value="7">右-上限制窗口</option>-->
+                            <option value="8">顶部结束窗口</option>
+                            <option value="9">右侧结束窗口</option>
+<!--                            <option value="10">平均值窗口</option>-->
+<!--                            <option value="11">拐点窗口</option>-->
+                        </select>
+                        <!--位置下限-->&nbsp;<input name="positionMin3" v-model="list.positionMin3" style="width: 80px;margin-right: 30px;">
+                        <!--位置上限-->&nbsp;<input name="positionMax3" v-model="list.positionMax3" style="width: 80px;margin-right: 30px;">
+                        <!--压力下限_1-->&nbsp;<input name="pressMin3" v-model="list.pressMin3" style="width: 80px;margin-right: 30px;">
+                        <!--压力上限-->&nbsp;<input name="pressMax3" v-model="list.pressMax3" style="width: 80px;margin-right: 30px;">
                         <br>
+
                         <label>窗口3</label>
-                        &nbsp;<select name="errandType4" style="width: 50px;margin-right: 60px;margin-left: 36px;">
-                        <option value="0">最大位移窗口</option>
-                        <option value="1">最大力窗口</option>
-                        <option value="2">配合窗口</option>
-                        <option value="3">右-下限制窗口</option>
-                        <option value="4">穿越窗口</option>
-                        <option value="5">峰值窗口(左、上、右限制)</option>
-                        <option value="6">左-上限制窗口</option>
-                        <option value="7">右-上限制窗口</option>
-                        <option value="8">顶部结束窗口</option>
-                        <option value="9">右侧结束窗口</option>
-                        <option value="10">平均值窗口</option>
-                        <option value="11">拐点窗口</option>
-                    </select>
-                        <!--位置下限-->&nbsp;<input name="positionMin4" style="width: 50px;margin-right: 40px;">
-                        <!--位置上限-->&nbsp;<input name=" positionMax4" style="width: 50px;margin-right: 60px;">
-                        <!--压力下限_1-->&nbsp;<input name="pressMin4" style="width: 50px;margin-right: 60px;">
-                        <!--压力上限-->&nbsp;<input name="pressMax4" style="width: 50px;margin-right: 60px;">
+                        <select name="errandType4" v-model="list.errandType4" style="width: 130px;margin-right: 30px;margin-left: 30px;">
+                            <option value="-1">不设置</option>
+                            <option value="0">最大位移窗口</option>
+                            <option value="1">最大力窗口</option>
+                            <option value="2">配合窗口</option>
+                            <option value="3">右-下限制窗口</option>
+<!--                            <option value="4">穿越窗口</option>-->
+                            <option value="5">峰值窗口(左、上、右限制)</option>
+                            <option value="6">左-上限制窗口</option>
+<!--                            <option value="7">右-上限制窗口</option>-->
+                            <option value="8">顶部结束窗口</option>
+                            <option value="9">右侧结束窗口</option>
+<!--                            <option value="10">平均值窗口</option>-->
+<!--                            <option value="11">拐点窗口</option>-->
+                        </select>
+                        <!--位置下限-->&nbsp;<input name="positionMin4" v-model="list.positionMin4" style="width: 80px;margin-right: 30px;">
+                        <!--位置上限-->&nbsp;<input name="positionMax4" v-model="list.positionMax4" style="width: 80px;margin-right: 30px;">
+                        <!--压力下限_1-->&nbsp;<input name="pressMin4" v-model="list.pressMin4" style="width: 80px;margin-right: 30px;">
+                        <!--压力上限-->&nbsp;<input name="pressMax4" v-model="list.pressMax4" style="width: 80px;margin-right: 30px;">
                         <br>
 
 
 
                         <label>窗口4</label>
-                        &nbsp;<select name="errandType5" style="width: 50px;margin-right: 60px;margin-left: 36px;">
+                        <select name="errandType5" v-model="list.errandType5" style="width: 130px;margin-right: 30px;margin-left: 30px;">
+                        <option value="-1">不设置</option>
                         <option value="0">最大位移窗口</option>
                         <option value="1">最大力窗口</option>
                         <option value="2">配合窗口</option>
                         <option value="3">右-下限制窗口</option>
-                        <option value="4">穿越窗口</option>
+<!--                        <option value="4">穿越窗口</option>-->
                         <option value="5">峰值窗口(左、上、右限制)</option>
                         <option value="6">左-上限制窗口</option>
-                        <option value="7">右-上限制窗口</option>
+<!--                        <option value="7">右-上限制窗口</option>-->
                         <option value="8">顶部结束窗口</option>
                         <option value="9">右侧结束窗口</option>
-                        <option value="10">平均值窗口</option>
-                        <option value="11">拐点窗口</option>
+<!--                        <option value="10">平均值窗口</option>-->
+<!--                        <option value="11">拐点窗口</option>-->
                     </select>
-                        <!--位置下限-->&nbsp;<input name="positionMin5" style="width: 50px;margin-right: 40px;">
-                        <!--位置上限-->&nbsp;<input name=" positionMax5" style="width: 50px;margin-right: 60px;">
-                        <!--压力下限_1-->&nbsp;<input name="pressMin5" style="width: 50px;margin-right: 60px;">
-                        <!--压力上限-->&nbsp;<input name="pressMax5" style="width: 50px;margin-right: 60px;">
+                        <!--位置下限-->&nbsp;<input name="positionMin5" v-model="list.positionMin5" style="width: 80px;margin-right: 30px;">
+                        <!--位置上限-->&nbsp;<input name="positionMax5" v-model="list.positionMax5" style="width: 80px;margin-right: 30px;">
+                        <!--压力下限_1-->&nbsp;<input name="pressMin5" v-model="list.pressMin5" style="width: 80px;margin-right: 30px;">
+                        <!--压力上限-->&nbsp;<input name="pressMax5" v-model="list.pressMax5" style="width: 80px;margin-right: 30px;">
                         <br>
-
-
-
-
-                        <label>窗口5</label>
-                        &nbsp;<select name="errandType6" style="width: 50px;margin-right: 60px;margin-left: 36px;">
-                        <option value="0">最大位移窗口</option>
-                        <option value="1">最大力窗口</option>
-                        <option value="2">配合窗口</option>
-                        <option value="3">右-下限制窗口</option>
-                        <option value="4">穿越窗口</option>
-                        <option value="5">峰值窗口(左、上、右限制)</option>
-                        <option value="6">左-上限制窗口</option>
-                        <option value="7">右-上限制窗口</option>
-                        <option value="8">顶部结束窗口</option>
-                        <option value="9">右侧结束窗口</option>
-                        <option value="10">平均值窗口</option>
-                        <option value="11">拐点窗口</option>
-                    </select>
-                        <!--位置下限-->&nbsp;<input name="positionMin6" style="width: 50px;margin-right: 40px;">
-                        <!--位置上限-->&nbsp;<input name=" positionMax6" style="width: 50px;margin-right: 60px;">
-                        <!--压力下限_1-->&nbsp;<input name="pressMin6" style="width: 50px;margin-right: 60px;">
-                        <!--压力上限-->&nbsp;<input name="pressMax6" style="width: 50px;margin-right: 60px;">
-                        <br>
-
                     </div>
-
+                    <br> <br>
+                    <input type="submit" value="提交修改" style="width: 100px;height:30px;background-color: #33CABB;color: white" >
                 </form>
             </main>
             <!--End 页面主要内容-->
@@ -463,27 +443,18 @@
     new Vue({
         el:"#app",
         data:{
-            object:{
-                id:'1',
-                cz:'删除',
-                cklx:'1:xxx',
-                wzxx:'30',
-                wzsx:'40',
-                ylxx:'70',
-                wz:'34',
-                ylsx:'97',
-                yl:'75',
-                bjfy:'停止'
-            },
-            list:{}
-        },methods:{
-           /* getProgram(){
-                axios.get("/getProgram").then(result=>{
+            list:{},
+        },
+    methods:{
+           getProgram(){
+               let params = new URLSearchParams();
+               params.append('programCode', this.list.programCode);
+                axios.post("/getProgram",params).then(result=>{
                     this.list=result.data;
                 })
-            }*/
+            }
         },created(){
-            /*this.getProgram();*/
+            this.getProgram();
         }
     })
 </script>

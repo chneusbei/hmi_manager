@@ -7,8 +7,10 @@ import com.plc.hmi.service.PressureProgramService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,37 +22,33 @@ public class PressureProgramControler {
      *
      *
      */
+    @Resource
     PressureProgramService pressureProgramService;
-
-    /**
-     *
-     * @param productId 根据ID查询
-     * @return 查询压装程序
-     */
-    @ResponseBody
-    @GetMapping("/getWithProductId")
-    List<PressureProgramEntity> getWithProductId(Long productId){
-    return  pressureProgramService.getWithProductId(productId);
-    }
-
-    @RequestMapping("/save")
-    String save(PressureProgramEntity entity){
-        pressureProgramService.save(entity);
-        return "";
-    }
-
 
     @ResponseBody
     @RequestMapping("/getProgram")
-    List<Map<String, String>> getProgram(){
+    public PressureProgramEntity getProgram(
+            @RequestParam(value = "programCode") String programCode){
         /*List<Map<String, String>> list = PressureProgramEntityEnum.getLIST();
         System.out.println(JSON.toJSONString(list));*/
-        return null;
+//        System.out.println("===============getProgramCode==="+programEntity.getProgramCode());
+        System.out.println("===============programCode==="+programCode);
+//        if(null == programEntity.getProgramCode()) {
+//            programEntity.setProgramCode("p1");
+//        }
+        if(null == programCode || "undefined".equalsIgnoreCase(programCode)) {
+            programCode= "p1";
+        }
+        PressureProgramEntity entity =  pressureProgramService.getWithProgramCode(programCode);
+        return entity;
     }
+
+
     @ResponseBody
     @RequestMapping("/setProgram")
     String setProgram(PressureProgramEntity pressureProgramEntity){
         System.out.println(pressureProgramEntity.toString());
-        return "";
+        pressureProgramService.save(pressureProgramEntity);
+        return "updated success";
     }
 }
