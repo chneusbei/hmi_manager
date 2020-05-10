@@ -29,13 +29,6 @@ public class PressureProgramControler {
     @RequestMapping("/getProgram")
     public PressureProgramEntity getProgram(
             @RequestParam(value = "programCode") String programCode){
-        /*List<Map<String, String>> list = PressureProgramEntityEnum.getLIST();
-        System.out.println(JSON.toJSONString(list));*/
-//        System.out.println("===============getProgramCode==="+programEntity.getProgramCode());
-        System.out.println("===============programCode==="+programCode);
-//        if(null == programEntity.getProgramCode()) {
-//            programEntity.setProgramCode("p1");
-//        }
         if(null == programCode || "undefined".equalsIgnoreCase(programCode)) {
             programCode= "p1";
         }
@@ -47,7 +40,7 @@ public class PressureProgramControler {
     @ResponseBody
     @RequestMapping("/setProgram")
     String setProgram(PressureProgramEntity pressureProgramEntity){
-        System.out.println(pressureProgramEntity.toString());
+//        System.out.println(pressureProgramEntity.toString());
         pressureProgramService.save(pressureProgramEntity);
         return "updated success";
     }
