@@ -82,6 +82,18 @@ public class HmiUtils  {
         }
     }
 
+    public static final Boolean getBooleanValue(Object obj) {
+        if(obj == null) {
+            return new Boolean(false);
+        } else {
+            if("true".equalsIgnoreCase(obj.toString()) || "1".equalsIgnoreCase(obj.toString())) {
+                return new Boolean(true);
+            } else {
+                return new Boolean(false);
+            }
+        }
+    }
+
     public static final BigDecimal getBigDicimal(Object obj) {
         if(obj == null) {
             return new BigDecimal(0);

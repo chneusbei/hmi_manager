@@ -26,7 +26,8 @@ public class PressureProgramService extends AbstractBaseService{
     private static Long refreshTimeMillion = 0L;
 
     //所有公差窗口数据缓存
-    private static Map<Long, PressureProgramEntity> programMap = new HashMap<Long, PressureProgramEntity>();
+//    private static Map<Long, PressureProgramEntity> programMap = new HashMap<Long, PressureProgramEntity>();
+    private static PressureProgramEntity pressureProgramEntity;
 
     public PressureProgramEntity getWithProgramCode(String programCode) {
         return pressureProgramDao.getWithProgramCode(programCode);
@@ -34,33 +35,38 @@ public class PressureProgramService extends AbstractBaseService{
 
     /**
      * 获取在公差所需数据
-     * @param productId
+     * @param
      * @return
      */
-    public PressureProgramEntity getErrandData(Long productId) {
+    public PressureProgramEntity getErrandData() {
         boolean refresh =false;
         if(refreshTimeMillion > 0) {
-            //5分钟从数据库获取一次
-            refresh = System.currentTimeMillis() - refreshTimeMillion >= 1000*5*60 ? true : false;
+            //1分钟从数据库获取一次
+            refresh = System.currentTimeMillis() - refreshTimeMillion >= 1000*1*60 ? true : false;
         } else {
+            refresh = true;
+        }
+        if(null == pressureProgramEntity) {
             refresh = true;
         }
 
         if(refresh) {
-            programMap = pressureProgramDao.getAllDatas();
+//            programMap = pressureProgramDao.getAllDatas();
+            pressureProgramEntity = pressureProgramDao.getWithProgramCode("p1");
             refreshTimeMillion = System.currentTimeMillis();
         }
-         return programMap.get(productId);
+        return pressureProgramEntity;
+//         return programMap.get(productId);
     }
 
     /**
      * 获取在界面chart中画公差窗口所需数据
      * 这里将PressureProgramEntity对象转化成了PressureCurveEntity对象， 用户chart paint时统一渲染规则
-     * @param productId
+     * @param
      * @return
      */
-    public List<List<PressureCurveEntity>> getErrandDataforChart(Long productId) {
-        return toChartData(getErrandData(productId));
+    public List<List<PressureCurveEntity>> getErrandDataforChart() {
+        return toChartData(getErrandData());
     }
 
     /**

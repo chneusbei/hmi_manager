@@ -129,31 +129,34 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         PressureCurveEntity curveEntity = new PressureCurveEntity();
         if(!CollectionUtils.isEmpty(plcEntityList)) {
             for(PlcEntity plcEntity : plcEntityList) {
+                if(null == plcEntity) {
+                    continue;
+                }
                 if(PlcEntityEnum.curve_data_curPosition.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //当前位置
-                    curveEntity.setPosition(new BigDecimal(plcEntity.getValueOjb().toString()));
+                    curveEntity.setPosition(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.curve_data_curForce.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     // 当前压力	Real
-                    curveEntity.setPressForce(new BigDecimal(plcEntity.getValueOjb().toString()));
+                    curveEntity.setPressForce(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.curve_data_curSpeed.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //当前速度	Real
-                    curveEntity.setSpeed(new BigDecimal(plcEntity.getValueOjb().toString()));
+                    curveEntity.setSpeed(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
                     curveEntity.setCurSpeed(curveEntity.getSpeed());
                 } else if(PlcEntityEnum.curve_data_reserve0.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //预留_0
-                    curveEntity.setReserve0(new BigDecimal(plcEntity.getValueOjb().toString()));
+                    curveEntity.setReserve0(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.curve_data_reserve1.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //预留_1
-                    curveEntity.setReserve1(new BigDecimal(plcEntity.getValueOjb().toString()));
+                    curveEntity.setReserve1(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.curve_data_reserve2.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //预留_2
-                    curveEntity.setReserve2(new BigDecimal(plcEntity.getValueOjb().toString()));
+                    curveEntity.setReserve2(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.equipment_operation_productNo.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //零件号
-                    curveEntity.setProductId(new Long(plcEntity.getValueOjb().toString()));
+                    curveEntity.setProductId(HmiUtils.getLongValue(plcEntity.getValueOjb()));
                 }else if(PlcEntityEnum.curve_status_curve_recording.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //启动标识
-                    curveEntity.setCurveRecording(new Boolean(plcEntity.getValueOjb().toString()));
+                    curveEntity.setCurveRecording(HmiUtils.getBooleanValue(plcEntity.getValueOjb()));
                 }
 
             }

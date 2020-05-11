@@ -103,7 +103,7 @@ public class PressureCurveService extends AbstractBaseService{
         PressureCurveEntity MaxPresscurve = entityList.get(0);
 
         //获取公差窗口信息
-        PressureProgramEntity pressureProgramEntity = programService.getErrandData(productId);
+        PressureProgramEntity pressureProgramEntity = programService.getErrandData();
         //公差窗口计算结果List
         List<ErrandResultEntity> errandResltList = new ArrayList<ErrandResultEntity>();
         setErrandResultList(pressureProgramEntity, errandResltList);

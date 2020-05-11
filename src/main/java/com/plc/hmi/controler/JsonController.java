@@ -81,7 +81,7 @@ public class JsonController {
         List<PressureCurveEntity> list = plc4xCurveDataService1.getCurveDatas();
 //        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(0L, 1L);
 //        List<List<PressureCurveEntity>>  errantList = new ArrayList<List<PressureCurveEntity>>();
-        List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart(1L);
+        List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart();
         if(!CollectionUtils.isEmpty(list)) {
             errantList.add(list);
         }
