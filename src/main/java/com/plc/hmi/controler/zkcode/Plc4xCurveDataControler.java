@@ -16,13 +16,13 @@ import java.util.List;
 public class Plc4xCurveDataControler {
 
     @Resource
-    Plc4xCurveDataService1 plc4xCurveDataService1;
+    Plc4xCurveDataService plc4xCurveDataService;
     @Resource
     Plc4xEquipmentOperationService plc4xEquipmentOperationService;
     @ResponseBody
     @GetMapping("/getCurrentDate")
     PressureCurveEntity getCurrentDate(){
-        List<PressureCurveEntity> curveDatas = plc4xCurveDataService1.getCurveDatas();
+        List<PressureCurveEntity> curveDatas = plc4xCurveDataService.getCurveDatas();
 //        System.out.println(curveDatas);
         if(CollectionUtils.isEmpty(curveDatas)) {
             return new PressureCurveEntity();
@@ -233,7 +233,7 @@ public class Plc4xCurveDataControler {
      * 获取压装曲线监控
      */
     List<PressureCurveEntity> getCurveDatas(){
-        return plc4xCurveDataService1.getCurveDatas();
+        return plc4xCurveDataService.getCurveDatas();
     }
 
 

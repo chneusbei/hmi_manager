@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 /***
  * 曲线信息-数据
  */
-@Service
-@Component
+//@Service
+//@Component
 public class Plc4xCurveDataService1 extends Plc4xCurveDataService{
     public static String tagGroup = HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode();
 

@@ -115,7 +115,7 @@ public class Plc4xConnectorService {
      * 不需要重复创建builder,适用于频繁查询场景
      * @param builder
      */
-    public List<PlcEntity> queryData(PlcReadRequest.Builder builder) {
+    public synchronized List<PlcEntity> queryData(PlcReadRequest.Builder builder) {
         PlcReadRequest readRequest = builder.build();
         PlcReadResponse response =null;
         try {
@@ -186,6 +186,11 @@ public class Plc4xConnectorService {
         for(PlcEntity query : queryList) {
 //            query.setFieldQuery("%DB300.DBX3.0:BOOL");
             if("REAL".equalsIgnoreCase(query.getDataType())) {
+                /*
+                builder.addItem("value-1", "%Q0.4:BOOL", true);
+                builder.addItem("value-2", "%Q0:BYTE", (byte) 0xFF);
+                builder.addItem("value-4", "%DB.DB1.4:INT[3]", 7, 23, 42);
+                 */
 //                ByteBuf buf = Unpooled.buffer(4);
 //                buf.writeFloat(Float.valueOf(query.getValueOjb().toString()).floatValue());
 //                byte[] bytes = buf.array();

@@ -1,9 +1,12 @@
 package com.plc.hmi.service.plcService;
 
 import com.plc.hmi.S7Connector.service.Plc4xConnectorService;
+import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.constants.HmiConstants;
+import com.plc.hmi.dal.entity.PropertyEntity;
 import com.plc.hmi.dal.entity.TagsInfoEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
+import com.plc.hmi.service.PropertyService;
 import com.plc.hmi.service.TagsInfoService;
 import com.plc.hmi.util.HmiUtils;
 import org.apache.plc4x.java.api.messages.PlcReadRequest;
@@ -21,6 +24,8 @@ public class Plc4xBaseService {
     Plc4xConnectorService plc4xConnectorService;
     @Autowired
     private TagsInfoService tagsInfoService;
+    @Autowired
+    private PropertyService propertyService;
     //设备信息builder
     protected  PlcReadRequest.Builder builder;
     //bulider 创建时间点
@@ -80,13 +85,29 @@ public class Plc4xBaseService {
      * 查询queryList初始化
      * @param tagGroup
      */
-    protected void initQuereyList(String tagGroup) {
+    protected synchronized void initQuereyList(String tagGroup) {
 //        System.out.println(">>>>>>>>>>>>>tagGroup"+tagGroup);
 //        System.out.println(">>>>>>>>>>readQueryList.isEmpty()"+CollectionUtils.isEmpty(readQueryList));
         if(!CollectionUtils.isEmpty(readQueryList)) {
             return;
         }
         List<TagsInfoEntity> tags = tagsInfoService.getTagsByGroup(tagGroup);
+        List<PropertyEntity>  pressCountList = propertyService.getPropertyWithGroup(ConfigConstants.GROUP_PRESS_COUNT);
+        boolean isDubblePress = false;
+        if(!CollectionUtils.isEmpty(pressCountList)) {
+            PropertyEntity pressCountConfig = pressCountList.get(0);
+            if(null != pressCountConfig) {
+                if(HmiUtils.getIntValue(pressCountConfig.getPropValue()) > 1) {
+                    isDubblePress = true;
+                }
+            }
+        }
+        //当是曲线信息， 且双压头标识是开的，增加读取第二个压头的tagGroup
+        if(HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode().equalsIgnoreCase(tagGroup)
+        && isDubblePress) {
+            List<TagsInfoEntity> tags2 = tagsInfoService.getTagsByGroup(HmiConstants.PLC_TAG_GROUP.CURVE_DATA_2.getCode());
+            tags.addAll(tags2);
+        }
         setQueryList(tags);
     }
 

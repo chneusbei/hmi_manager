@@ -1,7 +1,7 @@
 package com.plc.hmi.constants;
 public class ConfigConstants {
     /**
-     * PLC SERVER 属性书库配置KEY
+     * PLC SERVER 属性数据库配置KEY
      */
 
     public static final String GROUP_PLC_SERVER = "plc.server";
@@ -14,4 +14,10 @@ public class ConfigConstants {
     //插槽号
     public static final String  PLC_SERVER_SLOT = "plc.server.slot";
 
+    /**
+     * press.count 压头数量数据库配置
+     */
+    public static final String GROUP_PRESS_COUNT = "press.count";
+    //压头数量
+    public static final String PRESS_COUNT = "press.count";
 }

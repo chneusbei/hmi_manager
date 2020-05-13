@@ -19,6 +19,8 @@ import java.util.*;
 /***
  * 曲线信息-数据
  */
+@Service
+@Component
 public class Plc4xCurveDataService extends Plc4xBaseService{
     @Autowired
     private PressureCurveService pressureCurveService;
@@ -28,9 +30,9 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     public static Map<Long, List<PressureCurveEntity>> curveMap = new HashMap<Long, List<PressureCurveEntity>>();
     public static PressureCurveEntity currentCurve = new PressureCurveEntity();
     public static Long productNo=0L;
-    private static Long startTime= 0L;
-    private static Long endTime= 0L;
-    private static Long peerStartTime= 0L;
+//    private static Long startTime= 0L;
+//    private static Long endTime= 0L;
+//    private static Long peerStartTime= 0L;
 
     /**
      * 获取实时单条曲线信息
@@ -70,44 +72,51 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      * 获取实时曲线信息
      * @return
      */
-    public  synchronized  void  getCurveDatasFromPlc() {
+    public synchronized void getCurveDatasFromPlc() {
 //        System.out.println(">>>>>>>>>>>>>>>tagGroup = "+tagGroup);
-        peerStartTime = System.currentTimeMillis();
+//        peerStartTime = System.currentTimeMillis();
 //        System.out.println("get data from plc >>>>>>>>>>>>>>>>>>>>>>>>");
         List<PlcEntity> plcEntityList = this.getDatas();
-        PressureCurveEntity curve = plc2Curve(plcEntityList);
-        currentCurve = curve;
-        if(null == curve) {
+        List<PressureCurveEntity> curveEntityList = plc2Curve(plcEntityList);
+        currentCurve = curveEntityList.get(0);
+        if(CollectionUtils.isEmpty(curveEntityList)) {
             return;
         }
+        /*
         if(curve.getCurveRecording()) {
 //             System.out.println("getCurveRecording = true ******** ");
         } else {
 //            System.out.println("getCurveRecording = false ");
         }
-        if(curve.getCurveRecording()) {
-            startTime =  this.startTime > 0 ? startTime : System.currentTimeMillis();
+        */
+        for(PressureCurveEntity curve : curveEntityList) {
+            if (curve.getCurveRecording()) {
+//                startTime = this.startTime > 0 ? startTime : System.currentTimeMillis();
 //            System.out.println("******productNo="+curve.getPressDataId()+" , position="+curve.getPosition());
-            productNo = curve.getProductId();
-           if(CollectionUtils.isEmpty(curveMap.get(curve.getProductId()))) {
-               List<PressureCurveEntity>  curveEntityList = new ArrayList<PressureCurveEntity>();
-               curveEntityList.add(curve);
-               curveMap.put(curve.getProductId(),curveEntityList);
-            }else {
-               curveMap.get(curve.getProductId()).add(curve);
-           }
+                productNo = curve.getProductId();
+                if (CollectionUtils.isEmpty(curveMap.get(curve.getProductId()))) {
+                    List<PressureCurveEntity> curveEntityList2 = new ArrayList<PressureCurveEntity>();
+                    curveEntityList2.add(curve);
+                    curveMap.put(curve.getProductId(), curveEntityList2);
+                } else {
+                    curveMap.get(curve.getProductId()).add(curve);
+                }
 
-        } else {
+            }
+        }
+
+        //数据入库
+         if(!curveEntityList.get(0).getCurveRecording() && !curveEntityList.get(1).getCurveRecording()){
             //需要将除当前当前零件外的其他信息全部入库并从map中去除。
-            if(!curveMap.isEmpty()) {
+            if (!curveMap.isEmpty()) {
 //                System.out.println("set curve data to batch insert thread*************************");
 //                pressureCurveService.curve2queue(curveMap.get(productNo));
                 pressureCurveService.batchInsert(curveMap.get(productNo));
                 curveMap.clear();
             }
-            if(endTime ==0) {
-                endTime = this.startTime > 0 ? System.currentTimeMillis() : endTime;
-            }
+//                if (endTime == 0) {
+//                    endTime = this.startTime > 0 ? System.currentTimeMillis() : endTime;
+//                }
         }
 //        System.out.println("every time spend time = "+(System.currentTimeMillis() - peerStartTime));
 
@@ -125,13 +134,20 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      * @param plcEntityList
      * @return
      */
-    private PressureCurveEntity plc2Curve(List<PlcEntity> plcEntityList) {
+    private List<PressureCurveEntity> plc2Curve(List<PlcEntity> plcEntityList) {
+        List<PressureCurveEntity> curveEntityList = new ArrayList<PressureCurveEntity>();
         PressureCurveEntity curveEntity = new PressureCurveEntity();
+        PressureCurveEntity curveEntity2 = new PressureCurveEntity();
+        curveEntityList.add(curveEntity);
+        curveEntityList.add(curveEntity2);
         if(!CollectionUtils.isEmpty(plcEntityList)) {
             for(PlcEntity plcEntity : plcEntityList) {
                 if(null == plcEntity) {
                     continue;
                 }
+                /*支持双压头
+                 */
+                //第一条曲线
                 if(PlcEntityEnum.curve_data_curPosition.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //当前位置
                     curveEntity.setPosition(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
@@ -159,9 +175,39 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                     curveEntity.setCurveRecording(HmiUtils.getBooleanValue(plcEntity.getValueOjb()));
                 }
 
+
+                //第二个压头
+                if(PlcEntityEnum.curve_data_curPosition2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //当前位置
+                    curveEntity2.setPosition(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_curForce2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    // 当前压力	Real
+                    curveEntity2.setPressForce(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_curSpeed2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //当前速度	Real
+                    curveEntity2.setSpeed(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity2.setCurSpeed(curveEntity2.getSpeed());
+                } else if(PlcEntityEnum.curve_data_reserve0_2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //预留_0
+                    curveEntity2.setReserve0(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_reserve1_2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //预留_1
+                    curveEntity2.setReserve1(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_reserve2_2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //预留_2
+                    curveEntity2.setReserve2(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.equipment_operation_productNo2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //零件号
+                    curveEntity2.setProductId(HmiUtils.getLongValue(plcEntity.getValueOjb()));
+                }else if(PlcEntityEnum.curve_status_curve_recording2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //启动标识
+                    curveEntity2.setCurveRecording(HmiUtils.getBooleanValue(plcEntity.getValueOjb()));
+                }
+
             }
 
         }
+        //第一个压头
         curveEntity.setIsDeleted("0");
         curveEntity.setCreateBy("SYS");
         curveEntity.setUpdateBy("SYS");
@@ -173,7 +219,19 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         if(null == curveEntity.getCurveRecording()) {
             curveEntity.setCurveRecording(false);
         }
-        return curveEntity;
+        //第二个压头
+        curveEntity2.setIsDeleted("0");
+        curveEntity2.setCreateBy("SYS");
+        curveEntity2.setUpdateBy("SYS");
+        curveEntity2.setCreateTime(new Date());
+        curveEntity2.setUpdateTime(new Date());
+        curveEntity2.setHandleDate(HmiUtils.getYYYYMMDDString(curveEntity2.getCreateTime()));
+        curveEntity2.setSolidLine(true);
+        curveEntity2.setErrant(false);
+        if(null == curveEntity2.getCurveRecording()) {
+            curveEntity2.setCurveRecording(false);
+        }
+        return curveEntityList;
     }
 
 

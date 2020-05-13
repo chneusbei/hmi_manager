@@ -1,16 +1,15 @@
 package com.plc.hmi.thread;
 
-import com.plc.hmi.S7Connector.service.Plc4xConnectorService;
-import com.plc.hmi.service.PressureCurveService;
 import com.plc.hmi.service.plcService.Plc4xCurveDataService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 public class PlcPressCurveThread implements Runnable {
     private final Log logger = LogFactory.getLog(PlcPressCurveThread.class);
-    private Plc4xCurveDataService service;
+    @Autowired
+    Plc4xCurveDataService service;
+
     public PlcPressCurveThread(Plc4xCurveDataService service ) {
         this.service = service;
     }

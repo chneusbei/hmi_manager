@@ -8,7 +8,6 @@ import com.plc.hmi.service.PressureCurveService;
 import com.plc.hmi.service.PressureDataService;
 import com.plc.hmi.service.PressureProgramService;
 import com.plc.hmi.service.plcService.Plc4xCurveDataService;
-import com.plc.hmi.service.plcService.Plc4xCurveDataService1;
 import com.plc.hmi.service.plcService.Plc4xCurveStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
@@ -29,7 +28,7 @@ public class JsonController {
     @Autowired
     PressureCurveService pressureCurveService;
     @Autowired
-    Plc4xCurveDataService1 plc4xCurveDataService1;
+    Plc4xCurveDataService plc4xCurveDataService;
     @Autowired
     PressureProgramService programService;
     @Autowired
@@ -78,7 +77,7 @@ public class JsonController {
             下进不出
             左进右不出
          */
-        List<PressureCurveEntity> list = plc4xCurveDataService1.getCurveDatas();
+        List<PressureCurveEntity> list = plc4xCurveDataService.getCurveDatas();
 //        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(0L, 1L);
 //        List<List<PressureCurveEntity>>  errantList = new ArrayList<List<PressureCurveEntity>>();
         List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart();
@@ -137,7 +136,7 @@ public class JsonController {
 //        plc4xCurveStatusService.setDatas();
         Map<String, String> paraMap = new HashMap<>();
         paraMap.put("choice", "true");
-        plc4xCurveDataService1.setDatas(paraMap);
+        plc4xCurveDataService.setDatas(paraMap);
 //        System.out.println("-----------------------------------------");
         return "SUCCESS";
     }
