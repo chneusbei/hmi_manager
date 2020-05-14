@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class PressureDataEntity extends AbstractBaseEntity {
+    //压头序号
+    private int pressureHeadNo;
     //产品ID
     private Long productId;
     //产品二维码
@@ -85,5 +87,13 @@ public class PressureDataEntity extends AbstractBaseEntity {
 
     public void setStartDate(BigDecimal startDate) {
         this.startDate = startDate;
+    }
+
+    public int getPressureHeadNo() {
+        return pressureHeadNo;
+    }
+
+    public void setPressureHeadNo(int pressureHeadNo) {
+        this.pressureHeadNo = pressureHeadNo;
     }
 }

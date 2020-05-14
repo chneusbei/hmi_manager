@@ -111,7 +111,10 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             if (!curveMap.isEmpty()) {
 //                System.out.println("set curve data to batch insert thread*************************");
 //                pressureCurveService.curve2queue(curveMap.get(productNo));
-                pressureCurveService.batchInsert(curveMap.get(productNo));
+//                Iterator<Long> it=curveMap.keySet().iterator();
+                for(Long recordId : curveMap.keySet()){
+                    pressureCurveService.batchInsert(curveMap.get(recordId));
+                }
                 curveMap.clear();
             }
 //                if (endTime == 0) {
@@ -216,6 +219,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         curveEntity.setHandleDate(HmiUtils.getYYYYMMDDString(curveEntity.getCreateTime()));
         curveEntity.setSolidLine(true);
         curveEntity.setErrant(false);
+        curveEntity.setPressureHeadNo(1);
         if(null == curveEntity.getCurveRecording()) {
             curveEntity.setCurveRecording(false);
         }
@@ -228,6 +232,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         curveEntity2.setHandleDate(HmiUtils.getYYYYMMDDString(curveEntity2.getCreateTime()));
         curveEntity2.setSolidLine(true);
         curveEntity2.setErrant(false);
+        curveEntity2.setPressureHeadNo(2);
         if(null == curveEntity2.getCurveRecording()) {
             curveEntity2.setCurveRecording(false);
         }

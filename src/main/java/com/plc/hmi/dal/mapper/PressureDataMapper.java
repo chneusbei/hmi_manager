@@ -13,6 +13,7 @@ public interface PressureDataMapper {
     @Select("select * from pressure_data where is_deleted='0' and RECORD_ID=#{recordId}")
     @Results({
             @Result(id=true,column = "ID",property = "id" ),
+            @Result(column = "PRESSURE_HEAD_NO",property ="pressureHeadNo"),
             @Result(column = "PRODUCT_ID",property ="productId"),
             @Result(column = "PRODUCT_NO",property ="productNo"),
             @Result(column = "PRESS_RESULT",property ="pressResult"),
@@ -40,6 +41,7 @@ public interface PressureDataMapper {
             "</script>" })
     @Results({
             @Result(id=true,column = "ID",property = "id" ),
+            @Result(column = "PRESSURE_HEAD_NO",property ="pressureHeadNo"),
             @Result(column = "PRODUCT_ID",property ="productId"),
             @Result(column = "PRODUCT_NO",property ="productNo"),
             @Result(column = "PRESS_RESULT",property ="pressResult"),
@@ -59,7 +61,7 @@ public interface PressureDataMapper {
     @Select("select PRESS_RESULT, count(1) as COUNT from pressure_data where is_deleted='0' group by PRESS_RESULT")
     List<HashMap> getPressureStatisticalData();
 
-    @Insert({"insert into pressure_data(id, PRODUCT_ID, PRODUCT_NO, PRESS_RESULT, RECORD_ID, START_DATE, END_DATE, MAX_PRESS, POSITION_OF_MAX_PRESS, IS_DELETED, CREATE_BY, UPDATE_BY,CREATE_TIME,UPDATE_TIME) values(null, #{productId}, #{productNo}, #{pressResult}, #{recordId},#{startDate},#{endDate},#{maxPress},#{positionOfMaxPress},'0', #{createBy}, #{createBy}, now(), now())"})
+    @Insert({"insert into pressure_data(id, PRESSURE_HEAD_NO, PRODUCT_ID, PRODUCT_NO, PRESS_RESULT, RECORD_ID, START_DATE, END_DATE, MAX_PRESS, POSITION_OF_MAX_PRESS, IS_DELETED, CREATE_BY, UPDATE_BY,CREATE_TIME,UPDATE_TIME) values(null, #{pressureHeadNo}, #{productId}, #{productNo}, #{pressResult}, #{recordId},#{startDate},#{endDate},#{maxPress},#{positionOfMaxPress},'0', #{createBy}, #{createBy}, now(), now())"})
     void insert(PressureDataEntity entity);
 
 //    @Update({"update pressure_data set PROGRAM_TYPE=#{programType}, PROGRAM_VALUE=#{programValue}, UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where ID=#{id}"})

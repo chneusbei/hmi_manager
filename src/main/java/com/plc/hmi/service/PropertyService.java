@@ -1,9 +1,13 @@
 package com.plc.hmi.service;
 
+import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.dal.dao.PropertyDao;
 import com.plc.hmi.dal.entity.PropertyEntity;
+import com.plc.hmi.util.HmiUtils;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -42,4 +46,19 @@ public class PropertyService extends AbstractBaseService{
     public void delete(PropertyEntity entity) {
         propertyDao.delete(entity);
     }
+
+    public boolean isDubblePress() {
+        List<PropertyEntity>  pressCountList = getPropertyWithGroup(ConfigConstants.GROUP_PRESS_COUNT);
+        boolean isDubblePress = false;
+        if(!CollectionUtils.isEmpty(pressCountList)) {
+            PropertyEntity pressCountConfig = pressCountList.get(0);
+            if(null != pressCountConfig) {
+                if(HmiUtils.getIntValue(pressCountConfig.getPropValue()) > 1) {
+                    isDubblePress = true;
+                }
+            }
+        }
+        return isDubblePress;
+    }
+
 }

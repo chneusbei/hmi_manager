@@ -92,16 +92,7 @@ public class Plc4xBaseService {
             return;
         }
         List<TagsInfoEntity> tags = tagsInfoService.getTagsByGroup(tagGroup);
-        List<PropertyEntity>  pressCountList = propertyService.getPropertyWithGroup(ConfigConstants.GROUP_PRESS_COUNT);
-        boolean isDubblePress = false;
-        if(!CollectionUtils.isEmpty(pressCountList)) {
-            PropertyEntity pressCountConfig = pressCountList.get(0);
-            if(null != pressCountConfig) {
-                if(HmiUtils.getIntValue(pressCountConfig.getPropValue()) > 1) {
-                    isDubblePress = true;
-                }
-            }
-        }
+        boolean isDubblePress = propertyService.isDubblePress();
         //当是曲线信息， 且双压头标识是开的，增加读取第二个压头的tagGroup
         if(HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode().equalsIgnoreCase(tagGroup)
         && isDubblePress) {

@@ -24,10 +24,13 @@ public class HmiConstants {
     public static final String CSV_ROW_SEPARATOR = "\r\n";
 
     //CSV导出文件头
-    public static final String CURVE_TITLES = "ID, 压力曲线ID, 产品ID, 位置点序号, 位置, 压力, 速度, 压装时间点";
+//    public static final String CURVE_TITLES = "ID, 压力曲线ID, 产品ID, 位置点序号, 位置, 压力, 速度, 压装时间点";
+    public static final String CURVE_TITLES = "Index, BLANK, Position, Force, Analog, Time, Speed";
     public static final String DATA_TITLES = "ID, 产品ID, 压力曲线ID, 压装结果, 最大压力值, 最大压力时候位移,压装开始时间,压装结束时间";
     //CSV 文件写入地址
     public static final String CSV_OUTPUT_PATH="D:/csv";
+    //每个压头对应csv文件夹前缀
+    public static final String CSV_PRESSURE_HEAD_PATH_PREFIX ="/pressureHead";
 
 
     public enum PLC_TAG_GROUP {

@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class PressureCurveEntity extends AbstractBaseEntity {
+    //压头序号
+    private int pressureHeadNo;
     //位置/压力曲线ID
     private String recordId;
     //产品ID
@@ -175,5 +177,13 @@ public class PressureCurveEntity extends AbstractBaseEntity {
 
     public void setProductId(Long productId) {
         this.productId = productId;
+    }
+
+    public int getPressureHeadNo() {
+        return pressureHeadNo;
+    }
+
+    public void setPressureHeadNo(int pressureHeadNo) {
+        this.pressureHeadNo = pressureHeadNo;
     }
 }

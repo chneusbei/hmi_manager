@@ -1,10 +1,8 @@
 package com.plc.hmi.service;
 
+import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.dal.dao.PressureCurveDao;
-import com.plc.hmi.dal.entity.ErrandResultEntity;
-import com.plc.hmi.dal.entity.PressureCurveEntity;
-import com.plc.hmi.dal.entity.PressureDataEntity;
-import com.plc.hmi.dal.entity.PressureProgramEntity;
+import com.plc.hmi.dal.entity.*;
 import com.plc.hmi.util.HmiUtils;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,8 @@ public class PressureCurveService extends AbstractBaseService{
     PressureDataService pressureDataService;
     @Resource
     PressureProgramService programService;
+    @Autowired
+    private PropertyService propertyService;
 
     //用户存储实时PLC曲线信息。线程安全的链表容器
     private static java.util.concurrent.ConcurrentLinkedDeque<PressureCurveEntity>
@@ -48,8 +48,8 @@ public class PressureCurveService extends AbstractBaseService{
      * @param
      * @return
      */
-    public List<PressureCurveEntity> getHisDate(String startDate, String endDate) {
-        return pressureCurveDao.getPressureCurveWithDate(startDate, endDate);
+    public List<PressureCurveEntity> getHisDate(String recordId, int pressureHeadNo) {
+        return pressureCurveDao.getPressureCurveWithDate(recordId, pressureHeadNo);
     }
 
 //    public List<PressureCurveEntity> getPressureCurveWithDate(String handleDate) {
@@ -83,8 +83,29 @@ public class PressureCurveService extends AbstractBaseService{
         //需要对应插入一条数据到pressure_data, 同时建立pressure_data和pressure_curve的关联关系
         /**
          *  1 插入pressure_data
+         *  如果是双压头， 需要将数据拆分到两个list中
          */
-        InsertPressureDate(entityList);
+
+        if(propertyService.isDubblePress()) {
+            List<PressureCurveEntity> pressureHeadList1 = new ArrayList();
+            List<PressureCurveEntity> pressureHeadList2 = new ArrayList();
+            for(PressureCurveEntity entity : entityList) {
+                if(entity.getPressureHeadNo() == 1) {
+                    pressureHeadList1.add(entity);
+                } else if(entity.getPressureHeadNo() == 2){
+                    pressureHeadList2.add(entity);
+                }
+
+            }
+            if(!CollectionUtils.isEmpty(pressureHeadList1)) {
+                InsertPressureDate(pressureHeadList1);
+            }
+            if(!CollectionUtils.isEmpty(pressureHeadList2)) {
+                InsertPressureDate(pressureHeadList2);
+            }
+        } else {
+            InsertPressureDate(entityList);
+        }
         /**
          * 1 插入pressure_curve
          */
@@ -129,6 +150,7 @@ public class PressureCurveService extends AbstractBaseService{
         pressureDataEntity.setUpdateBy("SYS");
         pressureDataEntity.setCreateTime(new Date());
         pressureDataEntity.setUpdateTime(new Date());
+        pressureDataEntity.setPressureHeadNo(entityList.get(0).getPressureHeadNo());
         pressureDataService.insert(pressureDataEntity);
     }
 
