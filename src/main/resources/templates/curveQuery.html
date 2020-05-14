@@ -23,10 +23,19 @@
                 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
                 <div id="main" style="width: 90%;height:600px;"></div>
                 <form action="/curveQuery">
-                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;
-                        X轴起始值：<input type="text" name="xMin"  th:value="${param.xMin}" > <input type="submit" value="确定">
+                    <div>
+                        X轴起始值：<input type="text" name="xMin" id="xMin" th:value="${param.xMin}" >
+                        X轴最大值：<input type="text" name="xMax" id="xMax" th:value="${param.xMax}" >
+                        <br>
+                        Y轴起始值：<input type="text" name="yMin" id="yMin" th:value="${param.yMin}" >
+                        Y轴最大值：<input type="text" name="yMax" id="yMax" th:value="${param.yMax}" >
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="submit" value="确定">
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="submit" onClick="startPlc()"  value="启动PLC">
                     </div>
 
@@ -55,16 +64,41 @@
                     // 基于准备好的dom，初始化echarts实例 以后做的所有echarts操作都在ID为main这个模块下
                     var myChart = echarts.init(document.getElementById('main'));
 
-                    var xMin=getQueryVariable("xMin");
-                    if(xMin==false){
-                        xMin=0;
-                    }
+                    // var xMin=getQueryVariable("xMin");
+                    // if(xMin==false){
+                    //     xMin=0;
+                    // }
+                    var recordNo=0;
 
+                    var xMin = document.getElementById("xMin").value;
+                    if(xMin == "") {
+                        xMin = 0;
+                    }
+                    // alert("xMin1="+xMin1);
+
+                    var xMax = document.getElementById("xMax").value;
+                    if(xMax == "") {
+                        xMax = 400;
+                    }
+                    // alert("xMax="+xMax);
+
+                    var yMin = document.getElementById("yMin").value;
+                    if(yMin == "") {
+                        yMin = 0;
+                    }
+                    // alert("yMin="+yMin);
+
+                    var yMax = document.getElementById("yMax").value;
+                    if(yMax == "") {
+                        yMax = 10;
+                    }
+                    // alert("yMax="+yMax);
 
                     var series1=[];
-                    var names=[];
+                    // var names=[];
 
                     function setgraph() {
+
                         $.ajax({
                             type : "post",
                             async : false, //同步执行
@@ -77,12 +111,21 @@
                                     var arr=[];
                                     var isErrant=true;
                                     var isSolidLine=true;
+                                    var recordNoNow=0;
 
                                     for(var j=0;j<result[i].length;j++){
                                         arr.push([result[i][j].position,result[i][j].pressForce]);
                                         if(j==0){
                                             isErrant=result[i][j].errant;
                                             isSolidLine=result[i][j].solidLine;
+                                            if(!isErrant) {
+                                                recordNoNow=result[i][j].recordNo;
+                                                if(recordNo != recordNoNow) {
+                                                    myChart.clear();
+                                                    recorNo = recordNoNow;
+                                                }
+                                            }
+
                                         }
                                     }
                                     var color="";
@@ -128,11 +171,13 @@
                         option = {
                             xAxis: {
                                 min:xMin,
-                                max:400,
+                                max:xMax,
                                 type: 'value',
                                 scale: true
                             },
                             yAxis: {
+                                min:yMin,
+                                max:yMax,
                                 type: 'value',
                             },
                             series:series1
