@@ -133,6 +133,14 @@
             <artifactId>plc4j-driver-modbus</artifactId>
             <version>0.3.0</version>
         </dependency>
+        <!--   支持PLC读写， 找不到资源-->
+        <!-- https://mvnrepository.com/artifact/org.apache.plc4x/plc4j-driver-ethernet-ip -->
+        <dependency>
+            <groupId>org.apache.plc4x</groupId>
+            <artifactId>plc4j-driver-ethernet-ip</artifactId>
+            <version>0.6.0</version>
+        </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
