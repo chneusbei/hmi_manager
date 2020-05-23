@@ -19,6 +19,12 @@ public class ProductDao {
         return productMapper.getProduct(productCode);
     }
 
+    public List<ProductEntity> getProducts() {
+        return productMapper.getProducts();
+    }
+
+
+
     public void insert(ProductEntity entity) {
         productMapper.insert(entity);
     }

@@ -51,6 +51,21 @@ public class PressureCurveEntity extends AbstractBaseEntity {
     //是否是实线， 如果是false， 需要画为虚线。 只有是公差曲线即isErrant=true时，才可能是false
     private boolean isSolidLine;
 
+
+    /**
+     * 产品属性
+     * @return
+     */
+    //产品代码
+    private String productCode;
+    //产品名称
+    private String productName;
+    //产品追溯码
+    private String productTraceCode;
+    //压装结果
+    private Boolean isOK;
+
+
     public boolean isErrant() {
         return isErrant;
     }
@@ -185,5 +200,37 @@ public class PressureCurveEntity extends AbstractBaseEntity {
 
     public void setPressureHeadNo(int pressureHeadNo) {
         this.pressureHeadNo = pressureHeadNo;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductTraceCode() {
+        return productTraceCode;
+    }
+
+    public void setProductTraceCode(String productTraceCode) {
+        this.productTraceCode = productTraceCode;
+    }
+
+    public Boolean getOK() {
+        return isOK;
+    }
+
+    public void setOK(Boolean OK) {
+        isOK = OK;
+    }
+
+    public String getProductCode() {
+        return productCode;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
     }
 }

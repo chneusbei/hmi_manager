@@ -24,6 +24,11 @@
                 <div id="main" style="width: 90%;height:600px;"></div>
                 <form action="/curveQuery">
                     <div>
+                        产品代码：<input type="text" name="productCode" id="productCode" value="-" disabled="disabled" readonly unselectable="on">
+                        当前零件号：<input type="text" name="productId" id="productId" value="-"  disabled="disabled" readonly unselectable="on">
+                        零件名称：<input type="text" name="productName" id="productName" value="-"  disabled="disabled" readonly unselectable="on">
+                        追溯码：<input type="text" name="productTraceCode" id="productTraceCode" value="-" disabled="disabled" readonly unselectable="on">
+                        <br>
                         X轴起始值：<input type="text" name="xMin" id="xMin" th:value="${param.xMin}" >
                         X轴最大值：<input type="text" name="xMax" id="xMax" th:value="${param.xMax}" >
                         <br>
@@ -35,7 +40,6 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="submit" onClick="startPlc()"  value="启动PLC">
                     </div>
 
@@ -118,7 +122,12 @@
                                         if(j==0){
                                             isErrant=result[i][j].errant;
                                             isSolidLine=result[i][j].solidLine;
+
                                             if(!isErrant) {
+                                                document.getElementById("productCode").value=result[i][j].productCode;
+                                                document.getElementById("productId").value=result[i][j].productId;
+                                                document.getElementById("productName").value=result[i][j].productName;
+                                                document.getElementById("productTraceCode").value=result[i][j].productTraceCode;
                                                 recordNoNow=result[i][j].recordNo;
                                                 if(recordNo != recordNoNow) {
                                                     myChart.clear();
@@ -130,7 +139,7 @@
                                     }
                                     var color="";
                                     if(isErrant){
-                                        color="black";
+                                        color="green";
                                     }else{
                                         color="blue";
                                     }

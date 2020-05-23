@@ -7,17 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Date;
+import java.util.List;
 
-//@SpringBootTest
+@SpringBootTest
 public class ProductTest {
     @Autowired
     private ProductService service;
 
 
 
-//    @Test
+    @Test
     public void testSql() {
-        /*
+/*
         ProductEntity entity = new ProductEntity();
         entity.setId(1L);
         entity.setProductCode("TestProduct");
@@ -30,7 +31,7 @@ public class ProductTest {
         ProductEntity result = service.getProduct("TestProduct");
 //        service.delete(entity);
 */
-
+        List<ProductEntity> resultList = service.getProducts();
         System.out.println("END----------------");
     }
 

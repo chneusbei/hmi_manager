@@ -3,12 +3,15 @@ package com.plc.hmi.controler;
 import com.alibaba.fastjson.JSON;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.PressureDataEntity;
+import com.plc.hmi.dal.entity.ProductEntity;
 import com.plc.hmi.dal.entity.base.AbstractBaseEntity;
 import com.plc.hmi.service.PressureCurveService;
 import com.plc.hmi.service.PressureDataService;
 import com.plc.hmi.service.PressureProgramService;
+import com.plc.hmi.service.ProductService;
 import com.plc.hmi.service.plcService.Plc4xCurveDataService;
 import com.plc.hmi.service.plcService.Plc4xCurveStatusService;
+import com.plc.hmi.util.HmiUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +36,8 @@ public class JsonController {
     PressureProgramService programService;
     @Autowired
     Plc4xCurveStatusService plc4xCurveStatusService;
+    @Autowired
+    ProductService productService;
 
     @Resource
     PressureDataService pressureDataService;
@@ -77,11 +82,23 @@ public class JsonController {
             下进不出
             左进右不出
          */
+        //曲线信息
         List<PressureCurveEntity> list = plc4xCurveDataService.getCurveDatas();
+
 //        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(0L, 1L);
 //        List<List<PressureCurveEntity>>  errantList = new ArrayList<List<PressureCurveEntity>>();
+        //公差窗口
         List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart();
         if(!CollectionUtils.isEmpty(list)) {
+            PressureCurveEntity fristCurve = list.get(0);
+//            System.out.println("-----------productID=--------"+fristCurve.getProductId());
+            //产品信息
+            ProductEntity  product = productService.getStaticProduct(HmiUtils.getString(fristCurve.getProductId()));
+            if(null != product) {
+                fristCurve.setProductCode(product.getProductCode());
+                fristCurve.setProductName(product.getProductName());
+                fristCurve.setProductTraceCode(product.getProductTraceCode());
+            }
             errantList.add(list);
         }
 //        List<List<PressureCurveEntity>> lists=new ArrayList<List<PressureCurveEntity>>();
