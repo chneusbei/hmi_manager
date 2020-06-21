@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta http-equiv="refresh" content="2">-->
+    <title>压装曲线监控</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <script src="echarts.min.js"></script>
+    <style>
+
+     /*   #systemConnection{
+            background-color: #89898b;
+        }*/
+    </style>
+        </head>
+<body>
+<div id="app">
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+
+            <script src="test.js"></script>
+            <main class="lyear-layout-content">
+                <div style="padding-left: 120px;">
+                    产品代码：<input type="text" name="productCode" id="productCode" value="-" disabled="disabled" readonly unselectable="on">
+                    当前零件号：<input type="text" name="productId" id="productId" value="-"  disabled="disabled" readonly unselectable="on">
+                    零件名称：<input type="text" name="productName" id="productName" value="-"  disabled="disabled" readonly unselectable="on">
+                    追溯码：<input type="text" name="productTraceCode" id="productTraceCode" value="-" disabled="disabled" readonly unselectable="on">
+                    <!--name="productTraceCode"-->
+                    <!--name="productTraceCode"-->
+                    <!--name="productTraceCode"-->
+                    <!--name="productTraceCode"-->
+                    <label style="margin-right: 30px;">系统连接</label><button   id="systemConnection" class="btn btn-success" disabled="disabled" type="button" ></button>
+                    <label style="margin-right: 16px;" >数据记录中</label><button  id="dataCount" disabled="disabled" class="btn btn-success" type="button" ></button>
+                    <br>
+                </div>
+
+
+                <br>
+                    <div  style="display: inline-block;padding-left: 160px;">
+                    当前位置:<input type="text" id="productIndex" value="-" disabled="disabled" readonly unselectable="on">
+                    当前压力:<input type="text" id="productPressure" value="-" disabled="disabled" readonly unselectable="on">
+                    <br>
+                    <label>压装结果</label>
+                        <span>左曲线:</span><div id="pressResultok"  style="display:block;padding-left: 30px;padding-right: 30px; font-weight: 700;  text-align: center;"  ></div>
+                </div>
+                <div style="display: inline-block;padding-left: 120px;">
+                    当前位置:<input type="text" id="productIndex2" value="-" disabled="disabled" readonly unselectable="on">
+                    当前压力:<input type="text" id="productPressure2" value="-" disabled="disabled" readonly unselectable="on">
+                    <br>
+                    <label>压装结果</label>
+                    <span>左曲线:</span><div id="pressResultok2"  style="display:block;padding-left: 30px;padding-right: 30px; font-weight: 700;  text-align: center;"  ></div>
+                </div>
+
+                <!--<div style="display: inline-block;display: inline-block;">
+
+                    <label style="margin-right: 30px;">系统连接</label><button   id="systemConnection" class="btn btn-success" disabled="disabled" type="button" ></button>
+                    &lt;!&ndash;:class="item.valueOjb==true?'btn btn-success':'btn btn-danger'"&ndash;&gt;
+
+                    <label style="margin-right: 16px;" >数据记录中</label><button  id="dataCount" disabled="disabled" class="btn btn-success" type="button" ></button>
+                    <br>
+                    <label>压装结果</label>
+                    <br>
+                    <span>左曲线:</span><div id="pressResultok"  style="display:block;padding-left: 30px;padding-right: 30px; font-weight: 700;  text-align: center;"  ></div>
+                        <br>
+                    <span>左曲线:</span><div id="pressResultok2"  style="display:block;padding-left: 30px;padding-right: 30px; font-weight: 700;  text-align: center;"></div>
+
+                </div>-->
+
+
+                <!--<div style="display: inline-block;display: inline-block;">
+
+                    <label style="margin-right: 30px;">系统连接</label><button   id="systemConnection" class="btn btn-success" disabled="disabled" type="button" ></button>
+                    &lt;!&ndash;:class="item.valueOjb==true?'btn btn-success':'btn btn-danger'"&ndash;&gt;
+
+                    <label style="margin-right: 16px;" >数据记录中</label><button  id="dataCount" disabled="disabled" class="btn btn-success" type="button" ></button>
+                    <br>
+                    <label>压装结果</label>
+                    <br>
+                    <span>左曲线:</span><div id="pressResultok"  style="display:block;padding-left: 30px;padding-right: 30px; font-weight: 700;  text-align: center;"  ></div>
+                        <br>
+                    <span>左曲线:</span><div id="pressResultok2"  style="display:block;padding-left: 30px;padding-right: 30px; font-weight: 700;  text-align: center;"></div>
+
+                </div>-->
+
+
+                <br>
+                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+
+                    <div id="main" style="width:500px;height:300px;display: inline-block;margin-left: 140px;"></div>
+                    <div id="main2" style="width:500px;height:300px;display: inline-block;margin-left: 40px;"></div>
+
+
+                        <form action="/curveQuery">
+                            <div style="display: inline-block;padding-left: 120px;">
+                                X轴起始值：<input type="text" name="xMin" id="xMin" th:value="${param.xMin}" >
+                                X轴最大值：<input type="text" name="xMax" id="xMax" th:value="${param.xMax}" >
+                                <br>
+                                Y轴起始值：<input type="text" name="yMin" id="yMin" th:value="${param.yMin}"style="display: inline-block;" >
+                                Y轴最大值：<input type="text" name="yMax" id="yMax" th:value="${param.yMax}"style="display: inline-block;" >
+                            </div>
+
+                            <div style="display: inline-block;padding-left: 120px;">
+                                X轴起始值2：<input type="text" name="xMin" id="xMin2" th:value="${param.xMin}" >
+                                X轴最大值2：<input type="text" name="xMax" id="xMax2" th:value="${param.xMax}" >
+                                <br>
+                                Y轴起始值2：<input type="text" name="yMin" id="yMin2" th:value="${param.yMin}" >
+                                Y轴最大值2：<input type="text" name="yMax" id="yMax2" th:value="${param.yMax}" >
+                            </div>
+                            <br>
+                            <input style="display: inline-block;margin-left: 650px;" type="submit" value="确定">
+                        </form>
+
+
+                <script type="text/javascript" src="js/jquery.min.js"></script>
+                <script type="text/javascript" src="js/bootstrap.min.js"></script>
+                <script type="text/java script" src="js/perfect-scrollbar.min.js"></script>
+                <script type="text/javascript" src="js/main.min.js"></script>
+                <script type="text/javascript">
+
+
+
+
+                    var gray="#89898b";
+                    var ok="OK";
+                    var nok="NOK";
+
+                    $("#systemConnection").css({"background": gray});
+                    $("#dataCount").css({"background": gray});
+
+
+                    $("#pressResultok").html(ok);
+                    $("#pressResultok2").html(nok);
+                    $("#pressResultok").css({"background": gray});
+                    $("#pressResultok2").css({"background": gray});
+
+                    // var intervalId = setInterval(() => {
+                    //      this.getEquipmentStatus();
+                    //  this.getCurveStatus();
+                    //  }, 1000);
+                    function getQueryVariable(variable)
+                    {
+                        var query = window.location.search.substring(1);
+                        var vars = query.split("&");
+                        for (var i=0;i<vars.length;i++) {
+                            var pair = vars[i].split("=");
+                            if(pair[0] == variable){return pair[1];}
+                        }
+                        return(false);
+                    }
+
+
+                    var int=setInterval("start()",2000)
+
+                    function start(){
+                        setgraph();
+                        setgraph2();
+                    }
+
+                   /* document.getElementById('main').style.cssText="display: inline-block;";*/
+                    var myChart = echarts.init(document.getElementById('main'));
+
+                    var myChart2 = echarts.init(document.getElementById('main2'));
+
+                    // var xMin=getQueryVariable("xMin");
+                    // if(xMin==false){
+                    //     xMin=0;
+                    // }
+                    var recordNo=0;
+
+                    var xMin = document.getElementById("xMin").value;
+                    if(xMin == "") {
+                        xMin = 0;
+                    }
+                    // alert("xMin1="+xMin1);
+
+                    var xMax = document.getElementById("xMax").value;
+                    if(xMax == "") {
+                        xMax = 400;
+                    }
+                    // alert("xMax="+xMax);
+
+                    var yMin = document.getElementById("yMin").value;
+                    if(yMin == "") {
+                        yMin = 0;
+                    }
+                    // alert("yMin="+yMin);
+
+                    var yMax = document.getElementById("yMax").value;
+                    if(yMax == "") {
+                        yMax = 10;
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    var xMin2 = document.getElementById("xMin2").value;
+                    if(xMin2 == "") {
+                        xMin2 = 0;
+                    }
+                    // alert("xMin1="+xMin1);
+
+                    var xMax2= document.getElementById("xMax2").value;
+                    if(xMax2 == "") {
+                        xMax2 = 400;
+                    }
+                    // alert("xMax="+xMax);
+
+                    var yMin2 = document.getElementById("yMin2").value;
+                    if(yMin2 == "") {
+                        yMin2 = 0;
+                    }
+                    // alert("yMin="+yMin);
+
+                    var yMax2 = document.getElementById("yMax2").value;
+                    if(yMax2 == "") {
+                        yMax2 = 10;
+                    }
+
+
+
+
+
+
+                    function setgraph() {
+
+                        var series1=[]
+                        $.ajax({
+                            type : "post",
+                            async : false, //同步执行
+                            url : "http://localhost:8080/getCurveQueryByCode",
+                            data : {},
+                            dataType : "json", //返回数据形式为json
+                            success : function(result) {
+                                for(var i=0;i<result.length;i++){
+                                    names=[];//重置为空
+                                    var arr=[];
+                                    var isErrant=true;
+                                    var isSolidLine=true;
+                                    var recordNoNow=0;
+
+                                    for(var j=0;j<result[i].length;j++){
+                                        arr.push([result[i][j].position,result[i][j].pressForce]);
+                                        if(j==0){
+                                            isErrant=result[i][j].errant;
+                                            isSolidLine=result[i][j].solidLine;
+
+                                            if(!isErrant) {
+                                                document.getElementById("productCode").value=result[i][j].productCode;
+                                                document.getElementById("productId").value=result[i][j].productId;
+                                                document.getElementById("productName").value=result[i][j].productName;
+                                                document.getElementById("productTraceCode").value=result[i][j].productTraceCode;
+                                                recordNoNow=result[i][j].recordNo;
+                                                if(recordNo != recordNoNow) {
+                                                    myChart.clear();
+                                                    recorNo = recordNoNow;
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                    var color="";
+                                    if(isErrant){
+                                        color="green";
+                                    }else{
+                                        color="blue";
+                                    }
+                                    var type="";
+                                    if(isSolidLine){
+                                        type="solid";
+                                    }else{
+                                        type="dotted";
+                                    }
+                                    series1.push({
+                                        data:arr,/*需要显示的数据*/
+                                        type:'line',/*以什么方式展示*/
+                                        color:color,  //折线条的颜色
+                                        smooth:false,   //关键点，为true是不支持虚线的，实线就用true
+                                        show:false, //曲线上各点数值显示
+                                        symbol:"none",//曲线上圆圈显示
+                                        // 显示数值
+                                        itemStyle:{
+                                            normal:{
+                                                lineStyle:{
+                                                    width:2,/*设置单个虚线原点的宽度*/
+                                                    type:type  //'dotted'虚线 'solid'实线
+                                                },label: {show: false}
+                                            }
+                                        }
+                                    });
+                                }
+                                console.log("arr=>"+arr);
+                            },
+                            error : function(errorMsg) {
+                                // alert("获取图表请求数据失败!");
+                                myChart.hideLoading();
+                            }
+                        });
+
+                        // 指定图表的配置项和数据
+                        names=null;
+                        option = {
+                            xAxis: {
+                                min:xMin,
+                                max:xMax,
+                                type: 'value',
+                                scale: true
+                            },
+                            yAxis: {
+                                min:yMin,
+                                max:yMax,
+                                type: 'value',
+                            },
+                            series:series1
+                        };
+
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart.setOption(option);
+                    }
+
+
+
+                    function setgraph2() {
+                        var series1=[]
+                        $.ajax({
+                            type : "post",
+                            async : false, //同步执行
+                            url : "http://localhost:8080/getCurveQueryByCode",
+                            data : {},
+                            dataType : "json", //返回数据形式为json
+                            success : function(result) {
+                                for(var i=0;i<result.length;i++){
+                                    names=[];//重置为空
+                                    var arr=[];
+                                    var isErrant=true;
+                                    var isSolidLine=true;
+                                    var recordNoNow=0;
+
+                                    for(var j=0;j<result[i].length;j++){
+                                        arr.push([result[i][j].position,result[i][j].pressForce]);
+                                        if(j==0){
+                                            isErrant=result[i][j].errant;
+                                            isSolidLine=result[i][j].solidLine;
+
+                                            if(!isErrant) {
+                                                document.getElementById("productCode").value=result[i][j].productCode;
+                                                document.getElementById("productId").value=result[i][j].productId;
+                                                document.getElementById("productName").value=result[i][j].productName;
+                                                document.getElementById("productTraceCode").value=result[i][j].productTraceCode;
+                                                recordNoNow=result[i][j].recordNo;
+                                                if(recordNo != recordNoNow) {
+                                                    myChart.clear();
+                                                    recorNo = recordNoNow;
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                    var color="";
+                                    if(isErrant){
+                                        color="green";
+                                    }else{
+                                        color="blue";
+                                    }
+                                    var type="";
+                                    if(isSolidLine){
+                                        type="solid";
+                                    }else{
+                                        type="dotted";
+                                    }
+                                    series1.push({
+                                        data:arr,/*需要显示的数据*/
+                                        type:'line',/*以什么方式展示*/
+                                        color:color,  //折线条的颜色
+                                        smooth:false,   //关键点，为true是不支持虚线的，实线就用true
+                                        show:false, //曲线上各点数值显示
+                                        symbol:"none",//曲线上圆圈显示
+                                        // 显示数值
+                                        itemStyle:{
+                                            normal:{
+                                                lineStyle:{
+                                                    width:2,/*设置单个虚线原点的宽度*/
+                                                    type:type  //'dotted'虚线 'solid'实线
+                                                },label: {show: false}
+                                            }
+                                        }
+                                    });
+                                }
+                                console.log("arr=>"+arr);
+                            },
+                            error : function(errorMsg) {
+                                // alert("获取图表请求数据失败!");
+                                myChart.hideLoading();
+                            }
+                        });
+
+                        // 指定图表的配置项和数据
+                        names=null;
+                        option = {
+                            xAxis: {
+                                min:xMin,
+                                max:xMax,
+                                type: 'value',
+                                scale: true
+                            },
+                            yAxis: {
+                                min:yMin,
+                                max:yMax,
+                                type: 'value',
+                            },
+                            series:series1
+                        };
+
+                        // 使用刚指定的配置项和数据显示图表。
+                        myChart2.setOption(option);
+                    }
+
+
+
+                </script>
+
+            </main>
+            <!--End 页面主要内容-->
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

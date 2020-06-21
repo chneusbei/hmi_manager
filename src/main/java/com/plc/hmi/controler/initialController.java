@@ -110,4 +110,8 @@ public class initialController {
     public String hiscurveQuery(){
         return "hiscurveQuery";
     }
+    @RequestMapping("/hyperbola")
+    public String hyperbola(){
+        return "hyperbola";
+    }
 }

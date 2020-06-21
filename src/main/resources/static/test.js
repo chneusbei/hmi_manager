@@ -13,6 +13,7 @@ document.writeln("                        <li> <a   href=\'/equipmentStatusMonit
 document.writeln("                        <li> <a   href=\'/ioequipmentStatusMonitoring\'>设备IO状态监控</a> </li>");
 document.writeln("                        <li> <a   href=\'/safetyMonitoring\'>设备操作监控</a> </li>");
 document.writeln("                        <li> <a   href=\'/curveQuery\'>压装曲线监控</a> </li>");
+document.writeln("                        <li> <a   href=\'/hyperbola\'>双曲线</a> </li>");
 document.writeln("                    </ul>");
 document.writeln("                </li>");
 document.writeln("                <li class=\'nav-item nav-item-has-subnav\'>");
@@ -67,6 +68,7 @@ document.writeln("    </div>");
 document.writeln("</aside>");
 document.writeln("<!--End 左侧导航-->");
 document.writeln("<!--头部信息-->");
+document.writeln("<div style=\'margin-bottom: 100px;\'>");
 document.writeln("<header class=\'lyear-layout-header\'>");
 document.writeln("    <nav class=\'navbar navbar-default\'>");
 document.writeln("        <div class=\'topbar\'>");
@@ -78,6 +80,7 @@ document.writeln("                    <span class=\'lyear-toggler-bar\'></span>"
 document.writeln("                    <span class=\'lyear-toggler-bar\'></span>");
 document.writeln("                </div>");
 document.writeln("                <span class=\'navbar-page-title\'>欢迎你 </span>");
+document.writeln("<img src=\"images/logo/rzd.png\">");
 document.writeln("            </div>");
 document.writeln("");
 document.writeln("            <ul class=\'topbar-right\'>");
@@ -225,8 +228,7 @@ document.writeln("");
 document.writeln("        </div>");
 document.writeln("    </nav>");
 document.writeln("</header>");
-
-
+document.writeln("            </div>");
 window.onload=function loade() {
     var url=window.location.pathname;
     $("[href='"+url+"']").parent().parent().parent().addClass("nav-item nav-item-has-subnav active open");
