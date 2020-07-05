@@ -5,6 +5,7 @@ import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.enumeration.PlcEntityEnum;
 import com.plc.hmi.service.PressureCurveService;
+import com.plc.hmi.service.PropertyService;
 import com.plc.hmi.util.HmiUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,6 +25,8 @@ import java.util.*;
 public class Plc4xCurveDataService extends Plc4xBaseService{
     @Autowired
     private PressureCurveService pressureCurveService;
+    @Autowired
+    private PropertyService propertyService;
 
     private final Log logger = LogFactory.getLog(Plc4xCurveDataService.class);
     public static String tagGroup = HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode();
@@ -151,7 +154,10 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         PressureCurveEntity curveEntity = new PressureCurveEntity();
         PressureCurveEntity curveEntity2 = new PressureCurveEntity();
         curveEntityList.add(curveEntity);
-        curveEntityList.add(curveEntity2);
+        if(propertyService.isDubblePress()) {
+            curveEntityList.add(curveEntity2);
+        }
+
         if(!CollectionUtils.isEmpty(plcEntityList)) {
             for(PlcEntity plcEntity : plcEntityList) {
                 if(null == plcEntity) {
