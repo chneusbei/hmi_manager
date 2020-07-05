@@ -17,6 +17,7 @@ public class PlcPressCurveThread implements Runnable {
     @Override
     public synchronized void run() {
         while(true) {
+//            service.doHeartBeat();
             service.getCurveDatasFromPlc();
             try {
                 //休眠

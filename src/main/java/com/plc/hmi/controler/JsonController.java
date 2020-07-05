@@ -1,14 +1,10 @@
 package com.plc.hmi.controler;
 
 import com.alibaba.fastjson.JSON;
-import com.plc.hmi.dal.entity.PressureCurveEntity;
-import com.plc.hmi.dal.entity.PressureDataEntity;
-import com.plc.hmi.dal.entity.ProductEntity;
+import com.plc.hmi.constants.ConfigConstants;
+import com.plc.hmi.dal.entity.*;
 import com.plc.hmi.dal.entity.base.AbstractBaseEntity;
-import com.plc.hmi.service.PressureCurveService;
-import com.plc.hmi.service.PressureDataService;
-import com.plc.hmi.service.PressureProgramService;
-import com.plc.hmi.service.ProductService;
+import com.plc.hmi.service.*;
 import com.plc.hmi.service.plcService.Plc4xCurveDataService;
 import com.plc.hmi.service.plcService.Plc4xCurveStatusService;
 import com.plc.hmi.util.HmiUtils;
@@ -19,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,9 +36,12 @@ public class JsonController {
     Plc4xCurveStatusService plc4xCurveStatusService;
     @Autowired
     ProductService productService;
-
+    @Autowired
+    PropertyService propertyService;
     @Resource
     PressureDataService pressureDataService;
+
+
     @RequestMapping("/getHisDateByCode")
     public String getHisDateByCode(@RequestParam(value = "recordId",required = false) Long recordId){
 //        System.out.println(pressDataId);
@@ -82,12 +83,18 @@ public class JsonController {
             下进不出
             左进右不出
          */
-        //曲线信息
+        /**
+         *  曲线信息
+         * */
+
         List<PressureCurveEntity> list = plc4xCurveDataService.getCurveDatas();
 
 //        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(0L, 1L);
 //        List<List<PressureCurveEntity>>  errantList = new ArrayList<List<PressureCurveEntity>>();
-        //公差窗口
+
+        /**
+         * 公差窗口
+         */
         List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart();
         if(!CollectionUtils.isEmpty(list)) {
             PressureCurveEntity fristCurve = list.get(0);
@@ -101,6 +108,8 @@ public class JsonController {
             }
             errantList.add(list);
         }
+
+
 //        List<List<PressureCurveEntity>> lists=new ArrayList<List<PressureCurveEntity>>();
         // lists=curveDataService.getCurveDatas();
 //       List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(1L, 1l);
@@ -157,4 +166,163 @@ public class JsonController {
 //        System.out.println("-----------------------------------------");
         return "SUCCESS";
     }
+
+    @RequestMapping("/setAxis")
+    public String setAxis(HttpServletRequest request, HttpServletResponse response, AxisEntity axis){
+//        System.out.println("setAxis到达后台-");
+        //        1.获取前台轴设置
+        AxisEntity axisEntity = JSON.parseObject(request.getParameter("axis"), AxisEntity.class);
+//        2.更新后台轴设置
+        if(axisEntity.getxMin() >= 0) {
+            PropertyEntity entity = new PropertyEntity();
+            entity.setPropName(ConfigConstants.XMIN);
+            entity.setPropValue(String.valueOf(axisEntity.getxMin()));
+            entity.setPropGroup(ConfigConstants.AXIS_GROUP);
+            entity.setUpdateBy("SYS");
+            propertyService.update(entity);
+        }
+        if(axisEntity.getxMax() >= 0) {
+            PropertyEntity entity = new PropertyEntity();
+            entity.setPropName(ConfigConstants.XMAX);
+            entity.setPropValue(String.valueOf(axisEntity.getxMax()));
+            entity.setPropGroup(ConfigConstants.AXIS_GROUP);
+            entity.setUpdateBy("SYS");
+            propertyService.update(entity);
+        }
+
+        if(axisEntity.getyMin() >= 0) {
+            PropertyEntity entity = new PropertyEntity();
+            entity.setPropName(ConfigConstants.YMIN);
+            entity.setPropValue(String.valueOf(axisEntity.getyMin()));
+            entity.setPropGroup(ConfigConstants.AXIS_GROUP);
+            entity.setUpdateBy("SYS");
+            propertyService.update(entity);
+        }
+
+        if(axisEntity.getyMax() >= 0) {
+            PropertyEntity entity = new PropertyEntity();
+            entity.setPropName(ConfigConstants.YMAX);
+            entity.setPropValue(String.valueOf(axisEntity.getyMax()));
+            entity.setPropGroup(ConfigConstants.AXIS_GROUP);
+            entity.setUpdateBy("SYS");
+            propertyService.update(entity);
+        }
+
+        if(axisEntity.getxMin2() >= 0) {
+            PropertyEntity entity = new PropertyEntity();
+            entity.setPropName(ConfigConstants.XMIN2);
+            entity.setPropValue(String.valueOf(axisEntity.getxMin2()));
+            entity.setPropGroup(ConfigConstants.AXIS_GROUP);
+            entity.setUpdateBy("SYS");
+            propertyService.update(entity);
+        }
+        if(axisEntity.getxMax2() >= 0) {
+            PropertyEntity entity = new PropertyEntity();
+            entity.setPropName(ConfigConstants.XMAX2);
+            entity.setPropValue(String.valueOf(axisEntity.getxMax2()));
+            entity.setPropGroup(ConfigConstants.AXIS_GROUP);
+            entity.setUpdateBy("SYS");
+            propertyService.update(entity);
+        }
+
+        if(axisEntity.getyMin2() >= 0) {
+            PropertyEntity entity = new PropertyEntity();
+            entity.setPropName(ConfigConstants.YMIN2);
+            entity.setPropValue(String.valueOf(axisEntity.getyMin2()));
+            entity.setPropGroup(ConfigConstants.AXIS_GROUP);
+            entity.setUpdateBy("SYS");
+            propertyService.update(entity);
+        }
+
+        if(axisEntity.getyMax2() >= 0) {
+            PropertyEntity entity = new PropertyEntity();
+            entity.setPropName(ConfigConstants.YMAX2);
+            entity.setPropValue(String.valueOf(axisEntity.getyMax2()));
+            entity.setPropGroup(ConfigConstants.AXIS_GROUP);
+            entity.setUpdateBy("SYS");
+            propertyService.update(entity);
+        }
+
+
+
+
+//        System.out.println("-----------------------------------------");
+        return "SUCCESS";
+    }
+
+    @RequestMapping("/getAxisProperty")
+    public String getAxisProperty() {
+//        System.out.println("============getAxisProperty");
+        List<PropertyEntity>  propertyList = propertyService.getPropertyWithGroup(ConfigConstants.AXIS_GROUP);
+        AxisEntity axisEntity=new AxisEntity();
+        for(PropertyEntity prop : propertyList) {
+            if(prop.getPropName().equalsIgnoreCase(ConfigConstants.XMIN)) {
+                axisEntity.setxMin(HmiUtils.getIntValue(prop.getPropValue()));
+            }
+            if(prop.getPropName().equalsIgnoreCase(ConfigConstants.XMAX)) {
+                axisEntity.setxMax(HmiUtils.getIntValue(prop.getPropValue()));
+            }
+            if(prop.getPropName().equalsIgnoreCase(ConfigConstants.YMIN)) {
+                axisEntity.setyMin(HmiUtils.getIntValue(prop.getPropValue()));
+            }
+            if(prop.getPropName().equalsIgnoreCase(ConfigConstants.YMAX)) {
+                axisEntity.setyMax(HmiUtils.getIntValue(prop.getPropValue()));
+            }
+            if(prop.getPropName().equalsIgnoreCase(ConfigConstants.XMIN2)) {
+                axisEntity.setxMin2(HmiUtils.getIntValue(prop.getPropValue()));
+            }
+            if(prop.getPropName().equalsIgnoreCase(ConfigConstants.XMAX2)) {
+                axisEntity.setxMax2(HmiUtils.getIntValue(prop.getPropValue()));
+            }
+            if(prop.getPropName().equalsIgnoreCase(ConfigConstants.YMIN2)) {
+                axisEntity.setyMin2(HmiUtils.getIntValue(prop.getPropValue()));
+            }
+            if(prop.getPropName().equalsIgnoreCase(ConfigConstants.YMAX2)) {
+                axisEntity.setyMax2(HmiUtils.getIntValue(prop.getPropValue()));
+            }
+
+        }
+
+
+        String json = JSON.toJSONString(axisEntity);
+//        System.out.println(json);
+//        System.out.println("-----------------------------------------");
+        return json;
+    }
+
+
+    @RequestMapping("/getStatus")
+    public String getStatus() {
+//        System.out.println("============getStatus");
+        StatusInfoEntity statusInfoEntity = new StatusInfoEntity();
+        //上一条数据得压装结果，如果是双压头， 需要获取两条。
+        List<PressureDataEntity> pressureDataList= pressureDataService.get2RecentData();
+        boolean isOK = true;
+        boolean isOK2 = true;
+        if(!CollectionUtils.isEmpty(pressureDataList)) {
+            int i=0;
+            for (PressureDataEntity pressureDataEntity : pressureDataList) {
+                if(null !=pressureDataEntity) {
+                    if(i==0) {
+                        isOK=pressureDataEntity.getPressResult().equalsIgnoreCase("1");
+                    } else {
+                        isOK2=pressureDataEntity.getPressResult().equalsIgnoreCase("1");
+                    }
+                }
+                i++;
+            }
+        }
+        statusInfoEntity.setCurveOk(isOK);
+        statusInfoEntity.setCurveOk2(isOK2);
+        //PLC连接
+        statusInfoEntity.setPlcConnected(plc4xCurveDataService.isPlcConnected());
+        statusInfoEntity.setSystemConnection(plc4xCurveDataService.isPlcConnected());
+        String json = JSON.toJSONString(statusInfoEntity);
+//        System.out.println(json);
+//        System.out.println("--------------------------getStatus---------------" + json);
+        return json;
+    }
+
+
+
 }

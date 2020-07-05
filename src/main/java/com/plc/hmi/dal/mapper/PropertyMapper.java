@@ -38,7 +38,7 @@ public interface PropertyMapper{
     @Insert({"insert into property_config(id, PROP_NAME, PROP_VALUE, PROP_GROUP, IS_DELETED, CREATE_BY, UPDATE_BY,CREATE_TIME,UPDATE_TIME) values(null, #{propName}, #{propValue}, #{propGroup}, '0', #{createBy}, #{createBy}, now(), now())"})
     void insert(PropertyEntity entity);
 
-    @Update({"update property_config set PROP_VALUE=#{propValue}, PROP_GROUP = #{propGroup}, UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where ID=#{id}"})
+    @Update({"update property_config set PROP_VALUE=#{propValue}, UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where PROP_NAME=#{propName}"})
     void update(PropertyEntity entity);
 
     @Update({"update property_config set  IS_DELETED='1', UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where ID=#{id}"})

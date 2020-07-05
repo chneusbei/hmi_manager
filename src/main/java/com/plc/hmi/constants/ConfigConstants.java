@@ -20,4 +20,18 @@ public class ConfigConstants {
     public static final String GROUP_PRESS_COUNT = "press.count";
     //压头数量
     public static final String PRESS_COUNT = "press.count";
+
+    /**
+     * xaxis xy轴起始结束值数据库配置
+     */
+    public static final String XMIN="axis.xMin";
+    public static final String XMAX="axis.xMax";
+    public static final String YMIN="axis.yMin";
+    public static final String YMAX="axis.yMax";
+    public static final String XMIN2="axis.xMin2";
+    public static final String XMAX2="axis.xMax2";
+    public static final String YMIN2="axis.yMin2";
+    public static final String YMAX2="axis.yMax2";
+    public static final String AXIS_GROUP="axis.value";
+
 }

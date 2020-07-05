@@ -69,6 +69,15 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     }
 
     /**
+     *
+     */
+    public synchronized void doHeartBeat() {
+        Map<String, String> paraMap = new HashMap<>();
+        paraMap.put("systemFlagTag", "true");
+        setDatas(paraMap);
+    }
+
+    /**
      * 获取实时曲线信息
      * @return
      */

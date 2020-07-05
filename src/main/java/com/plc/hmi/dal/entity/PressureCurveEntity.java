@@ -54,7 +54,6 @@ public class PressureCurveEntity extends AbstractBaseEntity {
 
     /**
      * 产品属性
-     * @return
      */
     //产品代码
     private String productCode;
