@@ -156,6 +156,32 @@ public class JsonController {
         return json;
     }
 
+    @RequestMapping("/getCurveQueryByCode2")
+    public String getCurveQueryByCode2(){
+        /**
+         *  曲线信息
+         * */
+        List<PressureCurveEntity> list = plc4xCurveDataService.getCurveDatas2();
+        /**
+         * 公差窗口
+         */
+        List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart();
+        if(!CollectionUtils.isEmpty(list)) {
+            PressureCurveEntity fristCurve = list.get(0);
+            //产品信息
+            ProductEntity  product = productService.getStaticProduct(HmiUtils.getString(fristCurve.getProductId()));
+            if(null != product) {
+                fristCurve.setProductCode(product.getProductCode());
+                fristCurve.setProductName(product.getProductName());
+                fristCurve.setProductTraceCode(product.getProductTraceCode());
+            }
+            errantList.add(list);
+        }
+        String json = JSON.toJSONString(errantList);
+//        System.out.println(json);
+        return json;
+    }
+
     @RequestMapping("/startPlc")
     public String startPlc(){
 //        System.out.println("启动PLC到达后台-");
@@ -243,16 +269,13 @@ public class JsonController {
             propertyService.update(entity);
         }
 
-
-
-
 //        System.out.println("-----------------------------------------");
         return "SUCCESS";
     }
 
     @RequestMapping("/getAxisProperty")
     public String getAxisProperty() {
-//        System.out.println("============getAxisProperty");
+        System.out.println("============getAxisProperty");
         List<PropertyEntity>  propertyList = propertyService.getPropertyWithGroup(ConfigConstants.AXIS_GROUP);
         AxisEntity axisEntity=new AxisEntity();
         for(PropertyEntity prop : propertyList) {
@@ -285,8 +308,8 @@ public class JsonController {
 
 
         String json = JSON.toJSONString(axisEntity);
-//        System.out.println(json);
-//        System.out.println("-----------------------------------------");
+        System.out.println(json);
+        System.out.println("-----------------------------------------");
         return json;
     }
 

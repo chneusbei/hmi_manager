@@ -105,11 +105,11 @@
                             </div>
 
                             <div style="display: inline-block;padding-left: 120px;">
-                                X轴起始值2：<input type="text" name="xMin" id="xMin2" th:value="${param.xMin}" >
-                                X轴最大值2：<input type="text" name="xMax" id="xMax2" th:value="${param.xMax}" >
+                                X轴起始值2：<input type="text" name="xMin2" id="xMin2" th:value="${param.xMin2}" >
+                                X轴最大值2：<input type="text" name="xMax2" id="xMax2" th:value="${param.xMax2}" >
                                 <br>
-                                Y轴起始值2：<input type="text" name="yMin" id="yMin2" th:value="${param.yMin}" >
-                                Y轴最大值2：<input type="text" name="yMax" id="yMax2" th:value="${param.yMax}" >
+                                Y轴起始值2：<input type="text" name="yMin2" id="yMin2" th:value="${param.yMin2}" >
+                                Y轴最大值2：<input type="text" name="yMax2" id="yMax2" th:value="${param.yMax2}" >
                             </div>
                             <br>
                             <input style="display: inline-block;margin-left: 650px;" type="submit" onClick="setAxis()"  value="确定">
@@ -124,7 +124,7 @@
                 <script type="text/javascript" src="js/jquery.min.js"></script>
                 <script type="text/javascript" src="js/bootstrap.min.js"></script>
                 <script type="text/java script" src="js/perfect-scrollbar.min.js"></script>
-                <script type="text/javascript" src="js/main.min.js"></script>
+<!--                <script type="text/javascript" src="js/main.min.js"></script>-->
                 <script type="text/javascript">
 
 
@@ -161,11 +161,15 @@
                             data : {},
                             dataType : "json", //返回数据形式为json
                             success : function(result) {
-                                // alert("result.xMin = " + result.xMin);
+                                // alert("result.xMin2 = " + result.xMin2);
                                 document.getElementById("xMin").value=result.xMin;
                                 document.getElementById("xMax").value=result.xMax;
                                 document.getElementById("yMin").value=result.yMin;
                                 document.getElementById("yMax").value=result.yMax;
+                                document.getElementById("xMin2").value=result.xMin2;
+                                document.getElementById("xMax2").value=result.xMax2;
+                                document.getElementById("yMin2").value=result.yMin2;
+                                document.getElementById("yMax2").value=result.yMax2;
                             },
                             error : function(errorMsg) {
                                 // alert("获取图表请求数据失败!");
@@ -370,7 +374,7 @@
                         $.ajax({
                             type : "post",
                             async : false, //同步执行
-                            url : "http://localhost:8080/getCurveQueryByCode",
+                            url : "http://localhost:8080/getCurveQueryByCode2",
                             data : {},
                             dataType : "json", //返回数据形式为json
                             success : function(result) {
