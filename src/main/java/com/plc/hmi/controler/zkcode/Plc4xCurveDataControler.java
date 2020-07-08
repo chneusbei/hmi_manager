@@ -23,11 +23,12 @@ public class Plc4xCurveDataControler {
     @GetMapping("/getCurrentDate")
     PressureCurveEntity getCurrentDate(){
         List<PressureCurveEntity> curveDatas = plc4xCurveDataService.getCurveDatas();
-//        System.out.println(curveDatas);
         if(CollectionUtils.isEmpty(curveDatas)) {
             return new PressureCurveEntity();
         } else {
+//            System.out.println("曲线信息:"+curveDatas.get(0).toString());
             return curveDatas.get(0);
+
         }
     }
 
@@ -77,6 +78,8 @@ public class Plc4xCurveDataControler {
              plcEntity5.setValueOjb(false);
              defalutDatas.add(plcEntity5);
              datas=defalutDatas;
+         } else {
+//             System.out.println("设备信息:"+datas.toString());
          }
 
          datas.stream().forEach(p -> {
@@ -280,6 +283,7 @@ public class Plc4xCurveDataControler {
             defaultDatas.add(plcEntity6);
             datas = defaultDatas;
         } else {
+//            System.out.println("安全监控信息:"+datas.toString());
             datas.stream().forEach(p->{
                 if ("productNo".equals(p.getName())){
                     p.setName("零件号");

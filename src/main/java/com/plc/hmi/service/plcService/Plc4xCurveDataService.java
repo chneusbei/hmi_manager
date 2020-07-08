@@ -66,11 +66,11 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     public List<PressureCurveEntity> getCurveDatas() {
 //        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
         List<PressureCurveEntity> list = curveMap.get(productNo);
-        if(!CollectionUtils.isEmpty(list)) {
+//        if(!CollectionUtils.isEmpty(list)) {
 //            System.out.println("size = "+list.size()+", totalTime="+(endTime-startTime) );
-        } else {
+//        } else {
 //            System.out.println("curvel data is null" );
-        }
+//        }
         return list;
     }
     /**
@@ -79,13 +79,13 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      */
     public List<PressureCurveEntity> getCurveDatas2() {
 //        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
-//        List<PressureCurveEntity> list = curveMap2.get(productNo2);
-        List<PressureCurveEntity> list = curveMap.get(productNo);
-        if(!CollectionUtils.isEmpty(list)) {
+        List<PressureCurveEntity> list = curveMap2.get(productNo2);
+//        List<PressureCurveEntity> list = curveMap.get(productNo);
+//        if(!CollectionUtils.isEmpty(list)) {
 //            System.out.println("size = "+list.size()+", totalTime="+(endTime-startTime) );
-        } else {
+//        } else {
 //            System.out.println("curvel data is null" );
-        }
+//        }
         return list;
     }
 
@@ -110,6 +110,8 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         List<PressureCurveEntity> curveEntityList = plc2Curve(plcEntityList);
         if(CollectionUtils.isEmpty(curveEntityList)) {
             return;
+        } else {
+//System.out.println("get curve from plc success....................................");
         }
 
 
@@ -320,7 +322,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     /**
      * 设置曲线开始开关
      */
-    public void setDatas(Map<String, String> paraMap) {
+    public synchronized void setDatas(Map<String, String> paraMap) {
         super.initWriteList(tagGroup, paraMap);
         super.setPlcData();
     }

@@ -32,7 +32,7 @@ public class Plc4xBaseService {
     protected  Long builderTime;
     //查询请求对象
     protected List<PlcEntity> readQueryList;
-    //查询请求对象
+    //写请求对象
     protected List<PlcEntity> writeQueryList;
 
 
@@ -76,8 +76,9 @@ public class Plc4xBaseService {
 
 
     //修改PLC上数据， 通用方法， 支持批量模式
-    protected  boolean setPlcData() {
+    protected  synchronized boolean setPlcData() {
         plc4xConnectorService.setData(writeQueryList);
+        writeQueryList.clear();
         return true;
     }
 
@@ -133,7 +134,7 @@ public class Plc4xBaseService {
      * 插入ueryList初始化
      * @param tagGroup
      */
-    protected void initWriteList(String tagGroup, Map<String, String> paraMap) {
+    protected synchronized void initWriteList(String tagGroup, Map<String, String> paraMap) {
         if(!CollectionUtils.isEmpty(writeQueryList)) {
             return;
         }

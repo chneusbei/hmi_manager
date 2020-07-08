@@ -212,7 +212,9 @@ public class Plc4xConnectorService {
             java.util.LinkedHashSet fieldNames = (java.util.LinkedHashSet) response.getFieldNames();
             if(!CollectionUtils.isEmpty(fieldNames)) {
                 for(Object fieldName : fieldNames) {
-                    logger.info("fieldName = %， returnCode = %" +fieldName+",  "+ response.getResponseCode(String.valueOf(fieldName)));
+                    if (!"systemFlagTag".equals(fieldName)) {
+                        logger.info("fieldName = %， returnCode = %" + fieldName + ",  " + response.getResponseCode(String.valueOf(fieldName)));
+                    }
                 }
             }
 

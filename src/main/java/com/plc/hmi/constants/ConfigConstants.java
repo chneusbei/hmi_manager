@@ -34,4 +34,16 @@ public class ConfigConstants {
     public static final String YMAX2="axis.yMax2";
     public static final String AXIS_GROUP="axis.value";
 
+    /**
+     * 系统与PLC心跳频率， 毫秒数
+     */
+    public static final String GROUP_HEARTBEAT_FREQUENCY = "heartbeat.frequency";
+    public static final String HEARTBEAT_FREQUENCY = "heartbeat.frequency";
+
+    /**
+     * 系统取曲线频率，毫秒数
+     */
+    public static final String GROUP_CURVE_FETCH_FREQUENCY = "curve.fetch.frequency";
+    public static final String CURVE_FETCH_FREQUENCY = "curve.fetch.frequency";
+
 }

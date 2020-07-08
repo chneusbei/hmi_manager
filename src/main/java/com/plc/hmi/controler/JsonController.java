@@ -275,7 +275,7 @@ public class JsonController {
 
     @RequestMapping("/getAxisProperty")
     public String getAxisProperty() {
-        System.out.println("============getAxisProperty");
+//        System.out.println("============getAxisProperty");
         List<PropertyEntity>  propertyList = propertyService.getPropertyWithGroup(ConfigConstants.AXIS_GROUP);
         AxisEntity axisEntity=new AxisEntity();
         for(PropertyEntity prop : propertyList) {
@@ -308,8 +308,8 @@ public class JsonController {
 
 
         String json = JSON.toJSONString(axisEntity);
-        System.out.println(json);
-        System.out.println("-----------------------------------------");
+//        System.out.println(json);
+//        System.out.println("-----------------------------------------");
         return json;
     }
 
