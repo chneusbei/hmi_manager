@@ -53,7 +53,7 @@
                     当前位置:<input type="text" id="curPosition2" value="-" disabled="disabled" readonly unselectable="on">
                     当前压力:<input type="text" id="curPressure2" value="-" disabled="disabled" readonly unselectable="on">
                     <br>
-                    <label>压装结果：左曲线</label><button  id="pressResultok2" disabled="disabled" class="btn btn-success" type="button" ></button>
+                    <label>压装结果：右曲线</label><button  id="pressResultok2" disabled="disabled" class="btn btn-success" type="button" ></button>
                 </div>
 
                 <!--<div style="display: inline-block;display: inline-block;">
@@ -138,7 +138,7 @@
                     $("#dataCount").css({"background": gray});
 
 
-                    $("#pressResultok").html(ok);
+                    $("#pressResultok").html(nok);
                     $("#pressResultok2").html(nok);
                     $("#pressResultok").css({"background": gray});
                     $("#pressResultok2").css({"background": gray});
@@ -170,6 +170,14 @@
                                 document.getElementById("xMax2").value=result.xMax2;
                                 document.getElementById("yMin2").value=result.yMin2;
                                 document.getElementById("yMax2").value=result.yMax2;
+                                xMin=result.xMin;
+                                xMax=result.xMax;
+                                yMin=result.yMin;
+                                yMax=result.yMax;
+                                xMin2=result.xMin2;
+                                xMax2=result.xMax2;
+                                yMin2=result.yMin2;
+                                yMax2=result.yMax2;
                             },
                             error : function(errorMsg) {
                                 // alert("获取图表请求数据失败!");
@@ -208,6 +216,7 @@
                     //     xMin=0;
                     // }
                     var recordNo=0;
+                    var recordNo2=0;
 
                     var xMin = document.getElementById("xMin").value;
                     if(xMin == "") {
@@ -401,9 +410,9 @@
                                                 document.getElementById("productName").value=result[i][j].productName;
                                                 document.getElementById("productTraceCode").value=result[i][j].productTraceCode;
                                                 recordNoNow=result[i][j].recordNo;
-                                                if(recordNo != recordNoNow) {
-                                                    myChart.clear();
-                                                    recorNo = recordNoNow;
+                                                if(recordNo2!= recordNoNow) {
+                                                    myChart2.clear();
+                                                    recorNo2 = recordNoNow;
                                                 }
                                             }
 
@@ -443,7 +452,7 @@
                             },
                             error : function(errorMsg) {
                                 // alert("获取图表请求数据失败!");
-                                myChart.hideLoading();
+                                myChart2.hideLoading();
                             }
                         });
 
@@ -451,14 +460,14 @@
                         names=null;
                         option = {
                             xAxis: {
-                                min:xMin,
-                                max:xMax,
+                                min:xMin2,
+                                max:xMax2,
                                 type: 'value',
                                 scale: true
                             },
                             yAxis: {
-                                min:yMin,
-                                max:yMax,
+                                min:yMin2,
+                                max:yMax2,
                                 type: 'value',
                             },
                             series:series1
@@ -510,10 +519,10 @@
                                 }
                                 if(result.curveOk2) {
                                     $("#pressResultok2").html("OK");
-                                    document.getElementById("pressResultok").style.background= "green";
+                                    document.getElementById("pressResultok2").style.background= "green";
                                 } else {
                                     $("#pressResultok2").html("NOK");
-                                    document.getElementById("pressResultok").style.background= "red";
+                                    document.getElementById("pressResultok2").style.background= "red";
                                 }
 
                             },

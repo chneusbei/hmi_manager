@@ -1,7 +1,9 @@
 package com.plc.hmi.thread;
 
+import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.service.PropertyService;
 import com.plc.hmi.service.plcService.Plc4xCurveDataService;
+import com.plc.hmi.util.HmiUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,26 +22,29 @@ public class PlcPressCurveThread implements Runnable {
 
     @Override
     public synchronized void run() {
-        int curveFetchFrequency = propertyService.getcurveFetchFrequency();
-        int heartbeatFrequency = propertyService.getHeartbeatFrequency();
-        boolean  isdubbpress = propertyService.isDubblePress();
-//        System.out.println("curveFetchFrequency = "+curveFetchFrequency+", heartbeatFrequency"+heartbeatFrequency + ", isdubbpress"+isdubbpress);
-        int i =0;
+        int curveFetchFrequency = HmiUtils.getIntValue(propertyService.getProperty(ConfigConstants.CURVE_FETCH_FREQUENCY));
+        int heartbeatFrequency = HmiUtils.getIntValue(propertyService.getProperty(ConfigConstants.HEARTBEAT_FREQUENCY));
+        int curveFetchSleepTime =  HmiUtils.getIntValue(propertyService.getProperty(ConfigConstants.CURVE_FETCH_SLEEP_TIME));
+//        boolean  isdubbpress = propertyService.isDubblePress();
+//        System.out.println("curveFetchFrequency = "+curveFetchFrequency
+//                +", heartbeatFrequency=" +heartbeatFrequency
+//                + ", isdubbpress="+isdubbpress
+//                + ", curveFetchSleepTime="+curveFetchSleepTime);
+        int loop =0;
         while(true) {
             service.getCurveDatasFromPlc();
-            i++;
-            if(i==(heartbeatFrequency/curveFetchFrequency)) {
+            loop++;
+            if(heartbeatFrequency >= 0 && loop*curveFetchFrequency>=heartbeatFrequency) {
 //                logger.info("do heart beat >>>>>>>>>>>>>>>>>>>>>>>>>");
              service.doHeartBeat();
-             i=0;
+             loop=0;
             }
             try {
                 //休眠
 //                System.out.println("获取plc曲线数据。。。。。。。。。。。。。。。。。。。。。");
-
                 if(!service.isPlcConnected()){
-                    logger.info("cant connected to plc, get curve date thread sleep 30 seconds");
-                    Thread.sleep(30000);
+                    logger.info("cant connected to plc, get curve date thread sleep "+ curveFetchSleepTime +"seconds");
+                    Thread.sleep(curveFetchSleepTime);
                 } else {
                     Thread.sleep(curveFetchFrequency);
                 }

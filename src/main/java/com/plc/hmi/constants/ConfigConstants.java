@@ -43,7 +43,8 @@ public class ConfigConstants {
     /**
      * 系统取曲线频率，毫秒数
      */
-    public static final String GROUP_CURVE_FETCH_FREQUENCY = "curve.fetch.frequency";
+    public static final String GROUP_CURVE_FETCH = "curve.fetch";
     public static final String CURVE_FETCH_FREQUENCY = "curve.fetch.frequency";
+    public static final String CURVE_FETCH_SLEEP_TIME = "curve.fetch.sleep.time";
 
 }

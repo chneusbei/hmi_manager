@@ -14,14 +14,14 @@ public class PressCurveThread implements Runnable {
 
     @Override
     public void run() {
-        while(true) {
-            service.autoBatchInsert();
-            try {
-                //休眠两秒
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+//        while(true) {
+//            service.autoBatchInsert();
+//            try {
+//                //休眠两秒
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 }
