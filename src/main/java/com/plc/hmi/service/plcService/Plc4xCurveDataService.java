@@ -114,37 +114,46 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 //System.out.println("get curve from plc success....................................");
         }
 
+        PressureCurveEntity curve =  curveEntityList.get(0);
+        currentCurve = curve;
+        if (curve.getCurveRecording()) {
+//                startTime = this.startTime > 0 ? startTime : System.currentTimeMillis();
+//            System.out.println("******productNo="+curve.getPressDataId()+" , position="+curve.getPosition());
+            if (CollectionUtils.isEmpty(curveMap)) {
+                //如果容器是空的， 说明是新曲线， 曲线id 递增。
+                productNo ++;
+            }
+//                curve.setRecordNo(productNo);
+            if (CollectionUtils.isEmpty(curveMap.get(productNo))) {
+                List<PressureCurveEntity> curveEntityList2 = new ArrayList<PressureCurveEntity>();
+                curveEntityList2.add(curve);
+                curveMap.put(productNo, curveEntityList2);
+            } else {
+                curveMap.get(productNo).add(curve);
+            }
+        }
 
         if(curveEntityList.size() ==2) {
             //双压头时
             PressureCurveEntity curve2 =  curveEntityList.get(1);
             currentCurve2 = curve2;
             if (curve2.getCurveRecording()) {
-                productNo2 = curve2.getProductId();
-                if (CollectionUtils.isEmpty(curveMap2.get(curve2.getProductId()))) {
+                if (CollectionUtils.isEmpty(curveMap2)) {
+                    //如果容器是空的， 说明是新曲线， 曲线id 递增。
+                    productNo2 ++;
+                }
+//                curve2.setRecordNo(productNo2);
+                if (CollectionUtils.isEmpty(curveMap2.get(productNo2))) {
                     List<PressureCurveEntity> curveEntityList2 = new ArrayList<PressureCurveEntity>();
                     curveEntityList2.add(curve2);
-                    curveMap2.put(curve2.getProductId(), curveEntityList2);
+                    curveMap2.put(productNo2, curveEntityList2);
                 } else {
-                    curveMap2.get(curve2.getProductId()).add(curve2);
-                }
-            }
-        } else {
-            PressureCurveEntity curve =  curveEntityList.get(0);
-            currentCurve = curve;
-            if (curve.getCurveRecording()) {
-//                startTime = this.startTime > 0 ? startTime : System.currentTimeMillis();
-//            System.out.println("******productNo="+curve.getPressDataId()+" , position="+curve.getPosition());
-                productNo = curve.getProductId();
-                if (CollectionUtils.isEmpty(curveMap.get(curve.getProductId()))) {
-                    List<PressureCurveEntity> curveEntityList2 = new ArrayList<PressureCurveEntity>();
-                    curveEntityList2.add(curve);
-                    curveMap.put(curve.getProductId(), curveEntityList2);
-                } else {
-                    curveMap.get(curve.getProductId()).add(curve);
+                    curveMap2.get(productNo2).add(curve2);
                 }
             }
         }
+
+
 
         /*
         if(curve.getCurveRecording()) {
@@ -236,9 +245,15 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 } else if(PlcEntityEnum.equipment_operation_productNo.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //零件号
                     curveEntity.setProductId(HmiUtils.getLongValue(plcEntity.getValueOjb()));
-                }else if(PlcEntityEnum.curve_status_curve_recording.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                } else if(PlcEntityEnum.curve_status_curve_recording.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //启动标识
                     curveEntity.setCurveRecording(HmiUtils.getBooleanValue(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_status_press_flag.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //正压反压
+                    curveEntity.setPressFlag(HmiUtils.getBooleanValue(plcEntity.getValueOjb()) ? 1 : 0);
+                } else if(PlcEntityEnum.curve_data_pressure_out_range.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //压力是否超限
+                    curveEntity.setPressureOutRange(HmiUtils.getBooleanValue(plcEntity.getValueOjb()) ? 1 : 0);
                 }
 
 
@@ -265,11 +280,17 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 } else if(PlcEntityEnum.equipment_operation_productNo2.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //零件号
                     curveEntity2.setProductId(HmiUtils.getLongValue(plcEntity.getValueOjb()));
-                }else if(PlcEntityEnum.curve_status_curve_recording2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    curveEntity2.setRecordNo(HmiUtils.getLongValue(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_status_curve_recording2.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //启动标识
                     curveEntity2.setCurveRecording(HmiUtils.getBooleanValue(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_status_press_flag2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //正压反压
+                    curveEntity2.setPressFlag(HmiUtils.getBooleanValue(plcEntity.getValueOjb()) ? 1 : 0);
+                } else if(PlcEntityEnum.curve_data_pressure_out_range2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //压力是否超限
+                    curveEntity2.setPressureOutRange(HmiUtils.getBooleanValue(plcEntity.getValueOjb())  ? 1 : 0);
                 }
-
             }
 
         }
@@ -299,6 +320,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         if(null == curveEntity2.getCurveRecording()) {
             curveEntity2.setCurveRecording(false);
         }
+//        logger.info("CurveRecording = "+curveEntity.getCurveRecording() + ", gPressFlag = "+curveEntity.getPressFlag() );
         return curveEntityList;
     }
 

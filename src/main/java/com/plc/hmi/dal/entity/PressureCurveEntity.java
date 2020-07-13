@@ -15,7 +15,7 @@ public class PressureCurveEntity extends AbstractBaseEntity {
     //曲线记录开始状态
     private Boolean curveRecording;
     //位置点序号
-    private int recordNo;
+    private Long recordNo;
     //位置
     private BigDecimal position;
     //压力
@@ -28,6 +28,10 @@ public class PressureCurveEntity extends AbstractBaseEntity {
     private BigDecimal pressDate;
     //压装时间点
     private BigDecimal shortPressDate;
+    //正压反压  1是正压 2是反压
+    private int pressFlag;
+    //压力是否超限
+    private int pressureOutRange;
 
 
     /**
@@ -137,11 +141,11 @@ public class PressureCurveEntity extends AbstractBaseEntity {
         this.recordId = recordId;
     }
 
-    public int getRecordNo() {
+    public Long getRecordNo() {
         return recordNo;
     }
 
-    public void setRecordNo(int recordNo) {
+    public void setRecordNo(Long recordNo) {
         this.recordNo = recordNo;
     }
 
@@ -231,5 +235,21 @@ public class PressureCurveEntity extends AbstractBaseEntity {
 
     public void setProductCode(String productCode) {
         this.productCode = productCode;
+    }
+
+    public int getPressFlag() {
+        return pressFlag;
+    }
+
+    public void setPressFlag(int pressFlag) {
+        this.pressFlag = pressFlag;
+    }
+
+    public int getPressureOutRange() {
+        return pressureOutRange;
+    }
+
+    public void setPressureOutRange(int pressureOutRange) {
+        this.pressureOutRange = pressureOutRange;
     }
 }

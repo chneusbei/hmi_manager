@@ -106,7 +106,7 @@ public class HmiUtils  {
             try {
                 return new BigDecimal(getString(obj));
             } catch (NumberFormatException numberFormatException) {
-                logger.info("number format error" + numberFormatException.getStackTrace());
+//                logger.info("number format error" + numberFormatException.getMessage());
                 return new BigDecimal(0);
             }
         }

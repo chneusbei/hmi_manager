@@ -33,7 +33,7 @@ public class ExportController {
                          @RequestParam(value = "endDate",required = false) String endDate) {
         startDate = null==startDate ? null : startDate.replace("-","");
         endDate =  null==endDate ? null : endDate.replace("-","");
-        System.out.println("=======================startDate======="+startDate + "=======end====="+endDate);
+//        System.out.println("=======================startDate======="+startDate + "=======end====="+endDate);
 
         //获取对应的pressure_data
         List<PressureDataEntity> pressureDateList = pressureDataService.getPressureData(startDate+"000000000", endDate+"999999999");
@@ -67,8 +67,16 @@ public class ExportController {
                     + HmiConstants.CSV_PRESSURE_HEAD_PATH_PREFIX
                     + pressureDate.getPressureHeadNo();
             File headDir = new File(fileDir);
+            String fileDirPositive = fileDir+HmiConstants.CSV_OUTPUT_PATH_POSITIVE;
+            String fileDirNegative = fileDir+HmiConstants.CSV_OUTPUT_PATH_NEGATIVE;
+
             if (!headDir.exists()) {
                 headDir.mkdir();
+                //创建正压反压分包
+                File dirPositive = new File(fileDirPositive);
+                File dirNegative = new File(fileDirNegative);
+                dirPositive.mkdir();
+                dirNegative.mkdir();
             }
 
             //获取单条曲线数据
@@ -83,7 +91,18 @@ public class ExportController {
             try {
 //            OutputStream os = response.getOutputStream();
 //            CsvExportUtil.responseSetProperties(fileName, response);
-                CsvExportUtil.doExport(dataList,pressureDate, fileName, fileDir);
+                String tempFileDir = fileDir;
+                if(!CollectionUtils.isEmpty(dataList)) {
+                    PressureCurveEntity curveEntity1 = dataList.get(0);
+                    if(curveEntity1.getPressFlag() == 1) {
+                        //正压
+                        tempFileDir = fileDirPositive;
+                    } else {
+                        //反压
+                        tempFileDir = fileDirNegative;
+                    }
+                }
+                CsvExportUtil.doExport(dataList,pressureDate, fileName, tempFileDir);
 //            os.close();
             } catch (Exception e) {
                 logger.error("导出失败", e.getStackTrace());

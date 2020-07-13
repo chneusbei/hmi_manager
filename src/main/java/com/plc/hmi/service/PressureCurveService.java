@@ -1,11 +1,12 @@
 package com.plc.hmi.service;
 
-import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.dal.dao.PressureCurveDao;
 import com.plc.hmi.dal.entity.*;
+import com.plc.hmi.service.plcService.Plc4xCurveDataService;
 import com.plc.hmi.util.HmiUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jvnet.hk2.annotations.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -13,7 +14,6 @@ import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.*;
 
-import static java.lang.Boolean.TRUE;
 
 /**
  * 压力曲线服务
@@ -27,9 +27,10 @@ public class PressureCurveService extends AbstractBaseService{
     PressureDataService pressureDataService;
     @Resource
     PressureProgramService programService;
-    @Autowired
+    @Resource
     private PropertyService propertyService;
 
+    private final Log logger = LogFactory.getLog(PressureCurveService.class);
     //用户存储实时PLC曲线信息。线程安全的链表容器
     private static java.util.concurrent.ConcurrentLinkedDeque<PressureCurveEntity>
             synCurveDeque =  new java.util.concurrent.ConcurrentLinkedDeque<PressureCurveEntity>();;
@@ -122,26 +123,44 @@ public class PressureCurveService extends AbstractBaseService{
         String recordId = recordIdBuffer.toString();
         //获取最大压力及最大压力时位移。
         PressureCurveEntity MaxPresscurve = entityList.get(0);
-
-        //获取公差窗口信息
-        PressureProgramEntity pressureProgramEntity = programService.getErrandData();
         //公差窗口计算结果List
         List<ErrandResultEntity> errandResltList = new ArrayList<ErrandResultEntity>();
-        setErrandResultList(pressureProgramEntity, errandResltList);
+        //判断是否压装时压力超限
+        PressureCurveEntity lasetCurveEntity = entityList.get(entityList.size()-1);
+        boolean isPressureOutRange = false;
 
-        int i=0 ;
-        for(PressureCurveEntity curveEntity : entityList) {
-            i++;
-            curveEntity.setRecordId(recordId);
-            MaxPresscurve=MaxPresscurve.getPressForce().compareTo(curveEntity.getPressForce()) < 0 ? curveEntity : MaxPresscurve;
-            //判断公差窗口
+        if(lasetCurveEntity.getPressureOutRange() != 0) {
+            //压力超限， 直接判断压装失败
+            logger.info("压力超限， 压装失败, id="+lasetCurveEntity.getRecordId()
+                    +", productCode=" + lasetCurveEntity.getProductCode()
+                    + " productId= "+lasetCurveEntity.getProductId()
+                    + " RecordNo= "+lasetCurveEntity.getRecordNo()
+            );
+            isPressureOutRange = true;
+        } else {
+            //压力未超限， 判断公差窗口
+            //获取公差窗口信息
+            PressureProgramEntity pressureProgramEntity = programService.getErrandData();
+            setErrandResultList(pressureProgramEntity, errandResltList);
 
-            setCurveResultStatus(errandResltList, curveEntity, i==entityList.size()?true:false);
+            int i = 0;
+            for (PressureCurveEntity curveEntity : entityList) {
+                i++;
+                curveEntity.setRecordId(recordId);
+                MaxPresscurve = MaxPresscurve.getPressForce().compareTo(curveEntity.getPressForce()) < 0 ? curveEntity : MaxPresscurve;
+                //判断公差窗口
+
+                setCurveResultStatus(errandResltList, curveEntity, i == entityList.size() ? true : false);
+            }
         }
         PressureDataEntity pressureDataEntity = new PressureDataEntity();
         pressureDataEntity.setProductId(productId);
         pressureDataEntity.setRecordId(recordId);
-        pressureDataEntity.setPressResult(isCruveSuccess(errandResltList) ? "1" : "0");//需要从从公差窗口计算
+        if(isPressureOutRange) {
+            pressureDataEntity.setPressResult("0");//压力超限 1成功 0 失败
+        } else {
+            pressureDataEntity.setPressResult(isCruveSuccess(errandResltList) ? "1" : "0");//需要从从公差窗口计算
+        }
         pressureDataEntity.setMaxPress(MaxPresscurve.getPressForce());
         pressureDataEntity.setPositionOfMaxPress(MaxPresscurve.getPosition());
         pressureDataEntity.setStartDate(new BigDecimal(HmiUtils.getMillFormatDateString(entityList.get(0).getCreateTime())));

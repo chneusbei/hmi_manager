@@ -36,7 +36,7 @@ public class PlcPressCurveThread implements Runnable {
             loop++;
             if(heartbeatFrequency >= 0 && loop*curveFetchFrequency>=heartbeatFrequency) {
 //                logger.info("do heart beat >>>>>>>>>>>>>>>>>>>>>>>>>");
-             service.doHeartBeat();
+//             service.doHeartBeat();
              loop=0;
             }
             try {

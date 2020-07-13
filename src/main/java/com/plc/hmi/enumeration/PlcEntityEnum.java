@@ -5,7 +5,8 @@ public enum PlcEntityEnum {
     equipment_operation_productNo("productNo", "零件号"),
     //曲线信息-状态
     curve_status_curve_recording("curveRecording", "曲线记录开始"),
-
+    //曲线信息-正压反压
+    curve_status_press_flag("pressFlag", "正压反压"),
 
     //曲线信息-数据 curve_data
     curve_data_curPosition("curPosition", "当前位置"),
@@ -14,6 +15,8 @@ public enum PlcEntityEnum {
     curve_data_reserve0("reserve0", "预留_0"),
     curve_data_reserve1("reserve1", "预留_1"),
     curve_data_reserve2("reserve2", "预留_2"),
+    curve_data_pressure_out_range("pressureOutRange", "压力是否超限"),
+
 
     /*
     第二条曲线
@@ -22,6 +25,8 @@ public enum PlcEntityEnum {
     equipment_operation_productNo2("productNo2", "零件号"),
     //曲线信息-状态
     curve_status_curve_recording2("curveRecording2", "曲线记录开始"),
+    //曲线信息-正压反压
+    curve_status_press_flag2("pressFlag", "正压反压"),
 
 
     //曲线信息-数据 curve_data
@@ -30,7 +35,8 @@ public enum PlcEntityEnum {
     curve_data_curSpeed2("curSpeed2", "当前速度"),
     curve_data_reserve0_2("reserve0_2", "预留_0"),
     curve_data_reserve1_2("reserve1_2", "预留_1"),
-    curve_data_reserve2_2("reserve2_2", "预留_2");
+    curve_data_reserve2_2("reserve2_2", "预留_2"),
+    curve_data_pressure_out_range2("pressureOutRange", "压力是否超限");
 
 
 
