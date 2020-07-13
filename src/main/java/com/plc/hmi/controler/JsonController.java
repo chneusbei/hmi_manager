@@ -89,6 +89,7 @@ public class JsonController {
 
         List<PressureCurveEntity> list = plc4xCurveDataService.getCurveDatas();
 
+
 //        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(0L, 1L);
 //        List<List<PressureCurveEntity>>  errantList = new ArrayList<List<PressureCurveEntity>>();
 
@@ -98,7 +99,7 @@ public class JsonController {
         List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart();
         if(!CollectionUtils.isEmpty(list)) {
             PressureCurveEntity fristCurve = list.get(0);
-//            System.out.println("-----------productID=--------"+fristCurve.getProductId());
+//            System.out.println("----------fristCurve recordNo--------"+  fristCurve.getRecordNo());
             //产品信息
             ProductEntity  product = productService.getStaticProduct(HmiUtils.getString(fristCurve.getProductId()));
             if(null != product) {

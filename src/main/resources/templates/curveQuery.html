@@ -149,7 +149,7 @@
                     // alert("yMax="+yMax);
 
                     var series1=[];
-                    // var names=[];
+                    var names=[];
 
                     function setgraph() {
 
@@ -187,7 +187,9 @@
 
                                                 recordNoNow=result[i][j].recordNo;
                                                 if(recordNo != recordNoNow) {
+                                                    // console.log("recordNo=>"+recordNo +", recordNoNow=>"+recordNoNow);
                                                     myChart.clear();
+                                                    series1=[]
                                                     recordNo = recordNoNow;
                                                 }
                                             }
@@ -224,7 +226,7 @@
                                         }
                                     });
                                 }
-                                console.log("arr=>"+arr);
+                                // console.log("arr=>"+arr);
                             },
                             error : function(errorMsg) {
                                 // alert("获取图表请求数据失败!");

@@ -274,11 +274,12 @@
                         document.getElementById("yMax2").value=10;
                     }
 
-
+                    var series1=[];
+                    var names1=[];
+                    var series2=[];
+                    var names2=[];
 
                     function setgraph() {
-
-                        var series1=[]
                         $.ajax({
                             type : "post",
                             async : false, //同步执行
@@ -287,7 +288,7 @@
                             dataType : "json", //返回数据形式为json
                             success : function(result) {
                                 for(var i=0;i<result.length;i++){
-                                    names=[];//重置为空
+                                    names1=[];//重置为空
                                     var arr=[];
                                     var isErrant=true;
                                     var isSolidLine=true;
@@ -310,7 +311,8 @@
                                                 document.getElementById("productTraceCode").value=result[i][j].productTraceCode;
                                                 recordNoNow=result[i][j].recordNo;
                                                 if(recordNo != recordNoNow) {
-                                                    // myChart.clear();
+                                                    myChart.clear();
+                                                    series1=[]
                                                     recordNo = recordNoNow;
                                                 }
                                             }
@@ -356,7 +358,7 @@
                         });
 
                         // 指定图表的配置项和数据
-                        names=null;
+                        names1=null;
                         option = {
                             xAxis: {
                                 min:xMin,
@@ -379,7 +381,6 @@
 
 
                     function setgraph2() {
-                        var series1=[]
                         $.ajax({
                             type : "post",
                             async : false, //同步执行
@@ -388,7 +389,7 @@
                             dataType : "json", //返回数据形式为json
                             success : function(result) {
                                 for(var i=0;i<result.length;i++){
-                                    names=[];//重置为空
+                                    names2=[];//重置为空
                                     var arr=[];
                                     var isErrant=true;
                                     var isSolidLine=true;
@@ -411,7 +412,8 @@
                                                 document.getElementById("productTraceCode").value=result[i][j].productTraceCode;
                                                 recordNoNow=result[i][j].recordNo;
                                                 if(recordNo2!= recordNoNow) {
-                                                    // myChart2.clear();
+                                                    myChart2.clear();
+                                                    series2=[]
                                                     recordNo2 = recordNoNow;
                                                 }
                                             }
@@ -430,7 +432,7 @@
                                     }else{
                                         type="dotted";
                                     }
-                                    series1.push({
+                                    series2.push({
                                         data:arr,/*需要显示的数据*/
                                         type:'line',/*以什么方式展示*/
                                         color:color,  //折线条的颜色
@@ -457,7 +459,7 @@
                         });
 
                         // 指定图表的配置项和数据
-                        names=null;
+                        names2=null;
                         option = {
                             xAxis: {
                                 min:xMin2,
@@ -470,7 +472,7 @@
                                 max:yMax2,
                                 type: 'value',
                             },
-                            series:series1
+                            series:series2
                         };
 
                         // 使用刚指定的配置项和数据显示图表。

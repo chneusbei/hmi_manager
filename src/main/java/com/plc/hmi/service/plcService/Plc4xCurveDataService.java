@@ -123,7 +123,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 //如果容器是空的， 说明是新曲线， 曲线id 递增。
                 productNo ++;
             }
-//                curve.setRecordNo(productNo);
+                curve.setRecordNo(productNo);
             if (CollectionUtils.isEmpty(curveMap.get(productNo))) {
                 List<PressureCurveEntity> curveEntityList2 = new ArrayList<PressureCurveEntity>();
                 curveEntityList2.add(curve);
@@ -142,7 +142,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                     //如果容器是空的， 说明是新曲线， 曲线id 递增。
                     productNo2 ++;
                 }
-//                curve2.setRecordNo(productNo2);
+                curve2.setRecordNo(productNo2);
                 if (CollectionUtils.isEmpty(curveMap2.get(productNo2))) {
                     List<PressureCurveEntity> curveEntityList2 = new ArrayList<PressureCurveEntity>();
                     curveEntityList2.add(curve2);
