@@ -72,12 +72,38 @@ public class ExportController {
 
             if (!headDir.exists()) {
                 headDir.mkdir();
-                //创建正压反压分包
-                File dirPositive = new File(fileDirPositive);
-                File dirNegative = new File(fileDirNegative);
+            }
+
+            //创建正压反压分包
+            File dirPositive = new File(fileDirPositive);
+            File dirNegative = new File(fileDirNegative);
+            if(!dirPositive.exists()){
                 dirPositive.mkdir();
+            }
+
+            if(!dirNegative.exists()){
                 dirNegative.mkdir();
             }
+
+            //创建OK，NOK包
+            File dirPositiveOK = new File(fileDirPositive+HmiConstants.CSV_OUTPUT_PATH_OK);
+            if(!dirPositiveOK.exists()){
+                dirPositiveOK.mkdir();
+            }
+            File dirPositiveNOK = new File(fileDirPositive+HmiConstants.CSV_OUTPUT_PATH_NOK);
+            if(!dirPositiveNOK.exists()){
+                dirPositiveNOK.mkdir();
+            }
+            File dirNegativeOK = new File(fileDirNegative+HmiConstants.CSV_OUTPUT_PATH_OK);
+            if(!dirNegativeOK.exists()){
+                dirNegativeOK.mkdir();
+            }
+            File dirNegativeNOK = new File(fileDirNegative+HmiConstants.CSV_OUTPUT_PATH_NOK);
+            if(!dirNegativeNOK.exists()){
+                dirNegativeNOK.mkdir();
+            }
+
+
 
             //获取单条曲线数据
             List<PressureCurveEntity> dataList = pressureCurveService.getHisDate(pressureDate.getRecordId(), pressureDate.getPressureHeadNo());
@@ -100,6 +126,14 @@ public class ExportController {
                     } else {
                         //反压
                         tempFileDir = fileDirNegative;
+                    }
+                    //判断曲线是否是成功
+                    if("1".equalsIgnoreCase(pressureDate.getPressResult())) {
+                        //成功
+                        tempFileDir = tempFileDir + HmiConstants.CSV_OUTPUT_PATH_OK;
+                    } else {
+                        //失败
+                        tempFileDir = tempFileDir + HmiConstants.CSV_OUTPUT_PATH_NOK;
                     }
                 }
                 CsvExportUtil.doExport(dataList,pressureDate, fileName, tempFileDir);

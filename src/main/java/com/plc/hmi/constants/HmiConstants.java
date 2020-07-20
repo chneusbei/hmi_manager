@@ -35,6 +35,10 @@ public class HmiConstants {
     public static final String CSV_OUTPUT_PATH_NEGATIVE ="/P2";
     //每个压头对应csv文件夹前缀
     public static final String CSV_PRESSURE_HEAD_PATH_PREFIX ="/pressureHead";
+    //CSV 正压反压分包地址中的压装成功包
+    public static final String CSV_OUTPUT_PATH_OK ="/OK";
+    //CSV 正压反压分包地址中的压装成功包
+    public static final String CSV_OUTPUT_PATH_NOK ="/NOK";
 
 
     public enum PLC_TAG_GROUP {
