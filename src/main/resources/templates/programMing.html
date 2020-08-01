@@ -110,11 +110,11 @@
 <!--                    <input type="submit" value="提交修改" style="width: 100px;height:30px;background-color: #33CABB;color: white" >-->
                         <div>
                             <label>程序号：</label>
-                            <select name="programCode" v-model="list.programCode"  @change='getProgram()' style="width: 50px;margin-right: 30px;margin-left: 10px;">
-                                <option value="p1">p1+</option>
-                                <option value="p2">p1-</option>
-                                <option value="p3">p2+</option>
-                                <option value="p4">p2-</option>
+                            <select name="programCode" v-model="list.programCode"  @change='getProgram()' style="width:100px;margin-right: 30px;margin-left: 10px;">
+                                <option value="p1+" selected>p1+</option>
+                                <option value="p1-">p1-</option>
+                                <option value="p2+">p2+</option>
+                                <option value="p2-">p2-</option>
                             </select>
                             <input name="id" v-model="list.id" type="hidden" >
                         </div>
