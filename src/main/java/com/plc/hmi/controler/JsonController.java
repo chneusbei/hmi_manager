@@ -96,7 +96,11 @@ public class JsonController {
         /**
          * 公差窗口
          */
-        List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart();
+        String programCode = "p1+";
+        if(null != list && null != list.get(0)) {
+            programCode = HmiUtils.getProgrameCode("1",  HmiUtils.getString(list.get(0).getProductId()));
+        }
+        List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart(programCode);
         if(!CollectionUtils.isEmpty(list)) {
             PressureCurveEntity fristCurve = list.get(0);
 //            System.out.println("----------fristCurve recordNo--------"+  fristCurve.getRecordNo());
@@ -166,7 +170,11 @@ public class JsonController {
         /**
          * 公差窗口
          */
-        List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart();
+        String programCode = "p2+";
+        if(null != list && null != list.get(0)) {
+            programCode = HmiUtils.getProgrameCode("2", HmiUtils.getString(list.get(0).getProductId()));
+        }
+        List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart(programCode);
         if(!CollectionUtils.isEmpty(list)) {
             PressureCurveEntity fristCurve = list.get(0);
             //产品信息

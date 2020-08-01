@@ -30,7 +30,7 @@ public class PressureProgramControler {
     public PressureProgramEntity getProgram(
             @RequestParam(value = "programCode") String programCode){
         if(null == programCode || "undefined".equalsIgnoreCase(programCode)) {
-            programCode= "p1";
+            programCode= "p1+";
         }
         PressureProgramEntity entity =  pressureProgramService.getWithProgramCode(programCode);
         return entity;

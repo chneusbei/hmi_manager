@@ -128,4 +128,18 @@ public class HmiUtils  {
         matcher.appendTail(sb);
         return sb.toString();
     }
+
+    public static String getProgrameCode(String headNo, String productId) {
+        //获取公差窗口信息
+        StringBuffer programCodeBuffer = new StringBuffer("p").append(headNo);
+        if("1".equalsIgnoreCase(productId)) {
+            //1是正压， 2是反压
+            programCodeBuffer.append("+");
+        } else if("2".equalsIgnoreCase(productId)) {
+            programCodeBuffer.append("-");
+        } else {
+            programCodeBuffer.append("+");
+        }
+        return programCodeBuffer.toString();
+    }
 }

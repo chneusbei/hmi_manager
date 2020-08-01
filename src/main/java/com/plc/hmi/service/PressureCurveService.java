@@ -99,13 +99,13 @@ public class PressureCurveService extends AbstractBaseService{
 
             }
             if(!CollectionUtils.isEmpty(pressureHeadList1)) {
-                InsertPressureDate(pressureHeadList1);
+                InsertPressureDate(pressureHeadList1, "1");
             }
             if(!CollectionUtils.isEmpty(pressureHeadList2)) {
-                InsertPressureDate(pressureHeadList2);
+                InsertPressureDate(pressureHeadList2, "2");
             }
         } else {
-            InsertPressureDate(entityList);
+            InsertPressureDate(entityList, "1");
         }
         /**
          * 1 插入pressure_curve
@@ -113,7 +113,7 @@ public class PressureCurveService extends AbstractBaseService{
         pressureCurveDao.batchInsert(entityList);
     }
 
-    private void InsertPressureDate(List<PressureCurveEntity> entityList) {
+    private void InsertPressureDate(List<PressureCurveEntity> entityList, String pressHeadNo) {
         //生成 RECORD_ID， 一个产品一次压装对应一个RECORD_ID,一个产品可以进行多次压装
         //RECORD_ID生成规则，产品ID+当前时间戳
         Long productId = entityList.get(0).getProductId();
@@ -140,7 +140,8 @@ public class PressureCurveService extends AbstractBaseService{
         } else {
             //压力未超限， 判断公差窗口
             //获取公差窗口信息
-            PressureProgramEntity pressureProgramEntity = programService.getErrandData();
+            String programCode = HmiUtils.getProgrameCode(pressHeadNo, HmiUtils.getString(entityList.get(0).getProductId()));
+            PressureProgramEntity pressureProgramEntity = programService.getErrandData(programCode);
             setErrandResultList(pressureProgramEntity, errandResltList);
 
             int i = 0;

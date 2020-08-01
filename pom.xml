@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.plc</groupId>
     <artifactId>hmi</artifactId>
-    <version>0.1</version>
+    <version>1</version>
     <name>hmi</name>
     <!-- 用于生成war包 -->
 <!--    <packaging>war</packaging>-->

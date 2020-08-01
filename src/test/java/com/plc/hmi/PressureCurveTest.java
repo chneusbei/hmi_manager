@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//@SpringBootTest
+@SpringBootTest
 public class PressureCurveTest {
     @Autowired
     private PressureCurveService service;
@@ -21,15 +21,17 @@ public class PressureCurveTest {
 
 
 
-//    @Test
+    @Test
     public void testSql() {
-/*
+
         List<PressureCurveEntity> entityList = new ArrayList<PressureCurveEntity>();
         for(int i=1; i<11; i++) {
             PressureCurveEntity entity = new PressureCurveEntity();
 //        entity.setId(1L);
             entity.setProductId(1L);
-            entity.setRecordNo(3);
+            entity.setPressFlag(1);
+            entity.setPressureOutRange(0);
+            entity.setRecordNo(3L);
             entity.setPosition(new BigDecimal(3.0*i));
             entity.setPressForce(new BigDecimal(0.5*i));
             entity.setPressDate(new BigDecimal(20200409232606003L+(i*1000)));
@@ -44,7 +46,7 @@ public class PressureCurveTest {
 //        service.curve2queue(entityList);
 //        pressCurveThread = new PressCurveThread(service) ;
 //        pressCurveThread.run();
-//        service.batchInsert(entityList);
+        service.batchInsert(entityList);
 //        service.insert(entity);
 //        List<PressureCurveEntity> resultList = service.getCurrDate();
         List<PressureCurveEntity> hisList =service.getHisDateByCode(0L);
@@ -74,7 +76,7 @@ public class PressureCurveTest {
         String temp9=deque.remove();
         System.out.println("END----------------");
 
-         */
+*/
     }
 
 //    @Test

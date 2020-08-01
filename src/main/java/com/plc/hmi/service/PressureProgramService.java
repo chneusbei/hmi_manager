@@ -38,7 +38,7 @@ public class PressureProgramService extends AbstractBaseService{
      * @param
      * @return
      */
-    public PressureProgramEntity getErrandData() {
+    public PressureProgramEntity getErrandData(String programCode) {
         boolean refresh =false;
         if(refreshTimeMillion > 0) {
             //1分钟从数据库获取一次
@@ -52,7 +52,7 @@ public class PressureProgramService extends AbstractBaseService{
 
         if(refresh) {
 //            programMap = pressureProgramDao.getAllDatas();
-            pressureProgramEntity = pressureProgramDao.getWithProgramCode("p1");
+            pressureProgramEntity = pressureProgramDao.getWithProgramCode(programCode);
             refreshTimeMillion = System.currentTimeMillis();
         }
         return pressureProgramEntity;
@@ -65,8 +65,8 @@ public class PressureProgramService extends AbstractBaseService{
      * @param
      * @return
      */
-    public List<List<PressureCurveEntity>> getErrandDataforChart() {
-        return toChartData(getErrandData());
+    public List<List<PressureCurveEntity>> getErrandDataforChart(String programcode) {
+        return toChartData(getErrandData(programcode));
     }
 
     /**
