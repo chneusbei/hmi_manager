@@ -30,9 +30,9 @@ public class HmiConstants {
     //CSV 文件写入地址
     public static final String CSV_OUTPUT_PATH="D:/csv";
     //CSV 正压反压分包地址 -正压
-    public static final String CSV_OUTPUT_PATH_POSITIVE ="/P1";
+    public static final String CSV_OUTPUT_PATH_POSITIVE ="/正压";
     //CSV 正压反压分包地址 -反压
-    public static final String CSV_OUTPUT_PATH_NEGATIVE ="/P2";
+    public static final String CSV_OUTPUT_PATH_NEGATIVE ="/反压";
     //每个压头对应csv文件夹前缀
     public static final String CSV_PRESSURE_HEAD_PATH_PREFIX ="/pressureHead";
     //CSV 正压反压分包地址中的压装成功包

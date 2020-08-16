@@ -76,6 +76,9 @@ public class PressureProgramService extends AbstractBaseService{
      */
     private List<List<PressureCurveEntity>> toChartData(PressureProgramEntity pressureProgramEntity) {
         List<List<PressureCurveEntity>> curveList = new ArrayList<>();
+        if(null == pressureProgramEntity) {
+            return curveList;
+        }
         if(pressureProgramEntity.getErrandType1()>=0) {
             this.setErrandLineData(curveList, pressureProgramEntity.getErrandType1(),
                     pressureProgramEntity.getPositionMin1(), pressureProgramEntity.getPositionMax1(),
