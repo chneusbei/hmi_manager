@@ -83,19 +83,23 @@ public class PressureProgramService extends AbstractBaseService{
             this.setErrandLineData(curveList, pressureProgramEntity.getErrandType1(),
                     pressureProgramEntity.getPositionMin1(), pressureProgramEntity.getPositionMax1(),
                     pressureProgramEntity.getPressMin1(), pressureProgramEntity.getPressMax1());
-        } else  if(pressureProgramEntity.getErrandType2()>=0) {
+        }
+        if(pressureProgramEntity.getErrandType2()>=0) {
             this.setErrandLineData(curveList, pressureProgramEntity.getErrandType2(),
                     pressureProgramEntity.getPositionMin2(), pressureProgramEntity.getPositionMax2(),
                     pressureProgramEntity.getPressMin2(), pressureProgramEntity.getPressMax2());
-        } else  if(pressureProgramEntity.getErrandType3()>=0) {
+        }
+        if(pressureProgramEntity.getErrandType3()>=0) {
             this.setErrandLineData(curveList, pressureProgramEntity.getErrandType3(),
                     pressureProgramEntity.getPositionMin3(), pressureProgramEntity.getPositionMax3(),
                     pressureProgramEntity.getPressMin3(), pressureProgramEntity.getPressMax3());
-        } else  if(pressureProgramEntity.getErrandType4()>=0) {
+        }
+        if(pressureProgramEntity.getErrandType4()>=0) {
             this.setErrandLineData(curveList, pressureProgramEntity.getErrandType4(),
                     pressureProgramEntity.getPositionMin4(), pressureProgramEntity.getPositionMax4(),
                     pressureProgramEntity.getPressMin4(), pressureProgramEntity.getPressMax4());
-        } else  if(pressureProgramEntity.getErrandType5()>=0) {
+        }
+        if(pressureProgramEntity.getErrandType5()>=0) {
             this.setErrandLineData(curveList, pressureProgramEntity.getErrandType5(),
                     pressureProgramEntity.getPositionMin5(), pressureProgramEntity.getPositionMax5(),
                     pressureProgramEntity.getPressMin5(), pressureProgramEntity.getPressMax5());
