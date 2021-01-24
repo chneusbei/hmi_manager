@@ -273,6 +273,7 @@ public class PressureCurveService extends AbstractBaseService{
                 break;
             case 3 :
                 //右-下限制窗口
+                 //穿过右边实线场景，存在BUG，会判定成功
                 /*
                   曲线必须在窗口下限以上通过窗口，不能碰到窗口右边界。在窗口中至少找到一个测量点
                   1.未达到最小位移 失败
@@ -307,6 +308,7 @@ public class PressureCurveService extends AbstractBaseService{
                         errandResultEntity.setMinPressSucess(false);
                         break;
                     }
+
                 }
 
                 break;
@@ -316,6 +318,7 @@ public class PressureCurveService extends AbstractBaseService{
                 break;
             case 5 :
                 //峰值窗口
+                // 只测试了NOK场景
                 /**
                  * 测量曲线必须在窗口上边界以下通过，不能碰到窗口左边界和右边界。曲线必须在
                  *  窗口外部开始和结束。在窗口里至少找到一个测量点。
@@ -371,6 +374,7 @@ public class PressureCurveService extends AbstractBaseService{
                 break;
             case 6 :
                 //左-上限制窗口
+                //穿过左侧实现场景，存在BUG
                 /*
                  曲线必须在窗口上边界下面通过，不能碰到窗口左边界。曲线可在窗口内开始或结
                 束。在窗口中必须至少找到一个测量点
@@ -424,20 +428,21 @@ public class PressureCurveService extends AbstractBaseService{
                     }
                 }
                 //2 判断最后一个点是否符合要求, 条件 ：大于等于最小位移、小于等于最大位移、大于等于最小压力，小于等于最大压力
+                // 最后一个点不是最高点，是0点， 所有最后一个点的判断都不对
                 if(isLastOne) {
-                    if (curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >= 0
-                            && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) <= 0 ) {
-
-                        if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0
-                                && curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
-                            errandResultEntity.setMaxPressSucess(false);
-                            break;
-                        }
+                    if (curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) <= 0
+                            || curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) >= 0
+                            || curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0
+                            || curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0
+                    ) {
+                        errandResultEntity.setMaxPressSucess(false);
+                        break;
                     }
                 }
                 break;
             case 9 :
                 //右侧结束窗口
+                // 最后一个点不是最高点，是0点， 所有最后一个点的判断都不对
                 /*
                 曲线必须在窗口上下边界通过，且不碰到窗口右边界。在窗口里必须找到一个测量点，曲线必须在窗口内结束
                 1.不能触碰上下压力边界
@@ -457,17 +462,17 @@ public class PressureCurveService extends AbstractBaseService{
 
 
                 //2 判断最后一个点是否符合要求, 条件 ：大于等于最小位移、小于等于最大位移、大于等于最小压力，小于等于最大压力
+                /*
                 if(isLastOne) {
-                    if (curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >= 0
-                            && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) <= 0
-                            ) {
-                        if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0
-                                || curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) >= 0) {
+                    if (curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) <= 0
+                            || curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) >= 0
+                           || curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0
+                                || curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
                             errandResultEntity.setMaxPressSucess(false);
                             break;
-                        }
                     }
                 }
+                 */
                 break;
             case 10 :
                 //平均值窗口
@@ -536,32 +541,32 @@ public class PressureCurveService extends AbstractBaseService{
 
         //设置公差窗口默认值
         for(ErrandResultEntity entity : errandResltList) {
-            if("0".equals(entity.getErrandType())) {
+            if(0==entity.getErrandType()) {
                 //最大位移窗口
                 entity.setMinPositionFlag(false);
-            } else if("1".equals(entity.getErrandType())) {
+            } else if(1==entity.getErrandType()) {
                 //最大压力窗口
                 entity.setMinPressFlag(false);
-            } else if("2".equals(entity.getErrandType())) {
+            } else if(2==entity.getErrandType()) {
                 //配合窗口
                 entity.setMinPositionFlag(false);
                 entity.setMaxPositionFlag(false);
-            } else if("3".equals(entity.getErrandType())) {
+            } else if(3==entity.getErrandType()) {
                 //右-下限制窗口
                 entity.setMinPositionFlag(false);
 //                entity.setMaxPressSucess(false);
-            } else if("5".equals(entity.getErrandType())) {
+            } else if(5==entity.getErrandType()) {
                 //峰值窗口
 //                entity.setHasPointBeforeMinPosition(false);
 //                entity.setHasPointAfterMaxPosition(false);
                 entity.setMinPressFlag(false);
-            } else if("6".equals(entity.getErrandType())) {
+            } else if(6==entity.getErrandType()) {
                 //左-上限制窗口
                 entity.setMinPressFlag(false);
-            } else if("8".equals(entity.getErrandType())) {
+            } else if(8==entity.getErrandType()) {
                 //顶部结束窗口
                 entity.setMinPositionFlag(false);
-            } else if("9".equals(entity.getErrandType())) {
+            } else if(9==entity.getErrandType()) {
                 //右侧结束窗口
             }
         }
@@ -593,7 +598,7 @@ public class PressureCurveService extends AbstractBaseService{
                 hasPointBeforeMinPosition = true;
             }
 */
-            if ("0".equals(entity.getErrandType())) {
+            if (0==entity.getErrandType()) {
                 //最大位移窗口
                 if(!entity.isMaxPositionSucess()) {
                     result = false;
@@ -607,7 +612,7 @@ public class PressureCurveService extends AbstractBaseService{
                     maxPressFlag = true;
                 }
 //                entity.setMinPositonSucess(false);
-            } else if ("1".equals(entity.getErrandType())) {
+            } else if (1==entity.getErrandType()) {
                 //最大压力窗口
                 if(!entity.isMaxPressSucess()) {
                     result = false;
@@ -621,7 +626,7 @@ public class PressureCurveService extends AbstractBaseService{
                     maxPressFlag = true;
                 }
 //                entity.setMinPressSucess(false);
-            } else if ("2".equals(entity.getErrandType())) {
+            } else if (2==entity.getErrandType()) {
                 //配合窗口
                 if(! entity.isMinPressSucess() || !entity.isMaxPressSucess()) {
                     result = false;
@@ -638,7 +643,7 @@ public class PressureCurveService extends AbstractBaseService{
                 }
 //                entity.setMinPositonSucess(false);
 //                entity.setMaxPositonSucess(false);
-            } else if ("3".equals(entity.getErrandType())) {
+            } else if (3==entity.getErrandType()) {
                 //右-下限制窗口
 //                entity.setMinPositonSucess(false);
 //                entity.setHasPointBeforeMinPosition(false);
@@ -655,7 +660,7 @@ public class PressureCurveService extends AbstractBaseService{
                     maxPressFlag = true;
                 }
 
-            } else if ("5".equals(entity.getErrandType())) {
+            } else if (5==entity.getErrandType()) {
                 //峰值窗口
                 if(!entity.isMaxPressSucess()) {
                     result = false;
@@ -669,7 +674,7 @@ public class PressureCurveService extends AbstractBaseService{
                     maxPressFlag = true;
                 }
 //                entity.setMinPressSucess(false);
-            } else if ("6".equals(entity.getErrandType())) {
+            } else if (6==entity.getErrandType()) {
                 //左-上限制窗口
                 if(!entity.isMaxPressSucess()) {
                     result = false;
@@ -683,7 +688,7 @@ public class PressureCurveService extends AbstractBaseService{
                     maxPressFlag = true;
                 }
 //                entity.setMinPressSucess(false);
-            } else if ("8".equals(entity.getErrandType())) {
+            } else if (8==entity.getErrandType()) {
                 //顶部结束窗口
                 if(!entity.isMaxPressSucess()) {
                     result = false;
@@ -697,7 +702,7 @@ public class PressureCurveService extends AbstractBaseService{
                     maxPressFlag = true;
                 }
 //                entity.setHasPointBeforeMinPosition(false);
-            } else if ("9".equals(entity.getErrandType())) {
+            } else if (9==entity.getErrandType()) {
                 //右侧结束窗口
                 if(!entity.isMinPressSucess() ||  !entity.isMaxPressSucess()) {
                     result = false;

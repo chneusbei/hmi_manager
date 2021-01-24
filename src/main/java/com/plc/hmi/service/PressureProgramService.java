@@ -49,7 +49,7 @@ public class PressureProgramService extends AbstractBaseService{
         if(null == pressureProgramEntity) {
             refresh = true;
         }
-
+//        refresh = true;
         if(refresh) {
 //            programMap = pressureProgramDao.getAllDatas();
             pressureProgramEntity = pressureProgramDao.getWithProgramCode(programCode);
@@ -207,12 +207,12 @@ public class PressureProgramService extends AbstractBaseService{
                 //右侧 实线
                 lineRight.add(getPressureCurveEntity(positionMax,pressMin, true));
                 lineRight.add(getPressureCurveEntity(positionMax,pressMax, true));
-                //下 实线
-                lineBottom.add(getPressureCurveEntity(positionMin,pressMin, true));
-                lineBottom.add(getPressureCurveEntity(positionMax,pressMin, true));
-                //上 虚线
-                lineTop.add(getPressureCurveEntity(positionMin,pressMax, false));
-                lineTop.add(getPressureCurveEntity(positionMax,pressMax, false));
+                //下 虚线
+                lineBottom.add(getPressureCurveEntity(positionMin,pressMin, false));
+                lineBottom.add(getPressureCurveEntity(positionMax,pressMin, false));
+                //上 实线
+                lineTop.add(getPressureCurveEntity(positionMin,pressMax, true));
+                lineTop.add(getPressureCurveEntity(positionMax,pressMax, true));
                 curveList.add(lineLeft);
                 curveList.add(lineRight);
                 curveList.add(lineBottom);
