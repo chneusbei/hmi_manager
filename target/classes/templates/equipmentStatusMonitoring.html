@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>设备状态监控</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <style>
+        .imagetable{
+            border:2px solid black;
+            width: 80%;
+            height: 250px;
+            margin-left: 100px;
+        }
+        table.imagetable {
+            font-family: verdana,arial,sans-serif;
+            font-size:15px;
+            color:#333333;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table.imagetable th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+        }
+        table.imagetable td {
+            background:white ;
+            border-width: 1px;
+            border-color: #999999;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+            <script src="test.js"></script>
+            <main class="lyear-layout-content">
+                <br>
+                <table class="imagetable">
+                    <tr>
+                        <td colspan="4" align="center"><h4>设备状态</h4></td>
+                    </tr>
+                    <tr>
+                        <template v-for="(item,index) in listPlcEntity1.slice(0, 3)">
+                            <td >{{item.name}}&nbsp;
+                                <button type="button" disabled="disabled" :class="item.valueOjb==true?'btn btn-success':'btn btn-danger'"></button>
+
+                                <!--<input type="radio" :checked="item.valueOjb">-->
+                        </template>
+                    </tr>
+                    <tr>
+                        <template v-for="(item,index) in listPlcEntity1.slice(3, 6)">
+                            <td >{{item.name}}&nbsp;<button disabled="disabled" type="button" :class="item.valueOjb==true?'btn btn-success':'btn btn-danger'"></button>
+                            </td>
+                        </template>
+                   <!--     <td  align="center">当前位置&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="curve.position">&nbsp;&nbsp;mm </td>
+                        <td>当前压力&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="curve.pressForce">&nbsp;&nbsp;kn</td>
+                    </tr>
+                    <tr>
+                        <td align="center">&nbsp;&nbsp;&nbsp;当前速度&nbsp;&nbsp;<input type="text" style="width: 80px" v-model="curve.curSpeed">&nbsp;&nbsp;mm/s </td>
+                        <td></td>
+                    </tr>-->
+
+
+
+
+                </table>
+                <br>
+<!--                <div class="imagetable">-->
+<!--                    <div>-->
+<!--                        <div colspan="2" align="center"><h4>当前数据</h4></div>-->
+<!--                    </div>-->
+<!--                    <span v-for="(item,index) in curve">-->
+<!--                    <span  align="center">{{item.name}}&nbsp;&nbsp;<input type="text" v-model="item.valueOjb"  disabled="disabled"  style="width: 80px" >&nbsp;&nbsp;-->
+<!--                         <span v-if="item.name=='当前位置'">mm</span>-->
+<!--                         <span v-if="item.name=='当前压力'">kn</span>-->
+<!--                         <span v-if="item.name=='当前速度'">mm/s</span>-->
+<!--                         </span>-->
+<!--                    <div v-if="index%2==0"></div>-->
+<!--                </span>-->
+<!--                </div>-->
+                <table class="imagetable">
+                    <tr>
+                        <td colspan="2" align="center"><h4>当前数据</h4></td>
+                    </tr>
+                    <tr>
+                        <td  align="center">当前位置&nbsp;&nbsp;<input type="text" style="width: 100px" disabled="disabled"  v-model="curve.position">&nbsp;&nbsp;mm </td>
+                        <td>当前压力&nbsp;&nbsp;<input type="text" style="width: 100px" v-model="curve.pressForce" disabled="disabled"  >&nbsp;&nbsp;kn</td>
+                    </tr>
+                    <tr>
+                        <td align="center">&nbsp;&nbsp;&nbsp;当前速度&nbsp;&nbsp;<input type="text" style="width: 100px" v-model="curve.curSpeed" disabled="disabled" >&nbsp;&nbsp;mm/s </td>
+                        <td></td>
+                    </tr>
+                </table>
+
+                <table class="imagetable">
+                        <tr>
+                            <td  colspan="7" align="center"><h4>安全监控</h4></td>
+                        </tr>
+                    <br>
+
+                    <tr>
+                        <td v-for="item in listPlcEntity" align="center" >{{item.name}}&nbsp;&nbsp;<button type="button" disabled="disabled" :class="item.valueOjb==true?'btn btn-success':'btn btn-danger'"></button></td>
+                    </tr>
+                </table>
+            </main>
+            <!--End 页面主要内容-->
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
+</div>
+<script type="module">
+    var end=-1
+    new Vue({
+        el:"#app",
+        data:{
+            monitoring:{
+                place:'1',
+                stress:'2',
+                speed:'3'
+            },
+            listPlcEntity:{},
+            intervalId: null,
+            listPlcEntity1:[],
+            curve:{}
+        },methods:{
+            getEquipmentStatus(){
+                axios.get("/getEquipmentStatus").then(result=>{
+                    this.listPlcEntity1=result.data;
+                })
+            },getCurveStatus(){
+                axios.get("/getCurrentDate").then(result=>{
+                    this.curve=result.data;
+                })
+            },
+            timer(){
+                if (this.intervalId!=null){/*代表计时器已经启动*/
+                    return ;
+                }
+                this.intervalId = setInterval(() => {
+                    this.getEquipmentStatus();
+                    this.getCurveStatus();
+                }, 1000);
+            },
+            getOperation(){
+                axios.get("/getOperation").then(result=>{
+                    this.listPlcEntity=result.data;
+                })
+            }
+        }, created(){
+            this.timer();
+            this.getEquipmentStatus();
+            this.getOperation();
+        },destroyed () {
+            // （很重要）当跳转到其他页面的时候，要在生命周期的destroyed里清空this.cdTimer，不然会出错
+            clearTimeout(this.intervalId)
+
+        },
+    })
+</script>
+</body>
+</html>

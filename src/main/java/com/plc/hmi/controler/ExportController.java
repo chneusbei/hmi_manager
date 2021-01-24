@@ -112,7 +112,18 @@ public class ExportController {
                 continue;
             }
             // 设置导出文件名
-            String fileName = "curveData_"+pressureDate.getRecordId()+"_"+pressureDate.getStartDate()+"_"+ ".csv";
+            String traceCode = dataList.get(0).getTraceCode();
+            traceCode = traceCode == null ? "":traceCode ;
+//            String fileName = "curveData_"+pressureDate.getRecordId()+"_"+pressureDate.getStartDate()+"_"+ traceCode+".csv";
+            StringBuffer sb = new StringBuffer();
+            sb.append("curveData_")
+                    .append(pressureDate.getRecordId())
+                    .append("_")
+                    .append(pressureDate.getStartDate())
+                    .append("_")
+                    .append(traceCode)
+                    .append(".csv");
+            String fileName = sb.toString();
             // 文件导出
             try {
 //            OutputStream os = response.getOutputStream();

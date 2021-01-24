@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>账户管理</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <script src="vue.min.js"></script>
+    <script src="axios.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+            <script src="test.js"></script>
+            <main  class="lyear-layout-content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-toolbar clearfix">
+
+                                    <div class="toolbar-btn-action">
+                                        <a class="btn btn-primary m-r-5 example-p-1" href="/createAnAccount" > 新增</a>
+
+                                    </div>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr >
+                                                <th>角色</th>
+                                                <th>用户名</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr v-for="o in data.list">
+                                                <td>{{o.userRoleEntity.roleName}}</td>
+                                                <td><font class="text-success">{{o.userName}}</font></td>
+                                                <td>
+                                                    <div class="btn-group">
+
+                                                        <a class="btn btn-xs btn-default" :href="'/updateOperatorRole?id='+o.id+''" title="修改" data-toggle="tooltip">修改</a>
+                                                        <a class="btn btn-xs btn-default" :href="'/deleteUser?id='+o.id+''" title="删除" data-toggle="tooltip" id="deleteUser">删除</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <ul class="pagination">
+                                        <li>&nbsp;&nbsp;&nbsp;&nbsp;<button @click="getUser()" style="background-color:darkgray">首页</button>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                        <li>&nbsp;&nbsp;&nbsp;&nbsp;<button @click="data.hasPreviousPage && getUser(data.prePage)" style="background-color:darkgray">上一页</button>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                        <li>&nbsp;&nbsp;&nbsp;&nbsp;<button @click="data.hasNextPage && getUser(data.pageNum+1)" style="background-color: darkgray">下一页</button>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                                        <li >&nbsp;&nbsp;&nbsp;&nbsp;<button @click="getUser(data.pages)" style="background-color: darkgray">尾页</button></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </main>
+            <!--End 页面主要内容-->
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
+</div>
+<script type="module">
+    new Vue({
+        el: "#app",
+        data: {
+           data:{},
+           userName:null
+        }, methods: {
+            getUser(index=1){
+                let params = new URLSearchParams();
+                params.append('userName', this.userName);
+                params.append('index', index);
+                axios.post("/getUserList",params).then(result=>{
+                    this.data=result.data;
+                })
+            },
+        },created(){
+            this.getUser();
+        }
+
+    })
+</script>
+
+</body>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

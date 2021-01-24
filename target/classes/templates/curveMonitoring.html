@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="2">
+    <title>压装曲线监控</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+
+            <script src="test.js"></script>
+            <main class="lyear-layout-content">
+                监控-压装曲线监控
+                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                <div id="main" style="width: 90%;height:600px;"></div>
+                <form action="/curveMonitoring">
+                    <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;
+                        X轴起始值：<input type="text" name="pressDataId"  th:value="${param.pressDataId}" > <input type="submit" value="确定"></div>
+                </form>
+
+
+                <script type="text/javascript" src="js/jquery.min.js"></script>
+                <script type="text/javascript" src="js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+                <script type="text/javascript" src="js/main.min.js"></script>
+                <script type="text/javascript">
+                    function getQueryVariable(variable)
+                    {
+                        var query = window.location.search.substring(1);
+                        var vars = query.split("&");
+                        for (var i=0;i<vars.length;i++) {
+                            var pair = vars[i].split("=");
+                            if(pair[0] == variable){return pair[1];}
+                        }
+                        return(false);
+                    }
+
+
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('main'));
+                    var names=[];
+                    var pressDataId=getQueryVariable("pressDataId");
+                    if(pressDataId==false){
+                        pressDataId=0;
+                    }
+                    $.ajax({
+                        type : "post",
+                        async : false, //同步执行
+                        url : "http://localhost:8080/getHisDateByCode?pressDataId="+pressDataId,
+                        data : {},
+                        dataType : "json", //返回数据形式为json
+                        success : function(result) {
+                            for(var i=0;i<result.length;i++){
+                                names.push(result[i].shortPressDate); //X名称
+                            }
+                            console.log("names=>"+names);
+                        },
+                        error : function(errorMsg) {
+                            // alert("获取图表请求数据失败!");
+                            myChart.hideLoading();
+                        }
+                    })
+                    var arr=[];
+                    $.ajax({
+                        type : "post",
+                        async : false, //同步执行
+                        url : "http://localhost:8080/getHisDateByCode?pressDataId="+pressDataId,
+                        data : {},
+                        dataType : "json", //返回数据形式为json
+                        success : function(result) {
+                            for(var i=0;i<result.length;i++){
+                                arr.push(result[i].pressForce);//y
+                            }
+                            console.log("arr=>"+arr);
+                        },
+                        error : function(errorMsg) {
+                            // alert("获取图表请求数据失败!");
+                            myChart.hideLoading();
+                        }
+                    })
+                    // 指定图表的配置项和数据
+                    option = {
+                        xAxis: {
+                            type: 'category',
+                            data: names
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [{
+                            data:arr,
+                            type: 'line',
+                            // 显示数值
+                            itemStyle : { normal: {label : {show: true}}}
+                        }]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+
+                </script>
+
+            </main>
+            <!--End 页面主要内容-->
+        </div>
+    </div>
+
+</div>
+
+<script type="module">
+
+   /* new Vue({
+        el:"#app",
+        data:{
+
+        },methods:{
+
+        }
+    })*/
+</script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

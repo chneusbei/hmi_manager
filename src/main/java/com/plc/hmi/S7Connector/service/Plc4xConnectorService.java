@@ -201,8 +201,18 @@ public class Plc4xConnectorService {
 
             } else if("BOOL".equalsIgnoreCase(query.getDataType())) {
                 writeBuilder.addItem(query.getName(), query.getFieldQuery(), query.getValueOjb());
+            }  else if("CHAR".equalsIgnoreCase(query.getDataType())) {
+//                String str = query.getFieldQuery();
+//                str = str.replace("CHAR","BOOL");
+//                str = str.replace("DBB","DBX");
+//                str = str.replace("CHAR","REAL");
+//                str = str.replace("DBB","DBD");
+//                writeBuilder.addItem(query.getName(), query.getFieldQuery(),ca);
+//                writeBuilder.addItem(query.getName(),str,Float.valueOf("100").floatValue());
+//                writeBuilder.addItem("traceCode0","%DB300.DBX84.0:BOOL", query.getValueOjb());
+                //%DB300.DBX84.0:BOOL
+                //%DB300.DBX3.0:BOOL
             }
-
         }
         PlcWriteRequest writeRequest = writeBuilder.build();
         PlcWriteResponse response = null;
@@ -213,7 +223,7 @@ public class Plc4xConnectorService {
             if(!CollectionUtils.isEmpty(fieldNames)) {
                 for(Object fieldName : fieldNames) {
                     if (!"systemFlagTag".equals(fieldName)) {
-                        logger.info("fieldName = %， returnCode = %" + fieldName + ",  " + response.getResponseCode(String.valueOf(fieldName)));
+                        logger.info("fieldName = " + fieldName + ",  returnCode= " + response.getResponseCode(String.valueOf(fieldName)));
                     }
                 }
             }

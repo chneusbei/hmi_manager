@@ -70,37 +70,24 @@ public class JsonController {
 
     @RequestMapping("/getCurveQueryByCode")
     public String getCurveQueryByCode(){
-        /*
-        0
-            1
-            2
-            5
-
-            下进右出
-            下进下出
-            左进右出
-            左进上出
-            下进不出
-            左进右不出
-         */
         /**
          *  曲线信息
          * */
 
         List<PressureCurveEntity> list = plc4xCurveDataService.getCurveDatas();
 
-
-//        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(0L, 1L);
-//        List<List<PressureCurveEntity>>  errantList = new ArrayList<List<PressureCurveEntity>>();
-
         /**
          * 公差窗口
          */
-        String programCode = "p1+";
-        if(null != list && null != list.get(0)) {
-            programCode = HmiUtils.getProgrameCode("1",  HmiUtils.getString(list.get(0).getProductId()));
+        boolean showErrantd = HmiUtils.getBooleanValue(propertyService.getProperty(ConfigConstants.ERRAND_USE_FLAG));
+        List<List<PressureCurveEntity>> errantList = new ArrayList<List<PressureCurveEntity>>();
+        if (showErrantd) {
+            String programCode = "p1+";
+            if (null != list && null != list.get(0)) {
+                programCode = HmiUtils.getProgrameCode("1", HmiUtils.getString(list.get(0).getProductId()));
+            }
+            errantList = programService.getErrandDataforChart(programCode);
         }
-        List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart(programCode);
         if(!CollectionUtils.isEmpty(list)) {
             PressureCurveEntity fristCurve = list.get(0);
 //            System.out.println("----------fristCurve recordNo--------"+  fristCurve.getRecordNo());
@@ -114,50 +101,7 @@ public class JsonController {
             errantList.add(list);
         }
 
-
-//        List<List<PressureCurveEntity>> lists=new ArrayList<List<PressureCurveEntity>>();
-        // lists=curveDataService.getCurveDatas();
-//       List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(1L, 1l);
-//       List<List<PressureCurveEntity>>  errantList = programService.getDataforChart(1L);
-//       errantList.add(list);
-/*
-        List<PressureCurveEntity> list1=new ArrayList<PressureCurveEntity>();
-        PressureCurveEntity pc=new PressureCurveEntity();
-        pc.setErrant(false);
-        pc.setSolidLine(false);
-        pc.setPressForce(new BigDecimal("3") );
-        list1.add(pc);
-
-        PressureCurveEntity pc1=new PressureCurveEntity();
-        pc1.setErrant(false);
-        pc1.setSolidLine(false);
-        pc1.setPressForce(new BigDecimal("6") );
-        list1.add(pc1);
-
-        List<PressureCurveEntity> list2=new ArrayList<PressureCurveEntity>();
-        PressureCurveEntity pc3=new PressureCurveEntity();
-        pc3.setErrant(true);
-        pc3.setSolidLine(true);
-        pc3.setPressForce(new BigDecimal("7") );
-        list2.add(pc3);
-
-        PressureCurveEntity pc4=new PressureCurveEntity();
-        pc4.setErrant(true);
-        pc4.setSolidLine(true);
-        pc4.setPressForce(new BigDecimal("9") );
-        list2.add(pc4);
-
-
-       lists.add(list);
-       lists.add(list1);
-       lists.add(list2);
-
-
-        String json = JSON.toJSONString(lists);
-        */
         String json = JSON.toJSONString(errantList);
-//        System.out.println(json);
-//        System.out.println("-----------------------------------------");
         return json;
     }
 
@@ -197,6 +141,8 @@ public class JsonController {
 //        plc4xCurveStatusService.setDatas();
         Map<String, String> paraMap = new HashMap<>();
         paraMap.put("choice", "true");
+//        paraMap.put("traceCode31", "65");
+//        paraMap.put("traceCode0", "100");
         plc4xCurveDataService.setDatas(paraMap);
 //        System.out.println("-----------------------------------------");
         return "SUCCESS";

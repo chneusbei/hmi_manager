@@ -87,6 +87,36 @@ public class HmiUtils  {
         }
     }
 
+    public static final Integer getIntegerValue(Object obj) {
+        if(obj == null) {
+            return 0;
+        } else {
+            return Integer.valueOf(String.valueOf(obj));
+        }
+    }
+
+    public static String hexStringToString(String s) {
+        if (s == null || s.equals("")) {
+            return null;
+        }
+        s = s.replace(" ", "");
+        byte[] baKeyword = new byte[s.length() / 2];
+        for (int i = 0; i < baKeyword.length; i++) {
+            try {
+                baKeyword[i] = (byte) (0xff & Integer.parseInt(s.substring(i * 2, i * 2 + 2), 16));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            s = new String(baKeyword, "UTF-8");
+            new String();
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return s;
+    }
+
     public static final Boolean getBooleanValue(Object obj) {
         if(obj == null) {
             return new Boolean(false);

@@ -7,6 +7,7 @@ import com.plc.hmi.enumeration.PlcEntityEnum;
 import com.plc.hmi.service.PressureCurveService;
 import com.plc.hmi.service.PropertyService;
 import com.plc.hmi.util.HmiUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jvnet.hk2.annotations.Service;
@@ -193,9 +194,17 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 //                System.out.println("set curve data to batch insert thread*************************");
 //                pressureCurveService.curve2queue(curveMap.get(productNo));
 //                Iterator<Long> it=curveMap.keySet().iterator();
+            ArrayList<Boolean> isOkList = null;
+            List<PressureCurveEntity> entityList = null;
             for(Long recordId : map.keySet()){
-                pressureCurveService.batchInsert(map.get(recordId));
+                entityList = map.get(recordId);
+                if(!CollectionUtils.isEmpty(entityList)) {
+                   isOkList = pressureCurveService.batchInsert(entityList);
+                }
+
             }
+            // 数据入库后，修改PLC的OK/NOK/压装完成  三个变量
+            setFlagAfterPressure(isOkList);
             map.clear();
         }
     }
@@ -254,6 +263,105 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 } else if(PlcEntityEnum.curve_data_pressure_out_range.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //压力是否超限
                     curveEntity.setPressureOutRange(HmiUtils.getBooleanValue(plcEntity.getValueOjb()) ? 1 : 0);
+                } else if(PlcEntityEnum.curve_data_trace_code0.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode0(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code1.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode1(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode2(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code3.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode3(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code4.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode4(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code5.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode5(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code6.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode6(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code7.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode7(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code8.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode8(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code9.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode9(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code10.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode10(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code11.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode11(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code12.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode12(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code13.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode13(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code14.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode14(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code15.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode15(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code16.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode16(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code17.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode17(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code18.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode18(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code19.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode19(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code20.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode20(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code21.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode21(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code22.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode22(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code23.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode23(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                }else if(PlcEntityEnum.curve_data_trace_code24.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode24(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code25.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode25(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code26.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode26(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code27.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode27(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code28.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode28(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                }  else if(PlcEntityEnum.curve_data_trace_code29.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode29(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code30.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode30(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if(PlcEntityEnum.curve_data_trace_code31.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCode31(HmiUtils.getStringNoNull(plcEntity.getValueOjb()));
+                } else if (PlcEntityEnum.curve_data_trace_code_flag.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                    //追溯码
+                    curveEntity.setTraceCodeFlag(HmiUtils.getBooleanValue(plcEntity.getValueOjb()));
                 }
 
 
@@ -307,6 +415,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         if(null == curveEntity.getCurveRecording()) {
             curveEntity.setCurveRecording(false);
         }
+        curveEntity.setTraceCodeForce();
         //第二个压头
         curveEntity2.setIsDeleted("0");
         curveEntity2.setCreateBy("SYS");
@@ -320,6 +429,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         if(null == curveEntity2.getCurveRecording()) {
             curveEntity2.setCurveRecording(false);
         }
+        curveEntity2.setTraceCode(curveEntity.getTraceCode());
 //        logger.info("CurveRecording = "+curveEntity.getCurveRecording() + ", gPressFlag = "+curveEntity.getPressFlag() );
         return curveEntityList;
     }
@@ -347,6 +457,46 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     public synchronized void setDatas(Map<String, String> paraMap) {
         super.initWriteList(tagGroup, paraMap);
         super.setPlcData();
+    }
+
+    /**
+     * 压装结束后，设置曲线状态，OK /NOK/压装完成
+     */
+    public synchronized void setFlagAfterPressure(ArrayList<Boolean> isOkList) {
+        Map<String, String> paraMap = new HashMap<>();
+        if(CollectionUtils.isEmpty(isOkList)) {
+            return;
+        }
+        boolean  isOk = isOkList.get(0);
+
+        if(isOk) {
+            paraMap.put("ok", "true");
+            paraMap.put("nok", "false");
+        } else {
+            paraMap.put("ok", "false");
+            paraMap.put("nok", "true");
+        }
+
+        paraMap.put("finish", "true");
+
+        if(isOkList.size() == 2) {
+            boolean isOK2 = isOkList.get(1);
+            if(isOK2) {
+                paraMap.put("ok2", "true");
+                paraMap.put("nok2", "false");
+            } else {
+                paraMap.put("ok2", "false");
+                paraMap.put("nok2", "true");
+            }
+            paraMap.put("finish2", "true");
+        }
+
+        super.initWriteList(HmiConstants.PLC_TAG_GROUP.CURVE_STATUS.getCode(), paraMap);
+        super.setPlcData();
+
+
+//        super.initQuereyList(HmiConstants.PLC_TAG_GROUP.CURVE_STATUS.getCode());
+//        List<PlcEntity>  status = super.getDataByBuilder();
     }
 
 

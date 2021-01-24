@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>历史压装曲线</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <script src="echarts.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+            <script src="test.js"></script>
+
+            <main class="lyear-layout-content">
+                历史压装曲线
+                <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+
+                <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;
+                    程序号：<input type="text" v-model="recordId" > <!--<input type="submit" value="确定">-->
+                    <input   type="button" @click="getgraph()" value="查询">
+                </div>
+                <div >
+                    <!--<label>产品代码：{{pressureData}}</label>-->
+                    <div id="main" style="width: 90%;height:600px; "></div>
+                    <div  v-if="pressureData!=null" style="padding-left: 500px;">
+                        <span id="data" style="font-size: 25px" >
+                    最大压力值: {{pressureData.maxPress}}kn
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x
+                    最大压力时位移:
+                    {{pressureData.positionOfMaxPress}}mm
+                    <br>
+                    压装开始时间:
+                    {{pressureData.startDate}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    压装结束时间:
+                    {{pressureData.endDate}}
+                        </span>
+                    </div>
+                </div>
+
+
+
+
+
+                <script type="text/javascript" src="js/jquery.min.js"></script>
+                <script type="text/javascript" src="js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+                <script type="text/javascript" src="js/main.min.js"></script>
+            </main>
+            <!--End 页面主要内容-->
+        </div>
+    </div>
+
+</div>
+
+<script  type="module">
+    new Vue({
+        el:"#app",
+        data:{
+            recordId:null,
+            pressureData:null,
+            series1:[],
+        },methods:{
+            getgraph() {
+                let arr=[];
+                let myChart= echarts.init(document.getElementById('main'));
+                axios.get("/getHisDateByCode",{params:{recordId:this.recordId}}).then(result=>{
+                    result =result.data;
+                    for(let i in result){
+                        if (i==0){
+                            this.pressureData=result[i][0];
+                            continue;
+                        }
+
+                        for (let j in result[i]){
+                            let isErrant=true;
+                            let isSolidLine=true;
+                            arr.push([result[i][j].position,result[i][j].pressForce]);
+                            isErrant=result[i][j].errant;
+                            isSolidLine=result[i][j].solidLine;
+                                var color="";
+                                if(isErrant){
+                                    color="black";
+                                }else{
+                                    color="blue";
+                                }
+                            this.series1.push({
+                                data:arr,/*需要显示的数据*/
+                                type:'line',/*以什么方式展示*/
+                                color:'blue',  //折线条的颜色
+                                smooth:true,   //关键点，为true是不支持虚线的，实线就用true
+                                // 显示数值
+                                itemStyle:{
+                                    normal:{
+                                        lineStyle:{
+                                            type:'solid'  //'dotted'虚线 'solid'实线
+                                        },
+                                    }
+                                }
+                            });
+
+                        }
+                    }
+                    let  option = {
+                        xAxis: {
+                            type: 'value',
+                        },
+                        yAxis: {
+                            type: 'value',
+                        },
+                        series:this.series1
+                    };
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                    console.log("arr=>"+arr);
+                }).catch(err=>{
+                    myChart.hideLoading();
+                });
+
+            }
+        }, created(){
+
+        }
+    });
+    // 指定图表的配置项和数据
+
+</script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="css/style1.css">
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <script src="js/form.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="form" style="position:relative" id="app">
+    <!--登录表单-->
+    <div class="form_login" style="position:absolute ">
+
+        <form action="/loginUser" method="post">
+            <h1>登录</h1>
+            <div class="form_item">
+                <label for="username">用户名：</label>
+                <input type="text" name="username" id="username" ref="username" placeholder="请输入用户名" required>
+            </div>
+            <div class="form_item">
+                <label for="password">密码：</label>
+                <input type="password" name="password" id="password" ref="password" placeholder="请输入密码名" required >
+            </div>
+            <div class="form_item" >
+                <input type="submit" value="登录" @click="loginUser" >
+            </div>
+        </form>
+        <div class="info">没有账号？点击<a href="/registerUser">注册</a></div>
+    </div>
+</div>
+<script type="module">
+    new Vue({
+        el: "#app",
+        data: {
+            roleList:[],
+        }, methods: {
+            initRole(){
+                axios.get("/queryRole").then(response=>{
+                    this.roleList=response.data;
+                }).catch(function(error){
+                    alert(error)
+                })
+            },submit(){
+                var pwd=$("#pwd").val();
+                var pwds=$("#pwd2").val();
+                var uname=$("#name").val();
+                var cname=$("#createname").val();
+                if(pwd===pwds){
+                    window.event.returnValue = true;
+                }else{
+                    alert("你的密码不一致！")
+                    window.event.returnValue = false;
+                }
+
+            },loginUser(){
+                if(this.$refs.username.value===''){
+                    alert("账号不能为空！")
+                }else if(this.$refs.password.value===''){
+                    alert("密码不能为空！")
+                }else{
+                    alert("请求后台1 ")
+                    let requestDate={
+                        username:this.$refs.username.value,
+                        password:this.$refs.password.value
+                    }
+                    axios("/userLogin",{params: requestDate}).then(response=>{
+                        alert("请求后台2 ")
+                        if(response.data.id==undefined){
+                            alert("账号或密码不正确！")
+                        }
+                    }).catch(function(error){
+                        alert(error);
+                    })
+                }
+
+            }
+
+        },created(){
+            this.initRole();
+        }
+    })
+</script>
+</body>
+</html>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

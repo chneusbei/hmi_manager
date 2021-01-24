@@ -402,9 +402,18 @@
       <change afterPath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/UserRoleTest.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/UserTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hmi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hmi.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/StartRunService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/StartRunService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/S7Connector/service/Plc4xConnectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/S7Connector/service/Plc4xConnectorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/constants/ConfigConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/constants/ConfigConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/ExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/ExportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/JsonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/JsonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/entity/ErrandResultEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/entity/ErrandResultEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/entity/PressureCurveEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/entity/PressureCurveEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/mapper/PressureCurveMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/mapper/PressureCurveMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/enumeration/PlcEntityEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/enumeration/PlcEntityEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureCurveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureCurveService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/plcService/Plc4xCurveDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/plcService/Plc4xCurveDataService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/thread/PlcPressCurveThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/thread/PlcPressCurveThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/util/HmiUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/util/HmiUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -461,14 +470,20 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
   <component name="ProjectId" id="1aOYcHFqjWIxw8YdhamTrm7XQdE" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
@@ -485,46 +500,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.plc.hmi" />
       <recent name="com.plc.hmi.dal.entity" />
+      <recent name="com.plc.hmi" />
       <recent name="com.plc.hmi.service.plcService" />
       <recent name="com.plc.hmi.controler" />
       <recent name="com.plc.hmi.thread" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.HmiApplication">
-    <configuration name="AlarmTest.testSql" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hmi" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.plc.hmi.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.plc.hmi" />
-      <option name="MAIN_CLASS_NAME" value="com.plc.hmi.AlarmTest" />
-      <option name="METHOD_NAME" value="testSql" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HisAlarmTest.testSql" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hmi" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.plc.hmi.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.plc.hmi" />
-      <option name="MAIN_CLASS_NAME" value="com.plc.hmi.HisAlarmTest" />
-      <option name="METHOD_NAME" value="testSql" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="PressureCurveTest.testSql" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hmi" />
       <extension name="coverage">
@@ -541,7 +524,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PropertyConfigTest.testSql" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductTest.testSql" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hmi" />
       <extension name="coverage">
         <pattern>
@@ -550,28 +533,140 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.plc.hmi" />
-      <option name="MAIN_CLASS_NAME" value="com.plc.hmi.PropertyConfigTest" />
+      <option name="MAIN_CLASS_NAME" value="com.plc.hmi.ProductTest" />
       <option name="METHOD_NAME" value="testSql" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test.testSql" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hmi" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.plc.hmi.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.plc.hmi" />
-      <option name="MAIN_CLASS_NAME" value="com.plc.hmi.Test" />
-      <option name="METHOD_NAME" value="testSql" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="hmi [clean]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="hmi [compile] (1)" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="compile" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map>
+                <entry key="Xlint:unchecked" value="false" />
+              </map>
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="hmi [compile]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="compile" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="hmi [package] (1)" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="package" />
+                <option value="-Xlint:unchecked" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="hmi [package]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
     </configuration>
     <configuration name="HmiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="hmi" />
@@ -582,20 +677,22 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.AlarmTest.testSql" />
-      <item itemvalue="JUnit.HisAlarmTest.testSql" />
+      <item itemvalue="JUnit.ProductTest.testSql" />
       <item itemvalue="JUnit.PressureCurveTest.testSql" />
-      <item itemvalue="JUnit.PropertyConfigTest.testSql" />
-      <item itemvalue="JUnit.Test.testSql" />
+      <item itemvalue="Maven.hmi [compile] (1)" />
+      <item itemvalue="Maven.hmi [package] (1)" />
+      <item itemvalue="Maven.hmi [package]" />
+      <item itemvalue="Maven.hmi [clean]" />
+      <item itemvalue="Maven.hmi [compile]" />
       <item itemvalue="Spring Boot.HmiApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AlarmTest.testSql" />
-        <item itemvalue="JUnit.PropertyConfigTest.testSql" />
-        <item itemvalue="JUnit.Test.testSql" />
-        <item itemvalue="JUnit.HisAlarmTest.testSql" />
+        <item itemvalue="Maven.hmi [package]" />
+        <item itemvalue="Maven.hmi [clean]" />
         <item itemvalue="JUnit.PressureCurveTest.testSql" />
+        <item itemvalue="JUnit.ProductTest.testSql" />
+        <item itemvalue="Maven.hmi [compile]" />
       </list>
     </recent_temporary>
   </component>
@@ -651,28 +748,38 @@
       <workItem from="1589294293131" duration="2737000" />
       <workItem from="1589375205120" duration="13160000" />
       <workItem from="1589459821027" duration="9338000" />
-      <workItem from="1590214315903" duration="846000" />
-    </task>
-    <task id="LOCAL-00001" summary="0411整合版本">
-      <created>1586611747805</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1586611747805</updated>
-    </task>
-    <task id="LOCAL-00002" summary="doc add">
-      <created>1586787411118</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1586787411118</updated>
-    </task>
-    <task id="LOCAL-00003" summary="doc add">
-      <created>1586791708359</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1586791708359</updated>
+      <workItem from="1590214315903" duration="2699000" />
+      <workItem from="1590238240967" duration="7602000" />
+      <workItem from="1591627277703" duration="1776000" />
+      <workItem from="1591713112797" duration="1904000" />
+      <workItem from="1592017027781" duration="2042000" />
+      <workItem from="1593920045993" duration="9272000" />
+      <workItem from="1593930331346" duration="330000" />
+      <workItem from="1593932364468" duration="2774000" />
+      <workItem from="1593936821749" duration="17595000" />
+      <workItem from="1594132977249" duration="2134000" />
+      <workItem from="1594135412335" duration="483000" />
+      <workItem from="1594137046080" duration="1766000" />
+      <workItem from="1594216384723" duration="8369000" />
+      <workItem from="1594302235366" duration="3842000" />
+      <workItem from="1594307325933" duration="917000" />
+      <workItem from="1594433889661" duration="5828000" />
+      <workItem from="1594440154284" duration="48000" />
+      <workItem from="1594440784125" duration="16613000" />
+      <workItem from="1594649856559" duration="3384000" />
+      <workItem from="1595254018179" duration="2663000" />
+      <workItem from="1596260770564" duration="1626000" />
+      <workItem from="1596263858380" duration="6968000" />
+      <workItem from="1596885424063" duration="1946000" />
+      <workItem from="1597558887700" duration="1248000" />
+      <workItem from="1600519146127" duration="1253000" />
+      <workItem from="1600698320210" duration="5405000" />
+      <workItem from="1600731573032" duration="295000" />
+      <workItem from="1605531107956" duration="8020000" />
+      <workItem from="1608031618859" duration="7745000" />
+      <workItem from="1608039644712" duration="4000" />
+      <workItem from="1608439209718" duration="22910000" />
+      <workItem from="1611465440496" duration="21821000" />
     </task>
     <task id="LOCAL-00004" summary="update">
       <created>1586826399767</created>
@@ -905,7 +1012,119 @@
       <option name="project" value="LOCAL" />
       <updated>1589469576409</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="代码提交20200523-1">
+      <created>1590215268853</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1590215268853</updated>
+    </task>
+    <task id="LOCAL-00038" summary="代码提交20200523-2">
+      <created>1590246407220</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1590246407220</updated>
+    </task>
+    <task id="LOCAL-00039" summary="代码提交20200608">
+      <created>1591629398686</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1591629398686</updated>
+    </task>
+    <task id="LOCAL-00040" summary="代码提交20200705">
+      <created>1593951745723</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1593951745723</updated>
+    </task>
+    <task id="LOCAL-00041" summary="代码提交20200705-2">
+      <created>1593959292865</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1593959292865</updated>
+    </task>
+    <task id="LOCAL-00042" summary="代码提交20200707">
+      <created>1594138815927</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1594138815928</updated>
+    </task>
+    <task id="LOCAL-00043" summary="代码提交20200708">
+      <created>1594225415090</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1594225415090</updated>
+    </task>
+    <task id="LOCAL-00044" summary="代码提交20200709">
+      <created>1594307722888</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1594307722888</updated>
+    </task>
+    <task id="LOCAL-00045" summary="代码提交20200711">
+      <created>1594649159878</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1594649159878</updated>
+    </task>
+    <task id="LOCAL-00046" summary="代码提交20200713">
+      <created>1594653233119</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1594653233120</updated>
+    </task>
+    <task id="LOCAL-00047" summary="代码提交20200720">
+      <created>1595257438925</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1595257438925</updated>
+    </task>
+    <task id="LOCAL-00048" summary="代码提交20200801">
+      <created>1596270325758</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1596270325758</updated>
+    </task>
+    <task id="LOCAL-00049" summary="代码提交20200801-2">
+      <created>1596270813294</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1596270813295</updated>
+    </task>
+    <task id="LOCAL-00050" summary="代码提交20200816">
+      <created>1597559724767</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1597559724767</updated>
+    </task>
+    <task id="LOCAL-00051" summary="代码提交20200921">
+      <created>1600731897510</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1600731897510</updated>
+    </task>
+    <task id="LOCAL-00052" summary="代码提交20201116-1">
+      <created>1605532641762</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1605532641762</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -965,22 +1184,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="代码提交20200419-2" />
-    <MESSAGE value="HMI结构和数据" />
-    <MESSAGE value="代码提交20200420" />
-    <MESSAGE value="代码提交20200421" />
-    <MESSAGE value="代码提交20200423" />
-    <MESSAGE value="代码提交20200423 -2" />
-    <MESSAGE value="代码提交20200424" />
-    <MESSAGE value="代码提交20200425" />
-    <MESSAGE value="代码提交20200425-2" />
-    <MESSAGE value="代码提交20200425-3" />
-    <MESSAGE value="代码提交20200425-4" />
-    <MESSAGE value="代码提交20200427" />
-    <MESSAGE value="代码提交20200430" />
-    <MESSAGE value="代码提交20200503" />
-    <MESSAGE value="代码提交20200506" />
-    <MESSAGE value="代码提交20200508" />
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="代码提交20200509" />
     <MESSAGE value="代码提交20200509-2" />
     <MESSAGE value="代码提交20200510-3" />
@@ -990,151 +1194,138 @@
     <MESSAGE value="代码提交20200513-1" />
     <MESSAGE value="代码提交20200514-1" />
     <MESSAGE value="代码提交20200514-2" />
-    <option name="LAST_COMMIT_MESSAGE" value="代码提交20200514-2" />
+    <MESSAGE value="代码提交20200523-1" />
+    <MESSAGE value="代码提交20200523-2" />
+    <MESSAGE value="代码提交20200608" />
+    <MESSAGE value="代码提交20200705" />
+    <MESSAGE value="代码提交20200705-2" />
+    <MESSAGE value="代码提交20200707" />
+    <MESSAGE value="代码提交20200708" />
+    <MESSAGE value="代码提交20200709" />
+    <MESSAGE value="代码提交20200711" />
+    <MESSAGE value="代码提交20200713" />
+    <MESSAGE value="代码提交20200720" />
+    <MESSAGE value="代码提交20200801" />
+    <MESSAGE value="代码提交20200801-2" />
+    <MESSAGE value="代码提交20200816" />
+    <MESSAGE value="代码提交20200921" />
+    <MESSAGE value="代码提交20201116-1" />
+    <option name="LAST_COMMIT_MESSAGE" value="代码提交20201116-1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="275" y="23" key="#Notifications" timestamp="1586614151346">
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1608472202308">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="23" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1586614151346" />
-    <state x="270" y="23" width="1096" height="682" key="#Project_Structure" timestamp="1588501006720">
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1608472202308" />
+    <state x="264" y="0" key="#hmi_[package]_(1)" timestamp="1605538968910">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="270" y="23" width="1096" height="682" key="#Project_Structure/0.0.1366.728@0.0.1366.728" timestamp="1588501006720" />
-    <state x="81" y="0" width="1174" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588931941514">
+    <state x="264" y="0" key="#hmi_[package]_(1)/0.0.1366.728@0.0.1366.728" timestamp="1605538968910" />
+    <state x="183" y="0" key="CommitChangelistDialog2" timestamp="1605538017659">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="81" y="0" width="1174" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1588931941514" />
-    <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser" timestamp="1589377412007">
+    <state x="183" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1605538017659" />
+    <state x="92" y="92" width="1182" height="538" maximized="true" key="DiffContextDialog" timestamp="1605538016840">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="74" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1589377412007" />
-    <state x="433" y="148" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1588500237845">
+    <state x="92" y="92" width="1182" height="538" maximized="true" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1605538016840" />
+    <state width="1323" height="309" key="GridCell.Tab.0.bottom" timestamp="1611489129827">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="433" y="148" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1588500237845" />
-    <state x="183" y="0" key="CommitChangelistDialog2" timestamp="1589469571610">
+    <state width="1323" height="309" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1611489129827" />
+    <state width="1323" height="309" key="GridCell.Tab.0.center" timestamp="1611489129827">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="183" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1589469571610" />
-    <state x="92" y="92" width="1182" height="538" maximized="true" key="DiffContextDialog" timestamp="1589469552512">
+    <state width="1323" height="309" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1611489129827" />
+    <state width="1323" height="309" key="GridCell.Tab.0.left" timestamp="1611489129826">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="92" width="1182" height="538" maximized="true" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1589469552512" />
-    <state x="484" y="119" key="FileChooserDialogImpl" timestamp="1588500551839">
+    <state width="1323" height="309" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1611489129826" />
+    <state width="1323" height="309" key="GridCell.Tab.0.right" timestamp="1611489129827">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="484" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1588500551839" />
-    <state width="1323" height="194" key="GridCell.Tab.0.bottom" timestamp="1589473768906">
+    <state width="1323" height="309" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1611489129827" />
+    <state width="1323" height="309" key="GridCell.Tab.1.bottom" timestamp="1611489129701">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="194" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1589473768906" />
-    <state width="1323" height="194" key="GridCell.Tab.0.center" timestamp="1589473768906">
+    <state width="1323" height="309" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1611489129701" />
+    <state width="1323" height="309" key="GridCell.Tab.1.center" timestamp="1611489129701">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="194" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1589473768906" />
-    <state width="1323" height="194" key="GridCell.Tab.0.left" timestamp="1589473768906">
+    <state width="1323" height="309" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1611489129701" />
+    <state width="1323" height="309" key="GridCell.Tab.1.left" timestamp="1611489129700">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="194" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1589473768906" />
-    <state width="1323" height="194" key="GridCell.Tab.0.right" timestamp="1589473768906">
+    <state width="1323" height="309" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1611489129700" />
+    <state width="1323" height="309" key="GridCell.Tab.1.right" timestamp="1611489129701">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="194" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1589473768906" />
-    <state width="1323" height="194" key="GridCell.Tab.1.bottom" timestamp="1589473768906">
+    <state width="1323" height="309" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1611489129701" />
+    <state width="1323" height="309" key="GridCell.Tab.2.bottom" timestamp="1611489129702">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="194" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1589473768906" />
-    <state width="1323" height="194" key="GridCell.Tab.1.center" timestamp="1589473768906">
+    <state width="1323" height="309" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1611489129702" />
+    <state width="1323" height="309" key="GridCell.Tab.2.center" timestamp="1611489129701">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="194" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1589473768906" />
-    <state width="1323" height="194" key="GridCell.Tab.1.left" timestamp="1589473768906">
+    <state width="1323" height="309" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1611489129701" />
+    <state width="1323" height="309" key="GridCell.Tab.2.left" timestamp="1611489129701">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="194" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1589473768906" />
-    <state width="1323" height="194" key="GridCell.Tab.1.right" timestamp="1589473768906">
+    <state width="1323" height="309" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1611489129701" />
+    <state width="1323" height="309" key="GridCell.Tab.2.right" timestamp="1611489129702">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="194" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1589473768906" />
-    <state width="1323" height="51" key="GridCell.Tab.2.bottom" timestamp="1589473768875">
+    <state width="1323" height="309" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1611489129702" />
+    <state x="492" y="75" key="RollbackChangesDialog" timestamp="1608440577588">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="51" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1589473768875" />
-    <state width="1323" height="51" key="GridCell.Tab.2.center" timestamp="1589473768875">
+    <state x="492" y="75" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1608440577588" />
+    <state x="379" y="120" key="Vcs.Push.Dialog.v2" timestamp="1605533665765">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="51" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1589473768875" />
-    <state width="1323" height="51" key="GridCell.Tab.2.left" timestamp="1589473768875">
+    <state x="379" y="120" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1605533665765" />
+    <state x="420" y="98" key="VcsDiffUtil.ChangesDialog" timestamp="1605537853463">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="51" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1589473768875" />
-    <state width="1323" height="51" key="GridCell.Tab.2.right" timestamp="1589473768875">
+    <state x="420" y="98" key="VcsDiffUtil.ChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1605537853463" />
+    <state x="264" y="68" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1611489096267">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="51" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1589473768875" />
-    <state x="0" y="0" key="MergeDialog" timestamp="1587290579220">
+    <state x="264" y="68" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.728@0.0.1366.728" timestamp="1611489096267" />
+    <state x="245" y="47" width="958" height="600" key="find.popup" timestamp="1611486930079">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="0" y="0" key="MergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1587290579220" />
-    <state x="202" y="12" key="MultipleFileMergeDialog" timestamp="1587290579239">
+    <state x="245" y="47" width="958" height="600" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1611486930079" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1608439347472">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="202" y="12" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1587290579239" />
-    <state x="254" y="26" key="Registry" timestamp="1586613297845">
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1608439347472" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1611468946291">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="254" y="26" key="Registry/0.0.1366.728@0.0.1366.728" timestamp="1586613297845" />
-    <state x="499" y="86" key="RollbackChangesDialog" timestamp="1588688785898">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="499" y="86" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1588688785898" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1588863807508">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1588863807508" />
-    <state x="379" y="120" key="Vcs.Push.Dialog.v2" timestamp="1589469581235">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="379" y="120" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1589469581235" />
-    <state x="436" y="98" key="VcsDiffUtil.ChangesDialog" timestamp="1588688671306">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="436" y="98" key="VcsDiffUtil.ChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1588688671306" />
-    <state x="533" y="223" key="classpath-attribute-editor" timestamp="1588499894654">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="533" y="223" key="classpath-attribute-editor/0.0.1366.728@0.0.1366.728" timestamp="1588499894654" />
-    <state x="475" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588777623860">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="475" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1588777623860" />
-    <state x="173" y="123" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1589383177094">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="173" y="123" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.728@0.0.1366.728" timestamp="1589383177094" />
-    <state x="413" y="118" width="540" height="501" key="extract.method.dialog" timestamp="1587485244496">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="413" y="118" width="540" height="501" key="extract.method.dialog/0.0.1366.728@0.0.1366.728" timestamp="1587485244496" />
-    <state x="203" y="40" width="1122" height="558" key="find.popup" timestamp="1589460219831">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="203" y="40" width="1122" height="558" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1589460219831" />
-    <state x="467" y="155" key="git4idea.merge.GitMergeDialog" timestamp="1586965296919">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="467" y="155" key="git4idea.merge.GitMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1586965296919" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1588689179706">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1588689179706" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1589468657922">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1589468657922" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1611468946291" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/plc/hmi/S7Connector/service/Plc4xConnectorService.java</url>
+          <line>138</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/plc/hmi/service/plcService/Plc4xCurveDataService.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureCurveService.java</url>
+          <line>144</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="bytes[2]" />
@@ -1143,6 +1334,8 @@
         <watch expression="queryList" language="JAVA" />
         <watch expression="csvFileOutputStream" />
         <watch expression="((Response)((ResponseFacade)response).response).request" custom="org.apache.catalina.connector.Response,org.apache.catalina.connector.ResponseFacade" />
+        <watch expression="datas.get(0)" />
+        <watch expression="this" />
       </configuration>
     </watches-manager>
   </component>

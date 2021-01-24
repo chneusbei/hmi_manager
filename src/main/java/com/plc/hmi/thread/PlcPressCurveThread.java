@@ -43,7 +43,7 @@ public class PlcPressCurveThread implements Runnable {
                 //休眠
 //                System.out.println("获取plc曲线数据。。。。。。。。。。。。。。。。。。。。。");
                 if(!service.isPlcConnected()){
-                    logger.info("cant connected to plc, get curve date thread sleep "+ curveFetchSleepTime +"seconds");
+                    logger.info("cant connected to plc, get curve date thread sleep "+ curveFetchSleepTime +"millSeconds");
                     Thread.sleep(curveFetchSleepTime);
                 } else {
                     Thread.sleep(curveFetchFrequency);

@@ -1,8 +1,8 @@
 package com.plc.hmi.service;
 
+import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.dal.dao.PressureCurveDao;
 import com.plc.hmi.dal.entity.*;
-import com.plc.hmi.service.plcService.Plc4xCurveDataService;
 import com.plc.hmi.util.HmiUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -77,16 +77,13 @@ public class PressureCurveService extends AbstractBaseService{
      * 批量入库
      * @param entityList
      */
-    public void batchInsert(List<PressureCurveEntity> entityList) {
-        if(CollectionUtils.isEmpty(entityList)) {
-            return;
-        }
+    public ArrayList<Boolean> batchInsert(List<PressureCurveEntity> entityList) {
         //需要对应插入一条数据到pressure_data, 同时建立pressure_data和pressure_curve的关联关系
         /**
          *  1 插入pressure_data
          *  如果是双压头， 需要将数据拆分到两个list中
          */
-
+        ArrayList<Boolean> isOkList = new ArrayList<Boolean>();
         if(propertyService.isDubblePress()) {
             List<PressureCurveEntity> pressureHeadList1 = new ArrayList();
             List<PressureCurveEntity> pressureHeadList2 = new ArrayList();
@@ -99,21 +96,26 @@ public class PressureCurveService extends AbstractBaseService{
 
             }
             if(!CollectionUtils.isEmpty(pressureHeadList1)) {
-                InsertPressureDate(pressureHeadList1, "1");
+                boolean isOk1 = InsertPressureDate(pressureHeadList1, "1");
+                isOkList.add(isOk1);
             }
             if(!CollectionUtils.isEmpty(pressureHeadList2)) {
-                InsertPressureDate(pressureHeadList2, "2");
+                boolean isOk2 = InsertPressureDate(pressureHeadList2, "2");
+                isOkList.add(isOk2);
             }
         } else {
-            InsertPressureDate(entityList, "1");
+            boolean isOk = InsertPressureDate(entityList, "1");
+            isOkList.add(isOk);
         }
         /**
          * 1 插入pressure_curve
          */
         pressureCurveDao.batchInsert(entityList);
+        return isOkList;
     }
 
-    private void InsertPressureDate(List<PressureCurveEntity> entityList, String pressHeadNo) {
+    private boolean InsertPressureDate(List<PressureCurveEntity> entityList, String pressHeadNo) {
+        boolean isOk = true;
         //生成 RECORD_ID， 一个产品一次压装对应一个RECORD_ID,一个产品可以进行多次压装
         //RECORD_ID生成规则，产品ID+当前时间戳
         Long productId = entityList.get(0).getProductId();
@@ -128,7 +130,7 @@ public class PressureCurveService extends AbstractBaseService{
         //判断是否压装时压力超限
         PressureCurveEntity lasetCurveEntity = entityList.get(entityList.size()-1);
         boolean isPressureOutRange = false;
-
+        boolean showErrantd = HmiUtils.getBooleanValue(propertyService.getProperty(ConfigConstants.ERRAND_USE_FLAG));
         if(lasetCurveEntity.getPressureOutRange() != 0) {
             //压力超限， 直接判断压装失败
             logger.info("压力超限， 压装失败, id="+lasetCurveEntity.getRecordId()
@@ -137,7 +139,7 @@ public class PressureCurveService extends AbstractBaseService{
                     + " RecordNo= "+lasetCurveEntity.getRecordNo()
             );
             isPressureOutRange = true;
-        } else {
+        } else if(showErrantd) {
             //压力未超限， 判断公差窗口
             //获取公差窗口信息
             String programCode = HmiUtils.getProgrameCode(pressHeadNo, HmiUtils.getString(entityList.get(0).getProductId()));
@@ -158,9 +160,11 @@ public class PressureCurveService extends AbstractBaseService{
         pressureDataEntity.setProductId(productId);
         pressureDataEntity.setRecordId(recordId);
         if(isPressureOutRange) {
+            isOk= false;
             pressureDataEntity.setPressResult("0");//压力超限 1成功 0 失败
         } else {
-            pressureDataEntity.setPressResult(isCruveSuccess(errandResltList) ? "1" : "0");//需要从从公差窗口计算
+            isOk = isCruveSuccess(errandResltList);
+            pressureDataEntity.setPressResult(isOk ? "1" : "0");//需要从从公差窗口计算
         }
         pressureDataEntity.setMaxPress(MaxPresscurve.getPressForce());
         pressureDataEntity.setPositionOfMaxPress(MaxPresscurve.getPosition());
@@ -172,6 +176,7 @@ public class PressureCurveService extends AbstractBaseService{
         pressureDataEntity.setUpdateTime(new Date());
         pressureDataEntity.setPressureHeadNo(entityList.get(0).getPressureHeadNo());
         pressureDataService.insert(pressureDataEntity);
+        return isOk;
     }
 
 
@@ -194,35 +199,37 @@ public class PressureCurveService extends AbstractBaseService{
                 //最大位移窗口
                 //成功条件：1.最大位移大于positionMin  2.最大位移小于positionMax
                 //判断是否达到最小位移点
-                if(!errandResultEntity.isMinPositonSucess()) {
+//                if(!errandResultEntity.isMinPositonSucess()) {
                     if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >= 0) {
-                        errandResultEntity.setMinPositonSucess(true);
+                        errandResultEntity.setMinPositionFlag(true);
                     }
-                }
+//                }
 
                 //判断是否超过最大位移点
-                if(errandResultEntity.isMaxPositonSucess()) {
+//                if(errandResultEntity.isMaxPositonSucess()) {
                     if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) > 0) {
-                        errandResultEntity.setMaxPositonSucess(false);
+                        errandResultEntity.setMaxPositionSucess(false);
+                        break;
                     }
-                }
+//                }
                 break;
             case 1 :
                 //最大压力窗口
                 //成功条件：1.最大压力大于等于pressMin  2.最大压力小于等于positionMax
 
                 //判断是否达到最小压力点
-                if(!errandResultEntity.isMinPressSucess()) {
+//                if(!errandResultEntity.isMinPressSucess()) {
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) >=0) {
-                        errandResultEntity.setMinPressSucess(true);
+                        errandResultEntity.setMinPressFlag(true);
                     }
-                }
+//                }
                 //判断是否超过最大压力点
-                if(errandResultEntity.isMaxPressSucess()) {
+//                if(errandResultEntity.isMaxPressSucess()) {
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >0) {
                         errandResultEntity.setMaxPressSucess(false);
+                        break;
                     }
-                }
+//                }
                 break;
             case 2 :
                 //配合窗口
@@ -233,23 +240,24 @@ public class PressureCurveService extends AbstractBaseService{
                   3.穿越期间如果碰到上下压力位置，失败
                  */
                 //判断是否达到最小位移点
-                if(!errandResultEntity.isMinPositonSucess()) {
+//                if(!errandResultEntity.isMinPositonSucess()) {
                     if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >=0) {
-                        errandResultEntity.setMinPositonSucess(true);
+                        errandResultEntity.setMinPositionFlag(true);
                     }
-                }
+//                }
 
-                //判断是否达到最小位移点
-                if(!errandResultEntity.isMaxPositonSucess()) {
+                //判断是否达到最大位移点
+//                if(!errandResultEntity.isMaxPositonSucess()) {
                     if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) > 0) {
-                        errandResultEntity.setMaxPositonSucess(true);
+                        errandResultEntity.setMaxPositionFlag(true);
                     }
-                }
+//                }
 
                 //位置在最小位移和最大位移中间时才做判断
                 if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >=0
                     && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) <=0
-                    && errandResultEntity.isMinPressSucess() && errandResultEntity.isMaxPressSucess()) {
+                    //&& errandResultEntity.isMinPressSucess() && errandResultEntity.isMaxPressSucess()
+                ) {
                     //判断是否大于最小压力
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) < 0) {
                         errandResultEntity.setMinPressSucess(false);
@@ -274,30 +282,26 @@ public class PressureCurveService extends AbstractBaseService{
                   5.如果达到最大位移点， 压力要大于最大压力
                  */
                 //判断是否有小于最小位移点
-                if(!errandResultEntity.isHasPointBeforeMinPosition()) {
+//                if(!errandResultEntity.isHasPointBeforeMinPosition()) {
                     if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) < 0) {
-                        errandResultEntity.setHasPointBeforeMinPosition(true);
+                        errandResultEntity.setMinPositionFlag(true);
                     }
-                }
+//                }
 
-                //判断是否达到最小位移点
-                if(!errandResultEntity.isMinPositonSucess()) {
-                    if(curveEntity.getPosition().compareTo(errandResultEntity.getPressMin()) >= 0) {
-                        errandResultEntity.setMinPositonSucess(true);
-                    }
-                }
 
                 //位置在最小位移和最大位移中间时才做判断
                 if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >=0
                         && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) <=0
-                        && errandResultEntity.isMinPressSucess()) {
+                       // && errandResultEntity.isMinPressSucess()
+                ) {
                     //判断是否大于最大压力
+                    /*
                     if(!errandResultEntity.isMaxPressSucess()) {
                         if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
                             errandResultEntity.setMaxPressSucess(true);
                         }
                     }
-
+                    */
                     //判断是否大于最小压力
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0) {
                         errandResultEntity.setMinPressSucess(false);
@@ -320,6 +324,7 @@ public class PressureCurveService extends AbstractBaseService{
                  *  3.最大最小位移之间的点， 必须存在大于最小压力的点
                  *  4.最大最小位移之间的点， 不能存在大于最大压力的点
                  */
+                /*
                 //判断是否有小于最小位移点
                 if(!errandResultEntity.isHasPointBeforeMinPosition()) {
                     if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) < 0) {
@@ -328,28 +333,39 @@ public class PressureCurveService extends AbstractBaseService{
                 }
 
                 //判断是否有大于最大位移点
-                if(!errandResultEntity.isHasPointAfterManPosition()) {
+                if(!errandResultEntity.isHasPointAfterMaxPosition()) {
                     if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) > 0) {
-                        errandResultEntity.setHasPointAfterManPosition(true);
+                        errandResultEntity.setHasPointAfterMaxPosition(true);
                     }
                 }
-
+                */
                 //位置在最小位移和最大位移中间时才做判断
                 if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >=0
                         && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) <=0
-                        && errandResultEntity.isMaxPressSucess()) {
-                    //判断是否大于最大压力
-                    if(errandResultEntity.isMaxPressSucess()) {
-                        if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
+                       // && errandResultEntity.isMaxPressSucess()
+                ) {
+                    if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) == 0
+                    || curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) ==0) {
+                        //最小位移点时 //最大位移点时
+                        if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) > 0){
                             errandResultEntity.setMaxPressSucess(false);
                             break;
                         }
                     }
 
+                    //判断是否大于最大压力
+                   // if(errandResultEntity.isMaxPressSucess()) {
+                        if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
+                            errandResultEntity.setMaxPressSucess(false);
+                            break;
+                        }
+                   // }
+
                     //判断是否大于最小压力
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) > 0) {
-                        errandResultEntity.setMinPressSucess(true);
+                        errandResultEntity.setMinPressFlag(true);
                     }
+
                 }
 
                 break;
@@ -364,21 +380,22 @@ public class PressureCurveService extends AbstractBaseService{
                 //位置在最小位移和最大位移中间时才做判断
                 if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >=0
                         && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) <=0
-                        && errandResultEntity.isMaxPressSucess()) {
+//                        && errandResultEntity.isMaxPressSucess()
+                ) {
                     //设置进入箱体成功
-                    if(!errandResultEntity.isMinPositonSucess()) {
+//                    if(!errandResultEntity.isMinPositonSucess()) {
                         if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) > 0) {
-                            errandResultEntity.setMinPositonSucess(true);
+                            errandResultEntity.setMinPressFlag(true);
                         }
 
-                    }
+//                    }
                     //判断是否大于最大压力
-                    if(errandResultEntity.isMaxPressSucess()) {
+//                    if(errandResultEntity.isMaxPressSucess()) {
                         if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
                             errandResultEntity.setMaxPressSucess(false);
                             break;
                         }
-                    }
+//                    }
                 }
                 break;
             case 7 :
@@ -396,18 +413,27 @@ public class PressureCurveService extends AbstractBaseService{
                 //1 判断是否有箱体外面的点, 条件：大于等于最小位移，小于最大位移，且小于小压力
                 if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >=0
                         && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) < 0
-                        && curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) < 0) {
-                    errandResultEntity.setHasPointBeforeMinPosition(true);
+                       //&& curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) < 0
+                ) {
+                    if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) < 0) {
+                        errandResultEntity.setMinPositionFlag(true);
+                    }
+                    if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) > 0) {
+                        errandResultEntity.setMaxPressSucess(false);
+                        break;
+                    }
                 }
                 //2 判断最后一个点是否符合要求, 条件 ：大于等于最小位移、小于等于最大位移、大于等于最小压力，小于等于最大压力
-                if(isLastOne &&
-                        curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >=0
-                        && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) <=0
-                        && curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) >= 0
-                        && curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0) {
-                    errandResultEntity.setMaxPressSucess(true);
-                } else {
-                    errandResultEntity.setMaxPressSucess(false);
+                if(isLastOne) {
+                    if (curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >= 0
+                            && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) <= 0 ) {
+
+                        if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0
+                                && curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
+                            errandResultEntity.setMaxPressSucess(false);
+                            break;
+                        }
+                    }
                 }
                 break;
             case 9 :
@@ -418,28 +444,30 @@ public class PressureCurveService extends AbstractBaseService{
                 2.在箱体内部结束
                  */
                 //1 在最大最小位移点中间时， 必须小于最大压力， 大于最小压力
-                if(errandResultEntity.isMinPressSucess()
-                        && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >=0
+                if(//errandResultEntity.isMinPressSucess()  &&
+                        curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >=0
                         && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) < 0
                 ) {
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0
                             || curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
                         errandResultEntity.setMinPressSucess(false);
+                        break;
                     }
                 }
 
 
                 //2 判断最后一个点是否符合要求, 条件 ：大于等于最小位移、小于等于最大位移、大于等于最小压力，小于等于最大压力
-                 if(isLastOne &&
-                        curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >=0
-                        && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) <=0
-                        && curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) >= 0
-                        && curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0) {
-                    errandResultEntity.setMaxPressSucess(true);
-                } else {
-                    errandResultEntity.setMaxPressSucess(false);
+                if(isLastOne) {
+                    if (curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >= 0
+                            && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) <= 0
+                            ) {
+                        if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0
+                                || curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) >= 0) {
+                            errandResultEntity.setMaxPressSucess(false);
+                            break;
+                        }
+                    }
                 }
-
                 break;
             case 10 :
                 //平均值窗口
@@ -510,30 +538,29 @@ public class PressureCurveService extends AbstractBaseService{
         for(ErrandResultEntity entity : errandResltList) {
             if("0".equals(entity.getErrandType())) {
                 //最大位移窗口
-                entity.setMinPositonSucess(false);
+                entity.setMinPositionFlag(false);
             } else if("1".equals(entity.getErrandType())) {
                 //最大压力窗口
-                entity.setMinPressSucess(false);
+                entity.setMinPressFlag(false);
             } else if("2".equals(entity.getErrandType())) {
                 //配合窗口
-                entity.setMinPositonSucess(false);
-                entity.setMaxPositonSucess(false);
+                entity.setMinPositionFlag(false);
+                entity.setMaxPositionFlag(false);
             } else if("3".equals(entity.getErrandType())) {
                 //右-下限制窗口
-                entity.setMinPositonSucess(false);
-                entity.setHasPointBeforeMinPosition(false);
-                entity.setMaxPressSucess(false);
+                entity.setMinPositionFlag(false);
+//                entity.setMaxPressSucess(false);
             } else if("5".equals(entity.getErrandType())) {
                 //峰值窗口
-                entity.setHasPointBeforeMinPosition(false);
-                entity.setHasPointAfterManPosition(false);
-                entity.setMinPositonSucess(false);
+//                entity.setHasPointBeforeMinPosition(false);
+//                entity.setHasPointAfterMaxPosition(false);
+                entity.setMinPressFlag(false);
             } else if("6".equals(entity.getErrandType())) {
                 //左-上限制窗口
-                entity.setMinPositonSucess(false);
+                entity.setMinPressFlag(false);
             } else if("8".equals(entity.getErrandType())) {
                 //顶部结束窗口
-                entity.setHasPointBeforeMinPosition(false);
+                entity.setMinPositionFlag(false);
             } else if("9".equals(entity.getErrandType())) {
                 //右侧结束窗口
             }
@@ -548,13 +575,143 @@ public class PressureCurveService extends AbstractBaseService{
      */
     private boolean isCruveSuccess(List<ErrandResultEntity> errandResltList) {
         boolean result = true;
+        boolean minPositonFlag = false;
+        boolean maxPositonFlag = false;
+        boolean minPressFlag = false;
+        boolean maxPressFlag = false;
         for(ErrandResultEntity entity : errandResltList) {
-            if(!entity.isHasPointAfterManPosition() || !entity.isHasPointBeforeMinPosition()
-            ||!entity.isMinPositonSucess() || !entity.isMaxPositonSucess()
-            ||!entity.isMinPressSucess() || !entity.isMaxPressSucess()) {
+            /*
+            if(!entity.isMinPositonSucess() || !entity.isMaxPositonSucess()
+                    ||!entity.isMinPressSucess() || !entity.isMaxPressSucess()) {
                 result = false;
                 break;
             }
+            if(!hasPointAfterMaxPosition && entity.isHasPointAfterMaxPosition()) {
+                hasPointAfterMaxPosition = true;
+            }
+            if(!hasPointBeforeMinPosition && entity.isHasPointBeforeMinPosition() ) {
+                hasPointBeforeMinPosition = true;
+            }
+*/
+            if ("0".equals(entity.getErrandType())) {
+                //最大位移窗口
+                if(!entity.isMaxPositionSucess()) {
+                    result = false;
+                    break;
+                }
+
+                if (!minPositonFlag && entity.isMinPositionFlag()) {
+                    minPositonFlag = true;
+                    maxPositonFlag = true;
+                    minPressFlag = true;
+                    maxPressFlag = true;
+                }
+//                entity.setMinPositonSucess(false);
+            } else if ("1".equals(entity.getErrandType())) {
+                //最大压力窗口
+                if(!entity.isMaxPressSucess()) {
+                    result = false;
+                    break;
+                }
+
+                if (!minPressFlag && entity.isMinPressFlag()) {
+                    minPositonFlag = true;
+                    maxPositonFlag = true;
+                    minPressFlag = true;
+                    maxPressFlag = true;
+                }
+//                entity.setMinPressSucess(false);
+            } else if ("2".equals(entity.getErrandType())) {
+                //配合窗口
+                if(! entity.isMinPressSucess() || !entity.isMaxPressSucess()) {
+                    result = false;
+                    break;
+                }
+
+                if (!minPositonFlag && entity.isMinPositionFlag()) {
+                    minPositonFlag = true;
+                }
+                if (!maxPositonFlag && entity.isMaxPositionFlag()) {
+                    maxPositonFlag = true;
+                    minPressFlag = true;
+                    maxPressFlag = true;
+                }
+//                entity.setMinPositonSucess(false);
+//                entity.setMaxPositonSucess(false);
+            } else if ("3".equals(entity.getErrandType())) {
+                //右-下限制窗口
+//                entity.setMinPositonSucess(false);
+//                entity.setHasPointBeforeMinPosition(false);
+//                entity.setMaxPressSucess(false);
+                if(!entity.isMinPressSucess()) {
+                    result = false;
+                    break;
+                }
+
+                if (!minPositonFlag && entity.isMinPositionFlag()) {
+                    minPositonFlag = true;
+                    maxPositonFlag = true;
+                    minPressFlag = true;
+                    maxPressFlag = true;
+                }
+
+            } else if ("5".equals(entity.getErrandType())) {
+                //峰值窗口
+                if(!entity.isMaxPressSucess()) {
+                    result = false;
+                    break;
+                }
+
+                if(!minPressFlag && entity.isMinPressFlag() ) {
+                    minPositonFlag = true;
+                    maxPositonFlag = true;
+                    minPressFlag = true;
+                    maxPressFlag = true;
+                }
+//                entity.setMinPressSucess(false);
+            } else if ("6".equals(entity.getErrandType())) {
+                //左-上限制窗口
+                if(!entity.isMaxPressSucess()) {
+                    result = false;
+                    break;
+                }
+
+                if(!minPressFlag && entity.isMinPressFlag() ) {
+                    minPositonFlag = true;
+                    maxPositonFlag = true;
+                    minPressFlag = true;
+                    maxPressFlag = true;
+                }
+//                entity.setMinPressSucess(false);
+            } else if ("8".equals(entity.getErrandType())) {
+                //顶部结束窗口
+                if(!entity.isMaxPressSucess()) {
+                    result = false;
+                    break;
+                }
+
+                if(!minPositonFlag && entity.isMinPositionFlag() ) {
+                    minPositonFlag = true;
+                    maxPositonFlag = true;
+                    minPressFlag = true;
+                    maxPressFlag = true;
+                }
+//                entity.setHasPointBeforeMinPosition(false);
+            } else if ("9".equals(entity.getErrandType())) {
+                //右侧结束窗口
+                if(!entity.isMinPressSucess() ||  !entity.isMaxPressSucess()) {
+                    result = false;
+                    break;
+                }
+            }
+        }
+
+        if(result == false) {
+            return false;
+        }
+        if(!minPositonFlag || !maxPositonFlag
+                || !minPressFlag || !maxPressFlag) {
+            result = false;
         }
 
         return result;

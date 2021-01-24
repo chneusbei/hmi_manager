@@ -7,17 +7,21 @@ public class ErrandResultEntity{
     //曲线IO
     private String recordId;
     //最大位移满足
-    private boolean maxPositonSucess = true;
+    private boolean maxPositionSucess = true;
     //最小位移满足
-    private boolean minPositonSucess = true;
+    private boolean minPositionSucess = true;
     //最大压力满足
     private boolean maxPressSucess = true;
     //最小压力满足
     private boolean minPressSucess = true;
-    //存在小于最小位移的点
-    private boolean hasPointBeforeMinPosition = true;
-    //存在大于最大位移的点
-    private boolean hasPointAfterManPosition = true;
+    //最小位移要求满足标志
+    private boolean minPositionFlag = true;
+    //最大位移要求满足标志
+    private boolean maxPositionFlag = true;
+    //最小压力要求满足标志
+    private boolean minPressFlag = true;
+    //最大压力要求满足标志
+    private boolean maxPressFlag = true;
 
     //公差窗口类习惯
     private int errandType;
@@ -38,20 +42,20 @@ public class ErrandResultEntity{
         this.recordId = recordId;
     }
 
-    public boolean isMaxPositonSucess() {
-        return maxPositonSucess;
+    public boolean isMaxPositionSucess() {
+        return maxPositionSucess;
     }
 
-    public void setMaxPositonSucess(boolean maxPositonSucess) {
-        this.maxPositonSucess = maxPositonSucess;
+    public void setMaxPositionSucess(boolean maxPositionSucess) {
+        this.maxPositionSucess = maxPositionSucess;
     }
 
-    public boolean isMinPositonSucess() {
-        return minPositonSucess;
+    public boolean isMinPositionSucess() {
+        return minPositionSucess;
     }
 
-    public void setMinPositonSucess(boolean minPositonSucess) {
-        this.minPositonSucess = minPositonSucess;
+    public void setMinPositionSucess(boolean minPositionSucess) {
+        this.minPositionSucess = minPositionSucess;
     }
 
     public boolean isMaxPressSucess() {
@@ -110,19 +114,35 @@ public class ErrandResultEntity{
         this.pressMax = pressMax;
     }
 
-    public boolean isHasPointBeforeMinPosition() {
-        return hasPointBeforeMinPosition;
+    public boolean isMinPositionFlag() {
+        return minPositionFlag;
     }
 
-    public void setHasPointBeforeMinPosition(boolean hasPointBeforeMinPosition) {
-        this.hasPointBeforeMinPosition = hasPointBeforeMinPosition;
+    public void setMinPositionFlag(boolean minPositionFlag) {
+        this.minPositionFlag = minPositionFlag;
     }
 
-    public boolean isHasPointAfterManPosition() {
-        return hasPointAfterManPosition;
+    public boolean isMaxPositionFlag() {
+        return maxPositionFlag;
     }
 
-    public void setHasPointAfterManPosition(boolean hasPointAfterManPosition) {
-        this.hasPointAfterManPosition = hasPointAfterManPosition;
+    public void setMaxPositionFlag(boolean maxPositionFlag) {
+        this.maxPositionFlag = maxPositionFlag;
+    }
+
+    public boolean isMinPressFlag() {
+        return minPressFlag;
+    }
+
+    public void setMinPressFlag(boolean minPressFlag) {
+        this.minPressFlag = minPressFlag;
+    }
+
+    public boolean isMaxPressFlag() {
+        return maxPressFlag;
+    }
+
+    public void setMaxPressFlag(boolean maxPressFlag) {
+        this.maxPressFlag = maxPressFlag;
     }
 }
