@@ -113,7 +113,7 @@ public class ExportController {
             }
             // 设置导出文件名
             String traceCode = dataList.get(0).getTraceCode();
-            traceCode = traceCode == null ? "":traceCode ;
+            traceCode = traceCode == null ? "":traceCode.trim() ;
 //            String fileName = "curveData_"+pressureDate.getRecordId()+"_"+pressureDate.getStartDate()+"_"+ traceCode+".csv";
             StringBuffer sb = new StringBuffer();
             sb.append("curveData_")

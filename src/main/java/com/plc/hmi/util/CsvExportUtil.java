@@ -23,7 +23,8 @@ public class CsvExportUtil {
         String tempName = fileName+ ".temp";
 
         //定义文件名格式并创建
-        File csvFile = new File(path+File.separator+tempName);
+        File csvFile = new File(path+HmiConstants.SEPARATE+tempName.trim());
+//        System.out.println("csvFile path = "+(path+HmiConstants.SEPARATE+tempName.trim()));
         // UTF-8使正确读取分隔符","
         BufferedWriter csvFileOutputStream = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(
                 csvFile), "GBK"), 2048);
