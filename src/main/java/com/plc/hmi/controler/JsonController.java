@@ -86,6 +86,7 @@ public class JsonController {
             if (null != list && null != list.get(0)) {
                 programCode = HmiUtils.getProgrameCode("1", HmiUtils.getString(list.get(0).getProductId()));
             }
+//            programCode = "p1-";
             errantList = programService.getErrandDataforChart(programCode);
         }
         if(!CollectionUtils.isEmpty(list)) {

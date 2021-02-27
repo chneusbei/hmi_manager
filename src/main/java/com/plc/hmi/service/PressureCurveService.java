@@ -163,7 +163,11 @@ public class PressureCurveService extends AbstractBaseService{
             isOk= false;
             pressureDataEntity.setPressResult("0");//压力超限 1成功 0 失败
         } else {
-            isOk = isCruveSuccess(errandResltList);
+            if(showErrantd) {
+                isOk = isCruveSuccess(errandResltList);
+            } else {
+                isOk=true;
+            }
             pressureDataEntity.setPressResult(isOk ? "1" : "0");//需要从从公差窗口计算
         }
         pressureDataEntity.setMaxPress(MaxPresscurve.getPressForce());
