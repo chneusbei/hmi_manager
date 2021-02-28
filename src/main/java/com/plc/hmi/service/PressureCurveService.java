@@ -131,6 +131,7 @@ public class PressureCurveService extends AbstractBaseService{
         PressureCurveEntity lasetCurveEntity = entityList.get(entityList.size()-1);
         boolean isPressureOutRange = false;
         boolean showErrantd = HmiUtils.getBooleanValue(propertyService.getProperty(ConfigConstants.ERRAND_USE_FLAG));
+        boolean hasErrand = true;
         if(lasetCurveEntity.getPressureOutRange() != 0) {
             //压力超限， 直接判断压装失败
             logger.info("压力超限， 压装失败, id="+lasetCurveEntity.getRecordId()
@@ -144,7 +145,7 @@ public class PressureCurveService extends AbstractBaseService{
             //获取公差窗口信息
             String programCode = HmiUtils.getProgrameCode(pressHeadNo, HmiUtils.getString(entityList.get(0).getProductId()));
             PressureProgramEntity pressureProgramEntity = programService.getErrandData(programCode);
-            setErrandResultList(pressureProgramEntity, errandResltList);
+            hasErrand = setErrandResultList(pressureProgramEntity, errandResltList);
 
             int i = 0;
             for (PressureCurveEntity curveEntity : entityList) {
@@ -163,7 +164,7 @@ public class PressureCurveService extends AbstractBaseService{
             isOk= false;
             pressureDataEntity.setPressResult("0");//压力超限 1成功 0 失败
         } else {
-            if(showErrantd) {
+            if(hasErrand && showErrantd ) {
                 isOk = isCruveSuccess(errandResltList);
             } else {
                 isOk=true;
@@ -497,11 +498,13 @@ public class PressureCurveService extends AbstractBaseService{
      * @param pressureProgramEntity
      * @param errandResltList
      */
-    private void setErrandResultList(PressureProgramEntity pressureProgramEntity, List<ErrandResultEntity> errandResltList){
+    private boolean setErrandResultList(PressureProgramEntity pressureProgramEntity, List<ErrandResultEntity> errandResltList){
+        boolean  hasErrand = false;
         if (pressureProgramEntity == null) {
-            return;
+            return false;
         }
         if(pressureProgramEntity.getErrandType1()>=0) {
+            hasErrand =true;
             ErrandResultEntity errandResultEntity1 = new ErrandResultEntity();
             errandResultEntity1.setErrandType(pressureProgramEntity.getErrandType1());
             errandResultEntity1.setPositionMax(pressureProgramEntity.getPositionMax1());
@@ -510,6 +513,7 @@ public class PressureCurveService extends AbstractBaseService{
             errandResultEntity1.setPressMin(pressureProgramEntity.getPressMin1());
             errandResltList.add(errandResultEntity1);
         } else  if(pressureProgramEntity.getErrandType2()>=0) {
+            hasErrand =true;
             ErrandResultEntity errandResultEntity2 = new ErrandResultEntity();
             errandResultEntity2.setErrandType(pressureProgramEntity.getErrandType2());
             errandResultEntity2.setPositionMax(pressureProgramEntity.getPositionMax2());
@@ -518,6 +522,7 @@ public class PressureCurveService extends AbstractBaseService{
             errandResultEntity2.setPressMin(pressureProgramEntity.getPressMin2());
             errandResltList.add(errandResultEntity2);
         } else  if(pressureProgramEntity.getErrandType3()>=0) {
+            hasErrand =true;
             ErrandResultEntity errandResultEntity3 = new ErrandResultEntity();
             errandResultEntity3.setErrandType(pressureProgramEntity.getErrandType3());
             errandResultEntity3.setPositionMax(pressureProgramEntity.getPositionMax3());
@@ -526,6 +531,7 @@ public class PressureCurveService extends AbstractBaseService{
             errandResultEntity3.setPressMin(pressureProgramEntity.getPressMin3());
             errandResltList.add(errandResultEntity3);
         } else  if(pressureProgramEntity.getErrandType4()>=0) {
+            hasErrand =true;
             ErrandResultEntity errandResultEntity4 = new ErrandResultEntity();
             errandResultEntity4.setErrandType(pressureProgramEntity.getErrandType4());
             errandResultEntity4.setPositionMax(pressureProgramEntity.getPositionMax4());
@@ -534,6 +540,7 @@ public class PressureCurveService extends AbstractBaseService{
             errandResultEntity4.setPressMin(pressureProgramEntity.getPressMin4());
             errandResltList.add(errandResultEntity4);
         } else  if(pressureProgramEntity.getErrandType5()>=0) {
+            hasErrand =true;
             ErrandResultEntity errandResultEntity5 = new ErrandResultEntity();
             errandResultEntity5.setErrandType(pressureProgramEntity.getErrandType5());
             errandResultEntity5.setPositionMax(pressureProgramEntity.getPositionMax5());
@@ -574,7 +581,7 @@ public class PressureCurveService extends AbstractBaseService{
                 //右侧结束窗口
             }
         }
-
+        return hasErrand;
     }
 
     /**

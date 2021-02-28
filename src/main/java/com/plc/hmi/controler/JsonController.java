@@ -87,7 +87,9 @@ public class JsonController {
                 programCode = HmiUtils.getProgrameCode("1", HmiUtils.getString(list.get(0).getProductId()));
             }
 //            programCode = "p1-";
+//            System.out.println("======================programCode================"+programCode);
             errantList = programService.getErrandDataforChart(programCode);
+
         }
         if(!CollectionUtils.isEmpty(list)) {
             PressureCurveEntity fristCurve = list.get(0);
@@ -103,6 +105,7 @@ public class JsonController {
         }
 
         String json = JSON.toJSONString(errantList);
+//        System.out.println(" lin 1 "+json);
         return json;
     }
 
@@ -119,6 +122,7 @@ public class JsonController {
         if(null != list && null != list.get(0)) {
             programCode = HmiUtils.getProgrameCode("2", HmiUtils.getString(list.get(0).getProductId()));
         }
+//        System.out.println("======================programCode 2================"+programCode);
         List<List<PressureCurveEntity>>  errantList = programService.getErrandDataforChart(programCode);
         if(!CollectionUtils.isEmpty(list)) {
             PressureCurveEntity fristCurve = list.get(0);
@@ -132,7 +136,7 @@ public class JsonController {
             errantList.add(list);
         }
         String json = JSON.toJSONString(errantList);
-//        System.out.println(json);
+//        System.out.println(" lin 2 "+json);
         return json;
     }
 
@@ -283,9 +287,9 @@ public class JsonController {
             for (PressureDataEntity pressureDataEntity : pressureDataList) {
                 if(null !=pressureDataEntity) {
                     if(i==0) {
-                        isOK=pressureDataEntity.getPressResult().equalsIgnoreCase("1");
-                    } else {
                         isOK2=pressureDataEntity.getPressResult().equalsIgnoreCase("1");
+                    } else {
+                        isOK=pressureDataEntity.getPressResult().equalsIgnoreCase("1");
                     }
                 }
                 i++;

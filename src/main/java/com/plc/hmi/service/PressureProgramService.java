@@ -27,7 +27,7 @@ public class PressureProgramService extends AbstractBaseService{
 
     //所有公差窗口数据缓存
 //    private static Map<Long, PressureProgramEntity> programMap = new HashMap<Long, PressureProgramEntity>();
-    private static PressureProgramEntity pressureProgramEntity;
+//    private static PressureProgramEntity pressureProgramEntity;
 
     public PressureProgramEntity getWithProgramCode(String programCode) {
         return pressureProgramDao.getWithProgramCode(programCode);
@@ -39,6 +39,8 @@ public class PressureProgramService extends AbstractBaseService{
      * @return
      */
     public PressureProgramEntity getErrandData(String programCode) {
+        PressureProgramEntity pressureProgramEntity = pressureProgramDao.getWithProgramCode(programCode);
+        /*
         boolean refresh =false;
         if(refreshTimeMillion > 0) {
             //1分钟从数据库获取一次
@@ -54,7 +56,19 @@ public class PressureProgramService extends AbstractBaseService{
 //            programMap = pressureProgramDao.getAllDatas();
             pressureProgramEntity = pressureProgramDao.getWithProgramCode(programCode);
             refreshTimeMillion = System.currentTimeMillis();
+
+//            if(null != pressureProgramEntity ) {
+//                System.out.println("======================pressureProgramEntity================" );
+//                System.out.println("======================getErrandType1================"+ pressureProgramEntity.getErrandType1());
+//                System.out.println("======================getPositionMin1================"+ pressureProgramEntity.getPositionMin1());
+//                System.out.println("======================getPositionMax1================"+ pressureProgramEntity.getPositionMax1());
+//                System.out.println("======================getPressMin1================"+ pressureProgramEntity.getPressMin1());
+//                System.out.println("======================getPositionMax1================"+ pressureProgramEntity.getPositionMax1());
+//            } else {
+//                System.out.println("======================pressureProgramEntity is  null========" );
+//            }
         }
+        */
         return pressureProgramEntity;
 //         return programMap.get(productId);
     }
