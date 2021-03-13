@@ -95,14 +95,17 @@ public class PressureCurveService extends AbstractBaseService{
                 }
 
             }
+            boolean isOk1 = true;
             if(!CollectionUtils.isEmpty(pressureHeadList1)) {
-                boolean isOk1 = InsertPressureDate(pressureHeadList1, "1");
-                isOkList.add(isOk1);
+                isOk1 = InsertPressureDate(pressureHeadList1, "1");
             }
+
+            boolean isOk2 = true;
             if(!CollectionUtils.isEmpty(pressureHeadList2)) {
-                boolean isOk2 = InsertPressureDate(pressureHeadList2, "2");
-                isOkList.add(isOk2);
+                isOk2 = InsertPressureDate(pressureHeadList2, "2");
             }
+            isOkList.add(isOk1);
+            isOkList.add(isOk2);
         } else {
             boolean isOk = InsertPressureDate(entityList, "1");
             isOkList.add(isOk);
