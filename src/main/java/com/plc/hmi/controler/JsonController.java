@@ -282,23 +282,15 @@ public class JsonController {
         List<PressureDataEntity> pressureDataList= pressureDataService.get2RecentData();
         boolean isOK = true;
         boolean isOK2 = true;
+
         if(!CollectionUtils.isEmpty(pressureDataList)) {
-//            int i=0;
-////            for (PressureDataEntity pressureDataEntity : pressureDataList) {
-////                if(null !=pressureDataEntity) {
-////                    if(i==0) {
-////                        isOK=pressureDataEntity.getPressResult().equalsIgnoreCase("1");
-////                    } else {
-////                        isOK2=pressureDataEntity.getPressResult().equalsIgnoreCase("1");
-////                    }
-////                }
-////                i++;
-////            }
-            if(pressureDataList.size() == 1) {
-                isOK = pressureDataList.get(0).getPressResult().equalsIgnoreCase("1");
-            } else if(pressureDataList.size() == 2) {
-                isOK=pressureDataList.get(1).getPressResult().equalsIgnoreCase("1");
+            if(propertyService.isDubblePress()) {
                 isOK2=pressureDataList.get(0).getPressResult().equalsIgnoreCase("1");
+                if(pressureDataList.size() == 2) {
+                    isOK = pressureDataList.get(1).getPressResult().equalsIgnoreCase("1");
+                }
+            } else {
+                isOK = pressureDataList.get(0).getPressResult().equalsIgnoreCase("1");
             }
         }
         statusInfoEntity.setCurveOk(isOK);
