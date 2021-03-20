@@ -31,7 +31,7 @@
                     产品代码：<input type="text" name="productCode" id="productCode" value="-" disabled="disabled" readonly unselectable="on">
                     当前零件号：<input type="text" name="productId" id="productId" value="-"  disabled="disabled" readonly unselectable="on">
                     零件名称：<input type="text" name="productName" id="productName" value="-"  disabled="disabled" readonly unselectable="on">
-                    追溯码：<input type="text" name="productTraceCode" id="productTraceCode" value="-" disabled="disabled" readonly unselectable="on">
+                    追溯码：<input type="text" name="traceCode" id="traceCode" value="-" disabled="disabled" readonly unselectable="on">
                     <!--name="productTraceCode"-->
                     <!--name="productTraceCode"-->
                     <!--name="productTraceCode"-->
@@ -308,7 +308,7 @@
                                                 document.getElementById("productCode").value=result[i][j].productCode;
                                                 document.getElementById("productId").value=result[i][j].productId;
                                                 document.getElementById("productName").value=result[i][j].productName;
-                                                document.getElementById("productTraceCode").value=result[i][j].productTraceCode;
+                                                document.getElementById("traceCode").value=result[i][j].traceCode;
                                                 recordNoNow=result[i][j].recordNo;
                                                 if(recordNo != recordNoNow) {
                                                     myChart.clear();
@@ -409,7 +409,7 @@
                                                 document.getElementById("productCode").value=result[i][j].productCode;
                                                 document.getElementById("productId").value=result[i][j].productId;
                                                 document.getElementById("productName").value=result[i][j].productName;
-                                                document.getElementById("productTraceCode").value=result[i][j].productTraceCode;
+                                                document.getElementById("traceCode").value=result[i][j].traceCode;
                                                 recordNoNow=result[i][j].recordNo;
                                                 if(recordNo2!= recordNoNow) {
                                                     myChart2.clear();

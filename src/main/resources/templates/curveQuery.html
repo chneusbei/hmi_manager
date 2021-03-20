@@ -32,7 +32,7 @@
                         &nbsp;&nbsp;产品代码：<input type="text" name="productCode" id="productCode" value="-" disabled="disabled" readonly unselectable="on">
                         当前零件号：<input type="text" name="productId" id="productId" value="-"  disabled="disabled" readonly unselectable="on">
                         零件名称：<input type="text" name="productName" id="productName" value="-"  disabled="disabled" readonly unselectable="on">
-                        追溯码：<input type="text" name="productTraceCode" id="productTraceCode" value="-" disabled="disabled" readonly unselectable="on">
+                        追溯码：<input type="text" name="traceCode" id="traceCode" value="-" disabled="disabled" readonly unselectable="on">
                         当前位置:<input type="text" id="curPosition" value="-" disabled="disabled" readonly unselectable="on">
                         当前压力:<input type="text" id="curPressure" value="-" disabled="disabled" readonly unselectable="on">
                         <br>
@@ -183,7 +183,7 @@
                                                 document.getElementById("productCode").value=result[i][j].productCode;
                                                 document.getElementById("productId").value=result[i][j].productId;
                                                 document.getElementById("productName").value=result[i][j].productName;
-                                                document.getElementById("productTraceCode").value=result[i][j].productTraceCode;
+                                                document.getElementById("traceCode").value=result[i][j].traceCode;
 
                                                 recordNoNow=result[i][j].recordNo;
                                                 if(recordNo != recordNoNow) {
@@ -258,7 +258,7 @@
 
                     $(function(){
 
-                        t = setInterval("setgraph()", 1000);
+                        t = setInterval("setgraph()", 500);
 
                     })
 
@@ -300,7 +300,7 @@
                     }
 
                     $(function(){
-                        t = setInterval("getStatus()", 1000);
+                        t = setInterval("getStatus()", 500);
                     })
 
 

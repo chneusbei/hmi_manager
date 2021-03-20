@@ -597,6 +597,6 @@ public class PressureCurveEntity extends AbstractBaseEntity {
 //        sb.append(HmiUtils.getStringNoNull(traceCode29));
 //        sb.append(HmiUtils.getStringNoNull(traceCode30));
 //        sb.append(HmiUtils.getStringNoNull(traceCode31));
-        this.traceCode = sb.toString();
+        this.traceCode = sb.toString().trim();
     }
 }

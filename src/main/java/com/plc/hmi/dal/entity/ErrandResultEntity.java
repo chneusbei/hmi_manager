@@ -7,13 +7,13 @@ public class ErrandResultEntity{
     //曲线IO
     private String recordId;
     //最大位移满足
-    private boolean maxPositionSucess = true;
+    private boolean maxPositionSuccess = true;
     //最小位移满足
-    private boolean minPositionSucess = true;
+    private boolean minPositionSuccess = true;
     //最大压力满足
-    private boolean maxPressSucess = true;
+    private boolean maxPressSuccess = true;
     //最小压力满足
-    private boolean minPressSucess = true;
+    private boolean minPressSuccess = true;
     //最小位移要求满足标志
     private boolean minPositionFlag = true;
     //最大位移要求满足标志
@@ -42,36 +42,36 @@ public class ErrandResultEntity{
         this.recordId = recordId;
     }
 
-    public boolean isMaxPositionSucess() {
-        return maxPositionSucess;
+    public boolean isMaxPositionSuccess() {
+        return maxPositionSuccess;
     }
 
-    public void setMaxPositionSucess(boolean maxPositionSucess) {
-        this.maxPositionSucess = maxPositionSucess;
+    public void setMaxPositionSuccess(boolean maxPositionSuccess) {
+        this.maxPositionSuccess = maxPositionSuccess;
     }
 
-    public boolean isMinPositionSucess() {
-        return minPositionSucess;
+    public boolean isMinPositionSuccess() {
+        return minPositionSuccess;
     }
 
-    public void setMinPositionSucess(boolean minPositionSucess) {
-        this.minPositionSucess = minPositionSucess;
+    public void setMinPositionSuccess(boolean minPositionSuccess) {
+        this.minPositionSuccess = minPositionSuccess;
     }
 
-    public boolean isMaxPressSucess() {
-        return maxPressSucess;
+    public boolean isMaxPressSuccess() {
+        return maxPressSuccess;
     }
 
-    public void setMaxPressSucess(boolean maxPressSucess) {
-        this.maxPressSucess = maxPressSucess;
+    public void setMaxPressSuccess(boolean maxPressSuccess) {
+        this.maxPressSuccess = maxPressSuccess;
     }
 
-    public boolean isMinPressSucess() {
-        return minPressSucess;
+    public boolean isMinPressSuccess() {
+        return minPressSuccess;
     }
 
-    public void setMinPressSucess(boolean minPressSucess) {
-        this.minPressSucess = minPressSucess;
+    public void setMinPressSuccess(boolean minPressSuccess) {
+        this.minPressSuccess = minPressSuccess;
     }
 
     public int getErrandType() {

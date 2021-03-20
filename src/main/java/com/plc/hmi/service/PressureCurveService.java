@@ -127,55 +127,56 @@ public class PressureCurveService extends AbstractBaseService{
         recordIdBuffer.append(HmiUtils.getFormatDateString());
         String recordId = recordIdBuffer.toString();
         //获取最大压力及最大压力时位移。
-        PressureCurveEntity MaxPresscurve = entityList.get(0);
+        PressureCurveEntity MaxPressure = entityList.get(0);
         //公差窗口计算结果List
-        List<ErrandResultEntity> errandResltList = new ArrayList<ErrandResultEntity>();
+        List<ErrandResultEntity> errandResultList = new ArrayList<ErrandResultEntity>();
         //判断是否压装时压力超限
-        PressureCurveEntity lasetCurveEntity = entityList.get(entityList.size()-1);
-        boolean isPressureOutRange = false;
-        boolean showErrantd = HmiUtils.getBooleanValue(propertyService.getProperty(ConfigConstants.ERRAND_USE_FLAG));
+        PressureCurveEntity lastCurveEntity = entityList.get(entityList.size()-1);
+//        boolean isPressureOutRange = false;
+        boolean showErrand = HmiUtils.getBooleanValue(propertyService.getProperty(ConfigConstants.ERRAND_USE_FLAG));
         boolean hasErrand = true;
-        if(lasetCurveEntity.getPressureOutRange() != 0) {
+        if(lastCurveEntity.getPressureOutRange() != 0) {
             //压力超限， 直接判断压装失败
-            logger.info("压力超限， 压装失败, id="+lasetCurveEntity.getRecordId()
-                    +", productCode=" + lasetCurveEntity.getProductCode()
-                    + " productId= "+lasetCurveEntity.getProductId()
-                    + " RecordNo= "+lasetCurveEntity.getRecordNo()
+            logger.info("压力超限， 压装失败, id="+lastCurveEntity.getRecordId()
+                    +", productCode=" + lastCurveEntity.getProductCode()
+                    + " productId= "+lastCurveEntity.getProductId()
+                    + " RecordNo= "+lastCurveEntity.getRecordNo()
             );
-            isPressureOutRange = true;
-        } else if(showErrantd) {
+//            isPressureOutRange = true;
+        } else if(showErrand && hasErrand) {
             //压力未超限， 判断公差窗口
             //获取公差窗口信息
             String programCode = HmiUtils.getProgrameCode(pressHeadNo, HmiUtils.getString(entityList.get(0).getProductId()));
             PressureProgramEntity pressureProgramEntity = programService.getErrandData(programCode);
-            hasErrand = setErrandResultList(pressureProgramEntity, errandResltList);
+            hasErrand = setErrandResultList(pressureProgramEntity, errandResultList);
 
             int i = 0;
             for (PressureCurveEntity curveEntity : entityList) {
                 i++;
                 curveEntity.setRecordId(recordId);
-                MaxPresscurve = MaxPresscurve.getPressForce().compareTo(curveEntity.getPressForce()) < 0 ? curveEntity : MaxPresscurve;
+                MaxPressure = MaxPressure.getPressForce().compareTo(curveEntity.getPressForce()) < 0 ? curveEntity : MaxPressure;
                 //判断公差窗口
 
-                setCurveResultStatus(errandResltList, curveEntity, i == entityList.size() ? true : false);
+                setCurveResultStatus(errandResultList, curveEntity, i == entityList.size() ? true : false);
             }
         }
         PressureDataEntity pressureDataEntity = new PressureDataEntity();
         pressureDataEntity.setProductId(productId);
         pressureDataEntity.setRecordId(recordId);
-        if(isPressureOutRange) {
+        if(lastCurveEntity.getPressureOutRange() != 0) {
+            //压力超限， 直接判断压装失败
             isOk= false;
             pressureDataEntity.setPressResult("0");//压力超限 1成功 0 失败
         } else {
-            if(hasErrand && showErrantd ) {
-                isOk = isCruveSuccess(errandResltList);
+            if(showErrand && hasErrand) {
+                isOk = isCurveSuccess(errandResultList);
             } else {
                 isOk=true;
             }
             pressureDataEntity.setPressResult(isOk ? "1" : "0");//需要从从公差窗口计算
         }
-        pressureDataEntity.setMaxPress(MaxPresscurve.getPressForce());
-        pressureDataEntity.setPositionOfMaxPress(MaxPresscurve.getPosition());
+        pressureDataEntity.setMaxPress(MaxPressure.getPressForce());
+        pressureDataEntity.setPositionOfMaxPress(MaxPressure.getPosition());
         pressureDataEntity.setStartDate(new BigDecimal(HmiUtils.getMillFormatDateString(entityList.get(0).getCreateTime())));
         pressureDataEntity.setEndDate(new BigDecimal(HmiUtils.getMillFormatDateString(entityList.get(entityList.size()-1).getCreateTime())));
         pressureDataEntity.setCreateBy("SYS");
@@ -216,7 +217,7 @@ public class PressureCurveService extends AbstractBaseService{
                 //判断是否超过最大位移点
 //                if(errandResultEntity.isMaxPositonSucess()) {
                     if(curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) > 0) {
-                        errandResultEntity.setMaxPositionSucess(false);
+                        errandResultEntity.setMaxPositionSuccess(false);
                         break;
                     }
 //                }
@@ -234,7 +235,7 @@ public class PressureCurveService extends AbstractBaseService{
                 //判断是否超过最大压力点
 //                if(errandResultEntity.isMaxPressSucess()) {
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >0) {
-                        errandResultEntity.setMaxPressSucess(false);
+                        errandResultEntity.setMaxPressSuccess(false);
                         break;
                     }
 //                }
@@ -268,13 +269,13 @@ public class PressureCurveService extends AbstractBaseService{
                 ) {
                     //判断是否大于最小压力
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) < 0) {
-                        errandResultEntity.setMinPressSucess(false);
+                        errandResultEntity.setMinPressSuccess(false);
                         break;
                     }
 
                     //判断是否小于最大压力
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) > 0) {
-                        errandResultEntity.setMaxPressSucess(false);
+                        errandResultEntity.setMaxPressSuccess(false);
                         break;
                     }
                 }
@@ -313,7 +314,7 @@ public class PressureCurveService extends AbstractBaseService{
                     */
                     //判断是否大于最小压力
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0) {
-                        errandResultEntity.setMinPressSucess(false);
+                        errandResultEntity.setMinPressSuccess(false);
                         break;
                     }
 
@@ -359,7 +360,7 @@ public class PressureCurveService extends AbstractBaseService{
                     || curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) ==0) {
                         //最小位移点时 //最大位移点时
                         if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) > 0){
-                            errandResultEntity.setMaxPressSucess(false);
+                            errandResultEntity.setMaxPressSuccess(false);
                             break;
                         }
                     }
@@ -367,7 +368,7 @@ public class PressureCurveService extends AbstractBaseService{
                     //判断是否大于最大压力
                    // if(errandResultEntity.isMaxPressSucess()) {
                         if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
-                            errandResultEntity.setMaxPressSucess(false);
+                            errandResultEntity.setMaxPressSuccess(false);
                             break;
                         }
                    // }
@@ -404,7 +405,7 @@ public class PressureCurveService extends AbstractBaseService{
                     //判断是否大于最大压力
 //                    if(errandResultEntity.isMaxPressSucess()) {
                         if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
-                            errandResultEntity.setMaxPressSucess(false);
+                            errandResultEntity.setMaxPressSuccess(false);
                             break;
                         }
 //                    }
@@ -431,7 +432,7 @@ public class PressureCurveService extends AbstractBaseService{
                         errandResultEntity.setMinPositionFlag(true);
                     }
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) > 0) {
-                        errandResultEntity.setMaxPressSucess(false);
+                        errandResultEntity.setMaxPressSuccess(false);
                         break;
                     }
                 }
@@ -443,7 +444,7 @@ public class PressureCurveService extends AbstractBaseService{
                             || curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0
                             || curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0
                     ) {
-                        errandResultEntity.setMaxPressSucess(false);
+                        errandResultEntity.setMaxPressSuccess(false);
                         break;
                     }
                 }
@@ -463,7 +464,7 @@ public class PressureCurveService extends AbstractBaseService{
                 ) {
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0
                             || curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
-                        errandResultEntity.setMinPressSucess(false);
+                        errandResultEntity.setMinPressSuccess(false);
                         break;
                     }
                 }
@@ -592,10 +593,10 @@ public class PressureCurveService extends AbstractBaseService{
      * @param errandResltList
      * @return
      */
-    private boolean isCruveSuccess(List<ErrandResultEntity> errandResltList) {
+    private boolean isCurveSuccess(List<ErrandResultEntity> errandResltList) {
         boolean result = true;
-        boolean minPositonFlag = false;
-        boolean maxPositonFlag = false;
+        boolean minPositionFlag = false;
+        boolean maxPositionFlag = false;
         boolean minPressFlag = false;
         boolean maxPressFlag = false;
         for(ErrandResultEntity entity : errandResltList) {
@@ -614,44 +615,44 @@ public class PressureCurveService extends AbstractBaseService{
 */
             if (0==entity.getErrandType()) {
                 //最大位移窗口
-                if(!entity.isMaxPositionSucess()) {
+                if(!entity.isMaxPositionSuccess()) {
                     result = false;
                     break;
                 }
 
-                if (!minPositonFlag && entity.isMinPositionFlag()) {
-                    minPositonFlag = true;
-                    maxPositonFlag = true;
+                if (!minPositionFlag && entity.isMinPositionFlag()) {
+                    minPositionFlag = true;
+                    maxPositionFlag = true;
                     minPressFlag = true;
                     maxPressFlag = true;
                 }
 //                entity.setMinPositonSucess(false);
             } else if (1==entity.getErrandType()) {
                 //最大压力窗口
-                if(!entity.isMaxPressSucess()) {
+                if(!entity.isMaxPressSuccess()) {
                     result = false;
                     break;
                 }
 
                 if (!minPressFlag && entity.isMinPressFlag()) {
-                    minPositonFlag = true;
-                    maxPositonFlag = true;
+                    minPositionFlag = true;
+                    maxPositionFlag = true;
                     minPressFlag = true;
                     maxPressFlag = true;
                 }
 //                entity.setMinPressSucess(false);
             } else if (2==entity.getErrandType()) {
                 //配合窗口
-                if(! entity.isMinPressSucess() || !entity.isMaxPressSucess()) {
+                if(! entity.isMinPressSuccess() || !entity.isMaxPressSuccess()) {
                     result = false;
                     break;
                 }
 
-                if (!minPositonFlag && entity.isMinPositionFlag()) {
-                    minPositonFlag = true;
+                if (!minPositionFlag && entity.isMinPositionFlag()) {
+                    minPositionFlag = true;
                 }
-                if (!maxPositonFlag && entity.isMaxPositionFlag()) {
-                    maxPositonFlag = true;
+                if (!maxPositionFlag && entity.isMaxPositionFlag()) {
+                    maxPositionFlag = true;
                     minPressFlag = true;
                     maxPressFlag = true;
                 }
@@ -662,63 +663,63 @@ public class PressureCurveService extends AbstractBaseService{
 //                entity.setMinPositonSucess(false);
 //                entity.setHasPointBeforeMinPosition(false);
 //                entity.setMaxPressSucess(false);
-                if(!entity.isMinPressSucess()) {
+                if(!entity.isMinPressSuccess()) {
                     result = false;
                     break;
                 }
 
-                if (!minPositonFlag && entity.isMinPositionFlag()) {
-                    minPositonFlag = true;
-                    maxPositonFlag = true;
+                if (!minPositionFlag && entity.isMinPositionFlag()) {
+                    minPositionFlag = true;
+                    maxPositionFlag = true;
                     minPressFlag = true;
                     maxPressFlag = true;
                 }
 
             } else if (5==entity.getErrandType()) {
                 //峰值窗口
-                if(!entity.isMaxPressSucess()) {
+                if(!entity.isMaxPressSuccess()) {
                     result = false;
                     break;
                 }
 
                 if(!minPressFlag && entity.isMinPressFlag() ) {
-                    minPositonFlag = true;
-                    maxPositonFlag = true;
+                    minPositionFlag = true;
+                    maxPositionFlag = true;
                     minPressFlag = true;
                     maxPressFlag = true;
                 }
 //                entity.setMinPressSucess(false);
             } else if (6==entity.getErrandType()) {
                 //左-上限制窗口
-                if(!entity.isMaxPressSucess()) {
+                if(!entity.isMaxPressSuccess()) {
                     result = false;
                     break;
                 }
 
                 if(!minPressFlag && entity.isMinPressFlag() ) {
-                    minPositonFlag = true;
-                    maxPositonFlag = true;
+                    minPositionFlag = true;
+                    maxPositionFlag = true;
                     minPressFlag = true;
                     maxPressFlag = true;
                 }
 //                entity.setMinPressSucess(false);
             } else if (8==entity.getErrandType()) {
                 //顶部结束窗口
-                if(!entity.isMaxPressSucess()) {
+                if(!entity.isMaxPressSuccess()) {
                     result = false;
                     break;
                 }
 
-                if(!minPositonFlag && entity.isMinPositionFlag() ) {
-                    minPositonFlag = true;
-                    maxPositonFlag = true;
+                if(!minPositionFlag && entity.isMinPositionFlag() ) {
+                    minPositionFlag = true;
+                    maxPositionFlag = true;
                     minPressFlag = true;
                     maxPressFlag = true;
                 }
 //                entity.setHasPointBeforeMinPosition(false);
             } else if (9==entity.getErrandType()) {
                 //右侧结束窗口
-                if(!entity.isMinPressSucess() ||  !entity.isMaxPressSucess()) {
+                if(!entity.isMinPressSuccess() ||  !entity.isMaxPressSuccess()) {
                     result = false;
                     break;
                 }
@@ -728,7 +729,7 @@ public class PressureCurveService extends AbstractBaseService{
         if(result == false) {
             return false;
         }
-        if(!minPositonFlag || !maxPositonFlag
+        if(!minPositionFlag || !maxPositionFlag
                 || !minPressFlag || !maxPressFlag) {
             result = false;
         }
