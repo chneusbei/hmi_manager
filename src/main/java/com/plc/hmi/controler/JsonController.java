@@ -279,20 +279,18 @@ public class JsonController {
 //        System.out.println("============getStatus");
         StatusInfoEntity statusInfoEntity = new StatusInfoEntity();
         //上一条数据得压装结果，如果是双压头， 需要获取两条。
-        List<PressureDataEntity> pressureDataList= pressureDataService.get2RecentData();
         boolean isOK = true;
         boolean isOK2 = true;
-
-        if(!CollectionUtils.isEmpty(pressureDataList)) {
-            if(propertyService.isDubblePress()) {
-                isOK2=pressureDataList.get(0).getPressResult().equalsIgnoreCase("1");
-                if(pressureDataList.size() == 2) {
-                    isOK = pressureDataList.get(1).getPressResult().equalsIgnoreCase("1");
-                }
-            } else {
-                isOK = pressureDataList.get(0).getPressResult().equalsIgnoreCase("1");
-            }
+        PressureDataEntity pressureData1 = pressureDataService.getDataByHeadNo(1);
+        if(null !=pressureData1) {
+            isOK = pressureData1.getPressResult().equalsIgnoreCase("1");
         }
+
+        if(propertyService.isDubblePress()) {
+            PressureDataEntity pressureData2 = pressureDataService.getDataByHeadNo(2);
+            isOK2=pressureData2.getPressResult().equalsIgnoreCase("1");
+        }
+
         statusInfoEntity.setCurveOk(isOK);
         statusInfoEntity.setCurveOk2(isOK2);
         //PLC连接

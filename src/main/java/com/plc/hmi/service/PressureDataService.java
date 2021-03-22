@@ -34,12 +34,12 @@ public class PressureDataService extends AbstractBaseService{
     }
 
     /**
-     * 获取最近两条产品压装结果信息
+     * 获取最近产品压装结果信息
      * @param
      * @return
      */
-    public List<PressureDataEntity> get2RecentData() {
-        return pressureDataDao.get2RecentData();
+    public PressureDataEntity getDataByHeadNo(int pressureHeadNo) {
+        return pressureDataDao.getDataByHeadNo(pressureHeadNo);
     }
 
 

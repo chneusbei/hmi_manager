@@ -23,8 +23,8 @@ public class PressureDataDao {
         return pressureDataMapper.getPressureData(recordId);
     }
 
-    public List<PressureDataEntity> get2RecentData() {
-        return pressureDataMapper.get2RecentData();
+    public PressureDataEntity getDataByHeadNo(int pressureHeadNo) {
+        return pressureDataMapper.getDataByHeadNo(pressureHeadNo);
     }
 
     public List<PressureDataEntity> getPressureData(String startDate, String endDate) {

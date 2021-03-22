@@ -30,7 +30,7 @@ public interface PressureDataMapper {
     })
     List<PressureDataEntity>  getPressureData(@Param("recordId") Long recordId);
 
-    @Select("select * from pressure_data where is_deleted='0' order by id desc limit 0,2")
+    @Select("select * from pressure_data where is_deleted='0' and PRESSURE_HEAD_NO=#{pressureHeadNo}  order by id desc limit 0,1")
     @Results({
             @Result(id=true,column = "ID",property = "id" ),
             @Result(column = "PRESSURE_HEAD_NO",property ="pressureHeadNo"),
@@ -48,7 +48,7 @@ public interface PressureDataMapper {
             @Result(column = "UPDATE_TIME",property = "updateTime"),
             @Result(column = "IS_DELETED",property = "isDeleted"),
     })
-    List<PressureDataEntity>  get2RecentData();
+    PressureDataEntity  getDataByHeadNo(@Param("pressureHeadNo") int pressureHeadNo);
 
 
     @Select({"<script>",
