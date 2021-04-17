@@ -98,6 +98,7 @@ public class PressureCurveService extends AbstractBaseService{
             boolean isOk1 = true;
             if(!CollectionUtils.isEmpty(pressureHeadList1)) {
                 isOk1 = InsertPressureDate(pressureHeadList1, "1");
+                System.out.println(">>>>>>>>>>>>>>>>第一个压头的压装结果"+isOk1);
             }
 
             boolean isOk2 = true;
@@ -463,6 +464,9 @@ public class PressureCurveService extends AbstractBaseService{
                         curveEntity.getPosition().compareTo(errandResultEntity.getPositionMin()) >=0
                         && curveEntity.getPosition().compareTo(errandResultEntity.getPositionMax()) < 0
                 ) {
+                    if(!errandResultEntity.isMinPositionFlag()) {
+                        errandResultEntity.setMinPositionFlag(true);
+                    }
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0
                             || curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
                         errandResultEntity.setMinPressSuccess(false);
@@ -591,6 +595,7 @@ public class PressureCurveService extends AbstractBaseService{
                 entity.setMinPositionFlag(false);
             } else if(9==entity.getErrandType()) {
                 //右侧结束窗口
+                entity.setMinPositionFlag(false);
             }
         }
         return hasErrand;
