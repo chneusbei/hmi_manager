@@ -103,6 +103,7 @@ public class PressureCurveService extends AbstractBaseService{
             boolean isOk2 = true;
             if(!CollectionUtils.isEmpty(pressureHeadList2)) {
                 isOk2 = InsertPressureDate(pressureHeadList2, "2");
+                System.out.println(">>>>>>>>>>>>>>>>第二个压头的压装结果"+isOk2);
             }
             isOkList.add(isOk1);
             isOkList.add(isOk2);
@@ -465,6 +466,13 @@ public class PressureCurveService extends AbstractBaseService{
                     if(curveEntity.getPressForce().compareTo(errandResultEntity.getPressMin()) <= 0
                             || curveEntity.getPressForce().compareTo(errandResultEntity.getPressMax()) >= 0) {
                         errandResultEntity.setMinPressSuccess(false);
+//                        System.out.println("左进右不出判断失败 position="+curveEntity.getPosition()
+//                                +"， PositionMin=" + errandResultEntity.getPositionMin()
+//                                +"， PositionMax=" + errandResultEntity.getPositionMax()
+//                                +"， PressForce=" + curveEntity.getPressForce()
+//                                +"， PressMin=" + errandResultEntity.getPressMin()
+//                                +"， PressMax=" + errandResultEntity.getPressMax()
+//                        );
                         break;
                     }
                 }
@@ -719,10 +727,14 @@ public class PressureCurveService extends AbstractBaseService{
 //                entity.setHasPointBeforeMinPosition(false);
             } else if (9==entity.getErrandType()) {
                 //右侧结束窗口
-                if(!entity.isMinPressSuccess() ||  !entity.isMaxPressSuccess()) {
+                if(!entity.isMinPressSuccess()) {
                     result = false;
                     break;
                 }
+                minPositionFlag = true;
+                maxPositionFlag = true;
+                minPressFlag = true;
+                maxPressFlag = true;
             }
         }
 

@@ -173,7 +173,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 //                    endTime = this.startTime > 0 ? System.currentTimeMillis() : endTime;
 //                }
         }
-        if(curveEntityList.size() ==2 && !curveEntityList.get(1).getCurveRecording()){
+        if(curveEntityList.size() ==2 && !curveEntityList.get(0).getCurveRecording() && !curveEntityList.get(1).getCurveRecording()){
             //需要将除当前当前零件外的其他信息全部入库并从map中去除。
             //双曲线入库
             curve2DB(curveMap2);
@@ -189,8 +189,14 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     }
 
 
-    private void curve2DB(Map<Long, List<PressureCurveEntity>> map) {
+    private synchronized void curve2DB(Map<Long, List<PressureCurveEntity>> map) {
         if (!map.isEmpty()) {
+            try {
+                //睡眠1秒，让页面有足够时间做paint
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 //                System.out.println("set curve data to batch insert thread*************************");
 //                pressureCurveService.curve2queue(curveMap.get(productNo));
 //                Iterator<Long> it=curveMap.keySet().iterator();
@@ -481,6 +487,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 
         if(isOkList.size() == 2) {
             boolean isOK2 = isOkList.get(1);
+            System.out.println("*************发送状态位时第二个压头的压装结果"+isOK2);
             if(isOK2) {
                 paraMap.put("ok2", "true");
                 paraMap.put("nok2", "false");
