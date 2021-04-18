@@ -204,14 +204,14 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             List<PressureCurveEntity> entityList = null;
             for(Long recordId : map.keySet()){
                 entityList = map.get(recordId);
-                if(!CollectionUtils.isEmpty(entityList)) {
+                if(!CollectionUtils.isEmpty(entityList) && entityList.size() > 100) {
                    isOkList = pressureCurveService.batchInsert(entityList);
                 }
 
             }
+            map.clear();
             // 数据入库后，修改PLC的OK/NOK/压装完成  三个变量
             setFlagAfterPressure(isOkList);
-            map.clear();
         }
     }
 
