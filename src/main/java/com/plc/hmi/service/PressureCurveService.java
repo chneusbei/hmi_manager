@@ -725,9 +725,10 @@ public class PressureCurveService extends AbstractBaseService{
 //                entity.setHasPointBeforeMinPosition(false);
             } else if (9==entity.getErrandType()) {
                 //右侧结束窗口
-                if(!entity.isMinPressSuccess()) {
+                if(!entity.isMinPressSuccess() || !entity.isMinPositionFlag()) {
                     return false;
                 }
+
                 minPositionFlag = true;
                 maxPositionFlag = true;
                 minPressFlag = true;

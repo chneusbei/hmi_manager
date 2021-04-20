@@ -173,7 +173,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 //                    endTime = this.startTime > 0 ? System.currentTimeMillis() : endTime;
 //                }
         }
-        if(curveEntityList.size() ==2 && !curveEntityList.get(0).getCurveRecording() && !curveEntityList.get(1).getCurveRecording()){
+        if(curveEntityList.size() ==2 && !curveEntityList.get(1).getCurveRecording()){
             //需要将除当前当前零件外的其他信息全部入库并从map中去除。
             //双曲线入库
             curve2DB(curveMap2);
@@ -204,14 +204,15 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             List<PressureCurveEntity> entityList = null;
             for(Long recordId : map.keySet()){
                 entityList = map.get(recordId);
-                if(!CollectionUtils.isEmpty(entityList) && entityList.size() > 100) {
+                if(!CollectionUtils.isEmpty(entityList) && entityList.size() > 30) {
                    isOkList = pressureCurveService.batchInsert(entityList);
                 }
 
             }
-            map.clear();
+
             // 数据入库后，修改PLC的OK/NOK/压装完成  三个变量
             setFlagAfterPressure(isOkList);
+            map.clear();
         }
     }
 
