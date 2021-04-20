@@ -629,8 +629,7 @@ public class PressureCurveService extends AbstractBaseService{
             if (0==entity.getErrandType()) {
                 //最大位移窗口
                 if(!entity.isMaxPositionSuccess()) {
-                    result = false;
-                    break;
+                    return false;
                 }
 
                 if (!minPositionFlag && entity.isMinPositionFlag()) {
@@ -643,8 +642,7 @@ public class PressureCurveService extends AbstractBaseService{
             } else if (1==entity.getErrandType()) {
                 //最大压力窗口
                 if(!entity.isMaxPressSuccess()) {
-                    result = false;
-                    break;
+                    return false;
                 }
 
                 if (!minPressFlag && entity.isMinPressFlag()) {
@@ -657,8 +655,7 @@ public class PressureCurveService extends AbstractBaseService{
             } else if (2==entity.getErrandType()) {
                 //配合窗口
                 if(! entity.isMinPressSuccess() || !entity.isMaxPressSuccess()) {
-                    result = false;
-                    break;
+                    return false;
                 }
 
                 if (!minPositionFlag && entity.isMinPositionFlag()) {
@@ -677,8 +674,7 @@ public class PressureCurveService extends AbstractBaseService{
 //                entity.setHasPointBeforeMinPosition(false);
 //                entity.setMaxPressSucess(false);
                 if(!entity.isMinPressSuccess()) {
-                    result = false;
-                    break;
+                    return false;
                 }
 
                 if (!minPositionFlag && entity.isMinPositionFlag()) {
@@ -691,8 +687,7 @@ public class PressureCurveService extends AbstractBaseService{
             } else if (5==entity.getErrandType()) {
                 //峰值窗口
                 if(!entity.isMaxPressSuccess()) {
-                    result = false;
-                    break;
+                    return false;
                 }
 
                 if(!minPressFlag && entity.isMinPressFlag() ) {
@@ -705,8 +700,7 @@ public class PressureCurveService extends AbstractBaseService{
             } else if (6==entity.getErrandType()) {
                 //左-上限制窗口
                 if(!entity.isMaxPressSuccess()) {
-                    result = false;
-                    break;
+                    return false;
                 }
 
                 if(!minPressFlag && entity.isMinPressFlag() ) {
@@ -719,8 +713,7 @@ public class PressureCurveService extends AbstractBaseService{
             } else if (8==entity.getErrandType()) {
                 //顶部结束窗口
                 if(!entity.isMaxPressSuccess()) {
-                    result = false;
-                    break;
+                    return false;
                 }
 
                 if(!minPositionFlag && entity.isMinPositionFlag() ) {
@@ -733,8 +726,7 @@ public class PressureCurveService extends AbstractBaseService{
             } else if (9==entity.getErrandType()) {
                 //右侧结束窗口
                 if(!entity.isMinPressSuccess()) {
-                    result = false;
-                    break;
+                    return false;
                 }
                 minPositionFlag = true;
                 maxPositionFlag = true;
@@ -743,7 +735,7 @@ public class PressureCurveService extends AbstractBaseService{
             }
         }
 
-        if(result == false) {
+        if(!result) {
             return false;
         }
         if(!minPositionFlag || !maxPositionFlag
