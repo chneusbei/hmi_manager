@@ -7,7 +7,6 @@
     <link rel="icon" href="favicon.ico" type="image/ico">
     <meta name="author" content="yinqi">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/materialdesignicons.min.css" rel="stylesheet">
     <link href="css/style.min.css" rel="stylesheet">
     <script th:src="@{/vue.min.js}"></script>
     <script th:src="@{/axios.min.js}"></script>
@@ -27,12 +26,13 @@
                         <label style="margin-right: 30px;">系统连接</label><button   id="systemConnection" class="btn btn-success" disabled="disabled" type="button" ></button>
                         <label style="margin-right: 16px;" >数据记录中</label><button  id="dataCount" disabled="disabled" class="btn btn-success" type="button" ></button>
                         <label>压装结果</label><button  id="pressResultok" disabled="disabled" class="btn btn-success" type="button" ></button>
-<!--                        <div id="pressResultok"  style="display:block;padding-left: 30px;padding-right: 30px; font-weight: 700;  text-align: center;"  ></div>-->
+                        &nbsp&nbsp&nbsp&nbsp&nbsp追溯码：<input type="text" name="traceCode" id="traceCode" value="-" disabled="disabled" readonly unselectable="on" style="width: 500px;">
+
+                        <!--                        <div id="pressResultok"  style="display:block;padding-left: 30px;padding-right: 30px; font-weight: 700;  text-align: center;"  ></div>-->
                         <br>
                         &nbsp;&nbsp;产品代码：<input type="text" name="productCode" id="productCode" value="-" disabled="disabled" readonly unselectable="on">
                         当前零件号：<input type="text" name="productId" id="productId" value="-"  disabled="disabled" readonly unselectable="on">
                         零件名称：<input type="text" name="productName" id="productName" value="-"  disabled="disabled" readonly unselectable="on">
-                        追溯码：<input type="text" name="productTraceCode" id="productTraceCode" value="-" disabled="disabled" readonly unselectable="on">
                         当前位置:<input type="text" id="curPosition" value="-" disabled="disabled" readonly unselectable="on">
                         当前压力:<input type="text" id="curPressure" value="-" disabled="disabled" readonly unselectable="on">
                         <br>
@@ -183,7 +183,7 @@
                                                 document.getElementById("productCode").value=result[i][j].productCode;
                                                 document.getElementById("productId").value=result[i][j].productId;
                                                 document.getElementById("productName").value=result[i][j].productName;
-                                                document.getElementById("productTraceCode").value=result[i][j].productTraceCode;
+                                                document.getElementById("traceCode").value=result[i][j].traceCode;
 
                                                 recordNoNow=result[i][j].recordNo;
                                                 if(recordNo != recordNoNow) {
@@ -258,7 +258,7 @@
 
                     $(function(){
 
-                        t = setInterval("setgraph()", 1000);
+                        t = setInterval("setgraph()", 500);
 
                     })
 
@@ -300,7 +300,7 @@
                     }
 
                     $(function(){
-                        t = setInterval("getStatus()", 1000);
+                        t = setInterval("getStatus()", 500);
                     })
 
 

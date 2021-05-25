@@ -6,12 +6,121 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cecb0697-7a75-43f3-82cd-1d72e4e882c3" name="Default Changelist" comment="">
+    <list default="true" id="cecb0697-7a75-43f3-82cd-1d72e4e882c3" name="Default Changelist" comment="代码提交20210417">
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/FlowException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/HmiApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/ExportController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/AlarmDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/HisAlarmDao.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/AlarmEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/ErrandResultEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/HisAlarmEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/base/AbstractBaseEntity.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/AlarmMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/HisAlarmMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/AlarmEntityEnum.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/BaseEntityEnum.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/HisAlarmEntityEnum.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/AlarmService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/HisAlarmService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/CsvExportUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/accountManagement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/createAnAccount.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/curveAcquisition.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/curveMonitoring.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/curveQuery.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/curveStorage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/dataExport.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/dataQuery.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/equipmentFaultAlarm.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/equipmentStatusMonitoring.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/getpressresults.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/templates/hisAlarm.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureCurveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureCurveService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureProgramService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureProgramService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/JsonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/JsonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/lsjcode/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/lsjcode/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/lsjcode/User2Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/lsjcode/User2Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xCurveDataControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xCurveDataControler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xServoLimitSetControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xServoLimitSetControler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xServoOperationControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xServoOperationControler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/PressureDataControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/PressureDataControler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/PressureProgramControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/PressureProgramControler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/SystemParameterControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/SystemParameterControler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/UserControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/UserControler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureCurveDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureCurveDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureDataDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureDataDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureProgramDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureProgramDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/ProductDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/ProductDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PropertyDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PropertyDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/SystemParameterDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/SystemParameterDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/TagTypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/TagTypeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/TagsInfoDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/TagsInfoDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/UserRoleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/UserRoleDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureCurveEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureCurveEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureDataEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureDataEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureProgramEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureProgramEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureStatisticalDataEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureStatisticalDataEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/ProductEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/ProductEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PropertyEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PropertyEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/SystemParameterEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/SystemParameterEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/TagTypeEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/TagTypeEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/TagsInfoEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/TagsInfoEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/UserEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/UserEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/UserRoleEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/UserRoleEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcInfoResponseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcInfoResponseEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureCurveMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureCurveMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureDataMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureDataMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureProgramMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureProgramMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/ProductMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/ProductMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PropertyMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PropertyMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/SystemParameterMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/SystemParameterMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/TagTypeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/TagTypeMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/TagsInfoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/TagsInfoMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/UserRoleMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/UserRoleMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dto/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dto/Result.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PlcEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PlcEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureCurveEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureCurveEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureDataEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureDataEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureProgramEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureProgramEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/ProductEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/ProductEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/ProductParameterEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/ProductParameterEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PropertyConfigEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PropertyConfigEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/SystemParameterEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/SystemParameterEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/TagTypeEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/TagTypeEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/TagsInfoEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/TagsInfoEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/UserEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/UserEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/UserRoleEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/UserRoleEntityEnum.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PressureCurveService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PressureCurveService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PressureDataService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PressureDataService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PressureProgramService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PressureProgramService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/ProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PropertyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PropertyService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/StartRunService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/StartRunService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/SystemParameterService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/SystemParameterService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/TagTypeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/TagTypeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/TagsInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/TagsInfoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/UserRoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/UserRoleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xBaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xBaseService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveDataService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveDataService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveProgramService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveProgramService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xEquipmentOperationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xEquipmentOperationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoLimitSetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoLimitSetService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoOperationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoOperationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/thread/PlcPressCurveThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/thread/PlcPressCurveThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/thread/PressCurveThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/thread/PressCurveThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/PropertiesUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/PropertiesUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/OperatorRole.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/OperatorRole.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/manualOperation.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/manualOperation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/parameterCompilation.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parameterCompilation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/parameterSetting.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parameterSetting.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/parameterStorage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parameterStorage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/programMing.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/programMing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/safetyMonitoring.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/safetyMonitoring.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/SpringBootTestTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/SpringBootTestTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +155,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="ADD_SUFFIX_TO_CHERRY_PICKS_OF_PUBLISHED_COMMITS" value="false" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="dev20200415" />
@@ -94,7 +204,7 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -106,6 +216,21 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.HmiApplication">
+    <configuration name="Plc4xTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="hmi" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.plc.hmi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.plc.hmi" />
+      <option name="MAIN_CLASS_NAME" value="com.plc.hmi.Plc4xTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PressureCurveTest.testSql" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hmi" />
       <extension name="coverage">
@@ -122,18 +247,49 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductTest.testSql" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="hmi" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.plc.hmi.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.plc.hmi" />
-      <option name="MAIN_CLASS_NAME" value="com.plc.hmi.ProductTest" />
-      <option name="METHOD_NAME" value="testSql" />
-      <option name="TEST_OBJECT" value="method" />
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -275,7 +431,6 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ProductTest.testSql" />
       <item itemvalue="JUnit.PressureCurveTest.testSql" />
       <item itemvalue="Maven.hmi [compile] (1)" />
       <item itemvalue="Maven.hmi [package] (1)" />
@@ -283,14 +438,15 @@
       <item itemvalue="Maven.hmi [clean]" />
       <item itemvalue="Maven.hmi [compile]" />
       <item itemvalue="Spring Boot.HmiApplication" />
+      <item itemvalue="JUnit.Plc4xTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Plc4xTest" />
         <item itemvalue="Maven.hmi [package]" />
+        <item itemvalue="Maven.hmi [compile]" />
         <item itemvalue="Maven.hmi [clean]" />
         <item itemvalue="JUnit.PressureCurveTest.testSql" />
-        <item itemvalue="JUnit.ProductTest.testSql" />
-        <item itemvalue="Maven.hmi [compile]" />
       </list>
     </recent_temporary>
   </component>
@@ -377,105 +533,32 @@
       <workItem from="1608031618859" duration="7745000" />
       <workItem from="1608039644712" duration="4000" />
       <workItem from="1608439209718" duration="22910000" />
-      <workItem from="1611465440496" duration="30103000" />
-    </task>
-    <task id="LOCAL-00005" summary="update">
-      <created>1586868992304</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1586868992304</updated>
-    </task>
-    <task id="LOCAL-00006" summary="update0414">
-      <created>1586876731482</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1586876731482</updated>
-    </task>
-    <task id="LOCAL-00007" summary="update0415">
-      <created>1586960304910</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1586960304910</updated>
-    </task>
-    <task id="LOCAL-00008" summary="公差窗口功能添加1">
-      <created>1587182369705</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1587182369705</updated>
-    </task>
-    <task id="LOCAL-00009" summary="公差窗口功能添加2">
-      <created>1587222812465</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1587222812465</updated>
-    </task>
-    <task id="LOCAL-00010" summary="文档添加">
-      <created>1587269761640</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1587269761640</updated>
-    </task>
-    <task id="LOCAL-00011" summary="代码提交20200419">
-      <created>1587285226697</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1587285226697</updated>
-    </task>
-    <task id="LOCAL-00012" summary="代码提交20200419-2">
-      <created>1587309172059</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1587309172059</updated>
-    </task>
-    <task id="LOCAL-00013" summary="HMI结构和数据">
-      <created>1587394034754</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1587394034754</updated>
-    </task>
-    <task id="LOCAL-00014" summary="代码提交20200420">
-      <created>1587402481141</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1587402481141</updated>
-    </task>
-    <task id="LOCAL-00015" summary="代码提交20200421">
-      <created>1587475373389</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1587475373389</updated>
-    </task>
-    <task id="LOCAL-00016" summary="代码提交20200423">
-      <created>1587574260815</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1587574260816</updated>
-    </task>
-    <task id="LOCAL-00017" summary="代码提交20200423 -2">
-      <created>1587574365695</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1587574365695</updated>
-    </task>
-    <task id="LOCAL-00018" summary="代码提交20200424">
-      <created>1587658453714</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1587658453714</updated>
+      <workItem from="1611465440496" duration="30268000" />
+      <workItem from="1611577046408" duration="1515000" />
+      <workItem from="1613742901006" duration="1251000" />
+      <workItem from="1613874123214" duration="1820000" />
+      <workItem from="1614087800047" duration="3238000" />
+      <workItem from="1614260196942" duration="893000" />
+      <workItem from="1614398566420" duration="9849000" />
+      <workItem from="1614477507157" duration="1545000" />
+      <workItem from="1614480134764" duration="5334000" />
+      <workItem from="1615637181035" duration="841000" />
+      <workItem from="1615719926711" duration="3794000" />
+      <workItem from="1615814511056" duration="951000" />
+      <workItem from="1615903534648" duration="1872000" />
+      <workItem from="1615990155872" duration="2560000" />
+      <workItem from="1616241168580" duration="2677000" />
+      <workItem from="1616416889334" duration="4233000" />
+      <workItem from="1616507616673" duration="3466000" />
+      <workItem from="1616759969305" duration="1676000" />
+      <workItem from="1618663746438" duration="3866000" />
+      <workItem from="1618741201379" duration="14709000" />
+      <workItem from="1618841751454" duration="2681000" />
+      <workItem from="1618926785486" duration="2496000" />
+      <workItem from="1619445457573" duration="1001000" />
+      <workItem from="1621515669455" duration="3408000" />
+      <workItem from="1621523921136" duration="1198000" />
+      <workItem from="1621953632410" duration="4028000" />
     </task>
     <task id="LOCAL-00019" summary="代码提交20200425">
       <created>1587793483822</created>
@@ -722,7 +805,105 @@
       <option name="project" value="LOCAL" />
       <updated>1611489283806</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="代码提交20210124">
+      <created>1611499195414</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1611499195415</updated>
+    </task>
+    <task id="LOCAL-00055" summary="代码提交20210223">
+      <created>1614090729538</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1614090729539</updated>
+    </task>
+    <task id="LOCAL-00056" summary="代码提交20210227">
+      <created>1614400689445</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1614400689446</updated>
+    </task>
+    <task id="LOCAL-00057" summary="代码提交20210228">
+      <created>1614478895182</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1614478895183</updated>
+    </task>
+    <task id="LOCAL-00058" summary="代码提交20210317">
+      <created>1615637365309</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1615637365310</updated>
+    </task>
+    <task id="LOCAL-00059" summary="代码提交20210314">
+      <created>1615723880096</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1615723880097</updated>
+    </task>
+    <task id="LOCAL-00060" summary="代码提交20210320">
+      <created>1616243295012</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1616243295013</updated>
+    </task>
+    <task id="LOCAL-00061" summary="代码提交20210322">
+      <created>1616418890292</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1616418890294</updated>
+    </task>
+    <task id="LOCAL-00062" summary="代码提交20210417">
+      <created>1618667361367</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1618667361368</updated>
+    </task>
+    <task id="LOCAL-00063" summary="代码提交20210417">
+      <created>1618669227122</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1618669227122</updated>
+    </task>
+    <task id="LOCAL-00064" summary="代码提交20210418">
+      <created>1618751456788</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1618751456790</updated>
+    </task>
+    <task id="LOCAL-00065" summary="代码提交20210418">
+      <created>1618753375608</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1618753375608</updated>
+    </task>
+    <task id="LOCAL-00066" summary="代码提交20210420">
+      <created>1618929455293</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1618929455293</updated>
+    </task>
+    <task id="LOCAL-00067" summary="代码提交20210420-2">
+      <created>1618930854299</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1618930854299</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -766,6 +947,31 @@
             </State>
           </value>
         </entry>
+        <entry key="2">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:E:/myworkspace/hmi_manager/src" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -778,23 +984,12 @@
     <option name="OPEN_TABS">
       <set>
         <option value="1" />
+        <option value="2" />
       </set>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="代码提交20200509-2" />
-    <MESSAGE value="代码提交20200510-3" />
-    <MESSAGE value="代码提交20200510-4" />
-    <MESSAGE value="代码提交20200510-5" />
-    <MESSAGE value="代码提交20200511-1" />
-    <MESSAGE value="代码提交20200513-1" />
-    <MESSAGE value="代码提交20200514-1" />
-    <MESSAGE value="代码提交20200514-2" />
-    <MESSAGE value="代码提交20200523-1" />
-    <MESSAGE value="代码提交20200523-2" />
-    <MESSAGE value="代码提交20200608" />
-    <MESSAGE value="代码提交20200705" />
     <MESSAGE value="代码提交20200705-2" />
     <MESSAGE value="代码提交20200707" />
     <MESSAGE value="代码提交20200708" />
@@ -808,132 +1003,132 @@
     <MESSAGE value="代码提交20200921" />
     <MESSAGE value="代码提交20201116-1" />
     <MESSAGE value="代码提交202010124" />
-    <option name="LAST_COMMIT_MESSAGE" value="代码提交202010124" />
+    <MESSAGE value="代码提交20210124" />
+    <MESSAGE value="代码提交20210223" />
+    <MESSAGE value="代码提交20210227" />
+    <MESSAGE value="代码提交20210228" />
+    <MESSAGE value="代码提交20210317" />
+    <MESSAGE value="代码提交20210314" />
+    <MESSAGE value="代码提交20210320" />
+    <MESSAGE value="代码提交20210322" />
+    <MESSAGE value="代码提交20210417" />
+    <MESSAGE value="代码提交20210418" />
+    <MESSAGE value="代码提交20210420" />
+    <MESSAGE value="代码提交20210420-2" />
+    <option name="LAST_COMMIT_MESSAGE" value="代码提交20210420-2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1608472202308">
+    <state x="206" y="0" width="967" height="728" key="#HmiApplication" timestamp="1621957745749">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1608472202308" />
-    <state x="264" y="0" key="#hmi_[package]_(1)" timestamp="1605538968910">
+    <state x="206" y="0" width="967" height="728" key="#HmiApplication/0.0.1366.728@0.0.1366.728" timestamp="1621957745749" />
+    <state x="275" y="23" key="#XML" timestamp="1621957715373">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="264" y="0" key="#hmi_[package]_(1)/0.0.1366.728@0.0.1366.728" timestamp="1605538968910" />
-    <state x="438" y="66" key="#xdebugger.evaluate" timestamp="1611499029444">
+    <state x="275" y="23" key="#XML/0.0.1366.728@0.0.1366.728" timestamp="1621957715373" />
+    <state x="137" y="19" width="1174" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1621955176413">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="438" y="66" key="#xdebugger.evaluate/0.0.1366.728@0.0.1366.728" timestamp="1611499029444" />
-    <state x="183" y="0" key="CommitChangelistDialog2" timestamp="1611489269373">
+    <state x="137" y="19" width="1174" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1621955176413" />
+    <state x="419" y="148" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1621957745081">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="183" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1611489269373" />
-    <state x="92" y="92" width="1182" height="538" maximized="true" key="DiffContextDialog" timestamp="1605538016840">
+    <state x="419" y="148" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1621957745081" />
+    <state x="183" y="0" key="CommitChangelistDialog2" timestamp="1621953903887">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="92" width="1182" height="538" maximized="true" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1605538016840" />
-    <state width="1323" height="182" key="GridCell.Tab.0.bottom" timestamp="1611499088781">
+    <state x="183" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1621953903887" />
+    <state x="92" y="92" width="1182" height="538" key="DiffContextDialog" timestamp="1621953902856">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1611499088781" />
-    <state width="1323" height="182" key="GridCell.Tab.0.center" timestamp="1611499088780">
+    <state x="92" y="92" width="1182" height="538" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1621953902856" />
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1621954082669">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1611499088780" />
-    <state width="1323" height="182" key="GridCell.Tab.0.left" timestamp="1611499088780">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1621954082669" />
+    <state width="1323" height="78" key="GridCell.Tab.0.bottom" timestamp="1621522209634">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1611499088780" />
-    <state width="1323" height="182" key="GridCell.Tab.0.right" timestamp="1611499088781">
+    <state width="1323" height="78" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621522209634" />
+    <state width="1323" height="78" key="GridCell.Tab.0.center" timestamp="1621522209633">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1611499088781" />
-    <state width="1323" height="182" key="GridCell.Tab.1.bottom" timestamp="1611499087711">
+    <state width="1323" height="78" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621522209633" />
+    <state width="1323" height="78" key="GridCell.Tab.0.left" timestamp="1621522209633">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1611499087711" />
-    <state width="1323" height="182" key="GridCell.Tab.1.center" timestamp="1611499087711">
+    <state width="1323" height="78" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621522209633" />
+    <state width="1323" height="78" key="GridCell.Tab.0.right" timestamp="1621522209633">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1611499087711" />
-    <state width="1323" height="182" key="GridCell.Tab.1.left" timestamp="1611499087711">
+    <state width="1323" height="78" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621522209633" />
+    <state width="1323" height="78" key="GridCell.Tab.1.bottom" timestamp="1621522209634">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1611499087711" />
-    <state width="1323" height="182" key="GridCell.Tab.1.right" timestamp="1611499087711">
+    <state width="1323" height="78" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621522209634" />
+    <state width="1323" height="78" key="GridCell.Tab.1.center" timestamp="1621522209634">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1611499087711" />
-    <state width="1323" height="182" key="GridCell.Tab.2.bottom" timestamp="1611499087712">
+    <state width="1323" height="78" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1621522209634" />
+    <state width="1323" height="78" key="GridCell.Tab.1.left" timestamp="1621522209634">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1611499087712" />
-    <state width="1323" height="182" key="GridCell.Tab.2.center" timestamp="1611499087711">
+    <state width="1323" height="78" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1621522209634" />
+    <state width="1323" height="78" key="GridCell.Tab.1.right" timestamp="1621522209634">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1611499087711" />
-    <state width="1323" height="182" key="GridCell.Tab.2.left" timestamp="1611499087711">
+    <state width="1323" height="78" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1621522209634" />
+    <state width="1323" height="30" key="GridCell.Tab.2.bottom" timestamp="1618758220563">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1611499087711" />
-    <state width="1323" height="182" key="GridCell.Tab.2.right" timestamp="1611499087711">
+    <state width="1323" height="30" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1618758220563" />
+    <state width="1323" height="30" key="GridCell.Tab.2.center" timestamp="1618758220563">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1611499087711" />
-    <state x="492" y="75" key="RollbackChangesDialog" timestamp="1608440577588">
+    <state width="1323" height="30" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1618758220563" />
+    <state width="1323" height="30" key="GridCell.Tab.2.left" timestamp="1618758220562">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="492" y="75" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1608440577588" />
-    <state x="379" y="120" key="Vcs.Push.Dialog.v2" timestamp="1611491487520">
+    <state width="1323" height="30" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1618758220562" />
+    <state width="1323" height="30" key="GridCell.Tab.2.right" timestamp="1618758220563">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="120" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1611491487520" />
-    <state x="420" y="98" key="VcsDiffUtil.ChangesDialog" timestamp="1605537853463">
+    <state width="1323" height="30" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1618758220563" />
+    <state x="385" y="80" key="MultipleFileMergeDialog" timestamp="1621954399279">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="420" y="98" key="VcsDiffUtil.ChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1605537853463" />
-    <state x="264" y="68" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1611498747339">
+    <state x="385" y="80" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1621954399279" />
+    <state x="184" y="0" key="SettingsEditor" timestamp="1621957358508">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="264" y="68" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.728@0.0.1366.728" timestamp="1611498747339" />
-    <state x="245" y="47" width="958" height="600" key="find.popup" timestamp="1611493717776">
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621957358508" />
+    <state x="518" y="68" key="VCS.ChangeListViewerDialog" timestamp="1615720287548">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="245" y="47" width="958" height="600" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1611493717776" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1608439347472">
+    <state x="518" y="68" key="VCS.ChangeListViewerDialog/0.0.1366.728@0.0.1366.728" timestamp="1615720287548" />
+    <state x="379" y="120" key="Vcs.Push.Dialog.v2" timestamp="1618930856018">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1608439347472" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1611468946291">
+    <state x="379" y="120" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1618930856018" />
+    <state x="275" y="123" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1614484425127">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1611468946291" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureCurveService.java</url>
-          <line>458</line>
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureCurveService.java</url>
-          <line>471</line>
-          <option name="timeStamp" value="58" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-    <watches-manager>
-      <configuration name="JUnit">
-        <watch expression="bytes[2]" />
-      </configuration>
-      <configuration name="SpringBootApplicationConfigurationType">
-        <watch expression="queryList" language="JAVA" />
-        <watch expression="csvFileOutputStream" />
-        <watch expression="((Response)((ResponseFacade)response).response).request" custom="org.apache.catalina.connector.Response,org.apache.catalina.connector.ResponseFacade" />
-        <watch expression="datas.get(0)" />
-        <watch expression="this" />
-      </configuration>
-    </watches-manager>
+    <state x="275" y="123" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.728@0.0.1366.728" timestamp="1614484425127" />
+    <state x="284" y="94" width="958" height="600" key="find.popup" timestamp="1619445842870">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="284" y="94" width="958" height="600" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1619445842870" />
+    <state x="445" y="76" key="git4idea.branch.GitSmartOperationDialog" timestamp="1621954140587">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="445" y="76" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" timestamp="1621954140587" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1621957780604">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1621957780604" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1621516521604">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1621516521604" />
   </component>
 </project>
