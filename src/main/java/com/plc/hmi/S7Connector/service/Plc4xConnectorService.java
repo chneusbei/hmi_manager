@@ -119,7 +119,9 @@ public class Plc4xConnectorService {
         PlcReadRequest readRequest = builder.build();
         PlcReadResponse response =null;
         try {
+            System.out.println("============================begin querey");
             response = readRequest.execute().get();
+            System.out.println("============================  querey end ");
         } catch (InterruptedException e) {
             logger.error("execute readRequeset error." + e.getStackTrace());
             e.printStackTrace();

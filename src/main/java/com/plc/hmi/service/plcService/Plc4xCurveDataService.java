@@ -41,7 +41,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     public static Map<Long, List<PressureCurveEntity>> curveMap2 = new HashMap<Long, List<PressureCurveEntity>>();
 //    public static PressureCurveEntity currentCurve2 = new PressureCurveEntity();
     public static Long productNo=1L;
-    public static Long productNo2=0L;
+    public static Long productNo2=1L;
     static int  preCurveLength1 =0;
     static int  preCurveLength2 =0;
 //    private static Long startTime= 0L;
@@ -143,7 +143,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 paraMap.put("motion_state1", "99");
                 this.setDatas(HmiConstants.PLC_TAG_GROUP.CURVE_DATA_UPDATE.getCode(), paraMap);
                 //需要将除当前当前零件外的其他信息全部入库并从map中去除。
-                curve2DB(curveMap);
+                curve2DB(1, curveMap);
             }
             preCurveLength1 = curveStatusEntity.getDataLength1();
         }
@@ -160,7 +160,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                     paraMap.put("motion_state2", "99");
                     this.setDatas(HmiConstants.PLC_TAG_GROUP.CURVE_DATA_UPDATE.getCode(), paraMap);
                     //双曲线入库
-                    curve2DB(curveMap2);
+                    curve2DB(2, curveMap2);
                 }
                 preCurveLength2 = curveStatusEntity.getDataLength2();
             }
@@ -171,7 +171,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      * 数据入库
      * @param map
      */
-    private  void curve2DB(Map<Long, List<PressureCurveEntity>> map) {
+    private  void curve2DB(int pressHeadNo, Map<Long, List<PressureCurveEntity>> map) {
         if (!map.isEmpty()) {
           /*  try {
                 //睡眠1秒，让页面有足够时间做paint
@@ -182,18 +182,18 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 //                System.out.println("set curve data to batch insert thread*************************");
 //                pressureCurveService.curve2queue(curveMap.get(productNo));
 //                Iterator<Long> it=curveMap.keySet().iterator();
-            ArrayList<Boolean> isOkList = null;
+            boolean isOk = true;
             List<PressureCurveEntity> entityList = null;
             for(Long recordId : map.keySet()){
                 entityList = map.get(recordId);
 //                if(!CollectionUtils.isEmpty(entityList) && entityList.size() > 30) {
                 if(!CollectionUtils.isEmpty(entityList)) {
-                   isOkList = pressureCurveService.batchInsert(entityList);
+                    isOk = pressureCurveService.batchInsert(String.valueOf(pressHeadNo), entityList);
                 }
             }
 
             // 数据入库后，修改PLC的OK/NOK/压装完成  三个变量
-            setFlagAfterPressure(isOkList);
+            setFlagAfterPressure(pressHeadNo, isOk);
             map.clear();
         }
     }
@@ -219,7 +219,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         } else {
             if (CollectionUtils.isEmpty(curveMap2)) {
                 //如果容器是空的， 说明是新曲线， 曲线id 递增。
-                productNo ++;
+                productNo2 ++;
             }
         }
 
@@ -240,7 +240,11 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             curveEntity.setSolidLine(true);
             curveEntity.setErrant(false);
             curveEntity.setPressureHeadNo(pressHeadNo);
-            curveEntity.setRecordNo(productNo);
+            if(pressHeadNo ==1 ) {
+                curveEntity.setRecordNo(productNo);
+            } else {
+                curveEntity.setRecordNo(productNo2);
+            }
             if (null == curveEntity.getCurveRecording()) {
                 curveEntity.setCurveRecording(false);
             }
@@ -248,12 +252,20 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             curveEntityList.add(curveEntity);
         }
 
-
-        if (CollectionUtils.isEmpty(curveMap.get(productNo))) {
-            curveMap.put(productNo, curveEntityList);
+        if(pressHeadNo ==1 ) {
+            if (CollectionUtils.isEmpty(curveMap.get(productNo))) {
+                curveMap.put(productNo, curveEntityList);
+            } else {
+                curveMap.get(productNo).addAll(curveEntityList);
+            }
         } else {
-            curveMap.get(productNo).addAll(curveEntityList);
+            if (CollectionUtils.isEmpty(curveMap2.get(productNo))) {
+                curveMap2.put(productNo, curveEntityList);
+            } else {
+                curveMap2.get(productNo).addAll(curveEntityList);
+            }
         }
+
         return curveEntityList;
     }
 
@@ -509,33 +521,31 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     /**
      * 压装结束后，设置曲线状态，OK /NOK/压装完成
      */
-    public  void setFlagAfterPressure(ArrayList<Boolean> isOkList) {
+    public  void setFlagAfterPressure(int pressHeadNo, boolean isOk) {
         Map<String, String> paraMap = new HashMap<>();
-        if(CollectionUtils.isEmpty(isOkList)) {
-            return;
-        }
-        boolean  isOk = isOkList.get(0);
-
+        System.out.println("*************发送状态位时第"+pressHeadNo+"个压头的压装结果"+isOk);
         if(isOk) {
-            paraMap.put("ok", "true");
-            paraMap.put("nok", "false");
-        } else {
-            paraMap.put("ok", "false");
-            paraMap.put("nok", "true");
-        }
-
-        paraMap.put("finish", "true");
-
-        if(isOkList.size() == 2) {
-            boolean isOK2 = isOkList.get(1);
-            System.out.println("*************发送状态位时第二个压头的压装结果"+isOK2);
-            if(isOK2) {
+//            System.out.println("*************发送状态位时第一个压头的压装结果"+isOk);
+            if(pressHeadNo ==1) {
+                paraMap.put("ok", "true");
+                paraMap.put("nok", "false");
+            } else {
                 paraMap.put("ok2", "true");
                 paraMap.put("nok2", "false");
+            }
+        } else {
+            if(pressHeadNo ==1) {
+                paraMap.put("ok", "false");
+                paraMap.put("nok", "true");
             } else {
                 paraMap.put("ok2", "false");
                 paraMap.put("nok2", "true");
             }
+        }
+
+        if(pressHeadNo ==1) {
+            paraMap.put("finish", "true");
+        } else {
             paraMap.put("finish2", "true");
         }
 

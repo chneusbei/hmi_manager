@@ -45,7 +45,7 @@ public class Plc4xCurveStatusService extends Plc4xBaseService {
     public CurveStatusEntity getCurveStatus(List<PlcEntity> entityList) {
         CurveStatusEntity curveStatusEntity = new CurveStatusEntity();
 
-        if (!CollectionUtils.isEmpty(entityList)) {
+        if (CollectionUtils.isEmpty(entityList)) {
             return curveStatusEntity;
         }
         for (PlcEntity plcEntity : entityList) {
