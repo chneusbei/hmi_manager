@@ -54,8 +54,9 @@ public class HmiConstants {
         CURVE_DATA_2("curve_data_2", "曲线信息_数据"),//双压头时第二个压头
         CURVE_STATUS("curve_status", "曲线信息_状态"),
         CURVE_PROGRAM("curve_program", "曲线信息_程序"),
-        CURVE_ERRAND("curve_errand", "曲线信息_公差窗口");
-
+        CURVE_ERRAND("curve_errand", "曲线信息_公差窗口"),
+        CURVE_DATA_NEW("curve_data_new", "新曲线信息状态_数据"),
+        CURVE_DATA_UPDATE("curve_data_update", "新曲线信息状态更新");
         //枚举对象的变量
         private String code;
         private String value;

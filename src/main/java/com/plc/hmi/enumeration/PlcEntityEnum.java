@@ -50,7 +50,14 @@ public enum PlcEntityEnum {
     curve_data_trace_code30("traceCode30", "追溯码"),
     curve_data_trace_code31("traceCode31", "追溯码"),
 
-
+    //PLC曲线状态1
+    curve_status_motion_state1("motionState1", "PLC曲线状态1"),
+    //PLC曲线状态2
+    curve_status_motion_state2("motionState2", "PLC曲线状态2"),
+    //曲线数量1 dataLength1
+    curve_status_data_length1("dataLength1", "曲线数量1"),
+    //曲线数量2 dataLength2
+    curve_status_data_length2("dataLength2", "曲线数量2"),
     /*
     第二条曲线
      */

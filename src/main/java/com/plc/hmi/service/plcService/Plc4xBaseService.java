@@ -40,7 +40,7 @@ public class Plc4xBaseService {
      *  获取设 PlcReadRequest.Builder
      *  高频查询，需要先获得 PlcReadRequest.Builder
      */
-    public synchronized PlcReadRequest.Builder initReadBuilder(List<PlcEntity> queryList, boolean force){
+    public  PlcReadRequest.Builder initReadBuilder(List<PlcEntity> queryList, boolean force){
         if(force || null == builder) {
             builder = plc4xConnectorService.getReadBuilder(queryList);
             builderTime = System.currentTimeMillis();
@@ -52,11 +52,11 @@ public class Plc4xBaseService {
      * 通过 PlcReadRequest.Builder从PLC获取数据
      * 通用方法， 批量模式
      */
-        protected synchronized List<PlcEntity>  getDataByBuilder() {
-        if(null == builder) {
+    protected List<PlcEntity> getDataByBuilder() {
+        if (null == builder) {
             this.initReadBuilder(readQueryList, false);
         }
-        if(null == builder) {
+        if (null == builder) {
             return null;
         } else {
             return plc4xConnectorService.queryData(builder);
@@ -76,7 +76,7 @@ public class Plc4xBaseService {
 
 
     //修改PLC上数据， 通用方法， 支持批量模式
-    protected  synchronized boolean setPlcData() {
+    protected   boolean setPlcData() {
         plc4xConnectorService.setData(writeQueryList);
         writeQueryList.clear();
         return true;
@@ -86,7 +86,7 @@ public class Plc4xBaseService {
      * 查询queryList初始化
      * @param tagGroup
      */
-    protected synchronized void initQuereyList(String tagGroup) {
+    protected  void initQuereyList(String tagGroup) {
 //        System.out.println(">>>>>>>>>>>>>tagGroup"+tagGroup);
 //        System.out.println(">>>>>>>>>>readQueryList.isEmpty()"+CollectionUtils.isEmpty(readQueryList));
         if(!CollectionUtils.isEmpty(readQueryList)) {
@@ -128,13 +128,60 @@ public class Plc4xBaseService {
         }
     }
 
+    /**
+     * 查询曲线动态初始化
+     */
+    protected void setDynamicCurveQueryList(int pressHeadNo, int start,  int dataLength) {
+        if(dataLength <= 0  || dataLength <= start) {
+            return;
+        }
+        for(int i = start; i < dataLength; i ++) {
+//            builder.addItem("shuru2", "%I0.1:BOOL");
+            PlcEntity pressQuery = new PlcEntity();
+            pressQuery.setName("curvePressNew"+i);
+            StringBuffer sb =new StringBuffer();
+            sb.append(HmiConstants.PLC_QUERY_PREFIX);
+            if(pressHeadNo == 1) {
+                sb.append("DB212.DBD");
+            } else {
+                sb.append("DB214.DBD");
+            }
+            sb.append(i*4)
+                .append(HmiConstants.POINT)
+                .append("0")
+                .append(":").append("REAL");
+            pressQuery.setFieldQuery(sb.toString());
+            pressQuery.setPosition(i*4+HmiConstants.POINT+"0");
+            pressQuery.setDataType("REAL");
+
+            PlcEntity positionQuery = new PlcEntity();
+            positionQuery.setName("curvePosNew"+i);
+            StringBuffer sb1 =new StringBuffer();
+            sb1.append(HmiConstants.PLC_QUERY_PREFIX);
+            if(pressHeadNo == 1) {
+                sb1.append("DB213.DBD");
+            } else {
+                sb1.append("DB215.DBD");
+            }
+            sb1.append(i*4)
+                    .append(HmiConstants.POINT)
+                    .append("0")
+                    .append(":").append("REAL");
+            positionQuery.setFieldQuery(sb1.toString());
+            positionQuery.setPosition(i*4+HmiConstants.POINT+"0");
+            positionQuery.setDataType("REAL");
+            readQueryList.add(positionQuery);
+        }
+    }
+
+
 
 
     /**
-     * 插入ueryList初始化
+     * 插入queryList初始化
      * @param tagGroup
      */
-    protected synchronized void initWriteList(String tagGroup, Map<String, String> paraMap) {
+    protected  void initWriteList(String tagGroup, Map<String, String> paraMap) {
         if(!CollectionUtils.isEmpty(writeQueryList)) {
             return;
         }

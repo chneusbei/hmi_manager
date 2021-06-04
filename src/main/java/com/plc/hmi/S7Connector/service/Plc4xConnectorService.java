@@ -32,7 +32,7 @@ public class Plc4xConnectorService {
     private final Log logger = LogFactory.getLog(Plc4xConnectorService.class);
     private String HOST =  null; //"s7://192.168.1.1/2/1"; 参数 第一个是机架rock, 第二个是插槽slot
     private PlcConnection plcConnection = null;
-    private synchronized boolean connect2Plc() {
+    private  boolean connect2Plc() {
         if(this.plcConnection == null ||  !plcConnection.isConnected()) {
             PlcDriverManager plcDriverManager =new PlcDriverManager();
             setHost();
@@ -77,7 +77,7 @@ public class Plc4xConnectorService {
         return plcConnection.isConnected();
     }
 
-    public synchronized PlcReadRequest.Builder getReadBuilder(List<PlcEntity> queryList) {
+    public  PlcReadRequest.Builder getReadBuilder(List<PlcEntity> queryList) {
         if(queryList == null || queryList.size() == 0) {
             logger.info("plcInfoQueryEntity is empty!");
         }
@@ -115,7 +115,7 @@ public class Plc4xConnectorService {
      * 不需要重复创建builder,适用于频繁查询场景
      * @param builder
      */
-    public synchronized List<PlcEntity> queryData(PlcReadRequest.Builder builder) {
+    public  List<PlcEntity> queryData(PlcReadRequest.Builder builder) {
         PlcReadRequest readRequest = builder.build();
         PlcReadResponse response =null;
         try {

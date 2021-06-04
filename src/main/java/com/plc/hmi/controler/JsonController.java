@@ -2,6 +2,7 @@ package com.plc.hmi.controler;
 
 import com.alibaba.fastjson.JSON;
 import com.plc.hmi.constants.ConfigConstants;
+import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.*;
 import com.plc.hmi.dal.entity.base.AbstractBaseEntity;
 import com.plc.hmi.service.*;
@@ -148,7 +149,7 @@ public class JsonController {
         paraMap.put("choice", "true");
 //        paraMap.put("traceCode31", "65");
 //        paraMap.put("traceCode0", "100");
-        plc4xCurveDataService.setDatas(paraMap);
+        plc4xCurveDataService.setDatas(HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode(), paraMap);
 //        System.out.println("-----------------------------------------");
         return "SUCCESS";
     }

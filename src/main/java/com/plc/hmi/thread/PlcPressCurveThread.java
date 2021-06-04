@@ -30,15 +30,15 @@ public class PlcPressCurveThread implements Runnable {
 //                +", heartbeatFrequency=" +heartbeatFrequency
 //                + ", isdubbpress="+isdubbpress
 //                + ", curveFetchSleepTime="+curveFetchSleepTime);
-        int loop =0;
+//        int loop =0;
         while(true) {
             service.getCurveDatasFromPlc();
-            loop++;
+           /* loop++;
             if(heartbeatFrequency >= 0 && loop*curveFetchFrequency>=heartbeatFrequency) {
 //                logger.info("do heart beat >>>>>>>>>>>>>>>>>>>>>>>>>");
 //             service.doHeartBeat();
-             loop=0;
-            }
+                loop=0;
+            }*/
             try {
                 //休眠
 //                System.out.println("获取plc曲线数据。。。。。。。。。。。。。。。。。。。。。");

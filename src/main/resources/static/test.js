@@ -80,7 +80,7 @@ document.writeln("                    <span class=\'lyear-toggler-bar\'></span>"
 document.writeln("                    <span class=\'lyear-toggler-bar\'></span>");
 document.writeln("                </div>");
 document.writeln("                <span class=\'navbar-page-title\'>欢迎你 </span>");
-document.writeln("<img src=\"images/logo/rzd.png\">");
+// document.writeln("<img src=\"images/logo/rzd.png\">");
 document.writeln("            </div>");
 document.writeln("");
 document.writeln("            <ul class=\'topbar-right\'>");

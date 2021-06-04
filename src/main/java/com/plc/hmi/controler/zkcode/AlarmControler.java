@@ -24,7 +24,7 @@ public class AlarmControler {
     @ResponseBody
     @GetMapping("/getAlarm")
     public List<AlarmEntity> getAlarm(){
-        List<PlcEntity> plcEntities= plc4xEquipmentAlarmService.getDatas();
+//        List<PlcEntity> plcEntities= plc4xEquipmentAlarmService.getDatas();
         List<AlarmEntity> alarm = alarmService.getAlarm();
 //        AlarmEntity alarmEntity=new AlarmEntity();
 //        alarmEntity.setAlarmStatus("0");
