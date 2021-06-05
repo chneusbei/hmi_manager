@@ -46,7 +46,7 @@ public class PressureCurveTest {
 //        service.curve2queue(entityList);
 //        pressCurveThread = new PressCurveThread(service) ;
 //        pressCurveThread.run();
-        service.batchInsert(entityList);
+//        service.batchInsert(entityList);
 //        service.insert(entity);
 //        List<PressureCurveEntity> resultList = service.getCurrDate();
         List<PressureCurveEntity> hisList =service.getHisDateByCode(0L);
