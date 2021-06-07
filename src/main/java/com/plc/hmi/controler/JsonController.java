@@ -146,10 +146,12 @@ public class JsonController {
 //        System.out.println("启动PLC到达后台-");
 //        plc4xCurveStatusService.setDatas();
         Map<String, String> paraMap = new HashMap<>();
-        paraMap.put("choice", "true");
+        paraMap.put("startPlc", "true");
 //        paraMap.put("traceCode31", "65");
 //        paraMap.put("traceCode0", "100");
-        plc4xCurveDataService.setDatas(HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode(), paraMap);
+//        plc4xCurveDataService.setDatas(HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode(), paraMap);
+        plc4xCurveDataService.setDatas(HmiConstants.PLC_TAG_GROUP.START_PLC.getCode(), paraMap);
+
 //        System.out.println("-----------------------------------------");
         return "SUCCESS";
     }

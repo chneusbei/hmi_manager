@@ -44,6 +44,8 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     public static Long productNo2=1L;
     static int  preCurveLength1 =0;
     static int  preCurveLength2 =0;
+    private int preMotionState1 = -1;
+    private int preMotionState2 = -1;
 //    private static Long startTime= 0L;
 //    private static Long endTime= 0L;
 //    private static Long peerStartTime= 0L;
@@ -131,38 +133,68 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
          * MOTION_STATE: 0:运动静止 1:预下压，2:数据采集开始 4:数据采集正常结束
          *  5:数据压装异常终止 99:数据归档结束，可数据从新开始
          */
+        if(preMotionState1 != curveStatusEntity.getMotionState1()) {
+            logger.info("[MotionState1] statues inited or changed , value = : "+curveStatusEntity.getMotionState1());
+        }
+        preMotionState1 =  curveStatusEntity.getMotionState1();
+
+
+
         if(curveStatusEntity.getMotionState1() ==2 || curveStatusEntity.getMotionState1() ==4) {
             //获取曲线信息
             List<PlcEntity> curve1List = this.getDynamicCurveDatas(1, preCurveLength1, curveStatusEntity.getDataLength1());
-            List<PressureCurveEntity> curveEntityList = plc2CurveNew(1, curveStatusEntity, curve1List);
+//            System.out.println("name1 = : "+curve1List.get(curve1List.size()-1).getValueOjb() + ", name2=" +curve1List.get(curve1List.size()-2).getValueOjb());
+            if(curveStatusEntity.getDataLength1() > preCurveLength1) {
+                List<PressureCurveEntity> list = plc2CurveNew(1,preCurveLength1, curveStatusEntity, curve1List);
+//                System.out.println(">>>>>>>>entity : name1 = : "+ list.get(0).getPosition()+ ", name2=" +list.get(0).getPressForce());
+            }
 
+
+            int mapSzie = 0;
+            for(Long recordId : curveMap.keySet()){
+                mapSzie = curveMap.get(recordId).size();
+            }
+//            System.out.println("preCurveLength1 = "+ preCurveLength1 + ", dataLength1 = "+ curveStatusEntity.getDataLength1() + ", curve size = : "+mapSzie );
             //状态复位
-            if(curveStatusEntity.getMotionState1() ==4 &&  preCurveLength1 < curveStatusEntity.getDataLength1()) {
+            if(curveStatusEntity.getMotionState1() ==4 &&  preCurveLength1 == curveStatusEntity.getDataLength1()) {
                 //状态复位
-                Map<String, String> paraMap = new HashMap<String, String>();
-                paraMap.put("motion_state1", "99");
+                Map<String, String> paraMap = new HashMap<String, String >();
+                paraMap.put("motion_state1_reset", "true");
                 this.setDatas(HmiConstants.PLC_TAG_GROUP.CURVE_DATA_UPDATE.getCode(), paraMap);
+                preCurveLength1 = 0;
                 //需要将除当前当前零件外的其他信息全部入库并从map中去除。
                 curve2DB(1, curveMap);
+                logger.info("曲线1状态重置成功，数据入库成功， 数据条数="+curveStatusEntity.getDataLength1());
             }
             preCurveLength1 = curveStatusEntity.getDataLength1();
+
         }
+
         if(propertyService.isDubblePress()) {
+            if(preMotionState2 != curveStatusEntity.getMotionState2()) {
+                logger.info("[MotionState2] statues inited or changed , value = : "+curveStatusEntity.getMotionState2());
+            }
+            preMotionState2 =  curveStatusEntity.getMotionState2();
             if(curveStatusEntity.getMotionState2() ==2 || curveStatusEntity.getMotionState2() ==4) {
                 //获取曲线信息
                 List<PlcEntity> curve2List = this.getDynamicCurveDatas(2,  preCurveLength2, curveStatusEntity.getDataLength2());
-                List<PressureCurveEntity> curveEntityList = plc2CurveNew(2, curveStatusEntity, curve2List);
+                if(curveStatusEntity.getDataLength2() > preCurveLength2) {
+                    plc2CurveNew(2, preCurveLength2, curveStatusEntity, curve2List);
+                }
 
                 //状态复位
-                if(curveStatusEntity.getMotionState2() ==4 && preCurveLength2 < curveStatusEntity.getDataLength2()) {
+                if(curveStatusEntity.getMotionState2() ==4 && preCurveLength2 == curveStatusEntity.getDataLength2()) {
                     //状态复位
-                    Map<String, String> paraMap = new HashMap<String, String>();
-                    paraMap.put("motion_state2", "99");
+                    Map<String, String> paraMap = new HashMap<String, String >();
+                    paraMap.put("motion_state2_reset", "true");
                     this.setDatas(HmiConstants.PLC_TAG_GROUP.CURVE_DATA_UPDATE.getCode(), paraMap);
+                    preCurveLength2 =0;
                     //双曲线入库
                     curve2DB(2, curveMap2);
+                    logger.info("曲线2状态重置成功，数据入库成功， 数据条数="+curveStatusEntity.getDataLength2());
                 }
                 preCurveLength2 = curveStatusEntity.getDataLength2();
+
             }
         }
     }
@@ -193,6 +225,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             }
 
             // 数据入库后，修改PLC的OK/NOK/压装完成  三个变量
+//            logger.info("压头"+pressHeadNo+"压装结果判定为：" + isOk);
             setFlagAfterPressure(pressHeadNo, isOk);
             map.clear();
         }
@@ -203,8 +236,12 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      * @param plcEntityList
      * @return
      */
-    private List<PressureCurveEntity> plc2CurveNew(int pressHeadNo, CurveStatusEntity curveStatusEntity, List<PlcEntity> plcEntityList) {
+    private List<PressureCurveEntity> plc2CurveNew(int pressHeadNo,int start, CurveStatusEntity curveStatusEntity, List<PlcEntity> plcEntityList) {
         List<PressureCurveEntity> curveEntityList = new ArrayList<PressureCurveEntity>();
+        HashMap<String, Object> valueMap = new HashMap<String, Object>();
+        for(PlcEntity entity : plcEntityList) {
+            valueMap.put(entity.getName(), entity.getValueOjb());
+        }
 
 
         if (CollectionUtils.isEmpty(plcEntityList)) {
@@ -223,15 +260,16 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             }
         }
 
-        int dataSize = plcEntityList.size();
-        for (int i = 0; i < dataSize; i += 2) {
+        int dataSize = plcEntityList.size() / 2 ;
+        for (int i = 0; i < dataSize; i ++) {
             //曲线
             PressureCurveEntity curveEntity = new PressureCurveEntity();
+            BeanUtils.copyProperties(curveStatusEntity,curveEntity);
             // 当前压力	Real
-            curveEntity.setPressForce(HmiUtils.getBigDicimal(plcEntityList.get(i).getValueOjb()));
+            int index = start + i;
+            curveEntity.setPressForce(HmiUtils.getBigDicimal(valueMap.get("press"+index)));
             //当前位置
-            curveEntity.setPosition(HmiUtils.getBigDicimal(plcEntityList.get(i + 1).getValueOjb()));
-            BeanUtils.copyProperties(curveEntity, curveStatusEntity);
+            curveEntity.setPosition(HmiUtils.getBigDicimal(valueMap.get("position"+index)));
             curveEntity.setCreateBy("SYS");
             curveEntity.setUpdateBy("SYS");
             curveEntity.setCreateTime(new Date());

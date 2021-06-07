@@ -53,9 +53,9 @@ public class Plc4xBaseService {
      * 通用方法， 批量模式
      */
     protected List<PlcEntity> getDataByBuilder() {
-        if (null == builder) {
-            this.initReadBuilder(readQueryList, false);
-        }
+//        if (null == builder) {
+        builder = this.initReadBuilder(readQueryList, true);
+//        }
         if (null == builder) {
             return null;
         } else {
@@ -89,9 +89,9 @@ public class Plc4xBaseService {
     protected  void initQuereyList(String tagGroup) {
 //        System.out.println(">>>>>>>>>>>>>tagGroup"+tagGroup);
 //        System.out.println(">>>>>>>>>>readQueryList.isEmpty()"+CollectionUtils.isEmpty(readQueryList));
-        if(!CollectionUtils.isEmpty(readQueryList)) {
-            return;
-        }
+//        if(!CollectionUtils.isEmpty(readQueryList)) {
+//            return;
+//        }
         List<TagsInfoEntity> tags = tagsInfoService.getTagsByGroup(tagGroup);
 //        boolean isDubblePress = propertyService.isDubblePress();
         //当是曲线信息， 且双压头标识是开的，增加读取第二个压头的tagGroup
@@ -111,8 +111,12 @@ public class Plc4xBaseService {
         if(CollectionUtils.isEmpty(tags)) {
             return;
         }
+        if( null == readQueryList) {
+            readQueryList = new ArrayList<PlcEntity>();
+        } else {
+            readQueryList.clear();
+        }
 
-        readQueryList = new ArrayList<PlcEntity>();
         for(TagsInfoEntity tag : tags) {
 //            builder.addItem("shuru2", "%I0.1:BOOL");
             PlcEntity query = new PlcEntity();
@@ -135,10 +139,11 @@ public class Plc4xBaseService {
         if(dataLength <= 0  || dataLength <= start) {
             return;
         }
+        readQueryList.clear();
         for(int i = start; i < dataLength; i ++) {
 //            builder.addItem("shuru2", "%I0.1:BOOL");
             PlcEntity pressQuery = new PlcEntity();
-            pressQuery.setName("curvePressNew"+i);
+            pressQuery.setName("press"+i);
             StringBuffer sb =new StringBuffer();
             sb.append(HmiConstants.PLC_QUERY_PREFIX);
             if(pressHeadNo == 1) {
@@ -155,7 +160,7 @@ public class Plc4xBaseService {
             pressQuery.setDataType("REAL");
 
             PlcEntity positionQuery = new PlcEntity();
-            positionQuery.setName("curvePosNew"+i);
+            positionQuery.setName("position"+i);
             StringBuffer sb1 =new StringBuffer();
             sb1.append(HmiConstants.PLC_QUERY_PREFIX);
             if(pressHeadNo == 1) {
@@ -170,6 +175,7 @@ public class Plc4xBaseService {
             positionQuery.setFieldQuery(sb1.toString());
             positionQuery.setPosition(i*4+HmiConstants.POINT+"0");
             positionQuery.setDataType("REAL");
+            readQueryList.add(pressQuery);
             readQueryList.add(positionQuery);
         }
     }

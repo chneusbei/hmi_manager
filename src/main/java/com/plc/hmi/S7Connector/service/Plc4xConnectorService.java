@@ -119,9 +119,7 @@ public class Plc4xConnectorService {
         PlcReadRequest readRequest = builder.build();
         PlcReadResponse response =null;
         try {
-            System.out.println("============================begin querey");
             response = readRequest.execute().get();
-            System.out.println("============================  querey end ");
         } catch (InterruptedException e) {
             logger.error("execute readRequeset error." + e.getStackTrace());
             e.printStackTrace();
@@ -143,6 +141,7 @@ public class Plc4xConnectorService {
             if (response.getResponseCode(fieldName) == PlcResponseCode.OK) {
                 PlcEntity   responseEntity = new PlcEntity();
                 responseEntity.setName(fieldName);
+//                logger.info("get value from plc, NAME = "+fieldName +",value = " + response.getObject(fieldName));
                 int numValues = response.getNumberOfValues(fieldName);
                 if (numValues == 1) {
                     // If it's just one element, output just one single line.
@@ -174,7 +173,7 @@ public class Plc4xConnectorService {
      */
     public void setData(List<PlcEntity> queryList) {
         if (!isConnected()) {
-            connect2Plc();
+                connect2Plc();
         }
         if (!isConnected()) {
             logger.error("PLC 连接失败！");
@@ -214,6 +213,19 @@ public class Plc4xConnectorService {
 //                writeBuilder.addItem("traceCode0","%DB300.DBX84.0:BOOL", query.getValueOjb());
                 //%DB300.DBX84.0:BOOL
                 //%DB300.DBX3.0:BOOL
+            }   else if("INT".equalsIgnoreCase(query.getDataType())) {
+//                String str = query.getFieldQuery();
+//                str = str.replace("CHAR","BOOL");
+//                str = str.replace("DBB","DBX");
+//                str = str.replace("CHAR","REAL");
+//                str = str.replace("DBB","DBD");
+//                writeBuilder.addItem(query.getName(), query.getFieldQuery(),ca);
+//                writeBuilder.addItem(query.getName(),str,Float.valueOf("100").floatValue());
+//                writeBuilder.addItem("traceCode0","%DB300.DBX84.0:BOOL", query.getValueOjb());
+                //%DB300.DBX84.0:BOOL
+                //%DB300.DBX3.0:BOOL
+                writeBuilder.addItem(query.getName(), query.getFieldQuery(),Integer.valueOf(query.getValueOjb().toString()).shortValue());
+
             }
         }
         PlcWriteRequest writeRequest = writeBuilder.build();
