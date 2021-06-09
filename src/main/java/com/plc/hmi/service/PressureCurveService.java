@@ -752,7 +752,8 @@ public class PressureCurveService extends AbstractBaseService{
             errandResultEntity2.setPressMax(pressureProgramEntity.getPressMax2());
             errandResultEntity2.setPressMin(pressureProgramEntity.getPressMin2());
             errandResltList.add(errandResultEntity2);
-        } else  if(pressureProgramEntity.getErrandType3()>=0) {
+        }
+        if(pressureProgramEntity.getErrandType3()>=0) {
             hasErrand =true;
             ErrandResultEntity errandResultEntity3 = new ErrandResultEntity();
             errandResultEntity3.setErrandType(pressureProgramEntity.getErrandType3());
