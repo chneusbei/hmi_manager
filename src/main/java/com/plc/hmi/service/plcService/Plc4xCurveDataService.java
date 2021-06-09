@@ -94,6 +94,12 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     public List<PressureCurveEntity> getCurveDatas2() {
 //        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
         List<PressureCurveEntity> list = curveMap2.get(productNo2);
+
+//        for(long key : curveMap2.keySet()) {
+//            int size =curveMap2.get(key) == null ? 0 : curveMap2.get(key).size();
+//            int retSize = list == null ? 0 : list.size();
+//            logger.info("曲线2数据获取---- require productNO="+productNo2+", REAL productNo = "+key+", 曲线2容器中的曲线点数量="+size+ ", 获得的曲线点数量="+retSize);
+//        }
 //        List<PressureCurveEntity> list = curveMap.get(productNo);
 //        if(!CollectionUtils.isEmpty(list)) {
 //            System.out.println("size = "+list.size()+", totalTime="+(endTime-startTime) );
@@ -297,10 +303,10 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 curveMap.get(productNo).addAll(curveEntityList);
             }
         } else {
-            if (CollectionUtils.isEmpty(curveMap2.get(productNo))) {
-                curveMap2.put(productNo, curveEntityList);
+            if (CollectionUtils.isEmpty(curveMap2.get(productNo2))) {
+                curveMap2.put(productNo2, curveEntityList);
             } else {
-                curveMap2.get(productNo).addAll(curveEntityList);
+                curveMap2.get(productNo2).addAll(curveEntityList);
             }
         }
 

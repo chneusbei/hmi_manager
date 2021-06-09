@@ -278,7 +278,9 @@ public class PressureCurveService extends AbstractBaseService{
                  */
                 if (subEntityList.size() > 0
                     && subMinPress.compareTo(errandResultEntity.getPressMin()) > 0
-                    && subMaxPress.compareTo(errandResultEntity.getPressMax()) > 0) {
+                    && subMinPress.compareTo(errandResultEntity.getPressMax()) < 0
+                    && subMaxPress.compareTo(errandResultEntity.getPressMax()) > 0
+                    && subEntityList.get(subEntityList.size() -1).getPressForce().compareTo(errandResultEntity.getPressMax()) > 0 ) {
                     return true;
                 } else {
                     return false;
@@ -289,7 +291,9 @@ public class PressureCurveService extends AbstractBaseService{
                 //不支持， 默认全是成功
                 if (subEntityList.size() > 0
                         && subMinPress.compareTo(errandResultEntity.getPressMin()) < 0
-                        && subMaxPress.compareTo(errandResultEntity.getPressMax()) > 0) {
+                        && subMaxPress.compareTo(errandResultEntity.getPressMax()) > 0
+                        && subEntityList.get(0).getPressForce().compareTo(errandResultEntity.getPressMin()) < 0
+                        && subEntityList.get(subEntityList.size() -1).getPressForce().compareTo(errandResultEntity.getPressMax()) > 0 ) {
                     return true;
                 } else {
                     return false;
@@ -324,7 +328,10 @@ public class PressureCurveService extends AbstractBaseService{
                  */
             if (subEntityList.size() > 0
                     && subMinPress.compareTo(errandResultEntity.getPressMin()) < 0
-                    && subMaxPress.compareTo(errandResultEntity.getPressMax()) < 0) {
+                    && subMaxPress.compareTo(errandResultEntity.getPressMax()) < 0
+                    && subMaxPress.compareTo(errandResultEntity.getPressMin()) > 0
+                    && subEntityList.get(0).getPressForce().compareTo(errandResultEntity.getPressMin()) < 0
+                    && subEntityList.get(subEntityList.size() -1).getPressForce().compareTo(errandResultEntity.getPressMax()) < 0 ) {
                 return true;
             } else {
                 return false;
@@ -335,7 +342,11 @@ public class PressureCurveService extends AbstractBaseService{
                 //不支持， 默认全是成功
             if (subEntityList.size() > 0
                     && subMinPress.compareTo(errandResultEntity.getPressMin()) < 0
-                    && subMaxPress.compareTo(errandResultEntity.getPressMax()) < 0) {
+                    && subMaxPress.compareTo(errandResultEntity.getPressMax()) < 0
+                    && subMaxPress.compareTo(errandResultEntity.getPressMin()) > 0
+                    && subEntityList.get(0).getPressForce().compareTo(errandResultEntity.getPressMax()) < 0
+                    && subEntityList.get(0).getPressForce().compareTo(errandResultEntity.getPressMin()) > 0
+                    && subEntityList.get(subEntityList.size() -1).getPressForce().compareTo(errandResultEntity.getPressMin()) < 0 ) {
                 return true;
             } else {
                 return false;
@@ -353,7 +364,9 @@ public class PressureCurveService extends AbstractBaseService{
                 // 最后一个点不是最高点，是0点， 所有最后一个点的判断都不对
             if (subEntityList.size() > 0
                     && subMinPress.compareTo(errandResultEntity.getPressMin()) < 0
-                    && subMaxPress.compareTo(errandResultEntity.getPressMax()) < 0) {
+                    && subMaxPress.compareTo(errandResultEntity.getPressMax()) < 0
+                    && subMaxPress.compareTo(errandResultEntity.getPressMin()) > 0
+                    && subMaxPosition.compareTo(errandResultEntity.getPositionMax()) < 0) {
                 return true;
             } else {
                 return false;
@@ -371,7 +384,10 @@ public class PressureCurveService extends AbstractBaseService{
                 //1 在最大最小位移点中间时， 必须小于最大压力， 大于最小压力
             if (subEntityList.size() > 0
                     && subMinPress.compareTo(errandResultEntity.getPressMin()) > 0
-                    && subMaxPress.compareTo(errandResultEntity.getPressMax()) < 0) {
+                    && subMaxPress.compareTo(errandResultEntity.getPressMax()) < 0
+                    && maxPosition.compareTo(errandResultEntity.getPositionMax()) < 0
+                    && maxPosition.compareTo(errandResultEntity.getPositionMin()) > 0
+            ) {
                 return true;
             } else {
                 return false;
@@ -726,7 +742,8 @@ public class PressureCurveService extends AbstractBaseService{
             errandResultEntity1.setPressMax(pressureProgramEntity.getPressMax1());
             errandResultEntity1.setPressMin(pressureProgramEntity.getPressMin1());
             errandResltList.add(errandResultEntity1);
-        } else  if(pressureProgramEntity.getErrandType2()>=0) {
+        }
+        if(pressureProgramEntity.getErrandType2()>=0) {
             hasErrand =true;
             ErrandResultEntity errandResultEntity2 = new ErrandResultEntity();
             errandResultEntity2.setErrandType(pressureProgramEntity.getErrandType2());
@@ -744,7 +761,8 @@ public class PressureCurveService extends AbstractBaseService{
             errandResultEntity3.setPressMax(pressureProgramEntity.getPressMax3());
             errandResultEntity3.setPressMin(pressureProgramEntity.getPressMin3());
             errandResltList.add(errandResultEntity3);
-        } else  if(pressureProgramEntity.getErrandType4()>=0) {
+        }
+        if(pressureProgramEntity.getErrandType4()>=0) {
             hasErrand =true;
             ErrandResultEntity errandResultEntity4 = new ErrandResultEntity();
             errandResultEntity4.setErrandType(pressureProgramEntity.getErrandType4());
@@ -753,7 +771,8 @@ public class PressureCurveService extends AbstractBaseService{
             errandResultEntity4.setPressMax(pressureProgramEntity.getPressMax4());
             errandResultEntity4.setPressMin(pressureProgramEntity.getPressMin4());
             errandResltList.add(errandResultEntity4);
-        } else  if(pressureProgramEntity.getErrandType5()>=0) {
+        }
+        if(pressureProgramEntity.getErrandType5()>=0) {
             hasErrand =true;
             ErrandResultEntity errandResultEntity5 = new ErrandResultEntity();
             errandResultEntity5.setErrandType(pressureProgramEntity.getErrandType5());
