@@ -22,6 +22,13 @@ public class Test {
 
     @org.junit.jupiter.api.Test
     public void testSql() {
+        String  text = "ab\\cdef/ghijk/";
+
+        System.out.println(text);
+          text = text.replace("/","");
+          System.out.println(text);
+        text = text.replace("\\","");
+        System.out.println(text);
 //        PersistenceExceptionTranslationPostProcessor p;
         /*
          int a = Integer.valueOf(123).intValue();

@@ -164,12 +164,6 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             //状态复位
             if(curveStatusEntity.getMotionState1() ==4 &&  preCurveLength1 == curveStatusEntity.getDataLength1()) {
                 //状态复位
-                try {
-                    //线程暂停1秒，等待前端画线完成
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 Map<String, String> paraMap = new HashMap<String, String >();
                 paraMap.put("motion_state1_reset", "true");
                 this.setDatas(HmiConstants.PLC_TAG_GROUP.CURVE_DATA_UPDATE.getCode(), paraMap);
