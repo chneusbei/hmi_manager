@@ -162,6 +162,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             }
 //            System.out.println("preCurveLength1 = "+ preCurveLength1 + ", dataLength1 = "+ curveStatusEntity.getDataLength1() + ", curve size = : "+mapSzie );
             //状态复位
+            preCurveLength1 = curveStatusEntity.getDataLength1();
             if(curveStatusEntity.getMotionState1() ==4 &&  preCurveLength1 == curveStatusEntity.getDataLength1()) {
                 //状态复位
                 Map<String, String> paraMap = new HashMap<String, String >();
@@ -172,8 +173,6 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 curve2DB(1, curveMap);
                 logger.info("曲线1状态重置成功，数据入库成功， 数据条数="+curveStatusEntity.getDataLength1());
             }
-            preCurveLength1 = curveStatusEntity.getDataLength1();
-
         }
 
         if(propertyService.isDubblePress()) {
