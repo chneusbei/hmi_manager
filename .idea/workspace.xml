@@ -6,40 +6,19 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cecb0697-7a75-43f3-82cd-1d72e4e882c3" name="Default Changelist" comment="代码提交20210417">
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/FlowException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/HmiApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/ExportController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/AlarmDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/HisAlarmDao.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/AlarmEntity.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/ErrandResultEntity.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/HisAlarmEntity.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/base/AbstractBaseEntity.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/AlarmMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/HisAlarmMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/AlarmEntityEnum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/BaseEntityEnum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/HisAlarmEntityEnum.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/AlarmService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/HisAlarmService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/CsvExportUtil.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/accountManagement.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/createAnAccount.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/curveAcquisition.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/curveMonitoring.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/curveQuery.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/curveStorage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/dataExport.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/dataQuery.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/equipmentFaultAlarm.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/equipmentStatusMonitoring.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/getpressresults.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/hisAlarm.html" afterDir="false" />
+    <list default="true" id="cecb0697-7a75-43f3-82cd-1d72e4e882c3" name="Default Changelist" comment="代码提交20210525">
+      <change afterPath="$PROJECT_DIR$/代码提交20210604.patch" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/JsonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/JsonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hmi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hmi.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/plc/hmi/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/plc/hmi/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/FlowException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/FlowException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/HmiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/HmiApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants$PLC_DATA_TYPE.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants$PLC_DATA_TYPE.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants$PLC_TAG_GROUP.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants$PLC_TAG_GROUP.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/initialController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/initialController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/lsjcode/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/lsjcode/LoginController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/lsjcode/User2Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/lsjcode/User2Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/AlarmControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/AlarmControler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xCurveDataControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xCurveDataControler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xServoLimitSetControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xServoLimitSetControler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xServoOperationControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xServoOperationControler.class" afterDir="false" />
@@ -47,8 +26,10 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/PressureProgramControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/PressureProgramControler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/SystemParameterControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/SystemParameterControler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/UserControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/UserControler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/base/dao/HmiDataSource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/base/dao/HmiDataSource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/AlarmDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/AlarmDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/HisAlarmDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/HisAlarmDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureCurveDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureCurveDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureDataDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureDataDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureProgramDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureProgramDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/ProductDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/ProductDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PropertyDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PropertyDao.class" afterDir="false" />
@@ -57,7 +38,8 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/TagsInfoDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/TagsInfoDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/UserDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/UserRoleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/UserRoleDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureCurveEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureCurveEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/AlarmEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/AlarmEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/HisAlarmEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/HisAlarmEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureDataEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureDataEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureProgramEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureProgramEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureStatisticalDataEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureStatisticalDataEntity.class" afterDir="false" />
@@ -68,10 +50,12 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/TagsInfoEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/TagsInfoEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/UserEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/UserEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/UserRoleEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/UserRoleEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/base/AbstractBaseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/base/AbstractBaseEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcInfoResponseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcInfoResponseEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/AlarmMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/AlarmMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/HisAlarmMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/HisAlarmMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureCurveMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureCurveMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureDataMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureDataMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureProgramMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureProgramMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/ProductMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/ProductMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PropertyMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PropertyMapper.class" afterDir="false" />
@@ -81,6 +65,9 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/UserMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/UserRoleMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/UserRoleMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dto/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dto/Result.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/AlarmEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/AlarmEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/BaseEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/BaseEntityEnum.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/HisAlarmEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/HisAlarmEntityEnum.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PlcEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PlcEntityEnum.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureCurveEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureCurveEntityEnum.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureDataEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureDataEntityEnum.class" afterDir="false" />
@@ -93,9 +80,8 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/TagsInfoEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/TagsInfoEntityEnum.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/UserEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/UserEntityEnum.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/UserRoleEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/UserRoleEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PressureCurveService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PressureCurveService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PressureDataService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PressureDataService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PressureProgramService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PressureProgramService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/AlarmService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/AlarmService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/HisAlarmService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/HisAlarmService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/ProductService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PropertyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PropertyService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/StartRunService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/StartRunService.class" afterDir="false" />
@@ -105,22 +91,135 @@
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/UserRoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/UserRoleService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/UserService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xBaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xBaseService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveDataService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveDataService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveProgramService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveProgramService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveStatusService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveStatusService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xEquipmentOperationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xEquipmentOperationService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoLimitSetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoLimitSetService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoOperationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoOperationService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/thread/PlcPressCurveThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/thread/PlcPressCurveThread.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/thread/PressCurveThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/thread/PressCurveThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/HmiUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/HmiUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/PropertiesUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/PropertiesUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/OperatorRole.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/OperatorRole.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/manualOperation.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/manualOperation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/parameterCompilation.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parameterCompilation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/parameterSetting.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parameterSetting.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/parameterStorage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/parameterStorage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/programMing.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/programMing.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/safetyMonitoring.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/safetyMonitoring.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/animate.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/animate.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/materialdesignicons.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/materialdesignicons.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/style.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/echarts.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/echarts.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/Chart.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/Chart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-colorpicker/bootstrap-colorpicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-colorpicker/bootstrap-colorpicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-colorpicker/bootstrap-colorpicker.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-colorpicker/bootstrap-colorpicker.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-colorpicker/css/bootstrap-colorpicker.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-colorpicker/css/bootstrap-colorpicker.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datepicker/bootstrap-datepicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datepicker/bootstrap-datepicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datepicker/bootstrap-datepicker.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datepicker/bootstrap-datepicker.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datepicker/bootstrap-datepicker3.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datepicker/bootstrap-datepicker3.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datepicker/bootstrap-datepicker3.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datepicker/bootstrap-datepicker3.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/af.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/af.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ar-ma.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ar-ma.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ar-sa.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ar-sa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ar-tn.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ar-tn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ar.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/az.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/az.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/be.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/be.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/bg.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/bg.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/bn.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/bn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/bo.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/bo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/br.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/br.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/bs.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/bs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ca.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ca.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/cs.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/cs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/cv.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/cv.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/cy.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/cy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/da.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/da.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/de-at.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/de-at.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/de.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/de.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/el.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/el.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/en-au.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/en-au.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/en-ca.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/en-ca.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/en-gb.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/en-gb.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/eo.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/eo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/es.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/es.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/et.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/et.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/eu.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/eu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/fa.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/fa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/fi.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/fi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/fo.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/fo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/fr-ca.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/fr-ca.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/fr.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/fr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/fy.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/fy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/gl.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/gl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/he.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/he.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/hi.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/hi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/hr.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/hr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/hu.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/hu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/hy-am.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/hy-am.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/id.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/id.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/is.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/is.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/it.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/it.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ja.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ja.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/jv.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/jv.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ka.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ka.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/km.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/km.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ko.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ko.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/lb.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/lb.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/lt.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/lt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/lv.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/lv.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/me.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/me.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/mk.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/mk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ml.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ml.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/mr.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/mr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ms-my.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ms-my.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ms.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/my.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/my.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/nb.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/nb.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ne.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ne.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/nl.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/nl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/nn.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/nn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/pl.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/pl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/pt-br.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/pt-br.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/pt.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/pt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ro.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ro.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ru.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ru.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/si.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/si.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/sk.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/sk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/sl.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/sl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/sq.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/sq.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/sr-cyrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/sr-cyrl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/sr.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/sr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/sv.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/sv.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ta.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/ta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/th.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/th.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/tl-ph.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/tl-ph.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/tr.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/tr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/tzl.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/tzl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/tzm-latn.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/tzm-latn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/tzm.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/tzm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/uk.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/uk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/uz.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/uz.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/vi.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/vi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/zh-cn.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/zh-cn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/zh-tw.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/locale/zh-tw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/moment.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-datetimepicker/moment.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap-notify.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap-notify.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/bootstrap.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/chosen.jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/chosen.jquery.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/ion-rangeslider/ion.rangeSlider.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/ion-rangeslider/ion.rangeSlider.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/jconfirm/jquery-confirm.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/jconfirm/jquery-confirm.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/jconfirm/jquery-confirm.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/jconfirm/jquery-confirm.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/jquery.bootstrap.wizard.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/jquery.bootstrap.wizard.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/jquery.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/lightyear.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/lightyear.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/main.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/main.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/perfect-scrollbar.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/perfect-scrollbar.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/curveQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/curveQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/PressureCurveTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/PressureCurveTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/SpringBootTestTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/SpringBootTestTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/Test.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +257,7 @@
     <option name="ADD_SUFFIX_TO_CHERRY_PICKS_OF_PUBLISHED_COMMITS" value="false" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev20200415" />
+        <entry key="$PROJECT_DIR$" value="dev202010601" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -204,13 +303,13 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.plc.hmi.service.plcService" />
       <recent name="com.plc.hmi.dal.entity" />
       <recent name="com.plc.hmi" />
-      <recent name="com.plc.hmi.service.plcService" />
       <recent name="com.plc.hmi.controler" />
       <recent name="com.plc.hmi.thread" />
     </key>
@@ -231,7 +330,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PressureCurveTest.testSql" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Test.testSql" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hmi" />
       <extension name="coverage">
         <pattern>
@@ -240,7 +339,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.plc.hmi" />
-      <option name="MAIN_CLASS_NAME" value="com.plc.hmi.PressureCurveTest" />
+      <option name="MAIN_CLASS_NAME" value="com.plc.hmi.Test" />
       <option name="METHOD_NAME" value="testSql" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -431,22 +530,22 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.PressureCurveTest.testSql" />
+      <item itemvalue="JUnit.Plc4xTest" />
+      <item itemvalue="JUnit.Test.testSql" />
       <item itemvalue="Maven.hmi [compile] (1)" />
       <item itemvalue="Maven.hmi [package] (1)" />
       <item itemvalue="Maven.hmi [package]" />
       <item itemvalue="Maven.hmi [clean]" />
       <item itemvalue="Maven.hmi [compile]" />
       <item itemvalue="Spring Boot.HmiApplication" />
-      <item itemvalue="JUnit.Plc4xTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Plc4xTest" />
+        <item itemvalue="JUnit.Test.testSql" />
         <item itemvalue="Maven.hmi [package]" />
+        <item itemvalue="JUnit.Plc4xTest" />
         <item itemvalue="Maven.hmi [compile]" />
         <item itemvalue="Maven.hmi [clean]" />
-        <item itemvalue="JUnit.PressureCurveTest.testSql" />
       </list>
     </recent_temporary>
   </component>
@@ -558,105 +657,24 @@
       <workItem from="1619445457573" duration="1001000" />
       <workItem from="1621515669455" duration="3408000" />
       <workItem from="1621523921136" duration="1198000" />
-      <workItem from="1621953632410" duration="4028000" />
-    </task>
-    <task id="LOCAL-00019" summary="代码提交20200425">
-      <created>1587793483822</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1587793483822</updated>
-    </task>
-    <task id="LOCAL-00020" summary="代码提交20200425-2">
-      <created>1587814337477</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1587814337477</updated>
-    </task>
-    <task id="LOCAL-00021" summary="代码提交20200425-3">
-      <created>1587818886869</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1587818886869</updated>
-    </task>
-    <task id="LOCAL-00022" summary="代码提交20200425-4">
-      <created>1587821186210</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1587821186210</updated>
-    </task>
-    <task id="LOCAL-00023" summary="代码提交20200427">
-      <created>1587999929510</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1587999929510</updated>
-    </task>
-    <task id="LOCAL-00024" summary="代码提交20200430">
-      <created>1588258174894</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1588258174894</updated>
-    </task>
-    <task id="LOCAL-00025" summary="代码提交20200503">
-      <created>1588495350139</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1588495350139</updated>
-    </task>
-    <task id="LOCAL-00026" summary="代码提交20200506">
-      <created>1588775244989</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1588775244989</updated>
-    </task>
-    <task id="LOCAL-00027" summary="代码提交20200508">
-      <created>1588872640478</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1588872640478</updated>
-    </task>
-    <task id="LOCAL-00028" summary="代码提交20200509">
-      <created>1589031051518</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1589031051518</updated>
-    </task>
-    <task id="LOCAL-00029" summary="代码提交20200509-2">
-      <created>1589033120144</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1589033120144</updated>
-    </task>
-    <task id="LOCAL-00030" summary="代码提交20200510-3">
-      <created>1589085129670</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1589085129670</updated>
-    </task>
-    <task id="LOCAL-00031" summary="代码提交20200510-4">
-      <created>1589102176059</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1589102176059</updated>
-    </task>
-    <task id="LOCAL-00032" summary="代码提交20200510-5">
-      <created>1589102283966</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1589102283966</updated>
+      <workItem from="1621953632410" duration="4905000" />
+      <workItem from="1622553174310" duration="4615000" />
+      <workItem from="1622776553406" duration="37264000" />
+      <workItem from="1622866626858" duration="1679000" />
+      <workItem from="1622942729775" duration="4290000" />
+      <workItem from="1622947096800" duration="791000" />
+      <workItem from="1622948393002" duration="7491000" />
+      <workItem from="1622957840465" duration="12371000" />
+      <workItem from="1622970803423" duration="1382000" />
+      <workItem from="1623064195925" duration="7863000" />
+      <workItem from="1623161958690" duration="1261000" />
+      <workItem from="1623246277475" duration="2551000" />
+      <workItem from="1623332447014" duration="866000" />
+      <workItem from="1623334227492" duration="553000" />
+      <workItem from="1624367344505" duration="3011000" />
+      <workItem from="1624453946231" duration="468000" />
+      <workItem from="1626583482828" duration="51000" />
+      <workItem from="1627734262044" duration="1210000" />
     </task>
     <task id="LOCAL-00033" summary="代码提交20200511-1">
       <created>1589203901638</created>
@@ -903,7 +921,105 @@
       <option name="project" value="LOCAL" />
       <updated>1618930854299</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="代码提交20210417">
+      <created>1621957989845</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1621957989847</updated>
+    </task>
+    <task id="LOCAL-00069" summary="代码提交20210525">
+      <created>1621958438792</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1621958438792</updated>
+    </task>
+    <task id="LOCAL-00070" summary="代码提交20210604">
+      <created>1622797999119</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1622797999121</updated>
+    </task>
+    <task id="LOCAL-00071" summary="代码提交20210604">
+      <created>1622818630707</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1622818630707</updated>
+    </task>
+    <task id="LOCAL-00072" summary="代码提交20210604">
+      <created>1622818655735</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1622818655735</updated>
+    </task>
+    <task id="LOCAL-00073" summary="代码提交20210605">
+      <created>1622899847953</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1622899847954</updated>
+    </task>
+    <task id="LOCAL-00074" summary="代码提交202106051">
+      <created>1622899923845</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1622899923845</updated>
+    </task>
+    <task id="LOCAL-00075" summary="代码提交20210607">
+      <created>1623071056989</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1623071056990</updated>
+    </task>
+    <task id="LOCAL-00076" summary="代码提交20210609">
+      <created>1623248806333</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1623248806333</updated>
+    </task>
+    <task id="LOCAL-00077" summary="代码提交202105609">
+      <created>1623250679802</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1623250679802</updated>
+    </task>
+    <task id="LOCAL-00078" summary="代码提交20210610">
+      <created>1623333009856</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1623333009856</updated>
+    </task>
+    <task id="LOCAL-00079" summary="代码提交20210525">
+      <created>1623334554022</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1623334554022</updated>
+    </task>
+    <task id="LOCAL-00080" summary="代码提交20210622">
+      <created>1624370015640</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1624370015642</updated>
+    </task>
+    <task id="LOCAL-00081" summary="代码提交20210623">
+      <created>1624454265765</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1624454265766</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -990,16 +1106,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="代码提交20200705-2" />
-    <MESSAGE value="代码提交20200707" />
-    <MESSAGE value="代码提交20200708" />
-    <MESSAGE value="代码提交20200709" />
-    <MESSAGE value="代码提交20200711" />
-    <MESSAGE value="代码提交20200713" />
-    <MESSAGE value="代码提交20200720" />
-    <MESSAGE value="代码提交20200801" />
-    <MESSAGE value="代码提交20200801-2" />
-    <MESSAGE value="代码提交20200816" />
     <MESSAGE value="代码提交20200921" />
     <MESSAGE value="代码提交20201116-1" />
     <MESSAGE value="代码提交202010124" />
@@ -1011,11 +1117,21 @@
     <MESSAGE value="代码提交20210314" />
     <MESSAGE value="代码提交20210320" />
     <MESSAGE value="代码提交20210322" />
-    <MESSAGE value="代码提交20210417" />
     <MESSAGE value="代码提交20210418" />
     <MESSAGE value="代码提交20210420" />
     <MESSAGE value="代码提交20210420-2" />
-    <option name="LAST_COMMIT_MESSAGE" value="代码提交20210420-2" />
+    <MESSAGE value="代码提交20210417" />
+    <MESSAGE value="代码提交20210604" />
+    <MESSAGE value="代码提交20210605" />
+    <MESSAGE value="代码提交202106051" />
+    <MESSAGE value="代码提交20210607" />
+    <MESSAGE value="代码提交20210609" />
+    <MESSAGE value="代码提交202105609" />
+    <MESSAGE value="代码提交20210610" />
+    <MESSAGE value="代码提交20210525" />
+    <MESSAGE value="代码提交20210622" />
+    <MESSAGE value="代码提交20210623" />
+    <option name="LAST_COMMIT_MESSAGE" value="代码提交20210623" />
   </component>
   <component name="WindowStateProjectService">
     <state x="206" y="0" width="967" height="728" key="#HmiApplication" timestamp="1621957745749">
@@ -1026,109 +1142,147 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="275" y="23" key="#XML/0.0.1366.728@0.0.1366.728" timestamp="1621957715373" />
-    <state x="137" y="19" width="1174" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1621955176413">
+    <state x="137" y="19" width="1174" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1623064944813">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="137" y="19" width="1174" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1621955176413" />
+    <state x="137" y="19" width="1174" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1623064944813" />
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1622785742704">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1622785742704" />
     <state x="419" y="148" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1621957745081">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="419" y="148" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1621957745081" />
-    <state x="183" y="0" key="CommitChangelistDialog2" timestamp="1621953903887">
+    <state x="438" y="66" key="#xdebugger.evaluate" timestamp="1624369531670">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="183" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1621953903887" />
-    <state x="92" y="92" width="1182" height="538" key="DiffContextDialog" timestamp="1621953902856">
+    <state x="438" y="66" key="#xdebugger.evaluate/0.0.1366.728@0.0.1366.728" timestamp="1624369531670" />
+    <state x="347" y="0" key="CommitChangelistDialog2" timestamp="1624454256341">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="92" width="1182" height="538" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1621953902856" />
+    <state x="347" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1624454256341" />
+    <state width="517" height="466" key="DebuggerActiveHint" timestamp="1624369504311">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="517" height="466" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1624369504311" />
+    <state x="92" y="92" width="1182" height="538" maximized="true" key="DiffContextDialog" timestamp="1623332989591">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="538" maximized="true" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1623332989591" />
     <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1621954082669">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1621954082669" />
-    <state width="1323" height="78" key="GridCell.Tab.0.bottom" timestamp="1621522209634">
+    <state width="1323" height="216" key="GridCell.Tab.0.bottom" timestamp="1624370390624">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="78" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621522209634" />
-    <state width="1323" height="78" key="GridCell.Tab.0.center" timestamp="1621522209633">
+    <state width="1323" height="216" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1624370390624" />
+    <state width="1323" height="216" key="GridCell.Tab.0.center" timestamp="1624370390623">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="78" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1621522209633" />
-    <state width="1323" height="78" key="GridCell.Tab.0.left" timestamp="1621522209633">
+    <state width="1323" height="216" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1624370390623" />
+    <state width="1323" height="216" key="GridCell.Tab.0.left" timestamp="1624370390623">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="78" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1621522209633" />
-    <state width="1323" height="78" key="GridCell.Tab.0.right" timestamp="1621522209633">
+    <state width="1323" height="216" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1624370390623" />
+    <state width="1323" height="216" key="GridCell.Tab.0.right" timestamp="1624370390623">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="78" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1621522209633" />
-    <state width="1323" height="78" key="GridCell.Tab.1.bottom" timestamp="1621522209634">
+    <state width="1323" height="216" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1624370390623" />
+    <state width="1323" height="216" key="GridCell.Tab.1.bottom" timestamp="1624370390624">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="78" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1621522209634" />
-    <state width="1323" height="78" key="GridCell.Tab.1.center" timestamp="1621522209634">
+    <state width="1323" height="216" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1624370390624" />
+    <state width="1323" height="216" key="GridCell.Tab.1.center" timestamp="1624370390624">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="78" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1621522209634" />
-    <state width="1323" height="78" key="GridCell.Tab.1.left" timestamp="1621522209634">
+    <state width="1323" height="216" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1624370390624" />
+    <state width="1323" height="216" key="GridCell.Tab.1.left" timestamp="1624370390624">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="78" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1621522209634" />
-    <state width="1323" height="78" key="GridCell.Tab.1.right" timestamp="1621522209634">
+    <state width="1323" height="216" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1624370390624" />
+    <state width="1323" height="216" key="GridCell.Tab.1.right" timestamp="1624370390624">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="78" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1621522209634" />
-    <state width="1323" height="30" key="GridCell.Tab.2.bottom" timestamp="1618758220563">
+    <state width="1323" height="216" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1624370390624" />
+    <state width="1323" height="216" key="GridCell.Tab.2.bottom" timestamp="1624370390624">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="30" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1618758220563" />
-    <state width="1323" height="30" key="GridCell.Tab.2.center" timestamp="1618758220563">
+    <state width="1323" height="216" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1624370390624" />
+    <state width="1323" height="216" key="GridCell.Tab.2.center" timestamp="1624370390624">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="30" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1618758220563" />
-    <state width="1323" height="30" key="GridCell.Tab.2.left" timestamp="1618758220562">
+    <state width="1323" height="216" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1624370390624" />
+    <state width="1323" height="216" key="GridCell.Tab.2.left" timestamp="1624370390624">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="30" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1618758220562" />
-    <state width="1323" height="30" key="GridCell.Tab.2.right" timestamp="1618758220563">
+    <state width="1323" height="216" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1624370390624" />
+    <state width="1323" height="216" key="GridCell.Tab.2.right" timestamp="1624370390624">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="30" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1618758220563" />
-    <state x="385" y="80" key="MultipleFileMergeDialog" timestamp="1621954399279">
+    <state width="1323" height="216" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1624370390624" />
+    <state x="385" y="80" key="MultipleFileMergeDialog" timestamp="1621958650504">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="385" y="80" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1621954399279" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1621957358508">
+    <state x="385" y="80" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1621958650504" />
+    <state x="184" y="0" key="SettingsEditor" timestamp="1622554614143">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1621957358508" />
-    <state x="518" y="68" key="VCS.ChangeListViewerDialog" timestamp="1615720287548">
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1622554614143" />
+    <state x="92" y="92" width="1182" height="544" key="VCS.FileHistoryDialog" timestamp="1622802303275">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="518" y="68" key="VCS.ChangeListViewerDialog/0.0.1366.728@0.0.1366.728" timestamp="1615720287548" />
-    <state x="379" y="120" key="Vcs.Push.Dialog.v2" timestamp="1618930856018">
+    <state x="92" y="92" width="1182" height="544" key="VCS.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1622802303275" />
+    <state x="379" y="120" key="Vcs.Push.Dialog.v2" timestamp="1624454277497">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="120" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1618930856018" />
-    <state x="275" y="123" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1614484425127">
+    <state x="379" y="120" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1624454277497" />
+    <state x="475" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1623248743812">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="275" y="123" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.728@0.0.1366.728" timestamp="1614484425127" />
-    <state x="284" y="94" width="958" height="600" key="find.popup" timestamp="1619445842870">
+    <state x="475" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1623248743812" />
+    <state x="128" y="123" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1624368831721">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="284" y="94" width="958" height="600" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1619445842870" />
-    <state x="445" y="76" key="git4idea.branch.GitSmartOperationDialog" timestamp="1621954140587">
+    <state x="128" y="123" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.728@0.0.1366.728" timestamp="1624368831721" />
+    <state x="284" y="94" width="958" height="600" key="find.popup" timestamp="1622969808633">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="445" y="76" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" timestamp="1621954140587" />
-    <state x="339" y="162" key="run.anything.popup" timestamp="1621957780604">
+    <state x="284" y="94" width="958" height="600" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1622969808633" />
+    <state x="445" y="76" key="git4idea.branch.GitSmartOperationDialog" timestamp="1621958638437">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1621957780604" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1621516521604">
+    <state x="445" y="76" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.728@0.0.1366.728" timestamp="1621958638437" />
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup" timestamp="1622959995586">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1621516521604" />
+    <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1622959995586" />
+    <state x="645" y="61" width="672" height="678" key="search.everywhere.popup" timestamp="1624368245173">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="645" y="61" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1624368245173" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureCurveService.java</url>
+          <line>230</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureCurveService.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="87" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="curve1List.get(4).dataType" />
+        <watch expression="curveMap" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>
