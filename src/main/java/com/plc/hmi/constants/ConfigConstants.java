@@ -47,5 +47,8 @@ public class ConfigConstants {
     public static final String ERRAND_USE_FLAG = "errand.use.flag";
     public static final String CURVE_FETCH_FREQUENCY = "curve.fetch.frequency";
     public static final String CURVE_FETCH_SLEEP_TIME = "curve.fetch.sleep.time";
+    public static final String TEMPERATURE_FETCH_FREQUENCY = "temperature.fetch.frequency";
+    public static final String TEMPERATURE_FETCH_SLEEP_TIME = "temperature.fetch.sleep.time";
+
 
 }

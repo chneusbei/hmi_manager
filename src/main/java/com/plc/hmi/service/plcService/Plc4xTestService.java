@@ -29,6 +29,6 @@ public class Plc4xTestService extends Plc4xBaseService{
      */
     public List<PlcEntity> getDatas() {
         super.initQuereyList(tagGroup);
-        return super.getDataByBuilder();
+        return super.getDataByBuilder(null);
     }
 }

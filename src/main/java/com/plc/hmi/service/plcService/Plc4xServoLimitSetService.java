@@ -22,12 +22,12 @@ public class Plc4xServoLimitSetService extends Plc4xBaseService{
      */
     public List<PlcEntity> getDatas() {
        super.initQuereyList(tagGroup);
-       return super.getDataByBuilder();
+       return super.getDataByBuilder(null);
     }
 
     public void setDatas(Map<String, String> paraMap) {
         super.initWriteList(tagGroup, paraMap);
-        super.setPlcData();
+        super.setPlcData(null);
     }
 
 }

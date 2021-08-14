@@ -27,14 +27,14 @@ public class Plc4xCurveStatusService extends Plc4xBaseService {
      */
     public List<PlcEntity> getDatas() {
         super.initQuereyList(tagGroup);
-        return super.getDataByBuilder();
+        return super.getDataByBuilder(null);
     }
 
     public void setDatas() {
         Map<String, String> paraMap = new HashMap<>();
         paraMap.put(PlcEntityEnum.curve_status_curve_recording.getCode(), "true");
         super.initWriteList(tagGroup, paraMap);
-        super.setPlcData();
+        super.setPlcData(null);
     }
 
     /***

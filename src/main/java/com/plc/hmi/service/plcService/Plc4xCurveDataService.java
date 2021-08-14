@@ -65,12 +65,12 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      */
     public  List<PlcEntity> getDatas(String tagGruop) {
         super.initQuereyList(tagGruop);
-        return super.getDataByBuilder();
+        return super.getDataByBuilder(null);
     }
 
     public  List<PlcEntity> getDynamicCurveDatas(int pressHeadNo, int start,  int dataLength) {
         super.setDynamicCurveQueryList(pressHeadNo, start, dataLength);
-        return super.getDataByBuilder();
+        return super.getDataByBuilder(null);
     }
 
     /**
@@ -557,7 +557,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      */
     public  void setDatas(String tagGroup, Map<String, String> paraMap) {
         super.initWriteList(tagGroup, paraMap);
-        super.setPlcData();
+        super.setPlcData(null);
     }
 
     /**
@@ -592,7 +592,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         }
 
         super.initWriteList(HmiConstants.PLC_TAG_GROUP.CURVE_STATUS.getCode(), paraMap);
-        super.setPlcData();
+        super.setPlcData(null);
 
 
 //        super.initQuereyList(HmiConstants.PLC_TAG_GROUP.CURVE_STATUS.getCode());

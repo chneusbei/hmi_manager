@@ -3,6 +3,7 @@ package com.plc.hmi.util;
 import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.PressureDataEntity;
+import com.plc.hmi.dal.entity.TemperatureEntity;
 import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,138 @@ import java.util.List;
 import java.util.Map;
 
 public class CsvExportUtil {
+    /**
+     *  导出温度监控数据文件
+     */
+    public static void doTemperatureExport(List<TemperatureEntity> TemperatureEntityList,
+                                           String fileName, String path) throws Exception {
+        // 设置导出文件temp名
+        String tempName = fileName+ ".temp";
+
+        //定义文件名格式并创建
+        File csvFile = new File(path+HmiConstants.SEPARATE+tempName.trim());
+//        System.out.println("csvFile path = "+(path+HmiConstants.SEPARATE+tempName.trim()));
+        // UTF-8使正确读取分隔符","
+        BufferedWriter csvFileOutputStream = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(
+                csvFile), "GBK"), 2048);
+
+        // 组装曲线表头
+        String[] curveTitleArr = HmiConstants.TEMPERATURE_CURVE_TITLES;
+        StringBuffer curveTitleBuffer = new StringBuffer();
+        for (String title : curveTitleArr) {
+            curveTitleBuffer.append(title).append(HmiConstants.COMMA);
+        }
+        curveTitleBuffer.append(HmiConstants.CSV_ROW_SEPARATOR);
+        // 组装数据
+        if (!CollectionUtils.isEmpty(TemperatureEntityList)) {
+            int i=0;
+            for (TemperatureEntity data : TemperatureEntityList) {
+                //Index
+                csvFileOutputStream.write(String.valueOf(i++));
+                //BLANK
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getPlcIp()));
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getHandleDate()));
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getStatus()));
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getLowSpeedAxisEccentricCopperSleeveTemperature1().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getLowSpeedAxisEccentricCopperSleeveTemperature2().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getLowSpeedAxisEccentricCopperSleeveTemperature3().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getLowSpeedAxisEccentricCopperSleeveTemperature4().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getHighSpeedAxisEccentricCopperSleeveTemperature1().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getHighSpeedAxisEccentricCopperSleeveTemperature2().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getFlywheelSupportBigAxisTemperature1().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getFlywheelSupportBigAxisTemperature2().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getDrawbarBothEndsCopperSleeveTemperature1().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getDrawbarBothEndsCopperSleeveTemperature2().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getDrawbarBothEndsCopperSleeveTemperature3().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getDrawbarBothEndsCopperSleeveTemperature4().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getDrawbarBothEndsCopperSleeveTemperature5().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getDrawbarBothEndsCopperSleeveTemperature6().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getDrawbarBothEndsCopperSleeveTemperature7().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getDrawbarBothEndsCopperSleeveTemperature8().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getSmallBeltWheelSupportAxisTemperature1().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getSmallBeltWheelSupportAxisTemperature2().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getTripodBottomCopperSleeveTemperature1().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getTripodBottomCopperSleeveTemperature2().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getTripodBottomCopperSleeveTemperature3().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getTripodBottomCopperSleeveTemperature4().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getTripodEccentricBigCopperSleeveTemperature1().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getTripodEccentricBigCopperSleeveTemperature2().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getTripodEccentricBigCopperSleeveTemperature3().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getTripodEccentricBigCopperSleeveTemperature4().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getBackupTemperature0().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getBackupTemperature1().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getBackupTemperature2().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getBackupTemperature3().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getBackupTemperature4().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getBackupTemperature5().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getBackupTemperature6().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getBackupTemperature7().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getBackupTemperature8().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getBackupTemperature9().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getBackupTemperature10().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getBackupTemperature11().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getTemperatureWarningValue1().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(data.getTemperatureWarningValue2().toString());
+                csvFileOutputStream.write(HmiConstants.COMMA);
+
+                //换行
+                csvFileOutputStream.newLine();
+            }
+        }
+        // 写文件
+        csvFileOutputStream.flush();
+        csvFileOutputStream.close();
+        File realFile = new File(path+File.separator+fileName);
+        if(realFile.exists()) {
+            realFile.delete();
+        }
+        csvFile.renameTo(new File(path+File.separator+fileName));
+    }
+
+
     /**
      * @param dataList 集合数据
      */

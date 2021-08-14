@@ -297,8 +297,8 @@ public class JsonController {
         statusInfoEntity.setCurveOk(isOK);
         statusInfoEntity.setCurveOk2(isOK2);
         //PLC连接
-        statusInfoEntity.setPlcConnected(plc4xCurveDataService.isPlcConnected());
-        statusInfoEntity.setSystemConnection(plc4xCurveDataService.isPlcConnected());
+        statusInfoEntity.setPlcConnected(plc4xCurveDataService.isPlcConnected(null));
+        statusInfoEntity.setSystemConnection(plc4xCurveDataService.isPlcConnected(null));
         String json = JSON.toJSONString(statusInfoEntity);
 //        System.out.println(json);
 //        System.out.println("--------------------------getStatus---------------" + json);

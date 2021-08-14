@@ -3,8 +3,11 @@ package com.plc.hmi.controler;
 import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.PressureDataEntity;
+import com.plc.hmi.dal.entity.TemperatureEntity;
 import com.plc.hmi.service.PressureCurveService;
 import com.plc.hmi.service.PressureDataService;
+import com.plc.hmi.service.TemperatureService;
+import com.plc.hmi.service.plcService.Plc4xTemperatureService;
 import com.plc.hmi.util.CsvExportUtil;
 import com.plc.hmi.util.HmiUtils;
 import org.slf4j.Logger;
@@ -23,12 +26,81 @@ public class ExportController {
     PressureCurveService pressureCurveService;
     @Resource
     PressureDataService pressureDataService;
+    @Resource
+    TemperatureService temperatureService;
 
     private static Logger logger = LoggerFactory.getLogger(ExportController.class);
+    @ResponseBody
+    @RequestMapping("/temperatureExport")
+    public String export( @RequestParam(value = "plcIp",required = false) String plcIp,
+                          @RequestParam(value = "status",required = false) String status,
+                          @RequestParam(value = "startDate",required = false) String startDate,
+                          @RequestParam(value = "endDate",required = false) String endDate) {
+        startDate = null==startDate ? null : startDate.replace("-","");
+        endDate = null==endDate ? null : endDate.replace("-","");
+//        System.out.println("=======================startDate======="+startDate + "=======end====="+endDate);
+
+        //获取对应的pressure_data
+        List<TemperatureEntity> TemperatureEntityList = temperatureService.getTemperatureWithParam(startDate, endDate, plcIp, status);;
+        if (CollectionUtils.isEmpty(TemperatureEntityList)) {
+            return  "temperature export no data found !";
+        }
+
+
+        File dir = new File(HmiConstants.CSV_OUTPUT_PATH);
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        //创建压头文件夹
+        String fileDir = HmiConstants.CSV_OUTPUT_PATH
+                + HmiConstants.TEMPERATURE_CSV_OUTPUT_PATH_;
+        File headDir = new File(fileDir);
+
+        if (!headDir.exists()) {
+            headDir.mkdir();
+        }
+/*
+            //创建OK，NOK包
+            File dirTemperatureOK = new File(fileDir+HmiConstants.CSV_OUTPUT_PATH_OK);
+            if(!dirTemperatureOK.exists()){
+                dirTemperatureOK.mkdir();
+            }
+            File dirTemperatureNOK = new File(fileDir+HmiConstants.CSV_OUTPUT_PATH_NOK);
+            if(!dirTemperatureNOK.exists()){
+                dirTemperatureNOK.mkdir();
+            }
+*/
+        // 设置导出文件名
+        StringBuffer sb = new StringBuffer();
+        sb.append("temperature_")
+                .append(plcIp)
+                .append("_")
+                .append(startDate)
+                .append("_")
+                .append(endDate)
+                .append(HmiUtils.getFormatDateString())
+                .append(".csv");
+        String fileName = sb.toString();
+        String tempFileDir = fileDir;
+
+        // 文件导出
+        try {
+//            OutputStream os = response.getOutputStream();
+//            CsvExportUtil.responseSetProperties(fileName, response);
+            CsvExportUtil.doTemperatureExport(TemperatureEntityList,fileName, tempFileDir);
+//            os.close();
+        } catch (Exception e) {
+            logger.error("导出失败", e.getStackTrace());
+            e.printStackTrace();
+            return  "导出失败";
+        }
+
+        return  "OK, export success to D:/csv/tem";
+    }
 
     @ResponseBody
     @RequestMapping("/curveDataExport")
-    public String export( //HttpServletResponse response,
+    public String export_bak( //HttpServletResponse response,
                          @RequestParam(value = "startDate",required = false) String startDate,
                          @RequestParam(value = "endDate",required = false) String endDate) {
         startDate = null==startDate ? null : startDate.replace("-","");

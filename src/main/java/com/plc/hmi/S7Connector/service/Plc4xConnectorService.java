@@ -2,6 +2,7 @@ package com.plc.hmi.S7Connector.service;
 
 import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.constants.HmiConstants;
+import com.plc.hmi.dal.entity.PlcConfigEntity;
 import com.plc.hmi.dal.entity.PropertyEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.service.PropertyService;
@@ -22,6 +23,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 
@@ -30,65 +32,87 @@ public class Plc4xConnectorService {
     @Autowired
     private PropertyService propertyService;
     private final Log logger = LogFactory.getLog(Plc4xConnectorService.class);
-    private String HOST =  null; //"s7://192.168.1.1/2/1"; 参数 第一个是机架rock, 第二个是插槽slot
-    private PlcConnection plcConnection = null;
-    private  boolean connect2Plc() {
-        if(this.plcConnection == null ||  !plcConnection.isConnected()) {
+//    private String HOST =  null; //"s7://192.168.1.1/2/1"; 参数 第一个是机架rock, 第二个是插槽slot
+    private Map<String, PlcConnection> plcConnectionMap = new HashMap<String, PlcConnection>();
+
+    /**
+     * 连接到PLC
+     * @param plcConfigEntity
+     * @return
+     */
+    private  boolean connect2Plc(PlcConfigEntity plcConfigEntity) {
+        if(null != plcConfigEntity) {
             PlcDriverManager plcDriverManager =new PlcDriverManager();
-            setHost();
+            String host = getHostString(plcConfigEntity);
             try {
-                plcConnection=  plcDriverManager.getConnection(HOST);
+                PlcConnection plcConnection =  plcDriverManager.getConnection(host);
+                plcConnectionMap.put(plcConfigEntity.getPlcServerIp(), plcConnection);
             } catch (PlcConnectionException e) {
-                logger.info("connect to server error " );
+                logger.info("connect to server error, PLC ip = " +plcConfigEntity.getPlcServerIp());
 //                e.printStackTrace();
                 return false;
             } catch (Exception e) {
-                logger.info("connect to server error, system sleep 30 seconds" );
+                logger.info("connect to server error, PLC ip = " +plcConfigEntity.getPlcServerIp() );
                 e.printStackTrace();
                 return false;
             }
-            logger.info("connect to server status  = "+isConnected());
+            logger.info("connect to server ip = "+plcConfigEntity.getPlcServerIp() + " ,status  = "+isConnected(plcConfigEntity));
         }
         return true;
     }
 
-    private  void setHost() {
-        List<PropertyEntity> plcServerConfigList = propertyService.getPropertyWithGroup(ConfigConstants.GROUP_PLC_SERVER);
-        HashMap<String, String> configMap = new HashMap<String, String>();
-        if(plcServerConfigList != null) {
-            for(PropertyEntity entity : plcServerConfigList) {
-                configMap.put(entity.getPropName(), entity.getPropValue());
-            }
-        }
+    /**
+     * 获取PLC主机连接串
+     * @param plcConfigEntity
+     * @return
+     */
+    private String getHostString(PlcConfigEntity plcConfigEntity) {
+        String host = null;
         StringBuffer buff = new StringBuffer();
         //"s7://192.168.1.1/2/1";
-        HOST = buff.append(ConfigConstants.PLC_SERVER_HOST_PREFIX).
-                append(configMap.get(ConfigConstants.PLC_SERVER_IP)).
+        host = buff.append(ConfigConstants.PLC_SERVER_HOST_PREFIX).
+                append(plcConfigEntity.getPlcServerIp()).
                 append(HmiConstants.SEPARATE).
-                append(configMap.get(ConfigConstants.PLC_SERVER_ROCK)).
+                append(plcConfigEntity.getPlcServerRock()).
                 append(HmiConstants.SEPARATE).
-                append(configMap.get(ConfigConstants.PLC_SERVER_SLOT)).toString();
+                append(plcConfigEntity.getPlcServerSlot()).toString();
+        return host;
     }
 
-    public boolean isConnected() {
+    /**
+     * 获取PLC连接状态
+     * @param plcConfigEntity
+     * @return
+     */
+    public boolean isConnected(PlcConfigEntity plcConfigEntity) {
+        if(CollectionUtils.isEmpty(plcConnectionMap)) {
+            return false;
+        }
+        PlcConnection plcConnection  = plcConnectionMap.get(plcConfigEntity.getPlcServerIp());
         if(null == plcConnection) {
             return false;
         }
         return plcConnection.isConnected();
     }
 
-    public  PlcReadRequest.Builder getReadBuilder(List<PlcEntity> queryList) {
+    /**
+     * 获取读BUILDER
+     * @param queryList
+     * @return
+     */
+    public  PlcReadRequest.Builder getReadBuilder(List<PlcEntity> queryList, PlcConfigEntity plcConfigEntity) {
         if(queryList == null || queryList.size() == 0) {
-            logger.info("plcInfoQueryEntity is empty!");
+            logger.info("PlcEntity is empty!");
         }
 
-        if (!isConnected()) {
-           boolean connected = connect2Plc();
+        if (!isConnected(plcConfigEntity)) {
+           boolean connected = connect2Plc(plcConfigEntity);
            if(!connected) {
                return null;
            }
         }
     //        System.out.println(plcConnection);
+        PlcConnection plcConnection = plcConnectionMap.get(plcConfigEntity.getPlcServerIp());
         if (!plcConnection.getMetadata().canRead()) {/*判断数据是否可以读取*/
             logger.info("This connection doesn't support reading.");
             return null;
@@ -106,8 +130,8 @@ public class Plc4xConnectorService {
      * 每次都需要重新创建builder， 不适用于频繁查询场景
      * @param queryList
      */
-    public List<PlcEntity> queryData(List<PlcEntity> queryList) {
-        PlcReadRequest.Builder builder = getReadBuilder(queryList);
+    public List<PlcEntity> queryData(List<PlcEntity> queryList, PlcConfigEntity plcConfigEntity ) {
+        PlcReadRequest.Builder builder = getReadBuilder(queryList, plcConfigEntity);
         return  queryData(builder);
     }
 
@@ -171,15 +195,15 @@ public class Plc4xConnectorService {
      * 写入PLC
      * @param queryList
      */
-    public void setData(List<PlcEntity> queryList) {
-        if (!isConnected()) {
-                connect2Plc();
+    public void setData(List<PlcEntity> queryList, PlcConfigEntity plcConfigEntity) {
+        if (!isConnected(plcConfigEntity)) {
+                connect2Plc(plcConfigEntity);
         }
-        if (!isConnected()) {
+        if (!isConnected(plcConfigEntity)) {
             logger.error("PLC 连接失败！");
             return;
         }
-
+        PlcConnection plcConnection = plcConnectionMap.get(plcConfigEntity.getPlcServerIp());
         if (!plcConnection.getMetadata().canWrite()) {
             logger.info("This connection doesn't support write.");
         }
@@ -251,29 +275,5 @@ public class Plc4xConnectorService {
         }
     }
 
-    /*
-        builder.addItem("Tag_1",  "%M0.1:BOOL");
-        builder.addItem("shuru2", "%I0.1:BOOL");
-        builder.addItem("shuru3", "%I0.2:BOOL");
-        builder.addItem("shuru4", "%I0.3:BOOL");
-        builder.addItem("shuru5", "%I0.4:BOOL");
-        builder.addItem("shuru6", "%I0.5:BOOL");
-        builder.addItem("shuru7", "%I0.6:BOOL");
-        builder.addItem("shuru8", "%I0.7:BOOL");
-        builder.addItem("value-1", "%Q0.4:BOOL");
-        builder.addItem("value-2", "%Q0:BYTE");
-        builder.addItem("value-3", "%I0.2:BOOL");
-        builder.addItem("value-4", "%DB.DB1.4:INT");
 
-// 第二种查询你方式
-
-
-        CompletableFuture<? extends PlcReadResponse> asyncResponse = readRequest.execute();
-        asyncResponse.whenComplete((response1, throwable) -> {
-        // process the response ...
-        });
-
-//        response.getObject("");
-//        response.getObject("", 42);
-*/
 }

@@ -3,6 +3,7 @@ package com.plc.hmi.service.plcService;
 import com.plc.hmi.S7Connector.service.Plc4xConnectorService;
 import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.constants.HmiConstants;
+import com.plc.hmi.dal.entity.PlcConfigEntity;
 import com.plc.hmi.dal.entity.PropertyEntity;
 import com.plc.hmi.dal.entity.TagsInfoEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
@@ -40,9 +41,9 @@ public class Plc4xBaseService {
      *  获取设 PlcReadRequest.Builder
      *  高频查询，需要先获得 PlcReadRequest.Builder
      */
-    public  PlcReadRequest.Builder initReadBuilder(List<PlcEntity> queryList, boolean force){
+    public  PlcReadRequest.Builder initReadBuilder(List<PlcEntity> queryList, PlcConfigEntity plcConfigEntity, boolean force){
         if(force || null == builder) {
-            builder = plc4xConnectorService.getReadBuilder(queryList);
+            builder = plc4xConnectorService.getReadBuilder(queryList, plcConfigEntity);
             builderTime = System.currentTimeMillis();
         }
         return builder;
@@ -52,9 +53,9 @@ public class Plc4xBaseService {
      * 通过 PlcReadRequest.Builder从PLC获取数据
      * 通用方法， 批量模式
      */
-    protected List<PlcEntity> getDataByBuilder() {
+    protected List<PlcEntity> getDataByBuilder(PlcConfigEntity plcConfigEntity) {
 //        if (null == builder) {
-        builder = this.initReadBuilder(readQueryList, true);
+        builder = this.initReadBuilder(readQueryList, plcConfigEntity,true);
 //        }
         if (null == builder) {
             return null;
@@ -66,18 +67,18 @@ public class Plc4xBaseService {
     /**
      * 从PLC获取数据， 通用方法， 批量模式
      */
-    protected List<PlcEntity>  getData() {
+    protected List<PlcEntity>  getData(PlcConfigEntity plcConfigEntity) {
         if(CollectionUtils.isEmpty(readQueryList)) {
             return null;
         }
-        return plc4xConnectorService.queryData(readQueryList);
+        return plc4xConnectorService.queryData(readQueryList, plcConfigEntity);
     }
 
 
 
     //修改PLC上数据， 通用方法， 支持批量模式
-    protected   boolean setPlcData() {
-        plc4xConnectorService.setData(writeQueryList);
+    protected   boolean setPlcData(PlcConfigEntity plcConfigEntity) {
+        plc4xConnectorService.setData(writeQueryList, plcConfigEntity);
         writeQueryList.clear();
         return true;
     }
@@ -286,8 +287,8 @@ public class Plc4xBaseService {
         return objValue;
     }
 
-    public boolean isPlcConnected() {
-        return this.plc4xConnectorService.isConnected();
+    public boolean isPlcConnected(PlcConfigEntity plcConfigEntity) {
+        return this.plc4xConnectorService.isConnected(plcConfigEntity);
     }
 
 

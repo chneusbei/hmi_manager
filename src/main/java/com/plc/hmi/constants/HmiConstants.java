@@ -40,6 +40,21 @@ public class HmiConstants {
     //CSV 正压反压分包地址中的压装成功包
     public static final String CSV_OUTPUT_PATH_NOK ="/NOK";
 
+    //温度监控信息状态 - 正常
+    public static final String TEMPERATURE_STATUS_NORMAL ="OK";
+    //温度监控信息状态 - 报警
+    public static final String TEMPERATURE_STATUS_WARNING ="WARNING";
+    //温度csv文件夹二级目录
+    public static final String TEMPERATURE_CSV_OUTPUT_PATH_ ="/temperature";
+    //温度csv文件头
+    public static final String[] TEMPERATURE_CURVE_TITLES = new String[]{"序号", "上位机IP", "数据所属日期", "状态", "低速轴偏心铜套温度检测1", "低速轴偏心铜套温度检测2", ""
+            , "低速轴偏心铜套温度检测3", "低速轴偏心铜套温度检测4", "高速轴偏心铜套温度检测1", "高速轴偏心铜套温度检测2", "飞轮支撑大轴承温度检测1", "飞轮支撑大轴承温度检测2",
+            "拉杆两端铜套温度检测1", "拉杆两端铜套温度检测2", "拉杆两端铜套温度检测3", "拉杆两端铜套温度检测4", "拉杆两端铜套温度检测5", "拉杆两端铜套温度检测6",
+            "拉杆两端铜套温度检测7", "拉杆两端铜套温度检测8", "小皮带轮支撑轴承温度检测1", "小皮带轮支撑轴承温度检测2", "三脚架下端铜套温度检测1", "三脚架下端铜套温度检测2",
+            "三脚架下端铜套温度检测3", "三脚架下端铜套温度检测4", "三脚架偏心大铜套温度检测1", "三脚架偏心大铜套温度检测2", "三脚架偏心大铜套温度检测3", "三脚架偏心大铜套温度检测4",
+            "备用温度检测0", "备用温度检测1", "备用温度检测2", "备用温度检测3", "备用温度检测4", "备用温度检测5", "备用温度检测6", "备用温度检测7", "备用温度检测8",
+            "备用温度检测9", "备用温度检测10", "备用温度检测11", "温度警戒值1", "温度警戒值2"};
+
 
     public enum PLC_TAG_GROUP {
         EQUIPMENT_OPERATION("equipment_operation", "设备信息_操作"),
@@ -57,7 +72,8 @@ public class HmiConstants {
         CURVE_ERRAND("curve_errand", "曲线信息_公差窗口"),
         START_PLC("start_plc", "启动PLC测试"),
         CURVE_DATA_NEW("curve_data_new", "新曲线信息状态_数据"),
-        CURVE_DATA_UPDATE("curve_data_update", "新曲线信息状态更新");
+        CURVE_DATA_UPDATE("curve_data_update", "新曲线信息状态更新"),
+        TEMPERATURE_DATA("temperature", "新曲线信息状态_数据");
         //枚举对象的变量
         private String code;
         private String value;
