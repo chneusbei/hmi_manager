@@ -32,7 +32,7 @@ public class ExportController {
     private static Logger logger = LoggerFactory.getLogger(ExportController.class);
     @ResponseBody
     @RequestMapping("/temperatureExport")
-    public String export( @RequestParam(value = "plcIp",required = false) String plcIp,
+    public String export( @RequestParam(value = "plcName",required = false) String plcName,
                           @RequestParam(value = "status",required = false) String status,
                           @RequestParam(value = "startDate",required = false) String startDate,
                           @RequestParam(value = "endDate",required = false) String endDate) {
@@ -41,7 +41,7 @@ public class ExportController {
 //        System.out.println("=======================startDate======="+startDate + "=======end====="+endDate);
 
         //获取对应的pressure_data
-        List<TemperatureEntity> TemperatureEntityList = temperatureService.getTemperatureWithParam(startDate, endDate, plcIp, status);;
+        List<TemperatureEntity> TemperatureEntityList = temperatureService.getTemperatureWithParam(startDate, endDate, plcName, status);;
         if (CollectionUtils.isEmpty(TemperatureEntityList)) {
             return  "temperature export no data found !";
         }
@@ -73,7 +73,7 @@ public class ExportController {
         // 设置导出文件名
         StringBuffer sb = new StringBuffer();
         sb.append("temperature_")
-                .append(plcIp)
+                .append(plcName)
                 .append("_")
                 .append(startDate)
                 .append("_")
@@ -95,7 +95,7 @@ public class ExportController {
             return  "导出失败";
         }
 
-        return  "OK, export success to D:/csv/tem";
+        return  "OK, export success to D:/csv/temperature";
     }
 
     @ResponseBody

@@ -66,7 +66,20 @@
         <div class="lyear-layout-container">
             <script src="test.js"></script>
             <main class="lyear-layout-content">
-                <form action="/curveDataExport" method="post">
+<!--                <form action="/curveDataExport" method="post">-->
+                <form action="/temperatureExport" method="post">
+                    <div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PLC IP： <input type="text" name="plcName" id="plcName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label>状态：</label>
+                        <select name="status" v-model="status" style="width:100px;margin-right: 30px;margin-left: 10px;">
+                            <option value="" selected></option>
+                            <option value="OK">OK</option>
+                            <option value="WARNING">WARNING</option>
+                        </select>
+                    </div>
                 <br>
                 <table class="imagetable">
                     <tr>
@@ -82,10 +95,14 @@
                                            name="endDate" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd"  v-model="endDate"/>
                                 </div>
                         </td>
+
                         <td><input type="submit" @click="getSystemParameter()" value="导出" style="background-color: #33CABB;width: 70px;height: 35px;color: white" id="daochu" ></td>
                     </tr>
                 </table>
                 <br>
+
+
+
 <!--                <form  enctype="multipart/form-data" action="#" method="post">-->
 <!--                <table class="imagetable" id="imagetable">-->
 <!--                    <tr>-->
@@ -118,7 +135,9 @@
         data:{
             // systemParameter:{},
             startDate:'',
-            endDate:''
+            endDate:'',
+            plcName:'',
+            status:''
         },methods:{
             // getSystemParameter(){
             //     axios.get("/curveDataExport").then(result=>{

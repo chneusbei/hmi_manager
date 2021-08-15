@@ -8,6 +8,8 @@ import java.math.BigDecimal;
 public class TemperatureEntity extends AbstractBaseEntity {
     //PLC ID
     private String plcIp;
+    //PLC名
+    private String plcName;
     //状态
     private String status;
     //压装日期 YYYYMMDD
@@ -92,6 +94,14 @@ public class TemperatureEntity extends AbstractBaseEntity {
     private BigDecimal temperatureWarningValue1;
     //温度警戒值2
     private BigDecimal temperatureWarningValue2;
+
+    public String getPlcName() {
+        return plcName;
+    }
+
+    public void setPlcName(String plcName) {
+        this.plcName = plcName;
+    }
 
     public String getPlcIp() {
         return plcIp;

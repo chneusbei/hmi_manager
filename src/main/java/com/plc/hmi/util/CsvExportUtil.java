@@ -32,14 +32,15 @@ public class CsvExportUtil {
 
         // 组装曲线表头
         String[] curveTitleArr = HmiConstants.TEMPERATURE_CURVE_TITLES;
-        StringBuffer curveTitleBuffer = new StringBuffer();
+        StringBuffer TitleBuffer = new StringBuffer();
         for (String title : curveTitleArr) {
-            curveTitleBuffer.append(title).append(HmiConstants.COMMA);
+            TitleBuffer.append(title).append(HmiConstants.COMMA);
         }
-        curveTitleBuffer.append(HmiConstants.CSV_ROW_SEPARATOR);
+        TitleBuffer.append(HmiConstants.CSV_ROW_SEPARATOR);
+        csvFileOutputStream.write(TitleBuffer.toString());
         // 组装数据
         if (!CollectionUtils.isEmpty(TemperatureEntityList)) {
-            int i=0;
+            int i=1;
             for (TemperatureEntity data : TemperatureEntityList) {
                 //Index
                 csvFileOutputStream.write(String.valueOf(i++));

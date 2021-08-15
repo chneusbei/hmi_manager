@@ -32,8 +32,8 @@ public class TemperatureService extends AbstractBaseService{
      * 获取产品压力曲线信息
      * @return
      */
-    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcIp, String status) {
-        return temperatureDao.getTemperatureWithParam(startDate, endDate, plcIp, status);
+    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status) {
+        return temperatureDao.getTemperatureWithParam(startDate, endDate, plcName, status);
     }
 
 }

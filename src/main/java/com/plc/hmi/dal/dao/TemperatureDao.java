@@ -12,8 +12,8 @@ public class TemperatureDao {
     @Resource
     TemperatureMapper temperatureMapper;
 
-    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcIp, String status) {
-        return temperatureMapper.getTemperatureWithParam(startDate, endDate, plcIp, status);
+    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status) {
+        return temperatureMapper.getTemperatureWithParam(startDate, endDate, plcName, status);
     }
 
     public void insert(TemperatureEntity temperatureEntity) {

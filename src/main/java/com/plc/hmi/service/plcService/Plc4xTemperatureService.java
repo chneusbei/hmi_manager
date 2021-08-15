@@ -15,9 +15,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /***
  * 温度信息-数据
@@ -47,8 +45,10 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
     public void getTemperatureFromPlc(PlcConfigEntity plcConfigEntity) {
         List<PlcEntity> temperaturePlcEntityList = this.getTemperatureDatas(HmiConstants.PLC_TAG_GROUP.TEMPERATURE_DATA.getCode(), plcConfigEntity);
         TemperatureEntity temperatureEntity = this.getTemperature(temperaturePlcEntityList, plcConfigEntity);
-        TemperatureMap.put(plcConfigEntity.getPlcServerIp(),temperatureEntity);
-        this.temperature2DB(plcConfigEntity,temperatureEntity);
+        if(null != temperatureEntity) {
+            TemperatureMap.put(plcConfigEntity.getPlcName(),temperatureEntity);
+            this.temperature2DB(plcConfigEntity, temperatureEntity);
+        }
     }
 
     /***
@@ -57,16 +57,16 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
      * @return
      */
     public TemperatureEntity getTemperature(List<PlcEntity> entityList, PlcConfigEntity plcConfigEntity) {
-        TemperatureEntity temperatureEntity = new TemperatureEntity();
+        TemperatureEntity temperatureEntity = null;
 
         if (CollectionUtils.isEmpty(entityList)) {
-            return temperatureEntity;
+            return null;
         }
         for (PlcEntity plcEntity : entityList) {
             if (null == plcEntity) {
                 continue;
             }
-
+            temperatureEntity = new TemperatureEntity();
             if (PlcEntityEnum.temperature_data_lowSpeedAxisEccentricCopperSleeveTemperature1.getCode().equalsIgnoreCase(plcEntity.getName())) {
                 //低速轴偏心铜套温度检测1
                 temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature1(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
@@ -188,8 +188,10 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
                 //温度警戒值2
                 temperatureEntity.setTemperatureWarningValue2(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
             }
-
+            temperatureEntity.setCreateBy("SYS");
+            temperatureEntity.setUpdateBy("SYS");
             temperatureEntity.setPlcIp(plcConfigEntity.getPlcServerIp());
+            temperatureEntity.setPlcName(plcConfigEntity.getPlcName());
             temperatureEntity.setHandleDate(HmiUtils.getYYYYMMDDString(temperatureEntity.getCreateTime()));
             temperatureEntity.setStatus(getTemperatureStatus(temperatureEntity));
         }
@@ -295,6 +297,19 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         }
 
         return status;
+    }
+
+
+    public List<TemperatureEntity> getTemperatureList() {
+        List<TemperatureEntity> temperatureList = new ArrayList<TemperatureEntity>();
+        Set<String> keySet = TemperatureMap.keySet();
+        if(CollectionUtils.isEmpty(keySet)) {
+            return temperatureList;
+        }
+        for(String key : keySet) {
+            temperatureList.add(TemperatureMap.get(key));
+        }
+        return temperatureList;
     }
 
 
