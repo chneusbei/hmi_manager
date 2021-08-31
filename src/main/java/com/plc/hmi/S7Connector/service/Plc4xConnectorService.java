@@ -33,7 +33,7 @@ public class Plc4xConnectorService {
     private PropertyService propertyService;
     private final Log logger = LogFactory.getLog(Plc4xConnectorService.class);
 //    private String HOST =  null; //"s7://192.168.1.1/2/1"; 参数 第一个是机架rock, 第二个是插槽slot
-    private Map<String, PlcConnection> plcConnectionMap = new HashMap<String, PlcConnection>();
+    public Map<String, PlcConnection> plcConnectionMap = new HashMap<String, PlcConnection>();
 
     /**
      * 连接到PLC

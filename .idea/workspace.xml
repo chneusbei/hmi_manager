@@ -7,58 +7,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cecb0697-7a75-43f3-82cd-1d72e4e882c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/TemperatureController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/curveQuery-bak.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/hisTemperatureQuery.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/hiscurveQuery-bak.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/temperature.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/entity/TemperaturePointEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/constants/HmiConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/constants/HmiConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/ExportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/ExportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/S7Connector/service/Plc4xConnectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/S7Connector/service/Plc4xConnectorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/TemperatureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/TemperatureController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/initialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/initialController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/dao/TemperatureDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/dao/TemperatureDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/entity/TemperatureEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/entity/TemperatureEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/mapper/TemperatureMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/mapper/TemperatureMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PlcConfigService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PlcConfigService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/TemperatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/TemperatureService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/plcService/Plc4xTemperatureService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/plcService/Plc4xTemperatureService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/util/CsvExportUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/util/CsvExportUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/curveQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/curveQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/dataExport.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/dataExport.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/ConfigConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/ConfigConstants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants$PLC_DATA_TYPE.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants$PLC_DATA_TYPE.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants$PLC_TAG_GROUP.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants$PLC_TAG_GROUP.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/hisTemperatureQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/hisTemperatureQuery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/temperature.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/temperature.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/initialController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/initialController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xCurveDataControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xCurveDataControler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xServoLimitSetControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xServoLimitSetControler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xServoOperationControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/Plc4xServoOperationControler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/PressureDataControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/PressureDataControler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureCurveDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PressureCurveDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PropertyDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/PropertyDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PropertyMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PropertyMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PlcEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PlcEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PropertyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/PropertyService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/StartRunService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/StartRunService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xBaseService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xBaseService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveProgramService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveProgramService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveStatusService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xCurveStatusService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xEquipmentAlarmService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xEquipmentAlarmService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xEquipmentIoStatusService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xEquipmentIoStatusService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xEquipmentOperationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xEquipmentOperationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xEquipmentStatusService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xEquipmentStatusService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoLimitSetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoLimitSetService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoOperationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoOperationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoStatusService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xServoStatusService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xTestService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/plcService/Plc4xTestService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/thread/PlcPressCurveThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/thread/PlcPressCurveThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/thread/PressCurveThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/thread/PressCurveThread.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/curveQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/curveQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/dataExport.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/dataExport.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,11 +108,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.plc.hmi.dal.entity" />
       <recent name="com.plc.hmi.controler" />
       <recent name="com.plc.hmi.service" />
       <recent name="com.plc.hmi.dal.mapper" />
       <recent name="com.plc.hmi.dal.dao" />
-      <recent name="com.plc.hmi.dal.entity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\myworkspace\hmi_manager\src\main\resources\templates" />
@@ -519,14 +481,10 @@
       <workItem from="1627734262044" duration="1513000" />
       <workItem from="1628901262589" duration="13105000" />
       <workItem from="1628923703656" duration="16078000" />
-      <workItem from="1629005785861" duration="17392000" />
-    </task>
-    <task id="LOCAL-00035" summary="代码提交20200514-1">
-      <created>1589459981811</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1589459981811</updated>
+      <workItem from="1629005785861" duration="17742000" />
+      <workItem from="1629102055108" duration="5088000" />
+      <workItem from="1629162147767" duration="6763000" />
+      <workItem from="1630392064098" duration="307000" />
     </task>
     <task id="LOCAL-00036" summary="代码提交20200514-2">
       <created>1589469576409</created>
@@ -864,7 +822,14 @@
       <option name="project" value="LOCAL" />
       <updated>1628948846180</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="代码提交20210815">
+      <created>1629037059445</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1629037059447</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -951,7 +916,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="代码提交202010124" />
     <MESSAGE value="代码提交20210124" />
     <MESSAGE value="代码提交20210223" />
     <MESSAGE value="代码提交20210227" />
@@ -976,7 +940,8 @@
     <MESSAGE value="代码提交20210525" />
     <MESSAGE value="代码提交20210731" />
     <MESSAGE value="代码提交20210814" />
-    <option name="LAST_COMMIT_MESSAGE" value="代码提交20210814" />
+    <MESSAGE value="代码提交20210815" />
+    <option name="LAST_COMMIT_MESSAGE" value="代码提交20210815" />
   </component>
   <component name="WindowStateProjectService">
     <state x="206" y="0" width="967" height="728" key="#HmiApplication" timestamp="1621957745749">
@@ -991,10 +956,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="19" width="1174" height="689" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1623064944813" />
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1629035204749">
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser" timestamp="1629190450826">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1629035204749" />
+    <state x="488" y="48" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1629190450826" />
     <state x="419" y="148" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1621957745081">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -1007,10 +972,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="438" y="66" key="#xdebugger.evaluate/0.0.1366.728@0.0.1366.728" timestamp="1624369531670" />
-    <state x="347" y="0" key="CommitChangelistDialog2" timestamp="1628948838246">
+    <state x="347" y="0" key="CommitChangelistDialog2" timestamp="1629037050124">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="347" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1628948838246" />
+    <state x="347" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1629037050124" />
     <state width="517" height="466" key="DebuggerActiveHint" timestamp="1629009788958">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -1023,54 +988,54 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1621954082669" />
-    <state width="1323" height="32" key="GridCell.Tab.0.bottom" timestamp="1629030340936">
+    <state width="1323" height="158" key="GridCell.Tab.0.bottom" timestamp="1629037255611">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="32" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1629030340936" />
-    <state width="1323" height="32" key="GridCell.Tab.0.center" timestamp="1629030340935">
+    <state width="1323" height="158" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1629037255611" />
+    <state width="1323" height="158" key="GridCell.Tab.0.center" timestamp="1629037255610">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="32" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1629030340935" />
-    <state width="1323" height="32" key="GridCell.Tab.0.left" timestamp="1629030340935">
+    <state width="1323" height="158" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1629037255610" />
+    <state width="1323" height="158" key="GridCell.Tab.0.left" timestamp="1629037255610">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="32" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1629030340935" />
-    <state width="1323" height="32" key="GridCell.Tab.0.right" timestamp="1629030340936">
+    <state width="1323" height="158" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1629037255610" />
+    <state width="1323" height="158" key="GridCell.Tab.0.right" timestamp="1629037255611">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="32" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1629030340936" />
-    <state width="1323" height="32" key="GridCell.Tab.1.bottom" timestamp="1629030340936">
+    <state width="1323" height="158" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1629037255611" />
+    <state width="1323" height="158" key="GridCell.Tab.1.bottom" timestamp="1629037255612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="32" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1629030340936" />
-    <state width="1323" height="32" key="GridCell.Tab.1.center" timestamp="1629030340936">
+    <state width="1323" height="158" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1629037255612" />
+    <state width="1323" height="158" key="GridCell.Tab.1.center" timestamp="1629037255611">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="32" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1629030340936" />
-    <state width="1323" height="32" key="GridCell.Tab.1.left" timestamp="1629030340936">
+    <state width="1323" height="158" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1629037255611" />
+    <state width="1323" height="158" key="GridCell.Tab.1.left" timestamp="1629037255611">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="32" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1629030340936" />
-    <state width="1323" height="32" key="GridCell.Tab.1.right" timestamp="1629030340936">
+    <state width="1323" height="158" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1629037255611" />
+    <state width="1323" height="158" key="GridCell.Tab.1.right" timestamp="1629037255611">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="32" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1629030340936" />
-    <state width="1323" height="158" key="GridCell.Tab.2.bottom" timestamp="1629026663088">
+    <state width="1323" height="158" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1629037255611" />
+    <state width="1323" height="158" key="GridCell.Tab.2.bottom" timestamp="1629037255612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="158" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1629026663088" />
-    <state width="1323" height="158" key="GridCell.Tab.2.center" timestamp="1629026663088">
+    <state width="1323" height="158" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1629037255612" />
+    <state width="1323" height="158" key="GridCell.Tab.2.center" timestamp="1629037255612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="158" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1629026663088" />
-    <state width="1323" height="158" key="GridCell.Tab.2.left" timestamp="1629026663087">
+    <state width="1323" height="158" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1629037255612" />
+    <state width="1323" height="158" key="GridCell.Tab.2.left" timestamp="1629037255612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="158" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1629026663087" />
-    <state width="1323" height="158" key="GridCell.Tab.2.right" timestamp="1629026663088">
+    <state width="1323" height="158" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1629037255612" />
+    <state width="1323" height="158" key="GridCell.Tab.2.right" timestamp="1629037255612">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="158" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1629026663088" />
+    <state width="1323" height="158" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1629037255612" />
     <state x="385" y="80" key="MultipleFileMergeDialog" timestamp="1621958650504">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -1083,10 +1048,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="VCS.FileHistoryDialog/0.0.1366.728@0.0.1366.728" timestamp="1622802303275" />
-    <state x="379" y="120" key="Vcs.Push.Dialog.v2" timestamp="1628949104825">
+    <state x="379" y="120" key="Vcs.Push.Dialog.v2" timestamp="1629037091189">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="120" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1628949104825" />
+    <state x="379" y="120" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1629037091189" />
     <state x="475" y="281" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1623248743812">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -1095,10 +1060,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="128" y="123" width="897" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.728@0.0.1366.728" timestamp="1629011660059" />
-    <state x="253" y="103" width="958" height="600" key="find.popup" timestamp="1629036013281">
+    <state x="253" y="103" width="958" height="600" key="find.popup" timestamp="1629194370346">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="253" y="103" width="958" height="600" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1629036013281" />
+    <state x="253" y="103" width="958" height="600" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1629194370346" />
     <state x="445" y="76" key="git4idea.branch.GitSmartOperationDialog" timestamp="1621958638437">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -1107,10 +1072,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" width="672" height="677" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1628920239447" />
-    <state x="645" y="61" width="672" height="678" key="search.everywhere.popup" timestamp="1629035475324">
+    <state x="645" y="61" width="672" height="678" key="search.everywhere.popup" timestamp="1629190912156">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="645" y="61" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1629035475324" />
+    <state x="645" y="61" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1629190912156" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

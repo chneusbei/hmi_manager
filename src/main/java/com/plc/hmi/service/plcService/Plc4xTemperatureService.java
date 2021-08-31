@@ -1,15 +1,18 @@
 package com.plc.hmi.service.plcService;
 
+import com.plc.hmi.S7Connector.service.Plc4xConnectorService;
 import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.dao.TemperatureDao;
 import com.plc.hmi.dal.entity.PlcConfigEntity;
 import com.plc.hmi.dal.entity.TemperatureEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.enumeration.PlcEntityEnum;
+import com.plc.hmi.service.PlcConfigService;
 import com.plc.hmi.util.HmiUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jvnet.hk2.annotations.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -25,6 +28,11 @@ import java.util.*;
 public class Plc4xTemperatureService extends Plc4xBaseService{
     @Resource
     TemperatureDao temperatureDao;
+    @Autowired
+    Plc4xConnectorService plc4xConnectorService;
+    @Autowired
+    PlcConfigService  plcConfigService;
+
     private final Log logger = LogFactory.getLog(Plc4xTemperatureService.class);
     public static Map<String, TemperatureEntity> TemperatureMap = new HashMap<String, TemperatureEntity>();
 
@@ -303,11 +311,25 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
     public List<TemperatureEntity> getTemperatureList() {
         List<TemperatureEntity> temperatureList = new ArrayList<TemperatureEntity>();
         Set<String> keySet = TemperatureMap.keySet();
-        if(CollectionUtils.isEmpty(keySet)) {
+        Set<String> connectionKeySet = plc4xConnectorService.plcConnectionMap.keySet();
+        List<PlcConfigEntity> plcConfigList= plcConfigService.getPlcList();
+
+        if(CollectionUtils.isEmpty(plcConfigList)) {
             return temperatureList;
         }
-        for(String key : keySet) {
-            temperatureList.add(TemperatureMap.get(key));
+
+        for(PlcConfigEntity config : plcConfigList) {
+            TemperatureEntity temperatureEntity = TemperatureMap.get(config.getPlcName());
+            if(null != temperatureEntity) {
+                temperatureEntity.setPlcConnectionStatus(plc4xConnectorService.isConnected(config) ? "已连接" :"未连接");
+                temperatureList.add(temperatureEntity);
+            } else {
+                temperatureEntity = new TemperatureEntity();
+                temperatureEntity.setPlcConnectionStatus(plc4xConnectorService.isConnected(config) ? "已连接" :"未连接");
+                temperatureEntity.setPlcName(config.getPlcName());
+                temperatureEntity.setStatus(HmiConstants.TEMPERATURE_STATUS_NORMAL);
+            }
+            temperatureList.add(temperatureEntity);
         }
         return temperatureList;
     }

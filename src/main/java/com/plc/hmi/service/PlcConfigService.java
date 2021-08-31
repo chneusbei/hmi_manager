@@ -4,8 +4,10 @@ import com.plc.hmi.dal.dao.PlcConfigDao;
 import com.plc.hmi.dal.entity.PlcConfigEntity;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,15 +18,17 @@ import java.util.List;
 public class PlcConfigService extends AbstractBaseService{
     @Resource
     PlcConfigDao plcConfigDao;
-//    public static List<PlcConfigEntity> staticPlcConfigList= new ArrayList<PlcConfigEntity>();
+    public static List<PlcConfigEntity> staticPlcConfigList= new ArrayList<PlcConfigEntity>();
 
     public List<PlcConfigEntity> getPlcList() {
-        List<PlcConfigEntity> plcList = plcConfigDao.getPlcList();
-//        if(!CollectionUtils.isEmpty(plcList)) {
-//            for(PlcConfigEntity property : plcList) {
-//                staticPlcConfigList.add(property);
-//            }
-//        }
+        List<PlcConfigEntity> plcList = null;
+        if(CollectionUtils.isEmpty(staticPlcConfigList)) {
+            plcList = plcConfigDao.getPlcList();
+            staticPlcConfigList.addAll(plcList);
+        } else {
+            return staticPlcConfigList;
+        }
+
         return plcList;
     }
 }

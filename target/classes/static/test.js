@@ -13,6 +13,7 @@ document.writeln("                        <li> <a   href=\'/equipmentStatusMonit
 document.writeln("                        <li> <a   href=\'/ioequipmentStatusMonitoring\'>设备IO状态监控</a> </li>");
 document.writeln("                        <li> <a   href=\'/safetyMonitoring\'>设备操作监控</a> </li>");
 document.writeln("                        <li> <a   href=\'/curveQuery\'>压装曲线监控</a> </li>");
+document.writeln("                        <li> <a   href=\'/temperature\'>温度监控</a> </li>");
 document.writeln("                        <li> <a   href=\'/hyperbola\'>双曲线</a> </li>");
 document.writeln("                    </ul>");
 document.writeln("                </li>");

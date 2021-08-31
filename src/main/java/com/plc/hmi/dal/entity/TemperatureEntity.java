@@ -95,6 +95,16 @@ public class TemperatureEntity extends AbstractBaseEntity {
     //温度警戒值2
     private BigDecimal temperatureWarningValue2;
 
+    private String  plcConnectionStatus;
+
+    public String getPlcConnectionStatus() {
+        return plcConnectionStatus;
+    }
+
+    public void setPlcConnectionStatus(String plcConnectionStatus) {
+        this.plcConnectionStatus = plcConnectionStatus;
+    }
+
     public String getPlcName() {
         return plcName;
     }

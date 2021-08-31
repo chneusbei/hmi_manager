@@ -114,6 +114,10 @@ public class initialController {
     public String hisTemperatureQuery(){
         return "hisTemperatureQuery";
     }
+    @RequestMapping("/temperature")
+    public String temperature(){
+        return "temperature";
+    }
     @RequestMapping("/hyperbola")
     public String hyperbola(){
         return "hyperbola";
