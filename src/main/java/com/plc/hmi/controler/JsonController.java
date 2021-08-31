@@ -305,6 +305,20 @@ public class JsonController {
         return json;
     }
 
+    /**
+     * 获取压装结果本工时段的统计信息
+     * @return
+     */
+    @RequestMapping("/getPressureSumData")
+    public String getPressureSumData(@RequestParam(value = "time",required = false) Long time, @RequestParam(value = "defaultFailNum",required = false) BigDecimal defaultFailNum) {
+//        System.out.println("============getStatus");int time,  BigDecimal defaultErrorNum
+        PressureStatisticalDataEntity pressureStatisticalDataEntity = pressureDataService.getPressureStatisticalData(time.intValue(),defaultFailNum);
+        String json = JSON.toJSONString(pressureStatisticalDataEntity);
+//        System.out.println(json);
+//        System.out.println("--------------------------getStatus---------------" + json);
+        return json;
+    }
+
 
 
 }

@@ -48,7 +48,7 @@ public class HmiUtils  {
         return dateFormatNormal.format(date);
     }
     public static String getYYYYMMDDString(Date date) {
-        return dateFormatYYYYMMDD.format(new Date());
+        return dateFormatYYYYMMDD.format(date);
     }
 
     public static String getMillFormatDateString(Date date) {

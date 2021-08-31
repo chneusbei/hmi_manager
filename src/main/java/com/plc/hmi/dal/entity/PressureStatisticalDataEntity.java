@@ -7,11 +7,11 @@ import java.util.Date;
 
 public class PressureStatisticalDataEntity extends AbstractBaseEntity {
     //压装总数量
-    private BigDecimal totalAmount;
+    private BigDecimal totalAmount = new BigDecimal(0);
     //成功数量
-    private BigDecimal successAmount;
+    private BigDecimal successAmount = new BigDecimal(0);
     //失败数量
-    private BigDecimal failAmount;
+    private BigDecimal failAmount = new BigDecimal(0);
 
     public BigDecimal getTotalAmount() {
         return totalAmount;

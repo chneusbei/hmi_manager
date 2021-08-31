@@ -11,6 +11,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,8 +34,8 @@ public class PressureDataDao {
 
 
 
-    public PressureStatisticalDataEntity getPressureStatisticalData() {
-        List<HashMap> resList = pressureDataMapper.getPressureStatisticalData();
+    public PressureStatisticalDataEntity getPressureStatisticalData(BigDecimal startDate, BigDecimal endDate) {
+        List<HashMap> resList = pressureDataMapper.getPressureStatisticalData(startDate, endDate);
         PressureStatisticalDataEntity entity = new PressureStatisticalDataEntity();
         String pressResult = null;
         entity.setSuccessAmount(new BigDecimal(0));
