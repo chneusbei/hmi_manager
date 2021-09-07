@@ -156,10 +156,10 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             }
 
 
-            int mapSzie = 0;
-            for(Long recordId : curveMap.keySet()){
-                mapSzie = curveMap.get(recordId).size();
-            }
+//            int mapSzie = 0;
+//            for(Long recordId : curveMap.keySet()){
+//                mapSzie = curveMap.get(recordId).size();
+//            }
 //            System.out.println("preCurveLength1 = "+ preCurveLength1 + ", dataLength1 = "+ curveStatusEntity.getDataLength1() + ", curve size = : "+mapSzie );
             //状态复位
             preCurveLength1 = curveStatusEntity.getDataLength1();

@@ -310,13 +310,19 @@ public class JsonController {
      * @return
      */
     @RequestMapping("/getPressureSumData")
-    public String getPressureSumData(@RequestParam(value = "time",required = false) Long time, @RequestParam(value = "defaultFailNum",required = false) BigDecimal defaultFailNum) {
-//        System.out.println("============getStatus");int time,  BigDecimal defaultErrorNum
+    public List<PressureStatisticalDataEntity> getPressureSumData(@RequestParam(value = "time",required = false) Long time, @RequestParam(value = "defaultFailNum",required = false) BigDecimal defaultFailNum) {
+//        System.out.println("============getPressureSumData . time = " + time + ", defaultFailNum =" +defaultFailNum);
+        if(null == defaultFailNum) {
+            defaultFailNum = new BigDecimal(0);
+        }
         PressureStatisticalDataEntity pressureStatisticalDataEntity = pressureDataService.getPressureStatisticalData(time.intValue(),defaultFailNum);
         String json = JSON.toJSONString(pressureStatisticalDataEntity);
 //        System.out.println(json);
-//        System.out.println("--------------------------getStatus---------------" + json);
-        return json;
+//        System.out.println("--------------------------getPressureSumData---------------" + json);
+        List<PressureStatisticalDataEntity> list = new ArrayList<PressureStatisticalDataEntity>();
+
+        list.add(pressureStatisticalDataEntity);
+        return list;
     }
 
 

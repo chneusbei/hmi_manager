@@ -82,7 +82,7 @@ public class PressureDataService extends AbstractBaseService{
         //时间段 0-8  8-16 16-24
         PressureStatisticalDataEntity pressureStatisticalDataEntity =  pressureDataDao.getPressureStatisticalData(new BigDecimal(startDate), new BigDecimal(endDate));
         //如果设置了失败默认值，并且实际失败个数大于失败默认值， 返回默认值
-        if(pressureStatisticalDataEntity.getFailAmount().compareTo(defaultFailNum) > 0) {
+        if(pressureStatisticalDataEntity.getFailAmount().compareTo(defaultFailNum) > 0 && defaultFailNum.intValue() > 0) {
             pressureStatisticalDataEntity.setFailAmount(defaultFailNum);
             pressureStatisticalDataEntity.setSuccessAmount(pressureStatisticalDataEntity.getTotalAmount().subtract(defaultFailNum));
         }

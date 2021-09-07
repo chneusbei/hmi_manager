@@ -54,13 +54,13 @@
                     <div>
                         <label>班次：</label>
 <!--                        v-model="list.programCode"  @change='getProgram()'-->
-                        <select name="defaultFailNum" style="width:300px;margin-right: 30px;margin-left: 10px;">
+                        <select name="time" ref="time" id="time" style="width:300px;margin-right: 30px;margin-left: 10px;">
                             <option value="0" selected>当日</option>
                             <option value="1">白班</option>
                             <option value="2">夜班</option>
                         </select>
                         <label>警戒失败条数：</label>
-                        <input type="text" name="time" id="time" >
+                        <input type="text" name="defaultFailNum" ref="defaultFailNum" id="defaultFailNum" >
                     </div>
 <!--                <table class="imagetable">-->
 <!--                    <tr>-->
@@ -99,10 +99,15 @@
                         <th>成功数数量</th>
                         <th>失败数数量</th>
                     </tr>
+                    <tr v-for="o in list" >
+                        <td>{{o.totalAmount}}</td>
+                        <td>{{o.successAmount}}</td>
+                        <td>{{o.failAmount}}</td>
+                    </tr>
                    <tr>
-                        <td>pressureStatisticalDataEntity.totalAmount</td>
-                        <td>pressureStatisticalDataEntity.successAmount</td>
-                        <td>pressureStatisticalDataEntity.failAmount</td>
+<!--                                               <td style="background-color: #73d251" >1</td>-->
+<!--                                               <td style="background-color: #73d251" >2</td>-->
+<!--                                               <td style="background-color: #73d251" >3</td>-->
                     </tr>
                 </table>
             </main>
@@ -119,24 +124,27 @@
     new Vue({
         el:"#app",
         data:{
-            pressureStatisticalDataEntity:null,
+            list:{}
         },methods:{
             getPressureSumData(){
+                // alert("getPressureSumData");
                 let requestData={
-                    time:this.$refs.time.value,
-                    stop:this.$refs.defaultFailNum.value
+                    time:document.getElementById("time").value,
+                    defaultFailNum:document.getElementById("defaultFailNum").value
                 }
+
                 axios.get("/getPressureSumData",{params:requestData}).then(result=>{
-                    this.pressureStatisticalDataEntity=result.data;
+                    this.list=result.data;
                 })
             },
             timer(){
-                if (this.intervalId!=null){/*代表计时器已经启动*/
+                if (this.interval!=null){/*代表计时器已经启动*/
                     return ;
                 }
                 this.intervalId = setInterval(() => {
                     this.getPressureSumData();
                 }, 2000);
+                // this.intervalId = setInterval("getPressureSumData()", 200);
             }
         }, created(){
             this.timer();
