@@ -86,6 +86,8 @@ public class PressureDataService extends AbstractBaseService{
             pressureStatisticalDataEntity.setFailAmount(defaultFailNum);
             pressureStatisticalDataEntity.setSuccessAmount(pressureStatisticalDataEntity.getTotalAmount().subtract(defaultFailNum));
         }
+        //计算百分比
+        pressureStatisticalDataEntity.setSuccessPercent(HmiUtils.getPercentString(pressureStatisticalDataEntity.getSuccessAmount(), pressureStatisticalDataEntity.getTotalAmount()));
         return pressureStatisticalDataEntity;
     }
 

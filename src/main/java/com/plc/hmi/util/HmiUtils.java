@@ -48,6 +48,9 @@ public class HmiUtils  {
         return dateFormatNormal.format(date);
     }
     public static String getYYYYMMDDString(Date date) {
+        if(null == date) {
+            date = new Date();
+        }
         return dateFormatYYYYMMDD.format(date);
     }
 
@@ -171,5 +174,14 @@ public class HmiUtils  {
             programCodeBuffer.append("+");
         }
         return programCodeBuffer.toString();
+    }
+
+    public static String getPercentString(BigDecimal a, BigDecimal b){
+        String percent =
+                b == null ? "-" :
+                        b.compareTo(new BigDecimal(0)) == 0 ? "-":
+                                a == null ? "0.00%" :
+                                        a.multiply(new BigDecimal(100)).divide(b,2,BigDecimal.ROUND_HALF_UP) + "%";
+        return percent;
     }
 }

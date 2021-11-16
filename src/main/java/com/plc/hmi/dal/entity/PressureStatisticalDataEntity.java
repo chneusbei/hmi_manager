@@ -3,7 +3,6 @@ package com.plc.hmi.dal.entity;
 import com.plc.hmi.dal.entity.base.AbstractBaseEntity;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class PressureStatisticalDataEntity extends AbstractBaseEntity {
     //压装总数量
@@ -12,6 +11,8 @@ public class PressureStatisticalDataEntity extends AbstractBaseEntity {
     private BigDecimal successAmount = new BigDecimal(0);
     //失败数量
     private BigDecimal failAmount = new BigDecimal(0);
+    //成功百分比
+    private String successPercent;
 
     public BigDecimal getTotalAmount() {
         return totalAmount;
@@ -35,5 +36,13 @@ public class PressureStatisticalDataEntity extends AbstractBaseEntity {
 
     public void setFailAmount(BigDecimal failAmount) {
         this.failAmount = failAmount;
+    }
+
+    public String getSuccessPercent() {
+        return successPercent;
+    }
+
+    public void setSuccessPercent(String successPercent) {
+        this.successPercent = successPercent;
     }
 }

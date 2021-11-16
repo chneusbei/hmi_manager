@@ -60,7 +60,7 @@
                             <option value="2">夜班</option>
                         </select>
                         <label>警戒失败条数：</label>
-                        <input type="text" name="defaultFailNum" ref="defaultFailNum" id="defaultFailNum" value="2">
+                        <input type="text" name="defaultFailNum" ref="defaultFailNum" id="defaultFailNum">
                     </div>
 <!--                <table class="imagetable">-->
 <!--                    <tr>-->
@@ -98,11 +98,13 @@
                         <th>合计数量</th>
                         <th>成功数数量</th>
                         <th>失败数数量</th>
+                        <th>成功率</th>
                     </tr>
                     <tr v-for="o in list" >
                         <td>{{o.totalAmount}}</td>
                         <td>{{o.successAmount}}</td>
                         <td>{{o.failAmount}}</td>
+                        <td>{{o.successPercent}}</td>
                     </tr>
                    <tr>
 <!--                                               <td style="background-color: #73d251" >1</td>-->
@@ -132,7 +134,17 @@
                     time:document.getElementById("time").value,
                     defaultFailNum:document.getElementById("defaultFailNum").value
                 }
+                var storage = window.localStorage;
 
+                if(document.getElementById("defaultFailNum").value != '') {
+                    storage.setItem("defaultFailNum",  document.getElementById("defaultFailNum").value);
+                } else {
+                    if( storage.getItem("defaultFailNum") > 0) {
+                        document.getElementById("defaultFailNum").value = storage.getItem("defaultFailNum");
+                        requestData.defaultFailNum= storage.getItem("defaultFailNum");
+                    }
+
+                }
                 axios.get("/getPressureSumData",{params:requestData}).then(result=>{
                     this.list=result.data;
                 })

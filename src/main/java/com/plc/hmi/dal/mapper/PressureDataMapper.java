@@ -80,7 +80,7 @@ public interface PressureDataMapper {
     })
     List<PressureDataEntity>  getPressureDataByDate(@Param("startDate") String startDate, @Param("endDate") String endDate);
 
-    @Select("select PRESS_RESULT, count(1) as COUNT from pressure_data where is_deleted='0' and END_DATE between #{startDate} and #{endDate} group by PRESS_RESULT")
+    @Select("select PRESS_RESULT, count(1) as COUNT from pressure_data where PRESSURE_HEAD_NO = '1' and is_deleted='0' and END_DATE between #{startDate} and #{endDate} group by PRESS_RESULT")
     List<HashMap> getPressureStatisticalData(@Param("startDate") BigDecimal startDate, @Param("endDate") BigDecimal endDate);
 
     @Insert({"insert into pressure_data(id, PRESSURE_HEAD_NO, PRODUCT_ID, PRODUCT_NO, PRESS_RESULT, RECORD_ID, START_DATE, END_DATE, MAX_PRESS, POSITION_OF_MAX_PRESS, IS_DELETED, CREATE_BY, UPDATE_BY,CREATE_TIME,UPDATE_TIME) values(null, #{pressureHeadNo}, #{productId}, #{productNo}, #{pressResult}, #{recordId},#{startDate},#{endDate},#{maxPress},#{positionOfMaxPress},'0', #{createBy}, #{createBy}, now(), now())"})
