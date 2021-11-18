@@ -12,6 +12,7 @@ import com.plc.hmi.service.plcService.Plc4xCurveDataService;
 import com.plc.hmi.service.plcService.Plc4xCurveStatusService;
 import com.plc.hmi.service.plcService.Plc4xTemperatureService;
 import com.plc.hmi.util.HmiUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
@@ -57,6 +58,31 @@ public class TemperatureController {
         List<TemperatureEntity> temperatureList = plc4xTemperatureService.getTemperatureList();
         return temperatureList;
 
+    }
+
+    @RequestMapping("/updateTemperatureSetting")
+    public String updateTemperatureSetting(@RequestParam(value = "temperatureWarningValue1",required = true) String temperatureWarningValue1,
+                                           @RequestParam(value = "temperatureWarningValue2",required = true) String temperatureWarningValue2){
+       if(!StringUtils.isNotBlank(temperatureWarningValue1) || !StringUtils.isNotBlank(temperatureWarningValue2)) {
+           return "更新失败，存在未填写的阈值项， 请填写完整。";
+       }
+        return "阈值更新成功";
+    }
+
+    @ResponseBody
+    @GetMapping("/getTemperatureSetting")
+    public TemperatureEntity getSystemParameter(){
+        TemperatureEntity entity = new TemperatureEntity();
+        List<TemperatureEntity> temperatureList = plc4xTemperatureService.getTemperatureList();
+        if(!CollectionUtils.isEmpty(temperatureList)) {
+            for(TemperatureEntity temperatureEntity : temperatureList) {
+                if("Y".equalsIgnoreCase(temperatureEntity.getPlcConnectionStatus())) {
+                    entity = temperatureEntity;
+                    break;
+                }
+            }
+        }
+        return entity;
     }
 
 

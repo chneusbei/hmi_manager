@@ -118,6 +118,10 @@ public class initialController {
     public String temperature(){
         return "temperature";
     }
+    @RequestMapping("/temperatureSetting")
+    public String temperatureSetting(){
+        return "temperatureSetting";
+    }
     @RequestMapping("/hyperbola")
     public String hyperbola(){
         return "hyperbola";

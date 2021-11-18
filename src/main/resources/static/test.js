@@ -15,6 +15,7 @@ document.writeln("                        <li> <a   href=\'/safetyMonitoring\'>�
 document.writeln("                        <li> <a   href=\'/curveQuery\'>压装曲线监控</a> </li>");
 document.writeln("                        <li> <a   href=\'/temperature\'>温度监控</a> </li>");
 document.writeln("                        <li> <a   href=\'/hisTemperatureQuery\'>历史温度</a> </li>");
+document.writeln("                        <li> <a   href=\'/temperatureSetting\'>温度警戒值设置</a> </li>");
 document.writeln("                        <li> <a   href=\'/hyperbola\'>双曲线</a> </li>");
 document.writeln("                    </ul>");
 document.writeln("                </li>");
