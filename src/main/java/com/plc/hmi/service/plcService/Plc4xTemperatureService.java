@@ -321,19 +321,21 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
             return temperatureList;
         }
 
-//        for(PlcConfigEntity config : plcConfigList) {
-//            TemperatureEntity temperatureEntity = TemperatureMap.get(config.getPlcName());
-//            if(null != temperatureEntity) {
-//                temperatureEntity.setPlcConnectionStatus(plc4xConnectorService.isConnected(config) ? "Y" :"N");
-//                temperatureList.add(temperatureEntity);
-//            } else {
-//                temperatureEntity = new TemperatureEntity();
-//                temperatureEntity.setPlcConnectionStatus(plc4xConnectorService.isConnected(config) ? "Y" :"N");
-//                temperatureEntity.setPlcName(config.getPlcName());
-//                temperatureEntity.setStatus(HmiConstants.TEMPERATURE_STATUS_NORMAL);
-//            }
-//            temperatureList.add(temperatureEntity);
-//        }
+        for(PlcConfigEntity config : plcConfigList) {
+            TemperatureEntity temperatureEntity = TemperatureMap.get(config.getPlcName());
+            if(null != temperatureEntity) {
+                temperatureEntity.setPlcConnectionStatus(plc4xConnectorService.isConnected(config) ? "Y" :"N");
+                temperatureList.add(temperatureEntity);
+            } else {
+                temperatureEntity = new TemperatureEntity();
+                temperatureEntity.setPlcConnectionStatus(plc4xConnectorService.isConnected(config) ? "Y" :"N");
+                temperatureEntity.setPlcName(config.getPlcName());
+                temperatureEntity.setStatus(HmiConstants.TEMPERATURE_STATUS_NORMAL);
+            }
+            temperatureList.add(temperatureEntity);
+        }
+
+        /*
         for(int i=0;i<5;i++) {
             TemperatureEntity temperatureEntity = new TemperatureEntity();
             temperatureEntity.setPlcName(String.valueOf(i)+"名子会很长");
@@ -383,6 +385,8 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
             temperatureEntity.setTemperatureWarningValue2(new BigDecimal(35.2));
             temperatureList.add(temperatureEntity);
         }
+
+         */
         return temperatureList;
     }
 

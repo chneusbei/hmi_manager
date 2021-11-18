@@ -16,7 +16,7 @@ public interface TemperatureMapper {
             "<if test='status!=null' >",
             "and STATUS = #{status}",
             "</if>",
-            "order by id",
+            "order by id asc",
             "</script>" })
     @Results({
             @Result(id=true,column = "ID",property = "id" ),
@@ -64,6 +64,7 @@ public interface TemperatureMapper {
             @Result(column = "BACKUP_TEMPERATURE_11",property ="backupTemperature11"),
             @Result(column = "TEMPERATURE_WARNING_VALUE_1",property ="temperatureWarningValue1"),
             @Result(column = "TEMPERATURE_WARNING_VALUE_2",property ="temperatureWarningValue2"),
+            @Result(column = "CREATE_TIME",property ="createTime"),
     })
     List<TemperatureEntity> getTemperatureWithParam(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("plcName") String plcName, @Param("status") String status);
 

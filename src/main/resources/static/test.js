@@ -14,6 +14,7 @@ document.writeln("                        <li> <a   href=\'/ioequipmentStatusMon
 document.writeln("                        <li> <a   href=\'/safetyMonitoring\'>设备操作监控</a> </li>");
 document.writeln("                        <li> <a   href=\'/curveQuery\'>压装曲线监控</a> </li>");
 document.writeln("                        <li> <a   href=\'/temperature\'>温度监控</a> </li>");
+document.writeln("                        <li> <a   href=\'/hisTemperatureQuery\'>历史温度</a> </li>");
 document.writeln("                        <li> <a   href=\'/hyperbola\'>双曲线</a> </li>");
 document.writeln("                    </ul>");
 document.writeln("                </li>");
@@ -38,7 +39,7 @@ document.writeln("                    <ul class=\'nav nav-subnav\'>");
 // document.writeln("                        <li> <a  href=\'/curveAcquisition\'>曲线采集</a> </li>");
 // document.writeln("                        <li> <a  href=\'/curveStorage\'>曲线存储</a> </li>");
 document.writeln("                        <li> <a  href=\'/dataQuery\'>历史汇总数据查询</a> </li>");
-document.writeln("                        <li> <a  href=\'/hisTemperatureQuery\'>历史曲线查询</a> </li>");
+// document.writeln("                        <li> <a  href=\'/hisTemperatureQuery\'>历史曲线查询</a> </li>");
 document.writeln("                        <li> <a  href=\'/dataExport\'>历史数据导出</a> </li>");
 document.writeln("                    </ul>");
 document.writeln("                </li>");

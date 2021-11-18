@@ -36,12 +36,12 @@ public class TemperatureController {
 
 
 
-    @RequestMapping("/getHisTemperature")
-    public String getHisDateByCode(@RequestParam(value = "startDate",required = true) String startDate,
+    @GetMapping("/getHisTemperature")
+    public String getHisTemperature(@RequestParam(value = "startDate",required = true) String startDate,
                                    @RequestParam(value = "endDate",required = true) String endDate,
                                    @RequestParam(value = "plcName",required = false) String plcName,
                                    @RequestParam(value = "temperatureName",required = false) String temperatureName) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-//        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcIp = "+ plcIp);
+//        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
         List<TemperaturePointEntity> TemperaturePointList =  temperatureService.getTemperaturePointWithParam(startDate, endDate, plcName,temperatureName, null);
         String json = JSON.toJSONString(TemperaturePointList);
         return json;

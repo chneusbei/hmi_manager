@@ -70,9 +70,9 @@
                                            name="plcName" value=""  v-model="plcName"/>
                                 </div>
                             </td>
-                            <td>温度点名：
+                            <td>温度点名称：
                                 <div class="card">
-                                    <select name="temperatureName" v-model="temperatureName" style="width:100px;margin-right: 30px;margin-left: 10px;">
+                                    <select name="temperatureName" v-model="temperatureName" style="width:500px;margin-right: 30px;margin-left: 10px;">
                                         <option value="" selected>无</option>
                                         <option value="getLowSpeedAxisEccentricCopperSleeveTemperature1">低速轴偏心铜套温度检测1</option>
                                         <option value="getLowSpeedAxisEccentricCopperSleeveTemperature2">低速轴偏心铜套温度检测2</option>
@@ -100,18 +100,18 @@
                                         <option value="getTripodEccentricBigCopperSleeveTemperature2">三脚架偏心大铜套温度检测2</option>
                                         <option value="getTripodEccentricBigCopperSleeveTemperature3">三脚架偏心大铜套温度检测3</option>
                                         <option value="getTripodEccentricBigCopperSleeveTemperature4">三脚架偏心大铜套温度检测4</option>
-                                        <option value="getBackupTemperature0">备用温度检测0</option>
-                                        <option value="getBackupTemperature1">备用温度检测1</option>
-                                        <option value="getBackupTemperature2">备用温度检测2</option>
-                                        <option value="getBackupTemperature3">备用温度检测3</option>
-                                        <option value="getBackupTemperature4">备用温度检测4</option>
-                                        <option value="getBackupTemperature5">备用温度检测5</option>
-                                        <option value="getBackupTemperature6">备用温度检测6</option>
-                                        <option value="getBackupTemperature7">备用温度检测7</option>
-                                        <option value="getBackupTemperature8">备用温度检测8</option>
-                                        <option value="getBackupTemperature9">备用温度检测9</option>
-                                        <option value="getBackupTemperature10">备用温度检测10</option>
-                                        <option value="getBackupTemperature11">备用温度检测11</option>
+<!--                                        <option value="getBackupTemperature0">备用温度检测0</option>-->
+<!--                                        <option value="getBackupTemperature1">备用温度检测1</option>-->
+<!--                                        <option value="getBackupTemperature2">备用温度检测2</option>-->
+<!--                                        <option value="getBackupTemperature3">备用温度检测3</option>-->
+<!--                                        <option value="getBackupTemperature4">备用温度检测4</option>-->
+<!--                                        <option value="getBackupTemperature5">备用温度检测5</option>-->
+<!--                                        <option value="getBackupTemperature6">备用温度检测6</option>-->
+<!--                                        <option value="getBackupTemperature7">备用温度检测7</option>-->
+<!--                                        <option value="getBackupTemperature8">备用温度检测8</option>-->
+<!--                                        <option value="getBackupTemperature9">备用温度检测9</option>-->
+<!--                                        <option value="getBackupTemperature10">备用温度检测10</option>-->
+<!--                                        <option value="getBackupTemperature11">备用温度检测11</option>-->
                                         <option value="getTemperatureWarningValue1">温度警戒值1</option>
                                         <option value="getTemperatureWarningValue2">温度警戒值2</option>
                                     </select>
@@ -160,14 +160,15 @@
     new Vue({
         el:"#app",
         data:{
-            pressureData:null,
+            // pressureData:null,
             series1:[],
             startDate:'',
             endDate:'',
-            plc:'',
+            plcName:'',
+            temperatureName:'',
         },methods:{
             getgraph() {
-                // alert("getgraph");
+                // alert("get temperature graph");
                 let arr=[];
                 let myChart= echarts.init(document.getElementById('main'));
                 let requestDate={
@@ -176,13 +177,17 @@
                     plcName:this.plcName,
                     temperatureName:this.temperatureName
                 }
+                alert("startDate="+requestDate.startDate);
+                alert("endDate="+requestDate.endDate);
+                // alert("plcName="+requestDate.plcName);
+                // alert("temperatureName="+requestDate.temperatureName);
                 axios.get("/getHisTemperature",{params:requestDate}).then(result=>{
                     result =result.data;
                     for (let i in result){
                         // let isErrant=true;
                         let isSolidLine=true;
                         arr.push([result[i].temperatureTime,result[i].temperatureValue]);
-                        var color="black";;
+                        var color="black";
                         this.series1.push({
                             data:arr,/*需要显示的数据*/
                             type:'line',/*以什么方式展示*/

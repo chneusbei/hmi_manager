@@ -55,6 +55,14 @@ public class TemperatureService extends AbstractBaseService{
             return TemperaturePointEntityList;
         }
 
+        if(!StringUtils.isEmpty(startDate)) {
+            startDate=startDate.replace("-","");
+        }
+
+        if(!StringUtils.isEmpty(endDate)) {
+            endDate=endDate.replace("-","");
+        }
+
         if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
             startDate = HmiUtils.getYYYYMMDDString(new Date());
             endDate =startDate;
@@ -73,7 +81,8 @@ public class TemperatureService extends AbstractBaseService{
         for(TemperatureEntity temperatureEntity: TemperatureEntityList) {
             Method method = temperatureEntity.getClass().getMethod(temperatureName);
             BigDecimal temperatureValue = (BigDecimal) method.invoke(temperatureEntity);
-            Date temperatureTime = (Date) method.invoke("getCreateTime");
+            Method method2 = temperatureEntity.getClass().getMethod("getCreateTime");
+            Date temperatureTime = (Date) method2.invoke(temperatureEntity);
             TemperaturePointEntity temperaturePointEntity = new TemperaturePointEntity();
             temperaturePointEntity.setTemperatureTime(temperatureTime);
             temperaturePointEntity.setTemperatureValue(temperatureValue);
