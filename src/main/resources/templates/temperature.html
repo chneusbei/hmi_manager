@@ -18,7 +18,7 @@
         .imagetable{
             border:2px solid white;
             width: 80%;
-            margin-left: 100px;
+            margin-left: 20px;
         }
         table.imagetable {
             font-family: verdana,arial,sans-serif;
@@ -38,11 +38,11 @@
         .imagetable2{
             border:2px solid black;
             width: 80%;
-            margin-left: 100px;
+            margin-left: 10px;
         }
         table.imagetable2 {
             font-family: verdana,arial,sans-serif;
-            font-size:15px;
+            font-size:8px;
             color:#333333;
             border-width: 1px;
             border-color: black;
@@ -102,26 +102,30 @@
                         <th>三脚架下端铜套温度检测2</th>
                         <th>三脚架下端铜套温度检测3</th>
                         <th>三脚架下端铜套温度检测4</th>
-                        <th>备用温度检测0</th>
-                        <th>备用温度检测1</th>
-                        <th>备用温度检测2</th>
-                        <th>备用温度检测3</th>
-                        <th>备用温度检测4</th>
-                        <th>备用温度检测5</th>
-                        <th>备用温度检测6</th>
-                        <th>备用温度检测7</th>
-                        <th>备用温度检测8</th>
-                        <th>备用温度检测9</th>
-                        <th>备用温度检测10</th>
-                        <th>备用温度检测11</th>
+                        <th>三脚架偏心大铜套温度检测1</th>
+                        <th>三脚架偏心大铜套温度检测2</th>
+                        <th>三脚架偏心大铜套温度检测3</th>
+                        <th>三脚架偏心大铜套温度检测4</th>
+<!--                        <th>备用温度检测0</th>-->
+<!--                        <th>备用温度检测1</th>-->
+<!--                        <th>备用温度检测2</th>-->
+<!--                        <th>备用温度检测3</th>-->
+<!--                        <th>备用温度检测4</th>-->
+<!--                        <th>备用温度检测5</th>-->
+<!--                        <th>备用温度检测6</th>-->
+<!--                        <th>备用温度检测7</th>-->
+<!--                        <th>备用温度检测8</th>-->
+<!--                        <th>备用温度检测9</th>-->
+<!--                        <th>备用温度检测10</th>-->
+<!--                        <th>备用温度检测11</th>-->
                         <th>温度警戒值1</th>
                         <th>温度警戒值2</th>
                     </tr>
                     <tr v-for="o in listTemperature">
-                        <td :style="{background:o.impression}"  >
-                            <span v-if="o.status==='WARNING'">WARNING</span>
-                            <span v-else-if="o.status==='OK'">INFO</span>
-                        </td>
+<!--                        <td :style="{background:o.impression}"  >-->
+<!--                            <span v-if="o.status==='WARNING'">WARNING</span>-->
+<!--                            <span v-else-if="o.status==='OK'">INFO</span>-->
+<!--                        </td>-->
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
                         <td :style="{background:o.impression}">{{o.plcConnectionStatus}}</td>
                         <td :style="{background:o.impression}">{{o.status}}</td>
@@ -151,18 +155,18 @@
                         <td :style="{background:o.impression}">{{o.tripodEccentricBigCopperSleeveTemperature2}}</td>
                         <td :style="{background:o.impression}">{{o.tripodEccentricBigCopperSleeveTemperature3}}</td>
                         <td :style="{background:o.impression}">{{o.tripodEccentricBigCopperSleeveTemperature4}}</td>
-                        <td :style="{background:o.impression}">{{o.backupTemperature0}}</td>
-                        <td :style="{background:o.impression}">{{o.backupTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.backupTemperature2}}</td>
-                        <td :style="{background:o.impression}">{{o.backupTemperature3}}</td>
-                        <td :style="{background:o.impression}">{{o.backupTemperature4}}</td>
-                        <td :style="{background:o.impression}">{{o.backupTemperature5}}</td>
-                        <td :style="{background:o.impression}">{{o.backupTemperature6}}</td>
-                        <td :style="{background:o.impression}">{{o.backupTemperature7}}</td>
-                        <td :style="{background:o.impression}">{{o.backupTemperature8}}</td>
-                        <td :style="{background:o.impression}">{{o.backupTemperature9}}</td>
-                        <td :style="{background:o.impression}">{{o.backupTemperature10}}</td>
-                        <td :style="{background:o.impression}">{{o.backupTemperature11}}</td>
+<!--                        <td :style="{background:o.impression}">{{o.backupTemperature0}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.backupTemperature1}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.backupTemperature2}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.backupTemperature3}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.backupTemperature4}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.backupTemperature5}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.backupTemperature6}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.backupTemperature7}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.backupTemperature8}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.backupTemperature9}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.backupTemperature10}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.backupTemperature11}}</td>-->
                         <td :style="{background:o.impression}">{{o.temperatureWarningValue1}}</td>
                         <td :style="{background:o.impression}">{{o.temperatureWarningValue2}}</td>
 
@@ -194,9 +198,11 @@
         data:{
             listTemperature:[],
         },methods:{
-            getTemperature(){
+            getCurrentTemperature(){
+                // alert("getTemperature started...");
                 axios.get("/getCurrentTemperature").then(result=>{
                     this.listTemperature=result.data;
+                    // alert("listTemperature size="+listTemperature);
                     for (let i in this.listTemperature) {
                         if (this.listTemperature[i].status==="WARNING"){
                             this.listTemperature[i]["impression"]="RGB(255,0,0)"
@@ -207,16 +213,17 @@
                         }
                     }
                 })
-            },timer(){
+            },
+            timer(){
                 if (this.intervalId!=null){/*代表计时器已经启动*/
                     return ;
                 }
                 this.intervalId = setInterval(() => {
-                    this.getTemperature();
-                }, 5000);
+                    this.getCurrentTemperature();
+                }, 10000);
             },
         },created(){/*vue钩子*/
-            this.getTemperature();
+            this.getCurrentTemperature();
         }
     })
 </script>

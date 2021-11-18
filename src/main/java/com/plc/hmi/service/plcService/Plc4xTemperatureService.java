@@ -307,7 +307,10 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         return status;
     }
 
-
+    /**
+     * 获取内存中的PLC温度信息
+     * @return
+     */
     public List<TemperatureEntity> getTemperatureList() {
         List<TemperatureEntity> temperatureList = new ArrayList<TemperatureEntity>();
         Set<String> keySet = TemperatureMap.keySet();
@@ -318,17 +321,66 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
             return temperatureList;
         }
 
-        for(PlcConfigEntity config : plcConfigList) {
-            TemperatureEntity temperatureEntity = TemperatureMap.get(config.getPlcName());
-            if(null != temperatureEntity) {
-                temperatureEntity.setPlcConnectionStatus(plc4xConnectorService.isConnected(config) ? "已连接" :"未连接");
-                temperatureList.add(temperatureEntity);
-            } else {
-                temperatureEntity = new TemperatureEntity();
-                temperatureEntity.setPlcConnectionStatus(plc4xConnectorService.isConnected(config) ? "已连接" :"未连接");
-                temperatureEntity.setPlcName(config.getPlcName());
-                temperatureEntity.setStatus(HmiConstants.TEMPERATURE_STATUS_NORMAL);
-            }
+//        for(PlcConfigEntity config : plcConfigList) {
+//            TemperatureEntity temperatureEntity = TemperatureMap.get(config.getPlcName());
+//            if(null != temperatureEntity) {
+//                temperatureEntity.setPlcConnectionStatus(plc4xConnectorService.isConnected(config) ? "Y" :"N");
+//                temperatureList.add(temperatureEntity);
+//            } else {
+//                temperatureEntity = new TemperatureEntity();
+//                temperatureEntity.setPlcConnectionStatus(plc4xConnectorService.isConnected(config) ? "Y" :"N");
+//                temperatureEntity.setPlcName(config.getPlcName());
+//                temperatureEntity.setStatus(HmiConstants.TEMPERATURE_STATUS_NORMAL);
+//            }
+//            temperatureList.add(temperatureEntity);
+//        }
+        for(int i=0;i<5;i++) {
+            TemperatureEntity temperatureEntity = new TemperatureEntity();
+            temperatureEntity.setPlcName(String.valueOf(i)+"名子会很长");
+            temperatureEntity.setPlcConnectionStatus("Y");
+            temperatureEntity.setPlcIp("127.0.0." + i);
+            temperatureEntity.setStatus("OK");
+            temperatureEntity.setHandleDate("2021-01-01");
+            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature1(new BigDecimal(35.2));
+            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature2(new BigDecimal(35.2));
+            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature3(new BigDecimal(35.2));
+            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature4(new BigDecimal(35.2));
+            temperatureEntity.setHighSpeedAxisEccentricCopperSleeveTemperature1(new BigDecimal(35.2));
+            temperatureEntity.setHighSpeedAxisEccentricCopperSleeveTemperature2(new BigDecimal(35.2));
+            temperatureEntity.setFlywheelSupportBigAxisTemperature1(new BigDecimal(35.2));
+            temperatureEntity.setFlywheelSupportBigAxisTemperature2(new BigDecimal(35.2));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature1(new BigDecimal(35.2));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature2(new BigDecimal(35.2));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature3(new BigDecimal(35.2));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature4(new BigDecimal(35.2));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature5(new BigDecimal(35.2));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature6(new BigDecimal(35.2));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature7(new BigDecimal(35.2));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature8(new BigDecimal(35.2));
+            temperatureEntity.setSmallBeltWheelSupportAxisTemperature1(new BigDecimal(35.2));
+            temperatureEntity.setSmallBeltWheelSupportAxisTemperature2(new BigDecimal(35.2));
+            temperatureEntity.setTripodBottomCopperSleeveTemperature1(new BigDecimal(35.2));
+            temperatureEntity.setTripodBottomCopperSleeveTemperature2(new BigDecimal(35.2));
+            temperatureEntity.setTripodBottomCopperSleeveTemperature3(new BigDecimal(35.2));
+            temperatureEntity.setTripodBottomCopperSleeveTemperature4(new BigDecimal(35.2));
+            temperatureEntity.setTripodEccentricBigCopperSleeveTemperature1(new BigDecimal(35.2));
+            temperatureEntity.setTripodEccentricBigCopperSleeveTemperature2(new BigDecimal(35.2));
+            temperatureEntity.setTripodEccentricBigCopperSleeveTemperature3(new BigDecimal(35.2));
+            temperatureEntity.setTripodEccentricBigCopperSleeveTemperature4(new BigDecimal(35.2));
+            temperatureEntity.setBackupTemperature0(new BigDecimal(35.2));
+            temperatureEntity.setBackupTemperature1(new BigDecimal(35.2));
+            temperatureEntity.setBackupTemperature2(new BigDecimal(35.2));
+            temperatureEntity.setBackupTemperature3(new BigDecimal(35.2));
+            temperatureEntity.setBackupTemperature4(new BigDecimal(35.2));
+            temperatureEntity.setBackupTemperature5(new BigDecimal(35.2));
+            temperatureEntity.setBackupTemperature6(new BigDecimal(35.2));
+            temperatureEntity.setBackupTemperature7(new BigDecimal(35.2));
+            temperatureEntity.setBackupTemperature8(new BigDecimal(35.2));
+            temperatureEntity.setBackupTemperature9(new BigDecimal(35.2));
+            temperatureEntity.setBackupTemperature10(new BigDecimal(35.2));
+            temperatureEntity.setBackupTemperature11(new BigDecimal(35.2));
+            temperatureEntity.setTemperatureWarningValue1(new BigDecimal(35.2));
+            temperatureEntity.setTemperatureWarningValue2(new BigDecimal(35.2));
             temperatureList.add(temperatureEntity);
         }
         return temperatureList;

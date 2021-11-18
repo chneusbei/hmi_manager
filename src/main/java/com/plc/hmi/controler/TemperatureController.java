@@ -47,13 +47,13 @@ public class TemperatureController {
         return json;
     }
 
-    @ResponseBody
-    @GetMapping("/currentTemperature")
     /**
      * 当前温度
      */
+    @ResponseBody
+    @GetMapping("/getCurrentTemperature")
     public List<TemperatureEntity> getCurrentTemperature(){
-        System.out.println(">>>> getCurrentTemperature");
+//        System.out.println(">>>> getCurrentTemperature");
         List<TemperatureEntity> temperatureList = plc4xTemperatureService.getTemperatureList();
         return temperatureList;
 
