@@ -177,17 +177,20 @@
                     plcName:this.plcName,
                     temperatureName:this.temperatureName
                 }
-                alert("startDate="+requestDate.startDate);
-                alert("endDate="+requestDate.endDate);
+                // alert("startDate="+requestDate.startDate);
+                // alert("endDate="+requestDate.endDate);
                 // alert("plcName="+requestDate.plcName);
                 // alert("temperatureName="+requestDate.temperatureName);
+                // myChart.clear();
                 axios.get("/getHisTemperature",{params:requestDate}).then(result=>{
                     result =result.data;
+                    this.series1 = [];
                     for (let i in result){
                         // let isErrant=true;
                         let isSolidLine=true;
                         arr.push([result[i].temperatureTime,result[i].temperatureValue]);
                         var color="black";
+
                         this.series1.push({
                             data:arr,/*需要显示的数据*/
                             type:'line',/*以什么方式展示*/
