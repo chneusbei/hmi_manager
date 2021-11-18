@@ -6,69 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cecb0697-7a75-43f3-82cd-1d72e4e882c3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hmi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hmi.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/entity/PressureStatisticalDataEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/entity/PressureStatisticalDataEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/mapper/PressureDataMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/mapper/PressureDataMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureDataService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/service/PressureDataService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/util/HmiUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/util/HmiUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/dataQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/dataQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/FlowException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/FlowException.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/HmiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/HmiApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants$PLC_DATA_TYPE.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants$PLC_DATA_TYPE.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants$PLC_TAG_GROUP.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/constants/HmiConstants$PLC_TAG_GROUP.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/initialController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/initialController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/lsjcode/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/lsjcode/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/lsjcode/User2Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/lsjcode/User2Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/AlarmControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/AlarmControler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/PressureDataControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/PressureDataControler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/base/dao/HmiDataSource.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/base/dao/HmiDataSource.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/UserRoleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/dao/UserRoleDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/AlarmEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/AlarmEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/HisAlarmEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/HisAlarmEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureDataEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureDataEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureProgramEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureProgramEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureStatisticalDataEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureStatisticalDataEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/ProductEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/ProductEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PropertyEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PropertyEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/SystemParameterEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/SystemParameterEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/TagTypeEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/TagTypeEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/TagsInfoEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/TagsInfoEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/UserEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/UserEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/UserRoleEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/UserRoleEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/base/AbstractBaseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/base/AbstractBaseEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcInfoResponseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/plc/PlcInfoResponseEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/AlarmMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/AlarmMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/HisAlarmMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/HisAlarmMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureProgramMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PressureProgramMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/ProductMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/ProductMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PropertyMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/PropertyMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/SystemParameterMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/SystemParameterMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/TagTypeMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/TagTypeMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/TagsInfoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/mapper/TagsInfoMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dto/Result.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dto/Result.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/AlarmEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/AlarmEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/BaseEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/BaseEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/HisAlarmEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/HisAlarmEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PlcEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PlcEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureCurveEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureCurveEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureDataEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PressureDataEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/ProductEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/ProductEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/ProductParameterEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/ProductParameterEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PropertyConfigEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/PropertyConfigEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/SystemParameterEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/SystemParameterEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/TagTypeEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/TagTypeEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/TagsInfoEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/TagsInfoEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/UserEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/UserEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/UserRoleEntityEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/enumeration/UserRoleEntityEnum.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/UserRoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/service/UserRoleService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/HmiUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/HmiUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/PropertiesUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/PropertiesUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/dataQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/dataQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/SpringBootTestTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/SpringBootTestTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="cecb0697-7a75-43f3-82cd-1d72e4e882c3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,7 +100,7 @@
       <recent name="com.plc.hmi.thread" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.HmiApplication">
+  <component name="RunManager">
     <configuration name="Plc4xTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="hmi" />
       <extension name="coverage">
@@ -1063,16 +1001,5 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1631157248768" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/plc/hmi/dal/dao/PressureDataDao.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="97" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
