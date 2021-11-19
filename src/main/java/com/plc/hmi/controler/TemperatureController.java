@@ -34,6 +34,8 @@ public class TemperatureController {
     TemperatureService temperatureService;
     @Autowired
     Plc4xTemperatureService plc4xTemperatureService;
+    @Autowired
+    Plc4xCurveDataService plc4xCurveDataService;
 
 
 
@@ -66,6 +68,13 @@ public class TemperatureController {
        if(!StringUtils.isNotBlank(temperatureWarningValue1) || !StringUtils.isNotBlank(temperatureWarningValue2)) {
            return "更新失败，存在未填写的阈值项， 请填写完整。";
        }
+        Map<String, String> paraMap = new HashMap<>();
+        paraMap.put("temperatureWarningValue1", temperatureWarningValue1);
+        paraMap.put("temperatureWarningValue2", temperatureWarningValue2);
+        plc4xCurveDataService.setDatas(HmiConstants.PLC_TAG_GROUP.TEMPERATURE_SETTING.getCode(), paraMap);
+
+
+
         return "阈值更新成功";
     }
 

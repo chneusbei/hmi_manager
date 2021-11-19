@@ -73,7 +73,8 @@ public class HmiConstants {
         START_PLC("start_plc", "启动PLC测试"),
         CURVE_DATA_NEW("curve_data_new", "新曲线信息状态_数据"),
         CURVE_DATA_UPDATE("curve_data_update", "新曲线信息状态更新"),
-        TEMPERATURE_DATA("temperature", "新曲线信息状态_数据");
+        TEMPERATURE_DATA("temperature", "温度数据查询"),
+        TEMPERATURE_SETTING("temperature_setting", "温度预警阈值设置");
         //枚举对象的变量
         private String code;
         private String value;

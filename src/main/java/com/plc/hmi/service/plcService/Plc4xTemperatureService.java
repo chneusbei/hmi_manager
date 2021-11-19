@@ -335,7 +335,7 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
             temperatureList.add(temperatureEntity);
         }
 
-
+/*
         for(int i=0;i<5;i++) {
             TemperatureEntity temperatureEntity = new TemperatureEntity();
             temperatureEntity.setPlcName(String.valueOf(i)+"名子会很长");
@@ -385,7 +385,7 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
             temperatureEntity.setTemperatureWarningValue2(new BigDecimal(36));
             temperatureList.add(temperatureEntity);
         }
-
+*/
 
         return temperatureList;
     }
