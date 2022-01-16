@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.plc</groupId>
-    <artifactId>hmi</artifactId>
+    <artifactId>tcs</artifactId>
     <version>1</version>
-    <name>hmi</name>
+    <name>tcs</name>
     <!-- 用于生成war包 -->
 <!--    <packaging>war</packaging>-->
     <description>Demo project for Spring Boot</description>
