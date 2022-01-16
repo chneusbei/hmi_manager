@@ -18,5 +18,17 @@ public class PlcConfigDao {
         return plcConfigMapper.getPlcConfigList();
     }
 
+    public void insert(PlcConfigEntity entity) {
+         plcConfigMapper.insert(entity);
+    }
+
+    public void delete(PlcConfigEntity entity) {
+        plcConfigMapper.delete(entity);
+    }
+
+    public void update(PlcConfigEntity entity) {
+        plcConfigMapper.update(entity);
+    }
+
 
 }

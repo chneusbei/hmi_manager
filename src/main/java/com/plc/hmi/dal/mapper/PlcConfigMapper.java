@@ -26,7 +26,7 @@ public interface PlcConfigMapper {
     @Insert({"insert into plc_config(id, PLC_NAME, PLC_SERVER_IP, PLC_SERVER_ROCK, PLC_SERVER_SLOT, IS_DELETED, CREATE_BY, UPDATE_BY,CREATE_TIME,UPDATE_TIME) values(null, #{plcName}, #{plcServerIp}, #{plcServerRock}, #{plcServerSlot},'0', #{createBy}, #{createBy}, now(), now())"})
     void insert(PlcConfigEntity entity);
 
-    @Update({"update plc_config set PLC_NAME=#{plcName},PLC_SERVER_IP=#{plcServerIp}, PLC_SERVER_ROCK=#{plcServerRock},PLC_SERVER_SLOT=#{plcServerSlot},UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where PROP_NAME=#{propName}"})
+    @Update({"update plc_config set PLC_NAME=#{plcName},PLC_SERVER_IP=#{plcServerIp}, PLC_SERVER_ROCK=#{plcServerRock},PLC_SERVER_SLOT=#{plcServerSlot},UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where ID=#{id}"})
     void update(PlcConfigEntity entity);
 
     @Update({"update plc_config set  IS_DELETED='1', UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where ID=#{id}"})

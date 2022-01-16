@@ -122,6 +122,14 @@ public class initialController {
     public String temperatureSetting(){
         return "temperatureSetting";
     }
+    @RequestMapping("/temperaturePlcConfig")
+    public String temperaturePlcConfig(){
+        return "temperaturePlcConfig";
+    }
+    @RequestMapping("/temperaturePlcConfigAdd")
+    public String temperaturePlcConfigAdd(){
+        return "temperaturePlcConfigAdd";
+    }
     @RequestMapping("/hyperbola")
     public String hyperbola(){
         return "hyperbola";
