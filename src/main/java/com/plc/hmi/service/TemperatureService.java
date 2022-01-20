@@ -34,6 +34,14 @@ public class TemperatureService extends AbstractBaseService{
      * 获取温度信息
      * @return
      */
+    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status, boolean isWireless) {
+        return temperatureDao.getTemperatureWithParam(startDate, endDate, plcName, status, isWireless);
+    }
+
+    /**
+     * 获取温度信息
+     * @return
+     */
     public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status) {
         return temperatureDao.getTemperatureWithParam(startDate, endDate, plcName, status);
     }

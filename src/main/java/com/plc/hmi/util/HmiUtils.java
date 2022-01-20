@@ -172,4 +172,35 @@ public class HmiUtils  {
         }
         return programCodeBuffer.toString();
     }
+
+    /**
+     * 第一个数如果大于等于第二个数， 返回true
+     * @temperature 各个温度点
+     * @warn1 温度阈值1
+     * @warn2 温度阈值2
+     * @return
+     */
+    public static boolean isBigThanOrEquals(BigDecimal temperature, BigDecimal warn1, BigDecimal warn2) {
+        //温度值为空
+        if(null == temperature) {
+            return false;
+        }
+
+        //警戒温度都为空
+        if(null == warn1 && null == warn2) {
+            return false;
+        }
+
+        if(null == warn1) {
+            warn1 = warn2;
+        } else {
+            warn2=warn1;
+        }
+
+        if(temperature.compareTo(warn1) >= 0 || temperature.compareTo(warn2) >= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

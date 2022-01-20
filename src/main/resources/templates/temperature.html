@@ -75,51 +75,35 @@
             <script src="test.js"></script>
             <!--页面主要内容-->
             <main class="lyear-layout-content">
+                <table class="imagetable">
+                    <tr>
+                        <td  width="25%"></td>
+                        <td height="25px" style="width: 100px;background-color: #ccbf42;color: black">【温度警戒值1】60 &nbsp;摄氏度</td>
+
+                        <td height="25px" style="width: 100px;background-color: #ccbf42;color: black">【温度警戒值2】60 &nbsp;摄氏度</td>
+                    </tr>
+                </table>
                 <table class="imagetable2">
                     <tr>
+                        <td  align="center" colspan="2"  style="width: 100px;background-color: #2554cc;color: black"><strong><h4>有线温度实时监控</h4></strong></td>
+                    </tr>
+                </table>
+                <table class="imagetable2">
+
+                    <tr>
                         <th>PLC名</th>
-                        <th>PLC连接</th>
-                        <th>温度状态</th>
-                        <th>低速轴偏心铜套温度检测1</th>
-                        <th>低速轴偏心铜套温度检测2</th>
-                        <th>低速轴偏心铜套温度检测3</th>
-                        <th>低速轴偏心铜套温度检测4</th>
-                        <th>高速轴偏心铜套温度检测1</th>
-                        <th>高速轴偏心铜套温度检测2</th>
-                        <th>飞轮支撑大轴承温度检测1</th>
-                        <th>飞轮支撑大轴承温度检测2</th>
-                        <th>拉杆两端铜套温度检测1</th>
-                        <th>拉杆两端铜套温度检测2</th>
-                        <th>拉杆两端铜套温度检测3</th>
-                        <th>拉杆两端铜套温度检测4</th>
-                        <th>拉杆两端铜套温度检测5</th>
-                        <th>拉杆两端铜套温度检测6</th>
-                        <th>拉杆两端铜套温度检测7</th>
-                        <th>拉杆两端铜套温度检测8</th>
-                        <th>小皮带轮支撑轴承温度检测1</th>
-                        <th>小皮带轮支撑轴承温度检测2</th>
-                        <th>三脚架下端铜套温度检测1</th>
-                        <th>三脚架下端铜套温度检测2</th>
-                        <th>三脚架下端铜套温度检测3</th>
-                        <th>三脚架下端铜套温度检测4</th>
-                        <th>三脚架偏心大铜套温度检测1</th>
-                        <th>三脚架偏心大铜套温度检测2</th>
-                        <th>三脚架偏心大铜套温度检测3</th>
-                        <th>三脚架偏心大铜套温度检测4</th>
-<!--                        <th>备用温度检测0</th>-->
-<!--                        <th>备用温度检测1</th>-->
-<!--                        <th>备用温度检测2</th>-->
-<!--                        <th>备用温度检测3</th>-->
-<!--                        <th>备用温度检测4</th>-->
-<!--                        <th>备用温度检测5</th>-->
-<!--                        <th>备用温度检测6</th>-->
-<!--                        <th>备用温度检测7</th>-->
-<!--                        <th>备用温度检测8</th>-->
-<!--                        <th>备用温度检测9</th>-->
-<!--                        <th>备用温度检测10</th>-->
-<!--                        <th>备用温度检测11</th>-->
-                        <th>温度警戒值1</th>
-                        <th>温度警戒值2</th>
+<!--                        <th>PLC连接</th>-->
+<!--                        <th>温度状态</th>-->
+                        <th>低速轴偏心铜套1</th>
+                        <th>低速轴偏心铜套2</th>
+                        <th>低速轴偏心铜套3</th>
+                        <th>低速轴偏心铜套4</th>
+                        <th>高速轴偏心铜套1</th>
+                        <th>高速轴偏心铜套2</th>
+                        <th>高速轴滚动轴承1</th>
+                        <th>高速轴滚动轴承2</th>
+                        <th>飞轮支撑大轴承1</th>
+                        <th>飞轮支撑大轴承2</th>
                     </tr>
                     <tr v-for="o in listTemperature">
 <!--                        <td :style="{background:o.impression}"  >-->
@@ -127,52 +111,71 @@
 <!--                            <span v-else-if="o.status==='OK'">INFO</span>-->
 <!--                        </td>-->
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
-                        <td :style="{background:o.impression}">{{o.plcConnectionStatus}}</td>
-                        <td :style="{background:o.impression}">{{o.status}}</td>
-                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature2}}</td>
-                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature3}}</td>
-                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature4}}</td>
-                        <td :style="{background:o.impression}">{{o.highSpeedAxisEccentricCopperSleeveTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.highSpeedAxisEccentricCopperSleeveTemperature2}}</td>
-                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature2}}</td>
-                        <td :style="{background:o.impression}">{{o.drawbarBothEndsCopperSleeveTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.drawbarBothEndsCopperSleeveTemperature2}}</td>
-                        <td :style="{background:o.impression}">{{o.drawbarBothEndsCopperSleeveTemperature3}}</td>
-                        <td :style="{background:o.impression}">{{o.drawbarBothEndsCopperSleeveTemperature4}}</td>
-                        <td :style="{background:o.impression}">{{o.drawbarBothEndsCopperSleeveTemperature5}}</td>
-                        <td :style="{background:o.impression}">{{o.drawbarBothEndsCopperSleeveTemperature6}}</td>
-                        <td :style="{background:o.impression}">{{o.drawbarBothEndsCopperSleeveTemperature7}}</td>
-                        <td :style="{background:o.impression}">{{o.drawbarBothEndsCopperSleeveTemperature8}}</td>
-                        <td :style="{background:o.impression}">{{o.smallBeltWheelSupportAxisTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.smallBeltWheelSupportAxisTemperature2}}</td>
-                        <td :style="{background:o.impression}">{{o.tripodBottomCopperSleeveTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.tripodBottomCopperSleeveTemperature2}}</td>
-                        <td :style="{background:o.impression}">{{o.tripodBottomCopperSleeveTemperature3}}</td>
-                        <td :style="{background:o.impression}">{{o.tripodBottomCopperSleeveTemperature4}}</td>
-                        <td :style="{background:o.impression}">{{o.tripodEccentricBigCopperSleeveTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.tripodEccentricBigCopperSleeveTemperature2}}</td>
-                        <td :style="{background:o.impression}">{{o.tripodEccentricBigCopperSleeveTemperature3}}</td>
-                        <td :style="{background:o.impression}">{{o.tripodEccentricBigCopperSleeveTemperature4}}</td>
-<!--                        <td :style="{background:o.impression}">{{o.backupTemperature0}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.backupTemperature1}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.backupTemperature2}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.backupTemperature3}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.backupTemperature4}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.backupTemperature5}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.backupTemperature6}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.backupTemperature7}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.backupTemperature8}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.backupTemperature9}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.backupTemperature10}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.backupTemperature11}}</td>-->
-                        <td :style="{background:o.impression}">{{o.temperatureWarningValue1}}</td>
-                        <td :style="{background:o.impression}">{{o.temperatureWarningValue2}}</td>
-
-<!--                        <td :style="{background:o.impression}" >    <span v-if="o.alarmStatus=='1'">已确认</span>-->
-<!--                            <span v-else-if="o.alarmStatus=='0'">待确认</span>-->
-<!--                        </td>-->
+<!--                        <td :style="{background:o.impression}">{{o.plcConnectionStatus}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.status}}</td>-->
+                        <td style="width: 100px;background-color: #25cc2f;color: black">21.3°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">22.3°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">35.3°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">56.3°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">32.3°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">18.3°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">45.3°C</td>
+                        <td style="width: 100px;background-color: #cc1b2d;color: black">69.3°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">43.3°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">54.3°C</td>
+                    </tr>
+                </table>
+                <table class="imagetable2">
+                    <tr>
+                        <td  align="center" colspan="2" style="width: 100px;background-color: #2554cc;color: black"><strong><h4>无线温度实时监控</h4></strong></td>
+                    </tr>
+                </table>
+                <table class="imagetable2">
+                    <tr>
+                        <th>PLC名</th>
+<!--                        <th>PLC连接</th>-->
+<!--                        <th>温度状态</th>-->
+<!--                        <th>左前三脚架偏心大铜套</th>-->
+<!--                        <th>左后三脚架偏心大铜套</th>-->
+<!--                        <th>右前三脚架偏心大铜套</th>-->
+<!--                        <th>右后三脚架偏心大铜套</th>-->
+<!--                        <th>左前三脚架下端铜套</th>-->
+<!--                        <th>左后三脚架下端铜套</th>-->
+<!--                        <th>右前三脚架下端铜套</th>-->
+<!--                        <th>右后三脚架下端铜套</th>-->
+                        <th>左前连杆大铜套</th>
+                        <th>左后连杆大铜套</th>
+                        <th>右前连杆大铜套</th>
+                        <th>右后连杆大铜套</th>
+                        <th>左前低速轴铜套</th>
+                        <th>左后低速轴铜套</th>
+                        <th>右前低速轴铜套</th>
+                        <th>右后低速轴铜套</th>
+                    </tr>
+                    <tr v-for="o in listTemperature">
+                        <!--                        <td :style="{background:o.impression}"  >-->
+                        <!--                            <span v-if="o.status==='WARNING'">WARNING</span>-->
+                        <!--                            <span v-else-if="o.status==='OK'">INFO</span>-->
+                        <!--                        </td>-->
+                        <td :style="{background:o.impression}">{{o.plcName}}</td>
+<!--                        <td :style="{background:o.impression}">{{o.plcConnectionStatus}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.status}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature1}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature2}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature3}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature4}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.highSpeedAxisEccentricCopperSleeveTemperature1}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.highSpeedAxisEccentricCopperSleeveTemperature2}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature1}}</td>-->
+<!--                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature2}}</td>-->
+                        <td style="width: 100px;background-color: #cc1b2d;color: black">62.5°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">42.5°C</td>
+                        <td  style="width: 100px;background-color: #25cc2f;color: black">59.5°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">28.5°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">51.5°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">36.5°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">27.5°C</td>
+                        <td style="width: 100px;background-color: #25cc2f;color: black">50.5°C</td>
                     </tr>
                 </table>
             </main>

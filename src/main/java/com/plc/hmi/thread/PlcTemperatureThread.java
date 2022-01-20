@@ -35,7 +35,7 @@ public class PlcTemperatureThread implements Runnable {
             List<PlcConfigEntity> plcList = plcConfigService.getPlcList();
             if(!CollectionUtils.isEmpty(plcList)) {
                 for(PlcConfigEntity plcConfigEntity: plcList) {
-                    service.getTemperatureFromPlc(plcConfigEntity);
+                    service.getTemperatureNewFromPlc(plcConfigEntity);
                 }
             } else {
                 System.out.println(">>>PLC列表为空，或者未能正确获取到PLC列表， 请检查plc_config表中PLC配置");

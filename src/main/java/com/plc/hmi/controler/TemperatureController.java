@@ -81,10 +81,10 @@ public class TemperatureController {
         List<TemperatureEntity> temperatureList = plc4xTemperatureService.getTemperatureList();
         if(!CollectionUtils.isEmpty(temperatureList)) {
             for(TemperatureEntity temperatureEntity : temperatureList) {
-                if("Y".equalsIgnoreCase(temperatureEntity.getPlcConnectionStatus())) {
+//                if("Y".equalsIgnoreCase(temperatureEntity.getPlcConnectionStatus())) {
                     entity = temperatureEntity;
                     break;
-                }
+//                }
             }
         }
         return entity;

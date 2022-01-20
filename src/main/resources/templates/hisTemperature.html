@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>温度实时监控</title>
+
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--时间选择插件-->
+    <link rel="stylesheet" href="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
+    <!--日期选择插件-->
+    <link rel="stylesheet" href="js/bootstrap-datepicker/bootstrap-datepicker3.min.css">
+    <link href="css/style.min.css" rel="stylesheet">
+    <style>
+        .imagetable{
+            border:2px solid white;
+            width: 80%;
+            margin-left: 20px;
+        }
+        table.imagetable {
+            font-family: verdana,arial,sans-serif;
+            font-size:15px;
+            color:#333333;
+            border-width: 1px;
+            border-collapse: collapse;
+        }
+        table.imagetable td {
+            background:white;
+            border-width: 1px;
+            padding-left: 8px;
+            padding-top: 8px;
+            padding-right: 8px;
+        }
+
+        .imagetable2{
+            border:2px solid black;
+            width: 80%;
+            margin-left: 10px;
+        }
+        table.imagetable2 {
+            font-family: verdana,arial,sans-serif;
+            font-size:8px;
+            color:#333333;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table.imagetable2 td {
+            background:white;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+        table.imagetable2 th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+    </style>
+
+</head>
+<body>
+<div id="app">
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+            <!--左侧导航-->
+            <!--End 左侧导航-->
+
+            <!--头部信息-->
+            <!--End 头部信息-->
+            <script src="test.js"></script>
+            <!--页面主要内容-->
+            <main class="lyear-layout-content">
+                <table class="imagetable">
+                    <tr>
+                        <td  width="20%"></td>
+                        <td  width="20%"></td>
+                        <td>开始时间：
+                            <div class="card">
+                                <input class="form-control js-datepicker m-b-10" type="text" ref="start" id="example-datepicker" name="example-datepicker" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd" />
+                            </div>
+                        </td>
+                        <td>结束时间：
+                            <div class="card">
+                                <input class="form-control js-datepicker m-b-10" type="text" ref="stop" id="" name="example-datepicker" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd" />
+                            </div>
+                        </td>
+                        <td><input type="button" value="查询" style="background-color: #33CABB;width: 70px;height: 35px;color: white" @click="getCurrentTemperature" ></td>
+                        <td><input type="button" value="导出" style="background-color: #33CABB;width: 70px;height: 35px;color: white" @click="getCurrentTemperature" ></td>
+                    </tr>
+                </table>
+                <table class="imagetable2">
+                    <tr>
+                        <td  align="center" colspan="2"><strong><h4>有线温度实时监控</h4></strong></td>
+                    </tr>
+                </table>
+                <table class="imagetable2">
+
+                    <tr>
+                        <th>PLC名</th>
+                        <th>A-1低速轴偏心铜套1</th>
+                        <th>A-1低速轴偏心铜套2</th>
+                        <th>A-1低速轴偏心铜套3</th>
+                        <th>A-1低速轴偏心铜套4</th>
+                        <th>A-1高速轴偏心铜套1</th>
+                        <th>A-1高速轴偏心铜套2</th>
+                        <th>A-1高速轴滚动轴承1</th>
+                        <th>A-1高速轴滚动轴承2</th>
+                        <th>A-1飞轮支撑大轴承1</th>
+                        <th>A-1飞轮支撑大轴承2</th>
+                        <th>A-2左前连杆大铜套</th>
+                        <th>A-2左后连杆大铜套</th>
+                        <th>A-2右前连杆大铜套</th>
+                        <th>A-2右后连杆大铜套</th>
+                        <th>A-2左前低速轴铜套</th>
+                        <th>A-2左后低速轴铜套</th>
+                        <th>A-2右前低速轴铜套</th>
+                        <th>A-2右后低速轴铜套</th>
+                    </tr>
+                    <tr v-for="o in listTemperature">
+<!--                        <td :style="{background:o.impression}"  >-->
+<!--                            <span v-if="o.status==='WARNING'">WARNING</span>-->
+<!--                            <span v-else-if="o.status==='OK'">INFO</span>-->
+<!--                        </td>-->
+                        <td :style="{background:o.impression}">{{o.plcName}}</td>
+                        <td :style="{background:o.impression}">21.2°C</td>
+                        <td :style="{background:o.impression}">22.2°C</td>
+                        <td :style="{background:o.impression}">35.2°C</td>
+                        <td :style="{background:o.impression}">56.2°C</td>
+                        <td :style="{background:o.impression}">32.2°C</td>
+                        <td :style="{background:o.impression}">8.2°C</td>
+                        <td :style="{background:o.impression}">45.2°C</td>
+                        <td :style="{background:o.impression}">49.2°C</td>
+                        <td :style="{background:o.impression}">43.2°C</td>
+                        <td :style="{background:o.impression}">54.2°C</td>
+                        <td :style="{background:o.impression}">62.2°C</td>
+                        <td :style="{background:o.impression}">42.2°C</td>
+                        <td :style="{background:o.impression}">59.2°C</td>
+                        <td :style="{background:o.impression}">28.2°C</td>
+                        <td :style="{background:o.impression}">51.2°C</td>
+                        <td :style="{background:o.impression}">36.2°C</td>
+                        <td :style="{background:o.impression}">27.2°C</td>
+                        <td :style="{background:o.impression}">50.2°C</td>
+                    </tr>
+                </table>
+
+            </main>
+            <!--End 页面主要内容-->
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <!--时间选择插件-->
+    <script src="js/bootstrap-datetimepicker/moment.min.js"></script>
+    <script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker/locale/zh-cn.js"></script>
+    <!--日期选择插件-->
+    <script src="js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
+</div>
+<script type="module">
+    new Vue({
+        el:"#app",
+        data:{
+            listTemperature:[],
+        },methods:{
+            getCurrentTemperature(){
+                // alert("getTemperature started...");
+                axios.get("/getCurrentTemperature").then(result=>{
+                    this.listTemperature=result.data;
+                    // alert("listTemperature size="+listTemperature);
+                    for (let i in this.listTemperature) {
+                        if (this.listTemperature[i].status==="WARNING"){
+                            this.listTemperature[i]["impression"]="RGB(255,0,0)"
+                        }else if(this.listTemperature[i].status==="OK"){
+                            this.listTemperature[i]["impression"]="RGB(192,192,192)"
+                        }else{
+                            this.listTemperature[i]["impression"]="RGB(192,192,192)"
+                        }
+                    }
+                })
+            },
+            timer(){
+                if (this.intervalId!=null){/*代表计时器已经启动*/
+                    return ;
+                }
+                this.intervalId = setInterval(() => {
+                    this.getCurrentTemperature();
+                }, 10000);
+            },
+        },created(){/*vue钩子*/
+            this.getCurrentTemperature();
+        }
+    })
+</script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

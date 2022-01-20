@@ -134,4 +134,19 @@ public class initialController {
     public String hyperbola(){
         return "hyperbola";
     }
+
+    @RequestMapping("/temperatureIndex")
+    public String temperatureIndex(){
+        return "temperatureIndex";
+    }
+    @RequestMapping("/hisTemperature")
+    public String hisTemperature(){
+        return "hisTemperature";
+    }
+
+    @RequestMapping("/temperatureHisAlarm")
+    public String temperatureHisAlarm(){
+        return "temperatureHisAlarm";
+    }
+
 }
