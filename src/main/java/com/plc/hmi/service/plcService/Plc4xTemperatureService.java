@@ -2,8 +2,10 @@ package com.plc.hmi.service.plcService;
 
 import com.plc.hmi.S7Connector.service.Plc4xConnectorService;
 import com.plc.hmi.constants.HmiConstants;
+import com.plc.hmi.dal.dao.TemperatureAlarmDao;
 import com.plc.hmi.dal.dao.TemperatureDao;
 import com.plc.hmi.dal.entity.PlcConfigEntity;
+import com.plc.hmi.dal.entity.TemperatureAlarmEntity;
 import com.plc.hmi.dal.entity.TemperatureEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.enumeration.PlcEntityEnum;
@@ -28,6 +30,8 @@ import java.util.*;
 public class Plc4xTemperatureService extends Plc4xBaseService{
     @Resource
     TemperatureDao temperatureDao;
+    @Resource
+    TemperatureAlarmDao  temperatureAlarmDao;
     @Autowired
     Plc4xConnectorService plc4xConnectorService;
     @Autowired
@@ -35,7 +39,8 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
 
     private final Log logger = LogFactory.getLog(Plc4xTemperatureService.class);
     public static Map<String, TemperatureEntity> TemperatureMap = new HashMap<String, TemperatureEntity>();
-    public static List<TemperatureEntity> TemperatureList = new ArrayList<TemperatureEntity>();
+    public static Map<String, TemperatureEntity> TemperatureMapNew = new HashMap<String, TemperatureEntity>();
+    public static List<List<TemperatureEntity>> TemperatureList = new ArrayList<>();
 
 
     /**
@@ -54,13 +59,22 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
      */
     public void getTemperatureNewFromPlc(PlcConfigEntity plcConfigEntity) {
         List<PlcEntity> temperaturePlcEntityList = this.getTemperatureDatas(HmiConstants.PLC_TAG_GROUP.TEMPERATURE_NEW_DATA.getCode(), plcConfigEntity);
-        List<TemperatureEntity> temperatureEntityList = this.getTemperatureList(temperaturePlcEntityList, plcConfigEntity);
+        List<List<TemperatureEntity>> temperatureEntityList = this.getTemperatureList(temperaturePlcEntityList, plcConfigEntity);
+        List<TemperatureAlarmEntity> temperatureAlarmList = this.getTemperatureAlarmList(temperatureEntityList);
         if(!CollectionUtils.isEmpty(temperatureEntityList)) {
 //            TemperatureMap.put(plcConfigEntity.getPlcName(),temperatureEntityList);
             TemperatureList = temperatureEntityList;
+            //入库温度信息
             this.temperatureList2DB(temperatureEntityList);
+            //入库温度报警信息
+            if(!CollectionUtils.isEmpty(temperatureAlarmList)) {
+                for(TemperatureAlarmEntity entity : temperatureAlarmList) {
+                    temperatureAlarmDao.insert(entity);
+                }
+            }
         }
     }
+
 
     /**
      * 获取实时温度信息
@@ -83,13 +97,15 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
      * @param entityList
      * @return
      */
-    public List<TemperatureEntity> getTemperatureList(List<PlcEntity> entityList, PlcConfigEntity plcConfigEntity) {
+    public List<List<TemperatureEntity>> getTemperatureList(List<PlcEntity> entityList, PlcConfigEntity plcConfigEntity) {
         if (CollectionUtils.isEmpty(entityList)) {
             return null;
         }
 
         Long batchId = System.currentTimeMillis();
+        List<List<TemperatureEntity>> temperatureList = new ArrayList<>();
         List<TemperatureEntity> temperatureEntityList = new ArrayList<TemperatureEntity>();
+        List<TemperatureEntity> temperatureEntityListWireless = new ArrayList<TemperatureEntity>();
         Map<String, BigDecimal> temperatureCommonPropertyMap = new HashMap<String, BigDecimal>();
         TemperatureEntity temperatureEntityP1 = new TemperatureEntity("p1", batchId, false);
         TemperatureEntity temperatureEntityP2 = new TemperatureEntity("p2",batchId, false);
@@ -107,11 +123,15 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         temperatureEntityList.add(temperatureEntityP3);
         temperatureEntityList.add(temperatureEntityP4);
         temperatureEntityList.add(temperatureEntityP5);
-        temperatureEntityList.add(wirelessTemperatureEntityP1);
-        temperatureEntityList.add(wirelessTemperatureEntityP2);
-        temperatureEntityList.add(wirelessTemperatureEntityP3);
-        temperatureEntityList.add(wirelessTemperatureEntityP4);
-        temperatureEntityList.add(wirelessTemperatureEntityP5);
+        temperatureEntityListWireless.add(wirelessTemperatureEntityP1);
+        temperatureEntityListWireless.add(wirelessTemperatureEntityP2);
+        temperatureEntityListWireless.add(wirelessTemperatureEntityP3);
+        temperatureEntityListWireless.add(wirelessTemperatureEntityP4);
+        temperatureEntityListWireless.add(wirelessTemperatureEntityP5);
+        temperatureList.add(temperatureEntityList);
+        temperatureList.add(temperatureEntityListWireless);
+
+
 
         for (PlcEntity plcEntity : entityList) {
             if (null == plcEntity) {
@@ -359,7 +379,18 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         //设置通用属性
         this.setTemperatureEntityCommonProperties(temperatureEntityList, temperatureCommonPropertyMap);
 
-        return temperatureEntityList;
+        TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_1.getCode(), temperatureEntityP1);
+        TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_2.getCode(), temperatureEntityP2);
+        TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_3.getCode(), temperatureEntityP3);
+        TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_4.getCode(), temperatureEntityP4);
+        TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_5.getCode(), temperatureEntityP5);
+        TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_WIRELESS_1.getCode(), wirelessTemperatureEntityP1);
+        TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_WIRELESS_2.getCode(), wirelessTemperatureEntityP2);
+        TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_WIRELESS_3.getCode(), wirelessTemperatureEntityP3);
+        TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_WIRELESS_4.getCode(), wirelessTemperatureEntityP4);
+        TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_WIRELESS_5.getCode(), wirelessTemperatureEntityP5);
+
+        return temperatureList;
     }
 
     /**
@@ -571,15 +602,20 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
      * 数据入库
      * @param temperatureEntityList
      */
-    private  void temperatureList2DB(List<TemperatureEntity> temperatureEntityList) {
+    private  void temperatureList2DB(List<List<TemperatureEntity>> temperatureEntityList) {
         if (null == temperatureEntityList) {
 //            System.out.println("Plc4xTemperatureDataService.temperatureList2DB: temperatureEntityList is null");
             logger.info("Plc4xTemperatureDataService.temperatureList2DB: temperatureEntityList is null");
             return;
         }
 
-        for(TemperatureEntity temperatureEntity : temperatureEntityList) {
-            temperatureDao.insert(temperatureEntity);
+        for (List<TemperatureEntity> list : temperatureEntityList) {
+            if (null == temperatureEntityList) {
+                continue;
+            }
+            for (TemperatureEntity temperatureEntity : list) {
+                temperatureDao.insert(temperatureEntity);
+            }
         }
 
     }
@@ -620,7 +656,155 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         ) {
             temperatureEntity.setStatus(HmiConstants.TEMPERATURE_STATUS_WARNING);
         }
+    }
 
+
+    /**
+     *
+     * 获取报警信息对象
+     * @param temperatureEntityList
+     * @return
+     */
+    private List<TemperatureAlarmEntity> getTemperatureAlarmList(List<List<TemperatureEntity>> temperatureEntityList) {
+        List<TemperatureAlarmEntity> temperatureAlarmList = new ArrayList<TemperatureAlarmEntity>();
+        for(List<TemperatureEntity> list : temperatureEntityList) {
+            for (TemperatureEntity temperatureEntity : list ) {
+                if (temperatureEntity.getStatus().equalsIgnoreCase(HmiConstants.TEMPERATURE_STATUS_NORMAL)) {
+                    continue;
+                }
+                BigDecimal temperatureWarningValue1 = temperatureEntity.getTemperatureWarningValue1();
+                BigDecimal temperatureWarningValue2 = temperatureEntity.getTemperatureWarningValue2();
+                if(HmiUtils.isBigThanOrEquals(temperatureEntity.getLowSpeedAxisEccentricCopperSleeveTemperature1(), temperatureWarningValue1, temperatureWarningValue2)) {
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"低速轴偏心铜套温度检测1", temperatureEntity.getLowSpeedAxisEccentricCopperSleeveTemperature1(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getLowSpeedAxisEccentricCopperSleeveTemperature2(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"低速轴偏心铜套温度检测2", temperatureEntity.getLowSpeedAxisEccentricCopperSleeveTemperature2(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getLowSpeedAxisEccentricCopperSleeveTemperature3(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"低速轴偏心铜套温度检测3", temperatureEntity.getLowSpeedAxisEccentricCopperSleeveTemperature3(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getLowSpeedAxisEccentricCopperSleeveTemperature4(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"低速轴偏心铜套温度检测4", temperatureEntity.getLowSpeedAxisEccentricCopperSleeveTemperature4(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getHighSpeedAxisEccentricCopperSleeveTemperature1(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"高速轴偏心铜套温度检测1", temperatureEntity.getHighSpeedAxisEccentricCopperSleeveTemperature1(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getHighSpeedAxisEccentricCopperSleeveTemperature2(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"高速轴偏心铜套温度检测2", temperatureEntity.getHighSpeedAxisEccentricCopperSleeveTemperature2(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getFlywheelSupportBigAxisTemperature1(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"飞轮支撑大轴承温度检测1", temperatureEntity.getFlywheelSupportBigAxisTemperature1(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getFlywheelSupportBigAxisTemperature2(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"飞轮支撑大轴承温度检测2", temperatureEntity.getFlywheelSupportBigAxisTemperature2(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getHighSpeedAxisRollingBearingTemperature1(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"高速轴滚动轴承温度检测1", temperatureEntity.getHighSpeedAxisRollingBearingTemperature1(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getHighSpeedAxisRollingBearingTemperature2(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"高速轴滚动轴承温度检测2", temperatureEntity.getHighSpeedAxisRollingBearingTemperature2(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getLeftFrontTripodEccentricBigCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"左前三脚架偏心大铜套温度检测", temperatureEntity.getLeftFrontTripodEccentricBigCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getLeftRearTripodEccentricBigCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"左后三脚架偏心大铜套温度检测", temperatureEntity.getLeftRearTripodEccentricBigCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getRightFrontTripodEccentricBigCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"右前三脚架偏心大铜套温度检测", temperatureEntity.getRightFrontTripodEccentricBigCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getRightRearTripodEccentricBigCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"右后三脚架偏心大铜套温度检测", temperatureEntity.getRightRearTripodEccentricBigCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getLeftFrontTripodBottomCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"左前三脚架下端铜套温度检测", temperatureEntity.getLeftFrontTripodBottomCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getLeftRearTripodBottomCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"左后三脚架下端铜套温度检测", temperatureEntity.getLeftRearTripodBottomCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getRightFrontTripodBottomCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"右前三脚架下端铜套温度检测", temperatureEntity.getRightFrontTripodBottomCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getRightRearTripodBottomCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"右后三脚架下端铜套温度检测", temperatureEntity.getRightRearTripodBottomCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getLeftFrontConnectingRodBigCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"左前连杆大铜套", temperatureEntity.getLeftFrontConnectingRodBigCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getLeftRearConnectingRodBigCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"左后连杆大铜套", temperatureEntity.getLeftRearConnectingRodBigCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getRightFrontConnectingRodBigCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"右前连杆大铜套", temperatureEntity.getRightFrontConnectingRodBigCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getRightRearConnectingRodBigCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"右后连杆大铜套", temperatureEntity.getRightRearConnectingRodBigCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getLeftFrontLowSpeedAxisCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"左前低速轴铜套", temperatureEntity.getLeftFrontLowSpeedAxisCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getLeftRearLowSpeedAxisCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"左后低速轴铜套", temperatureEntity.getLeftRearLowSpeedAxisCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getRightFrontLowSpeedAxisCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"右前低速轴铜套", temperatureEntity.getRightFrontLowSpeedAxisCopperSleeve(), temperatureWarningValue1));
+                } else if(HmiUtils.isBigThanOrEquals(temperatureEntity.getRightRearLowSpeedAxisCopperSleeve(), temperatureWarningValue1, temperatureWarningValue2)){
+                    temperatureAlarmList.add(new TemperatureAlarmEntity(temperatureEntity.getBatchId(),temperatureEntity.getHandleDate(),"右后低速轴铜套", temperatureEntity.getRightRearLowSpeedAxisCopperSleeve(), temperatureWarningValue1));
+                }
+            }
+        }
+        return temperatureAlarmList;
+    }
+
+    /**
+     * 获取内存中的PLC温度信息
+     * @return
+     */
+    public List<List<TemperatureEntity>> getTemperatureListNew() {
+//        return TemperatureList;
+
+        List<TemperatureEntity> temperatureEntityList1 = new ArrayList<TemperatureEntity>();
+        List<TemperatureEntity> temperatureEntityList2 = new ArrayList<TemperatureEntity>();
+        for(int i=0;i<10;i++) {
+            TemperatureEntity temperatureEntity = new TemperatureEntity();
+            temperatureEntity.setPlcIp("127.0.0." + i);
+            if(i <= 4) {
+                temperatureEntity.setPlcName("A-" + String.valueOf(i + 1));
+                temperatureEntity.setWireless(false);
+            } else {
+                temperatureEntity.setPlcName("A-" + String.valueOf(i + 1));
+                temperatureEntity.setWireless(true);
+            }
+//            temperatureEntity.setPlcConnectionStatus("Y");
+            temperatureEntity.setHandleDate("2021-01-01 10:12:23");
+            temperatureEntity.setStatus("OK");
+            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature1(new BigDecimal(70.01).add(new BigDecimal(i)));
+            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature2(new BigDecimal(10.02).add(new BigDecimal(i)));
+            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature3(new BigDecimal(10.03).add(new BigDecimal(i)));
+            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature4(new BigDecimal(10.04).add(new BigDecimal(i)));
+            temperatureEntity.setHighSpeedAxisEccentricCopperSleeveTemperature1(new BigDecimal(10.05).add(new BigDecimal(i)));
+            temperatureEntity.setHighSpeedAxisEccentricCopperSleeveTemperature2(new BigDecimal(10.06).add(new BigDecimal(i)));
+            temperatureEntity.setFlywheelSupportBigAxisTemperature1(new BigDecimal(10.07).add(new BigDecimal(i)));
+            temperatureEntity.setFlywheelSupportBigAxisTemperature2(new BigDecimal(10.08).add(new BigDecimal(i)));
+            temperatureEntity.setHighSpeedAxisRollingBearingTemperature1(new BigDecimal(10.09).add(new BigDecimal(i)));
+            temperatureEntity.setHighSpeedAxisRollingBearingTemperature2(new BigDecimal(10.10).add(new BigDecimal(i)));
+            temperatureEntity.setLeftFrontTripodEccentricBigCopperSleeve(new BigDecimal(10.11).add(new BigDecimal(i)));
+            temperatureEntity.setLeftRearTripodEccentricBigCopperSleeve(new BigDecimal(10.12).add(new BigDecimal(i)));
+            temperatureEntity.setRightFrontTripodEccentricBigCopperSleeve(new BigDecimal(10.13).add(new BigDecimal(i)));
+            temperatureEntity.setRightRearTripodEccentricBigCopperSleeve(new BigDecimal(10.14).add(new BigDecimal(i)));
+            temperatureEntity.setLeftFrontTripodBottomCopperSleeve(new BigDecimal(10.15).add(new BigDecimal(i)));
+            temperatureEntity.setLeftRearTripodBottomCopperSleeve(new BigDecimal(10.16).add(new BigDecimal(i)));
+            temperatureEntity.setRightFrontTripodBottomCopperSleeve(new BigDecimal(10.17).add(new BigDecimal(i)));
+            temperatureEntity.setRightRearTripodBottomCopperSleeve(new BigDecimal(10.18).add(new BigDecimal(i)));
+            temperatureEntity.setLeftFrontConnectingRodBigCopperSleeve(new BigDecimal(10.19).add(new BigDecimal(i)));
+            temperatureEntity.setLeftRearConnectingRodBigCopperSleeve(new BigDecimal(10.20).add(new BigDecimal(i)));
+            temperatureEntity.setRightFrontConnectingRodBigCopperSleeve(new BigDecimal(10.21).add(new BigDecimal(i)));
+            temperatureEntity.setRightRearConnectingRodBigCopperSleeve(new BigDecimal(10.22).add(new BigDecimal(i)));
+            temperatureEntity.setLeftFrontLowSpeedAxisCopperSleeve(new BigDecimal(10.23).add(new BigDecimal(i)));
+            temperatureEntity.setLeftRearLowSpeedAxisCopperSleeve(new BigDecimal(10.24).add(new BigDecimal(i)));
+            temperatureEntity.setRightFrontLowSpeedAxisCopperSleeve(new BigDecimal(10.25).add(new BigDecimal(i)));
+            temperatureEntity.setRightRearLowSpeedAxisCopperSleeve(new BigDecimal(10.26).add(new BigDecimal(i)));
+            temperatureEntity.setBackupTemperature0(new BigDecimal(10.27).add(new BigDecimal(i)));
+            temperatureEntity.setBackupTemperature1(new BigDecimal(10.28).add(new BigDecimal(i)));
+            temperatureEntity.setBackupTemperature2(new BigDecimal(10.29).add(new BigDecimal(i)));
+            temperatureEntity.setBackupTemperature3(new BigDecimal(10.30).add(new BigDecimal(i)));
+            temperatureEntity.setBackupTemperature4(new BigDecimal(10.31).add(new BigDecimal(i)));
+            temperatureEntity.setBackupTemperature5(new BigDecimal(10.32).add(new BigDecimal(i)));
+            temperatureEntity.setBackupTemperature6(new BigDecimal(10.33).add(new BigDecimal(i)));
+            temperatureEntity.setBackupTemperature7(new BigDecimal(10.34).add(new BigDecimal(i)));
+            temperatureEntity.setBackupTemperature8(new BigDecimal(10.35).add(new BigDecimal(i)));
+            temperatureEntity.setBackupTemperature9(new BigDecimal(10.36).add(new BigDecimal(i)));
+            temperatureEntity.setBackupTemperature10(new BigDecimal(10.37).add(new BigDecimal(i)));
+            temperatureEntity.setBackupTemperature11(new BigDecimal(10.38).add(new BigDecimal(i)));
+            temperatureEntity.setTemperatureWarningValue1(new BigDecimal(60.00).add(new BigDecimal(i)));
+            temperatureEntity.setTemperatureWarningValue2(new BigDecimal(61.00).add(new BigDecimal(i)));
+            temperatureEntity.setCreateTime(new Date());
+            if(i <= 4) {
+                temperatureEntityList1.add(temperatureEntity);
+            } else {
+                temperatureEntityList2.add(temperatureEntity);
+            }
+
+        }
+        TemperatureList.add(temperatureEntityList1);
+        TemperatureList.add(temperatureEntityList2);
+        return TemperatureList;
     }
 
     /**
@@ -659,44 +843,44 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
             temperatureEntity.setPlcIp("127.0.0." + i);
             temperatureEntity.setStatus("OK");
             temperatureEntity.setHandleDate("2021-01-01");
-            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature1(new BigDecimal(35.2));
-            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature2(new BigDecimal(35.2));
-            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature3(new BigDecimal(35.2));
-            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature4(new BigDecimal(35.2));
-            temperatureEntity.setHighSpeedAxisEccentricCopperSleeveTemperature1(new BigDecimal(35.2));
-            temperatureEntity.setHighSpeedAxisEccentricCopperSleeveTemperature2(new BigDecimal(35.2));
-            temperatureEntity.setFlywheelSupportBigAxisTemperature1(new BigDecimal(35.2));
-            temperatureEntity.setFlywheelSupportBigAxisTemperature2(new BigDecimal(35.2));
-            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature1(new BigDecimal(35.2));
-            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature2(new BigDecimal(35.2));
-            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature3(new BigDecimal(35.2));
-            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature4(new BigDecimal(35.2));
-            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature5(new BigDecimal(35.2));
-            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature6(new BigDecimal(35.2));
-            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature7(new BigDecimal(35.2));
-            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature8(new BigDecimal(35.2));
-            temperatureEntity.setSmallBeltWheelSupportAxisTemperature1(new BigDecimal(35.2));
-            temperatureEntity.setSmallBeltWheelSupportAxisTemperature2(new BigDecimal(35.2));
-            temperatureEntity.setTripodBottomCopperSleeveTemperature1(new BigDecimal(35.2));
-            temperatureEntity.setTripodBottomCopperSleeveTemperature2(new BigDecimal(35.2));
-            temperatureEntity.setTripodBottomCopperSleeveTemperature3(new BigDecimal(35.2));
-            temperatureEntity.setTripodBottomCopperSleeveTemperature4(new BigDecimal(35.2));
-            temperatureEntity.setTripodEccentricBigCopperSleeveTemperature1(new BigDecimal(35.2));
-            temperatureEntity.setTripodEccentricBigCopperSleeveTemperature2(new BigDecimal(35.2));
-            temperatureEntity.setTripodEccentricBigCopperSleeveTemperature3(new BigDecimal(35.2));
-            temperatureEntity.setTripodEccentricBigCopperSleeveTemperature4(new BigDecimal(35.2));
-            temperatureEntity.setBackupTemperature0(new BigDecimal(35.2));
-            temperatureEntity.setBackupTemperature1(new BigDecimal(35.2));
-            temperatureEntity.setBackupTemperature2(new BigDecimal(35.2));
-            temperatureEntity.setBackupTemperature3(new BigDecimal(35.2));
-            temperatureEntity.setBackupTemperature4(new BigDecimal(35.2));
-            temperatureEntity.setBackupTemperature5(new BigDecimal(35.2));
-            temperatureEntity.setBackupTemperature6(new BigDecimal(35.2));
-            temperatureEntity.setBackupTemperature7(new BigDecimal(35.2));
-            temperatureEntity.setBackupTemperature8(new BigDecimal(35.2));
-            temperatureEntity.setBackupTemperature9(new BigDecimal(35.2));
-            temperatureEntity.setBackupTemperature10(new BigDecimal(35.2));
-            temperatureEntity.setBackupTemperature11(new BigDecimal(35.2));
+            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature1(new BigDecimal(10.0));
+            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature2(new BigDecimal(10.0));
+            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature3(new BigDecimal(10.0));
+            temperatureEntity.setLowSpeedAxisEccentricCopperSleeveTemperature4(new BigDecimal(10.0));
+            temperatureEntity.setHighSpeedAxisEccentricCopperSleeveTemperature1(new BigDecimal(10.0));
+            temperatureEntity.setHighSpeedAxisEccentricCopperSleeveTemperature2(new BigDecimal(10.0));
+            temperatureEntity.setFlywheelSupportBigAxisTemperature1(new BigDecimal(10.0));
+            temperatureEntity.setFlywheelSupportBigAxisTemperature2(new BigDecimal(10.0));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature1(new BigDecimal(10.0));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature2(new BigDecimal(10.0));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature3(new BigDecimal(10.0));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature4(new BigDecimal(10.0));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature5(new BigDecimal(10.0));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature6(new BigDecimal(10.0));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature7(new BigDecimal(10.0));
+            temperatureEntity.setDrawbarBothEndsCopperSleeveTemperature8(new BigDecimal(10.0));
+            temperatureEntity.setSmallBeltWheelSupportAxisTemperature1(new BigDecimal(10.0));
+            temperatureEntity.setSmallBeltWheelSupportAxisTemperature2(new BigDecimal(10.0));
+            temperatureEntity.setTripodBottomCopperSleeveTemperature1(new BigDecimal(10.0));
+            temperatureEntity.setTripodBottomCopperSleeveTemperature2(new BigDecimal(10.0));
+            temperatureEntity.setTripodBottomCopperSleeveTemperature3(new BigDecimal(10.0));
+            temperatureEntity.setTripodBottomCopperSleeveTemperature4(new BigDecimal(10.0));
+            temperatureEntity.setTripodEccentricBigCopperSleeveTemperature1(new BigDecimal(10.0));
+            temperatureEntity.setTripodEccentricBigCopperSleeveTemperature2(new BigDecimal(10.0));
+            temperatureEntity.setTripodEccentricBigCopperSleeveTemperature3(new BigDecimal(10.0));
+            temperatureEntity.setTripodEccentricBigCopperSleeveTemperature4(new BigDecimal(10.0));
+            temperatureEntity.setBackupTemperature0(new BigDecimal(10.0));
+            temperatureEntity.setBackupTemperature1(new BigDecimal(10.0));
+            temperatureEntity.setBackupTemperature2(new BigDecimal(10.0));
+            temperatureEntity.setBackupTemperature3(new BigDecimal(10.0));
+            temperatureEntity.setBackupTemperature4(new BigDecimal(10.0));
+            temperatureEntity.setBackupTemperature5(new BigDecimal(10.0));
+            temperatureEntity.setBackupTemperature6(new BigDecimal(10.0));
+            temperatureEntity.setBackupTemperature7(new BigDecimal(10.0));
+            temperatureEntity.setBackupTemperature8(new BigDecimal(10.0));
+            temperatureEntity.setBackupTemperature9(new BigDecimal(10.0));
+            temperatureEntity.setBackupTemperature10(new BigDecimal(10.0));
+            temperatureEntity.setBackupTemperature11(new BigDecimal(10.0));
             temperatureEntity.setTemperatureWarningValue1(new BigDecimal(35));
             temperatureEntity.setTemperatureWarningValue2(new BigDecimal(36));
             temperatureList.add(temperatureEntity);

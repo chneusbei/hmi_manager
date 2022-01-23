@@ -147,6 +147,35 @@ public class HmiConstants {
             }
             return null;
         }
+    }
+
+    public enum PLC_NAME_GROUP {
+        PLC_1("A-1", "压机一"),
+        PLC_2("A-2", "压机二"),
+        PLC_3("A-3", "压机三"),
+        PLC_4("A-4", "压机四"),
+        PLC_5("A-5", "压机五"),
+        PLC_WIRELESS_1("A-1", "压机一无线"),
+        PLC_WIRELESS_2("A-2", "压机二无线"),
+        PLC_WIRELESS_3("A-3", "压机三无线"),
+        PLC_WIRELESS_4("A-4", "压机四无线"),
+        PLC_WIRELESS_5("A-5", "压机五无线");
+        //枚举对象的变量
+        private String code;
+        private String value;
+
+        //重写枚举类的默认构造器
+        PLC_NAME_GROUP(String code, String value) {
+            this.code = code;
+            this.value = value;
+        }
+
+        //获得code属性的值
+        public String getCode() { return this.code; }
+
+        //获得value属性的值
+        public String getValue() { return this.value; }
 
     }
+
 }

@@ -75,7 +75,6 @@
             <script src="test.js"></script>
             <!--页面主要内容-->
             <main class="lyear-layout-content">
-                <br>
                 <table class="imagetable">
                     <tr>
                         <td  width="20%"></td>
@@ -104,24 +103,29 @@
                         <th>温度值</th>
                         <th>警戒值</th>
                     </tr>
-<!--                        <tr v-for="o in listAlarm">-->
+                        <tr v-for="o in listAlarm">
+                            <td :style="{background:o.impression}">{{o.id}}</td>
+                            <td :style="{background:o.impression}">{{o.createTime}}</td>
+                            <td :style="{background:o.impression}">{{o.temperatureName}}</td>
+                            <td :style="{background:o.impression}">{{o.temperatureValue}}</td>
+                            <td :style="{background:o.impression}">{{o.temperatureWarningValue}}</td>
 <!--                        <td :style="{background:o.impression}"  >-->
 <!--                           2021-01-02 13:03:01-->
 <!--                        </td>-->
 <!--                        <td :style="{background:o.impression}">A-1偏心轮左前</td>-->
 <!--                        <td :style="{background:o.impression}">73</td>-->
 <!--                        <td :style="{background:o.impression}">60 </td>-->
-                    <td >10532</td>
-                    <td >2021-01-02 13:03:05</td>
-                    <td >A-1偏心轮左前</td>
-                    <td >65.2°C</td>
-                    <td >60.0°C</td>
-                    </tr>
-                    <td>26421</td>
-                    <td>2021-02-03 15:13:15</td>
-                    <td >A-3偏心轮右后</td>
-                    <td >77.3°C</td>
-                    <td >60.0°C</td>
+<!--                    <td >10532</td>-->
+<!--                    <td >2021-01-02 13:03:05</td>-->
+<!--                    <td >A-1偏心轮左前</td>-->
+<!--                    <td >65.2°C</td>-->
+<!--                    <td >60.0°C</td>-->
+<!--                    </tr>-->
+<!--                    <td>26421</td>-->
+<!--                    <td>2021-02-03 15:13:15</td>-->
+<!--                    <td >A-3偏心轮右后</td>-->
+<!--                    <td >77.3°C</td>-->
+<!--                    <td >60.0°C</td>-->
                     </tr>
                 </table>
             </main>
@@ -147,32 +151,26 @@
         data:{
             listAlarm:[],
         },methods:{
-            getAlarm(){
-                axios.get("/getCurrentTemperature").then(result=>{
+            queryHisAlarm1(){
+                axios.get("/geTemperatureHisAlarmWithoutParam").then(result=>{
                     this.listAlarm=result.data;
-                    for (let i in this.listAlarm) {
-                       // if (this.listAlarm[i].alarmType==="E"){
-                           this.listAlarm[i]["impression"]="RGB(255,0,0)"
-                       // }else if(this.listAlarm[i]           .alarmType==="W"){
-                       //     this.listAlarm[i]["impression"]="RGB(255,255,0)"
-                       // }else{
-                       //     this.listAlarm[i]["impression"]="RGB(192,192,192)"
-                       // }
-                    }
+                }).catch(function(error){
+                    alert(error)
                 })
-            },queryHisAlarm(){
+            },
+            queryHisAlarm(){
                 let requestData={
                     start:this.$refs.start.value,
                     stop:this.$refs.stop.value
                 }
-                axios.get("/getCurrentTemperature",{params:requestData}).then(response=>{
-                    alert(response.data);
+                axios.get("/geTemperatureHisAlarm",{params:requestData}).then(result=>{
+                    this.listAlarm=result.data;
                 }).catch(function(error){
                     alert(error)
                 })
-            }
+            },
         },created(){/*vue钩子*/
-            this.getAlarm();
+            this.queryHisAlarm1();
         }
     })
 </script>

@@ -20,7 +20,7 @@ import java.util.List;
 
 
 /**
- * 压力曲线服务
+ * 温度服务
  */
 @Service
 @Component
@@ -63,7 +63,7 @@ public class TemperatureService extends AbstractBaseService{
             return TemperaturePointEntityList;
         }
 
-        if(!StringUtils.isEmpty(startDate)) {
+               if(!StringUtils.isEmpty(startDate)) {
             startDate=startDate.replace("-","");
         }
 

@@ -78,9 +78,9 @@
                 <table class="imagetable">
                     <tr>
                         <td  width="25%"></td>
-                        <td height="25px" style="width: 100px;background-color: #ccbf42;color: black">【温度警戒值1】60 &nbsp;摄氏度</td>
+                        <td height="25px" style="width: 100px;background-color: #ccbf42;color: black">【温度警戒值1】{{temperatureWarningValue1}} &nbsp;摄氏度</td>
 
-                        <td height="25px" style="width: 100px;background-color: #ccbf42;color: black">【温度警戒值2】60 &nbsp;摄氏度</td>
+                        <td height="25px" style="width: 100px;background-color: #ccbf42;color: black">【温度警戒值2】{{temperatureWarningValue2}} &nbsp;摄氏度</td>
                     </tr>
                 </table>
                 <table class="imagetable2">
@@ -111,18 +111,26 @@
 <!--                            <span v-else-if="o.status==='OK'">INFO</span>-->
 <!--                        </td>-->
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
-<!--                        <td :style="{background:o.impression}">{{o.plcConnectionStatus}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.status}}</td>-->
-                        <td style="width: 100px;background-color: #25cc2f;color: black">21.3°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">22.3°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">35.3°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">56.3°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">32.3°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">18.3°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">45.3°C</td>
-                        <td style="width: 100px;background-color: #cc1b2d;color: black">69.3°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">43.3°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">54.3°C</td>
+                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature1}}</td>
+                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature2}}</td>
+                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature3}}</td>
+                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature4}}</td>
+                        <td :style="{background:o.impression}">{{o.highSpeedAxisEccentricCopperSleeveTemperature1}}</td>
+                        <td :style="{background:o.impression}">{{o.highSpeedAxisEccentricCopperSleeveTemperature2}}</td>
+                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature1}}</td>
+                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature2}}</td>
+                        <td :style="{background:o.impression}">{{o.highSpeedAxisRollingBearingTemperature1}}</td>
+                        <td :style="{background:o.impression}">{{o.highSpeedAxisRollingBearingTemperature2}}</td>
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">21.3°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">22.3°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">35.3°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">56.3°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">32.3°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">18.3°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">45.3°C</td>-->
+<!--                        <td style="width: 100px;background-color: #cc1b2d;color: black">69.3°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">43.3°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">54.3°C</td>-->
                     </tr>
                 </table>
                 <table class="imagetable2">
@@ -152,30 +160,30 @@
                         <th>右前低速轴铜套</th>
                         <th>右后低速轴铜套</th>
                     </tr>
-                    <tr v-for="o in listTemperature">
+                    <tr v-for="o in listTemperatureWireless">
                         <!--                        <td :style="{background:o.impression}"  >-->
                         <!--                            <span v-if="o.status==='WARNING'">WARNING</span>-->
                         <!--                            <span v-else-if="o.status==='OK'">INFO</span>-->
                         <!--                        </td>-->
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
-<!--                        <td :style="{background:o.impression}">{{o.plcConnectionStatus}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.status}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature1}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature2}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature3}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature4}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.highSpeedAxisEccentricCopperSleeveTemperature1}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.highSpeedAxisEccentricCopperSleeveTemperature2}}</td>-->
+                        <td :style="{background:o.impression}">{{o.leftFrontConnectingRodBigCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.leftRearConnectingRodBigCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.rightFrontConnectingRodBigCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.rightRearConnectingRodBigCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.leftFrontLowSpeedAxisCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.leftRearLowSpeedAxisCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.rightFrontLowSpeedAxisCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.rightRearLowSpeedAxisCopperSleeve}}</td>
 <!--                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature1}}</td>-->
 <!--                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature2}}</td>-->
-                        <td style="width: 100px;background-color: #cc1b2d;color: black">62.5°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">42.5°C</td>
-                        <td  style="width: 100px;background-color: #25cc2f;color: black">59.5°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">28.5°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">51.5°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">36.5°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">27.5°C</td>
-                        <td style="width: 100px;background-color: #25cc2f;color: black">50.5°C</td>
+<!--                        <td style="width: 100px;background-color: #cc1b2d;color: black">62.5°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">42.5°C</td>-->
+<!--                        <td  style="width: 100px;background-color: #25cc2f;color: black">59.5°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">28.5°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">51.5°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">36.5°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">27.5°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">50.5°C</td>-->
                     </tr>
                 </table>
             </main>
@@ -200,19 +208,47 @@
         el:"#app",
         data:{
             listTemperature:[],
+            listTemperatureWireless:[],
+            temperatureWarningValue1:'',
+            temperatureWarningValue2:'',
         },methods:{
             getCurrentTemperature(){
                 // alert("getTemperature started...");
-                axios.get("/getCurrentTemperature").then(result=>{
-                    this.listTemperature=result.data;
+                axios.get("/getCurrentTemperatureNew").then(result=>{
+                    this.listTemperature=result.data[0];
+                    this.listTemperatureWireless=result.data[1];
+                    this.temperatureWarningValue1=this.listTemperature[0].temperatureWarningValue1;
+                    this.temperatureWarningValue2=this.listTemperature[0].temperatureWarningValue2;
+                    // alert("1111 " );
+                    // alert("temperatureWarningValue1 = " +this.temperatureWarningValue1);
                     // alert("listTemperature size="+listTemperature);
                     for (let i in this.listTemperature) {
-                        if (this.listTemperature[i].status==="WARNING"){
-                            this.listTemperature[i]["impression"]="RGB(255,0,0)"
-                        }else if(this.listTemperature[i].status==="OK"){
-                            this.listTemperature[i]["impression"]="RGB(192,192,192)"
-                        }else{
-                            this.listTemperature[i]["impression"]="RGB(192,192,192)"
+                        // this.listTemperature[i]["impression"]="RGB(255,0,0)"
+                        this.listTemperature[i]["impression"]="RGB(0,128,64)"
+
+                        for(let j in this.listTemperature[i]){
+                            // alert("1111 " );
+                            // this.listTemperature[i][0]["impression"]="RGB(255,0,0)"
+                            // this.listTemperature[i][1].style.background= "red";
+                            // this.listTemperature[i][2].style.background="RGB(192,192,192)"
+                            // if (this.listTemperature[i][j] > this.temperatureWarningValue1){
+                            //     this.listTemperature[i][j]["impression"]="RGB(255,0,0)"
+                            //     alert("222 " );
+                            // } else {
+                            //     this.listTemperature[i][j]["impression"]="RGB(192,192,192)"
+                            //     alert("333 " );
+                            // }
+                        }
+                    }
+
+                    for (let i in this.listTemperatureWireless) {
+                        this.listTemperatureWireless[i]["impression"]="RGB(0,128,64)"
+                        for(var j=0;j<this.listTemperatureWireless[i].length;j++){
+                            if (this.temperatureWarningValue1[i][j] > this.temperatureWarningValue1){
+                                this.temperatureWarningValue1[i][j]["impression"]="RGB(255,0,0)"
+                            } else {
+                                this.temperatureWarningValue1[i][j]["impression"]="RGB(192,192,192)"
+                            }
                         }
                     }
                 })

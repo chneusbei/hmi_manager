@@ -35,6 +35,8 @@ public class TemperatureController {
     Plc4xCurveDataService plc4xCurveDataService;
     @Autowired
     PlcConfigService plcConfigService;
+    @Autowired
+    TemperatureAlarmService temperatureAlarmService;
 
 
 
@@ -50,7 +52,57 @@ public class TemperatureController {
     }
 
     /**
-     * 当前温度
+     * 当前温度getCurrentTemperature
+     */
+    @ResponseBody
+    @GetMapping("/getCurrentTemperatureNew")
+    public List<List<TemperatureEntity>> getCurrentTemperatureNew(){
+//        System.out.println(">>>> getCurrentTemperature");
+        List<List<TemperatureEntity>> temperatureList = plc4xTemperatureService.getTemperatureListNew();
+        return temperatureList;
+    }
+
+    /**
+     * 历史报警信息查询
+     */
+    @ResponseBody
+    @GetMapping("/geTemperatureHisAlarmWithoutParam")
+    public List<TemperatureAlarmEntity> geTemperatureHisAlarmWithoutParam(){
+        return geTemperatureHisAlarm(null, null);
+    }
+
+    /**
+     * 历史报警信息查询
+     */
+    @ResponseBody
+    @GetMapping("/geTemperatureHisAlarm")
+    public List<TemperatureAlarmEntity> geTemperatureHisAlarm(@RequestParam(value = "start",required = true) String start,
+                                                         @RequestParam(value = "stop",required = true) String stop){
+        if(null == start || StringUtils.isEmpty(start)) {
+            start = HmiUtils.getYYYYMMDDString(new Date());
+        }
+        if(null == stop || StringUtils.isEmpty(stop)) {
+            stop = HmiUtils.getYYYYMMDDString(new Date());
+        }
+
+        if(!StringUtils.isEmpty(start)) {
+            start=start.replace("-","");
+        }
+
+        if(!StringUtils.isEmpty(stop)) {
+            stop=stop.replace("-","");
+        }
+
+        List<TemperatureAlarmEntity> temperatureAlarmList = temperatureAlarmService.getTemperatureAlarmWithParam(start, stop);
+        if(null == temperatureAlarmList) {
+            temperatureAlarmList = new ArrayList<TemperatureAlarmEntity>();
+        }
+        return temperatureAlarmList;
+
+    }
+
+    /**
+     * 当前温度getCurrentTemperature
      */
     @ResponseBody
     @GetMapping("/getCurrentTemperature")
