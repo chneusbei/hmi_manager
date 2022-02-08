@@ -796,8 +796,8 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
      * @return
      */
     public List<List<TemperatureEntity>> getTemperatureListNew() {
-//        return TemperatureList;
-
+        return TemperatureList;
+/*
         List<TemperatureEntity> temperatureEntityList1 = new ArrayList<TemperatureEntity>();
         List<TemperatureEntity> temperatureEntityList2 = new ArrayList<TemperatureEntity>();
 
@@ -876,7 +876,7 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         TemperatureList.add(temperatureEntityList2);
 
         return TemperatureList;
-
+*/
     }
 
     /**

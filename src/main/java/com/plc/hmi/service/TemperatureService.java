@@ -94,11 +94,13 @@ public class TemperatureService extends AbstractBaseService{
        // 参数解析
 
         if(StringUtils.isEmpty(plcName) || StringUtils.isBlank(plcName)) {
-            return TemperaturePointEntityList;
+//            return TemperaturePointEntityList;
+            plcName = "A-1";
         }
 
         if(StringUtils.isEmpty(temperatureName)) {
-            return TemperaturePointEntityList;
+//            return TemperaturePointEntityList;
+            temperatureName = "getLowSpeedAxisEccentricCopperSleeveTemperature1";
         }
 
        if(!StringUtils.isEmpty(startDate)) {

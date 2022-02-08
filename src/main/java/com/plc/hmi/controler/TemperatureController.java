@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.util.*;
@@ -72,14 +73,20 @@ public class TemperatureController {
                                    @RequestParam(value = "plcName",required = false) String plcName,
                                    @RequestParam(value = "temperatureName",required = false) String temperatureName) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 //        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
-        List<TemperaturePointEntity> TemperaturePointList =  temperatureService.getTemperaturePointWithParam(startDate, endDate, plcName,temperatureName, null);
-//        String json = JSON.toJSONString(TemperaturePointList);
-        if(CollectionUtils.isEmpty(TemperaturePointList)) {
+        List<TemperaturePointEntity> temperaturePointList =  temperatureService.getTemperaturePointWithParam(startDate, endDate, plcName,temperatureName, null);
+//        String json = JSON.toJSONString(temperaturePointList);
+//        temperaturePointList = new ArrayList<TemperaturePointEntity>();
+        if(CollectionUtils.isEmpty(temperaturePointList)) {
             TemperaturePointEntity entity = new TemperaturePointEntity();
             entity.setTemperatureValue(new BigDecimal(60));
             entity.setTemperatureTime(new Date());
+            TemperaturePointEntity entity1 = new TemperaturePointEntity();
+            entity1.setTemperatureValue(new BigDecimal(60));
+            entity1.setTemperatureTime(new Date());
+            temperaturePointList.add(entity);
+            temperaturePointList.add(entity);
         }
-        return TemperaturePointList;
+        return temperaturePointList;
     }
 
     /**
