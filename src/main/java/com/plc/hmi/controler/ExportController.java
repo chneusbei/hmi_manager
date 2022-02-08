@@ -10,6 +10,7 @@ import com.plc.hmi.service.TemperatureService;
 import com.plc.hmi.service.plcService.Plc4xTemperatureService;
 import com.plc.hmi.util.CsvExportUtil;
 import com.plc.hmi.util.HmiUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
@@ -30,18 +31,34 @@ public class ExportController {
     TemperatureService temperatureService;
 
     private static Logger logger = LoggerFactory.getLogger(ExportController.class);
-    @ResponseBody
-    @RequestMapping("/temperatureExport")
-    public String export( @RequestParam(value = "plcName",required = false) String plcName,
-                          @RequestParam(value = "status",required = false) String status,
-                          @RequestParam(value = "startDate",required = false) String startDate,
-                          @RequestParam(value = "endDate",required = false) String endDate) {
-        startDate = null==startDate ? null : startDate.replace("-","");
-        endDate = null==endDate ? null : endDate.replace("-","");
+
+    @GetMapping("/temperatureExport")
+    public String export( @RequestParam(value = "start",required = true) String start,
+                          @RequestParam(value = "stop",required = true) String stop) {
+        String startDate = null==start ? null : start.replace("-","");
+        String endDate = null==stop ? null : stop.replace("-","");
 //        System.out.println("=======================startDate======="+startDate + "=======end====="+endDate);
 
+        if(!StringUtils.isEmpty(startDate)) {
+            startDate=startDate.replace("-","");
+        }
+
+        if(!StringUtils.isEmpty(endDate)) {
+            endDate=endDate.replace("-","");
+        }
+
+        if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
+            startDate = HmiUtils.getYYYYMMDDString(new Date());
+            endDate =startDate;
+        } else if (StringUtils.isEmpty(startDate) || StringUtils.isEmpty(endDate)) {
+            if(StringUtils.isEmpty(startDate)) {
+                startDate = endDate;
+            } else {
+                endDate = startDate;
+            }
+        }
         //获取对应的pressure_data
-        List<TemperatureEntity> TemperatureEntityList = temperatureService.getTemperatureWithParam(startDate, endDate, plcName, status);;
+        List<TemperatureEntity> TemperatureEntityList = temperatureService.getTemperatureWithParam(startDate, endDate, null, null);
         if (CollectionUtils.isEmpty(TemperatureEntityList)) {
             return  "temperature export no data found !";
         }
@@ -73,11 +90,10 @@ public class ExportController {
         // 设置导出文件名
         StringBuffer sb = new StringBuffer();
         sb.append("temperature_")
-                .append(plcName)
-                .append("_")
                 .append(startDate)
                 .append("_")
                 .append(endDate)
+                .append("_")
                 .append(HmiUtils.getFormatDateString())
                 .append(".csv");
         String fileName = sb.toString();
@@ -95,7 +111,7 @@ public class ExportController {
             return  "导出失败";
         }
 
-        return  "OK, export success to D:/csv/temperature";
+        return  "OK, temperature data export success to D:/csv/temperature";
     }
 
     @ResponseBody

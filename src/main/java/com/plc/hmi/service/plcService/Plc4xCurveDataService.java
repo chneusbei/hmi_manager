@@ -8,7 +8,6 @@ import com.plc.hmi.enumeration.PlcEntityEnum;
 import com.plc.hmi.service.PressureCurveService;
 import com.plc.hmi.service.PropertyService;
 import com.plc.hmi.util.HmiUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jvnet.hk2.annotations.Service;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 /***
@@ -271,9 +269,9 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             BeanUtils.copyProperties(curveStatusEntity,curveEntity);
             // 当前压力	Real
             int index = start + i;
-            curveEntity.setPressForce(HmiUtils.getBigDicimal(valueMap.get("press"+index)));
+            curveEntity.setPressForce(HmiUtils.getBigDecimal(valueMap.get("press"+index)));
             //当前位置
-            curveEntity.setPosition(HmiUtils.getBigDicimal(valueMap.get("position"+index)));
+            curveEntity.setPosition(HmiUtils.getBigDecimal(valueMap.get("position"+index)));
             curveEntity.setCreateBy("SYS");
             curveEntity.setUpdateBy("SYS");
             curveEntity.setCreateTime(new Date());
@@ -336,23 +334,23 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 //第一条曲线
                 if(PlcEntityEnum.curve_data_curPosition.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //当前位置
-                    curveEntity.setPosition(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity.setPosition(HmiUtils.getBigDecimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.curve_data_curForce.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     // 当前压力	Real
-                    curveEntity.setPressForce(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity.setPressForce(HmiUtils.getBigDecimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.curve_data_curSpeed.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //当前速度	Real
-                    curveEntity.setSpeed(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity.setSpeed(HmiUtils.getBigDecimal(plcEntity.getValueOjb()));
                     curveEntity.setCurSpeed(curveEntity.getSpeed());
                 } else if(PlcEntityEnum.curve_data_reserve0.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //预留_0
-                    curveEntity.setReserve0(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity.setReserve0(HmiUtils.getBigDecimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.curve_data_reserve1.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //预留_1
-                    curveEntity.setReserve1(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity.setReserve1(HmiUtils.getBigDecimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.curve_data_reserve2.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //预留_2
-                    curveEntity.setReserve2(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity.setReserve2(HmiUtils.getBigDecimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.equipment_operation_productNo.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //零件号
                     curveEntity.setProductId(HmiUtils.getLongValue(plcEntity.getValueOjb()));
@@ -470,23 +468,23 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
                 //第二个压头
                 if(PlcEntityEnum.curve_data_curPosition2.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //当前位置
-                    curveEntity2.setPosition(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity2.setPosition(HmiUtils.getBigDecimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.curve_data_curForce2.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     // 当前压力	Real
-                    curveEntity2.setPressForce(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity2.setPressForce(HmiUtils.getBigDecimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.curve_data_curSpeed2.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //当前速度	Real
-                    curveEntity2.setSpeed(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity2.setSpeed(HmiUtils.getBigDecimal(plcEntity.getValueOjb()));
                     curveEntity2.setCurSpeed(curveEntity2.getSpeed());
                 } else if(PlcEntityEnum.curve_data_reserve0_2.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //预留_0
-                    curveEntity2.setReserve0(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity2.setReserve0(HmiUtils.getBigDecimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.curve_data_reserve1_2.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //预留_1
-                    curveEntity2.setReserve1(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity2.setReserve1(HmiUtils.getBigDecimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.curve_data_reserve2_2.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //预留_2
-                    curveEntity2.setReserve2(HmiUtils.getBigDicimal(plcEntity.getValueOjb()));
+                    curveEntity2.setReserve2(HmiUtils.getBigDecimal(plcEntity.getValueOjb()));
                 } else if(PlcEntityEnum.equipment_operation_productNo2.getCode().equalsIgnoreCase(plcEntity.getName())) {
                     //零件号
                     curveEntity2.setProductId(HmiUtils.getLongValue(plcEntity.getValueOjb()));

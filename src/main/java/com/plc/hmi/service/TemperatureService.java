@@ -35,6 +35,25 @@ public class TemperatureService extends AbstractBaseService{
      * @return
      */
     public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status, boolean isWireless) {
+        if(!StringUtils.isEmpty(startDate)) {
+            startDate=startDate.replace("-","");
+        }
+
+        if(!StringUtils.isEmpty(endDate)) {
+            endDate=endDate.replace("-","");
+        }
+
+        if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
+            startDate = HmiUtils.getYYYYMMDDString(new Date());
+            endDate =startDate;
+        } else if (StringUtils.isEmpty(startDate) || StringUtils.isEmpty(endDate)) {
+            if(StringUtils.isEmpty(startDate)) {
+                startDate = endDate;
+            } else {
+                endDate = startDate;
+            }
+        }
+
         return temperatureDao.getTemperatureWithParam(startDate, endDate, plcName, status, isWireless);
     }
 
@@ -43,6 +62,25 @@ public class TemperatureService extends AbstractBaseService{
      * @return
      */
     public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status) {
+        if(!StringUtils.isEmpty(startDate)) {
+            startDate=startDate.replace("-","");
+        }
+
+        if(!StringUtils.isEmpty(endDate)) {
+            endDate=endDate.replace("-","");
+        }
+
+        if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
+            startDate = HmiUtils.getYYYYMMDDString(new Date());
+            endDate =startDate;
+        } else if (StringUtils.isEmpty(startDate) || StringUtils.isEmpty(endDate)) {
+            if(StringUtils.isEmpty(startDate)) {
+                startDate = endDate;
+            } else {
+                endDate = startDate;
+            }
+        }
+
         return temperatureDao.getTemperatureWithParam(startDate, endDate, plcName, status);
     }
 
@@ -55,7 +93,7 @@ public class TemperatureService extends AbstractBaseService{
         List<TemperaturePointEntity> TemperaturePointEntityList = new ArrayList<TemperaturePointEntity>();
        // 参数解析
 
-        if(StringUtils.isEmpty(plcName)) {
+        if(StringUtils.isEmpty(plcName) || StringUtils.isBlank(plcName)) {
             return TemperaturePointEntityList;
         }
 
@@ -63,7 +101,7 @@ public class TemperatureService extends AbstractBaseService{
             return TemperaturePointEntityList;
         }
 
-               if(!StringUtils.isEmpty(startDate)) {
+       if(!StringUtils.isEmpty(startDate)) {
             startDate=startDate.replace("-","");
         }
 

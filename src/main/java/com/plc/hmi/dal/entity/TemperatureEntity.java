@@ -57,6 +57,26 @@ public class TemperatureEntity extends AbstractBaseEntity {
     private BigDecimal flywheelSupportBigAxisTemperature1;
     //飞轮支撑大轴承温度检测2
     private BigDecimal flywheelSupportBigAxisTemperature2;
+    //拉杆两端铜套温度检测1
+    private BigDecimal drawbarBothEndsCopperSleeveTemperature1;
+    //拉杆两端铜套温度检测2
+    private BigDecimal drawbarBothEndsCopperSleeveTemperature2;
+    //拉杆两端铜套温度检测3
+    private BigDecimal drawbarBothEndsCopperSleeveTemperature3;
+    //拉杆两端铜套温度检测4
+    private BigDecimal drawbarBothEndsCopperSleeveTemperature4;
+    //拉杆两端铜套温度检测5
+    private BigDecimal drawbarBothEndsCopperSleeveTemperature5;
+    //拉杆两端铜套温度检测6
+    private BigDecimal drawbarBothEndsCopperSleeveTemperature6;
+    //拉杆两端铜套温度检测7
+    private BigDecimal drawbarBothEndsCopperSleeveTemperature7;
+    //拉杆两端铜套温度检测8
+    private BigDecimal drawbarBothEndsCopperSleeveTemperature8;
+    //小皮带轮支持轴承温度检测1
+    private BigDecimal smallBeltWheelSupportAxisTemperature1;
+    //小皮带轮支持轴承温度检测2
+    private BigDecimal smallBeltWheelSupportAxisTemperature2;
     //高速轴滚动轴承温度检测1
     private BigDecimal highSpeedAxisRollingBearingTemperature1;
     //高速轴滚动轴承温度检测2
@@ -488,5 +508,85 @@ public class TemperatureEntity extends AbstractBaseEntity {
 
     public void setBatchId(Long batchId) {
         this.batchId = batchId;
+    }
+
+    public BigDecimal getDrawbarBothEndsCopperSleeveTemperature1() {
+        return drawbarBothEndsCopperSleeveTemperature1;
+    }
+
+    public void setDrawbarBothEndsCopperSleeveTemperature1(BigDecimal drawbarBothEndsCopperSleeveTemperature1) {
+        this.drawbarBothEndsCopperSleeveTemperature1 = drawbarBothEndsCopperSleeveTemperature1;
+    }
+
+    public BigDecimal getDrawbarBothEndsCopperSleeveTemperature2() {
+        return drawbarBothEndsCopperSleeveTemperature2;
+    }
+
+    public void setDrawbarBothEndsCopperSleeveTemperature2(BigDecimal drawbarBothEndsCopperSleeveTemperature2) {
+        this.drawbarBothEndsCopperSleeveTemperature2 = drawbarBothEndsCopperSleeveTemperature2;
+    }
+
+    public BigDecimal getDrawbarBothEndsCopperSleeveTemperature3() {
+        return drawbarBothEndsCopperSleeveTemperature3;
+    }
+
+    public void setDrawbarBothEndsCopperSleeveTemperature3(BigDecimal drawbarBothEndsCopperSleeveTemperature3) {
+        this.drawbarBothEndsCopperSleeveTemperature3 = drawbarBothEndsCopperSleeveTemperature3;
+    }
+
+    public BigDecimal getDrawbarBothEndsCopperSleeveTemperature4() {
+        return drawbarBothEndsCopperSleeveTemperature4;
+    }
+
+    public void setDrawbarBothEndsCopperSleeveTemperature4(BigDecimal drawbarBothEndsCopperSleeveTemperature4) {
+        this.drawbarBothEndsCopperSleeveTemperature4 = drawbarBothEndsCopperSleeveTemperature4;
+    }
+
+    public BigDecimal getDrawbarBothEndsCopperSleeveTemperature5() {
+        return drawbarBothEndsCopperSleeveTemperature5;
+    }
+
+    public void setDrawbarBothEndsCopperSleeveTemperature5(BigDecimal drawbarBothEndsCopperSleeveTemperature5) {
+        this.drawbarBothEndsCopperSleeveTemperature5 = drawbarBothEndsCopperSleeveTemperature5;
+    }
+
+    public BigDecimal getDrawbarBothEndsCopperSleeveTemperature6() {
+        return drawbarBothEndsCopperSleeveTemperature6;
+    }
+
+    public void setDrawbarBothEndsCopperSleeveTemperature6(BigDecimal drawbarBothEndsCopperSleeveTemperature6) {
+        this.drawbarBothEndsCopperSleeveTemperature6 = drawbarBothEndsCopperSleeveTemperature6;
+    }
+
+    public BigDecimal getDrawbarBothEndsCopperSleeveTemperature7() {
+        return drawbarBothEndsCopperSleeveTemperature7;
+    }
+
+    public void setDrawbarBothEndsCopperSleeveTemperature7(BigDecimal drawbarBothEndsCopperSleeveTemperature7) {
+        this.drawbarBothEndsCopperSleeveTemperature7 = drawbarBothEndsCopperSleeveTemperature7;
+    }
+
+    public BigDecimal getDrawbarBothEndsCopperSleeveTemperature8() {
+        return drawbarBothEndsCopperSleeveTemperature8;
+    }
+
+    public void setDrawbarBothEndsCopperSleeveTemperature8(BigDecimal drawbarBothEndsCopperSleeveTemperature8) {
+        this.drawbarBothEndsCopperSleeveTemperature8 = drawbarBothEndsCopperSleeveTemperature8;
+    }
+
+    public BigDecimal getSmallBeltWheelSupportAxisTemperature1() {
+        return smallBeltWheelSupportAxisTemperature1;
+    }
+
+    public void setSmallBeltWheelSupportAxisTemperature1(BigDecimal smallBeltWheelSupportAxisTemperature1) {
+        this.smallBeltWheelSupportAxisTemperature1 = smallBeltWheelSupportAxisTemperature1;
+    }
+
+    public BigDecimal getSmallBeltWheelSupportAxisTemperature2() {
+        return smallBeltWheelSupportAxisTemperature2;
+    }
+
+    public void setSmallBeltWheelSupportAxisTemperature2(BigDecimal smallBeltWheelSupportAxisTemperature2) {
+        this.smallBeltWheelSupportAxisTemperature2 = smallBeltWheelSupportAxisTemperature2;
     }
 }

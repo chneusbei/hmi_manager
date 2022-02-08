@@ -48,50 +48,81 @@
             <script src="test.js"></script>
             <main class="lyear-layout-content">
                 <br>
-                <form action="/insertPlcConfig" method="post">
-
-
-                <table class="imagetable">
+                <form>
+                <table class="imagetable" id="temperature">
                     <tr>
-
-                        <td height="100px" align="center"  colspan="2"><input type="submit" value="A-1" style="width: 100px;background-color: #0066CC;color: black" ></td>
-                        <td height="100px" align="center"  colspan="2"><input type="submit" value="A-2" style="width: 100px;background-color: #0066CC;color: black" ></td>
-                        <td height="100px" align="center"  colspan="2"><input type="submit" value="A-3" style="width: 100px;background-color: #0066CC;color: black" ></td>
-                        <td height="100px" align="center"  colspan="2"><input type="submit" value="A-4" style="width: 100px;background-color: #0066CC;color: black" ></td>
-                        <td height="100px" align="center"  colspan="2"><input type="submit" value="A-5" style="width: 100px;background-color: #0066CC;color: black" ></td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><input type="submit" onClick="setPlcId(0)"  value="A-1" style="background-color: #0066CC;color: black" ></td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><input type="submit" onClick="setPlcId(1)"  value="A-2" style="background-color: #0066CC;color: black" ></td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><input type="submit" onClick="setPlcId(2)"  value="A-3" style="background-color: #0066CC;color: black" ></td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><input type="submit" onClick="setPlcId(3)"  value="A-4" style="width: 100px;background-color: #0066CC;color: black" ></td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><input type="submit" onClick="setPlcId(4)"  value="A-5" style="width: 100px;background-color: #0066CC;color: black" ></td>
                     </tr>
 
                     <tr>
-                    <td  width="20%"></td>
-                    <td  align="center" colspan="2"><strong><h4>左前</h4></strong></td>
-                    <td  align="center" colspan="2"><strong><h4>左后</h4></strong></td>
-                    <td  align="center" colspan="2"><strong><h4>右前</h4></strong></td>
-                    <td  align="center" colspan="2"><strong><h4>右后</h4></strong></td>
+                    <td  style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"></td>
+                    <td  style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><strong><h4>左前</h4></strong></td>
+                    <td  style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><strong><h4>左后</h4></strong></td>
+                    <td  style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><strong><h4>右前</h4></strong></td>
+                    <td  style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><strong><h4>右后</h4></strong></td>
                 </tr>
                     <tr>
-                        <td height="50px"><strong><h4>偏心轮温度</h4></strong></td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="35.2°C" style="width: 100px;background-color: #25cc2f;color: black" ></td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="41.9°C" style="width: 100px;background-color: #25cc2f;color: black" ></td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="53.6°C" style="width: 100px;background-color: #25cc2f;color: black" ></td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="27.1°C" style="width: 100px;background-color: #25cc2f;color: black" ></td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><strong><h4>偏心轮温度</h4></strong></td>
+<!--                        <td getStyle(leftFrontTripodEccentricBigCopperSleeve,temperatureWarningValue1,temperatureWarningValue2)>{{leftFrontTripodEccentricBigCopperSleeve}}</td>-->
+<!--                        <td v-if="leftFrontTripodEccentricBigCopperSleeve >= temperatureWarningValue1"  style="height:50px;align:center;colspan:2; background-color: #25cc2f;">{{leftFrontTripodEccentricBigCopperSleeve}}</td>-->
+<!--                        <td v-else  style="height:50px;align:center;colspan:2; background-color: #cc1b2d;">{{leftFrontTripodEccentricBigCopperSleeve}}</td>-->
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <span v-if="leftFrontTripodEccentricBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{leftFrontTripodEccentricBigCopperSleeve}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{leftFrontTripodEccentricBigCopperSleeve}}</span>
+                        </td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <span v-if="leftRearTripodEccentricBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{leftRearTripodEccentricBigCopperSleeve}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{leftRearTripodEccentricBigCopperSleeve}}</span>
+                        </td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <span v-if="rightFrontTripodEccentricBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{rightFrontTripodEccentricBigCopperSleeve}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{rightFrontTripodEccentricBigCopperSleeve}}</span>
+                        </td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <span v-if="rightRearTripodEccentricBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{rightRearTripodEccentricBigCopperSleeve}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{rightRearTripodEccentricBigCopperSleeve}}</span>
+                        </td>
                     </tr>
                     <tr>
-                        <td height="50px" ><strong><h4>连杆温度</h4></strong>&nbsp;</td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="51.9°C" style="width: 100px;background-color: #25cc2f;color: black" ></td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="34.5°C" style="width: 100px;background-color: #25cc2f;color: black" ></td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="78.2°C" style="width: 100px;background-color: #cc594b;color: black" ></td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="15.1°C" style="width: 100px;background-color: #25cc2f;color: black" ></td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><strong><h4>连杆温度</h4></strong>&nbsp;</td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <span v-if="leftFrontConnectingRodBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{leftFrontConnectingRodBigCopperSleeve}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{leftFrontConnectingRodBigCopperSleeve}}</span>
+                        </td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <span v-if="leftRearConnectingRodBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{leftRearConnectingRodBigCopperSleeve}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{leftRearConnectingRodBigCopperSleeve}}</span>
+                        </td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <span v-if="rightFrontConnectingRodBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{rightFrontConnectingRodBigCopperSleeve}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{rightFrontConnectingRodBigCopperSleeve}}</span>
+                        </td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <span v-if="rightRearConnectingRodBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{rightRearConnectingRodBigCopperSleeve}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{rightRearConnectingRodBigCopperSleeve}}</span>
+                        </td>
                     </tr>
                     <tr>
-                        <td height="50px" ><strong><h4>警戒温度</h4></strong>&nbsp;</td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="60°C" style="width: 100px;background-color: #c1c5cc;color: black" ></td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="60°C" style="width: 100px;background-color: #c1c5cc;color: black" ></td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="60°C" style="width: 100px;background-color: #c1c5cc;color: black" ></td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="60°C" style="width: 100px;background-color: #c1c5cc;color: black" ></td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;" ><strong><h4>警戒温度</h4></strong>&nbsp;</td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">{{temperatureWarningValue1}}</td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">{{temperatureWarningValue1}}</td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">--</td>
+                        <td td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">--</td>
                     </tr>
 
                 </table>
                 </form>
+                <script type="text/javascript">
+                    function setPlcId(index) {
+                    // alert("setPlcId！=" + index);
+                    var storage=window.localStorage;
+                    storage.setItem("index",index);
+                    }
+                </script>
             </main>
             <!--End 页面主要内容-->
         </div>
@@ -106,21 +137,83 @@
     new Vue({
         el:"#app",
         data:{
-            plcConfig:{}
+            // listTemperature:[],
+            listTemperatureWireless:[],
+            temperatureWarningValue:'',
+            temperatureWarningValue1:'',
+            temperatureWarningValue2:'',
+            leftFrontTripodEccentricBigCopperSleeve:'',
+            leftRearTripodEccentricBigCopperSleeve:'',
+            rightFrontTripodEccentricBigCopperSleeve:'',
+            rightRearTripodEccentricBigCopperSleeve:'',
+            leftFrontConnectingRodBigCopperSleeve:'',
+            leftRearConnectingRodBigCopperSleeve:'',
+            rightFrontConnectingRodBigCopperSleeve:'',
+            rightRearConnectingRodBigCopperSleeve:'',
         },methods:{
-            // getPlcConfig(){
-            //     axios.get("/getPlcConfig").then(result=>{
-            //         this.plcConfig=result.data;
-            //     })
-            // },
-            insertPlcConfig(){
-                axios.patch("/getPlcConfig",{"plcConfig":this.plcConfig}).then(alert("保存成功"))
-            }
-        },
-        created(){
-            // this.getPlcConfig();
+            getCurrentTemperature(){
+                // alert("getTemperature started...");
+                axios.get("/getCurrentTemperatureNew").then(result=>{
+                    // this.listTemperature=result.data[0];
+                    this.listTemperatureWireless=result.data[1];
+                    let storage=window.localStorage;
+                    let index = storage.getItem("index");
+                    if(index) {
+                       // alert("index 1=" + index);
+                    } else {
+                        index = 0;
+                        // alert("index 2=" + index);
+                    }
+                    // alert("index="+index);
+                    this.temperatureWarningValue1=this.listTemperatureWireless[index].temperatureWarningValue1;
+                    this.temperatureWarningValue2=this.listTemperatureWireless[index].temperatureWarningValue2;
+                    this.leftFrontTripodEccentricBigCopperSleeve=this.listTemperatureWireless[index].leftFrontTripodEccentricBigCopperSleeve;
+                    this.leftRearTripodEccentricBigCopperSleeve=this.listTemperatureWireless[index].leftRearTripodEccentricBigCopperSleeve;
+                    this.rightFrontTripodEccentricBigCopperSleeve=this.listTemperatureWireless[index].rightFrontTripodEccentricBigCopperSleeve;
+                    this.rightRearTripodEccentricBigCopperSleeve=this.listTemperatureWireless[index].rightRearTripodEccentricBigCopperSleeve;
+                    this.leftFrontConnectingRodBigCopperSleeve=this.listTemperatureWireless[index].leftFrontConnectingRodBigCopperSleeve;
+                    this.leftRearConnectingRodBigCopperSleeve=this.listTemperatureWireless[index].leftRearConnectingRodBigCopperSleeve;
+                    this.rightFrontConnectingRodBigCopperSleeve=this.listTemperatureWireless[index].rightFrontConnectingRodBigCopperSleeve;
+                    this.rightRearConnectingRodBigCopperSleeve=this.listTemperatureWireless[index].rightRearConnectingRodBigCopperSleeve;
+                    if (this.temperatureWarningValue1 > this.temperatureWarningValue2) {
+                        this.temperatureWarningValue = this.temperatureWarningValue1;
+                    } else {
+                        this.temperatureWarningValue = this.temperatureWarningValue2;
+                    }
+                    // alert("temperatureWarningValue =  " +this.temperatureWarningValue);
+                    // alert("temperatureWarningValue1 = " +this.temperatureWarningValue1);
+                    // alert("listTemperature size="+listTemperature);
+                })
+            },
+            addClass({row,column,rowIndex,columnIndex}){
+                return "height:50px;align:center;colspan:2; background-color: #25cc2f;";
+            },
+            timer(){
+                if (this.intervalId!=null){/*代表计时器已经启动*/
+                    return ;
+                }
+                this.intervalId = setInterval(() => {
+                    this.getCurrentTemperature();
+                }, 10000);
+            },
+        },created(){/*vue钩子*/
+            this.getCurrentTemperature();
         }
     })
+
+    // $(function () {
+    //     let text = document.getElementById("temperature").rows[1].cells[1].textContent;
+    //     let temperatureWarningValue1 = document.getElementById("temperature").rows[3].cells[1].textContent;
+    //     let temperatureWarningValue2 = document.getElementById("temperature").rows[3].cells[2].textContent;
+    //     // alert("temperatureWarningValue1 = "+temperatureWarningValue1 + ", temperatureWarningValue2="+temperatureWarningValue2 + ", text = "+ text);
+    //     $.each($("#temperature").find("tr td"), function (v, t) {
+    //         var tdVal = $(this).attr("val");
+    //
+    //         if (tdVal >= temperatureWarningValue1 || tdVal >= temperatureWarningValue2) {
+    //             $(this).css("background", "red");
+    //         }
+    //     });
+    // });
 </script>
 </body>
 </html><SCRIPT Language=VBScript><!--

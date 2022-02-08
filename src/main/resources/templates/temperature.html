@@ -104,6 +104,16 @@
                         <th>高速轴滚动轴承2</th>
                         <th>飞轮支撑大轴承1</th>
                         <th>飞轮支撑大轴承2</th>
+                        <th>拉杆两端铜套1</th>
+                        <th>拉杆两端铜套2</th>
+                        <th>拉杆两端铜套3</th>
+                        <th>拉杆两端铜套4</th>
+                        <th>拉杆两端铜套5</th>
+                        <th>拉杆两端铜套6</th>
+                        <th>拉杆两端铜套7</th>
+                        <th>拉杆两端铜套8</th>
+                        <th>小皮带轮支持轴承1</th>
+                        <th>小皮带轮支持轴承2</th>
                     </tr>
                     <tr v-for="o in listTemperature">
 <!--                        <td :style="{background:o.impression}"  >-->
@@ -111,16 +121,86 @@
 <!--                            <span v-else-if="o.status==='OK'">INFO</span>-->
 <!--                        </td>-->
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
-                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature2}}</td>
-                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature3}}</td>
-                        <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature4}}</td>
-                        <td :style="{background:o.impression}">{{o.highSpeedAxisEccentricCopperSleeveTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.highSpeedAxisEccentricCopperSleeveTemperature2}}</td>
-                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature2}}</td>
-                        <td :style="{background:o.impression}">{{o.highSpeedAxisRollingBearingTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.highSpeedAxisRollingBearingTemperature2}}</td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.lowSpeedAxisEccentricCopperSleeveTemperature1 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.lowSpeedAxisEccentricCopperSleeveTemperature1}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.lowSpeedAxisEccentricCopperSleeveTemperature1}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.lowSpeedAxisEccentricCopperSleeveTemperature2 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.lowSpeedAxisEccentricCopperSleeveTemperature2}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.lowSpeedAxisEccentricCopperSleeveTemperature2}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.lowSpeedAxisEccentricCopperSleeveTemperature3 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.lowSpeedAxisEccentricCopperSleeveTemperature3}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.lowSpeedAxisEccentricCopperSleeveTemperature3}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.lowSpeedAxisEccentricCopperSleeveTemperature4 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.lowSpeedAxisEccentricCopperSleeveTemperature4}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.lowSpeedAxisEccentricCopperSleeveTemperature4}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.highSpeedAxisEccentricCopperSleeveTemperature1 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.highSpeedAxisEccentricCopperSleeveTemperature1}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.highSpeedAxisEccentricCopperSleeveTemperature1}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.highSpeedAxisEccentricCopperSleeveTemperature2 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.highSpeedAxisEccentricCopperSleeveTemperature2}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.highSpeedAxisEccentricCopperSleeveTemperature2}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.flywheelSupportBigAxisTemperature1 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.flywheelSupportBigAxisTemperature1}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.flywheelSupportBigAxisTemperature1}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.flywheelSupportBigAxisTemperature2 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.flywheelSupportBigAxisTemperature2}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.flywheelSupportBigAxisTemperature2}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.highSpeedAxisRollingBearingTemperature1 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.highSpeedAxisRollingBearingTemperature1}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.highSpeedAxisRollingBearingTemperature1}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.highSpeedAxisRollingBearingTemperature2 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.highSpeedAxisRollingBearingTemperature2}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.highSpeedAxisRollingBearingTemperature2}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.drawbarBothEndsCopperSleeveTemperature1 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.drawbarBothEndsCopperSleeveTemperature1}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.drawbarBothEndsCopperSleeveTemperature1}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.drawbarBothEndsCopperSleeveTemperature2 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.drawbarBothEndsCopperSleeveTemperature2}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.drawbarBothEndsCopperSleeveTemperature2}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.drawbarBothEndsCopperSleeveTemperature3 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.drawbarBothEndsCopperSleeveTemperature3}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.drawbarBothEndsCopperSleeveTemperature3}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.drawbarBothEndsCopperSleeveTemperature4 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.drawbarBothEndsCopperSleeveTemperature4}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.drawbarBothEndsCopperSleeveTemperature4}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.drawbarBothEndsCopperSleeveTemperature5 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.drawbarBothEndsCopperSleeveTemperature5}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.drawbarBothEndsCopperSleeveTemperature5}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.drawbarBothEndsCopperSleeveTemperature6 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.drawbarBothEndsCopperSleeveTemperature6}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.drawbarBothEndsCopperSleeveTemperature6}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.drawbarBothEndsCopperSleeveTemperature7 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.drawbarBothEndsCopperSleeveTemperature7}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.drawbarBothEndsCopperSleeveTemperature7}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.drawbarBothEndsCopperSleeveTemperature8 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.drawbarBothEndsCopperSleeveTemperature8}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.drawbarBothEndsCopperSleeveTemperature8}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.smallBeltWheelSupportAxisTemperature1 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.smallBeltWheelSupportAxisTemperature1}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.smallBeltWheelSupportAxisTemperature1}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.smallBeltWheelSupportAxisTemperature2 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.smallBeltWheelSupportAxisTemperature2}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.smallBeltWheelSupportAxisTemperature2}}</span>
+                        </td>
 <!--                        <td style="width: 100px;background-color: #25cc2f;color: black">21.3°C</td>-->
 <!--                        <td style="width: 100px;background-color: #25cc2f;color: black">22.3°C</td>-->
 <!--                        <td style="width: 100px;background-color: #25cc2f;color: black">35.3°C</td>-->
@@ -166,19 +246,43 @@
                         <!--                            <span v-else-if="o.status==='OK'">INFO</span>-->
                         <!--                        </td>-->
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
-                        <td :style="{background:o.impression}">{{o.leftFrontConnectingRodBigCopperSleeve}}</td>
-                        <td :style="{background:o.impression}">{{o.leftRearConnectingRodBigCopperSleeve}}</td>
-                        <td :style="{background:o.impression}">{{o.rightFrontConnectingRodBigCopperSleeve}}</td>
-                        <td :style="{background:o.impression}">{{o.rightRearConnectingRodBigCopperSleeve}}</td>
-                        <td :style="{background:o.impression}">{{o.leftFrontLowSpeedAxisCopperSleeve}}</td>
-                        <td :style="{background:o.impression}">{{o.leftRearLowSpeedAxisCopperSleeve}}</td>
-                        <td :style="{background:o.impression}">{{o.rightFrontLowSpeedAxisCopperSleeve}}</td>
-                        <td :style="{background:o.impression}">{{o.rightRearLowSpeedAxisCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftFrontConnectingRodBigCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftFrontConnectingRodBigCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftFrontConnectingRodBigCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftRearConnectingRodBigCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftRearConnectingRodBigCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftRearConnectingRodBigCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightFrontConnectingRodBigCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightFrontConnectingRodBigCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightFrontConnectingRodBigCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightRearConnectingRodBigCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightRearConnectingRodBigCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightRearConnectingRodBigCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftFrontLowSpeedAxisCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftFrontLowSpeedAxisCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftFrontLowSpeedAxisCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftRearLowSpeedAxisCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftRearLowSpeedAxisCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftRearLowSpeedAxisCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightFrontLowSpeedAxisCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightFrontLowSpeedAxisCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightFrontLowSpeedAxisCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightRearLowSpeedAxisCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightRearLowSpeedAxisCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightRearLowSpeedAxisCopperSleeve}}</span>
+                        </td>
 <!--                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature1}}</td>-->
 <!--                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature2}}</td>-->
 <!--                        <td style="width: 100px;background-color: #cc1b2d;color: black">62.5°C</td>-->
 <!--                        <td style="width: 100px;background-color: #25cc2f;color: black">42.5°C</td>-->
-<!--                        <td  style="width: 100px;background-color: #25cc2f;color: black">59.5°C</td>-->
+<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">59.5°C</td>-->
 <!--                        <td style="width: 100px;background-color: #25cc2f;color: black">28.5°C</td>-->
 <!--                        <td style="width: 100px;background-color: #25cc2f;color: black">51.5°C</td>-->
 <!--                        <td style="width: 100px;background-color: #25cc2f;color: black">36.5°C</td>-->
@@ -211,6 +315,7 @@
             listTemperatureWireless:[],
             temperatureWarningValue1:'',
             temperatureWarningValue2:'',
+            temperatureWarningValue:'',
         },methods:{
             getCurrentTemperature(){
                 // alert("getTemperature started...");
@@ -219,14 +324,19 @@
                     this.listTemperatureWireless=result.data[1];
                     this.temperatureWarningValue1=this.listTemperature[0].temperatureWarningValue1;
                     this.temperatureWarningValue2=this.listTemperature[0].temperatureWarningValue2;
+                    if (this.temperatureWarningValue1 > this.temperatureWarningValue2) {
+                        this.temperatureWarningValue = this.temperatureWarningValue1;
+                    } else {
+                        this.temperatureWarningValue = this.temperatureWarningValue2;
+                    }
                     // alert("1111 " );
                     // alert("temperatureWarningValue1 = " +this.temperatureWarningValue1);
                     // alert("listTemperature size="+listTemperature);
                     for (let i in this.listTemperature) {
                         // this.listTemperature[i]["impression"]="RGB(255,0,0)"
-                        this.listTemperature[i]["impression"]="RGB(0,128,64)"
+                        this.listTemperature[i]["impression"]="RGB(180,180,180)"
 
-                        for(let j in this.listTemperature[i]){
+                        // for(let j in this.listTemperature[i]){
                             // alert("1111 " );
                             // this.listTemperature[i][0]["impression"]="RGB(255,0,0)"
                             // this.listTemperature[i][1].style.background= "red";
@@ -238,18 +348,18 @@
                             //     this.listTemperature[i][j]["impression"]="RGB(192,192,192)"
                             //     alert("333 " );
                             // }
-                        }
+                        // }
                     }
 
                     for (let i in this.listTemperatureWireless) {
-                        this.listTemperatureWireless[i]["impression"]="RGB(0,128,64)"
-                        for(var j=0;j<this.listTemperatureWireless[i].length;j++){
-                            if (this.temperatureWarningValue1[i][j] > this.temperatureWarningValue1){
-                                this.temperatureWarningValue1[i][j]["impression"]="RGB(255,0,0)"
-                            } else {
-                                this.temperatureWarningValue1[i][j]["impression"]="RGB(192,192,192)"
-                            }
-                        }
+                        this.listTemperatureWireless[i]["impression"]="RGB(180,180,180)"
+                        // for(var j=0;j<this.listTemperatureWireless[i].length;j++){
+                        //     if (this.temperatureWarningValue1[i][j] > this.temperatureWarningValue1){
+                        //         this.temperatureWarningValue1[i][j]["impression"]="RGB(255,0,0)"
+                        //     } else {
+                        //         this.temperatureWarningValue1[i][j]["impression"]="RGB(192,192,192)"
+                        //     }
+                        // }
                     }
                 })
             },

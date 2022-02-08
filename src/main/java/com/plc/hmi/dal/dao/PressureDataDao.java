@@ -43,9 +43,9 @@ public class PressureDataDao {
             for(HashMap map : resList) {
                pressResult = HmiUtils.getString(map.get(PressureDataEntityEnum.PRESS_RESULT.getCode()));
                if(HmiConstants.OK.equalsIgnoreCase(pressResult)) {
-                   entity.setSuccessAmount(HmiUtils.getBigDicimal(map.get(PressureDataEntityEnum.COUNT.getCode())));
+                   entity.setSuccessAmount(HmiUtils.getBigDecimal(map.get(PressureDataEntityEnum.COUNT.getCode())));
                } else if(HmiConstants.NOK.equalsIgnoreCase(pressResult)) {
-                   entity.setFailAmount(HmiUtils.getBigDicimal(map.get(PressureDataEntityEnum.COUNT.getCode())));
+                   entity.setFailAmount(HmiUtils.getBigDecimal(map.get(PressureDataEntityEnum.COUNT.getCode())));
                }
             }
         }

@@ -129,7 +129,7 @@ public class HmiUtils  {
         }
     }
 
-    public static final BigDecimal getBigDicimal(Object obj) {
+    public static final BigDecimal getBigDecimal(Object obj) {
         if(obj == null) {
             return new BigDecimal(0);
         } else {
@@ -140,6 +140,18 @@ public class HmiUtils  {
                 return new BigDecimal(0);
             }
         }
+    }
+
+    public static final BigDecimal getBigDecimalWithScale2(Object obj) {
+        BigDecimal bd = new BigDecimal(0);
+        if(obj != null) {
+            try {
+                bd = new BigDecimal(getString(obj)).setScale(2, BigDecimal.ROUND_HALF_UP);
+            } catch (NumberFormatException numberFormatException) {
+                logger.info("number format error" + numberFormatException.getMessage());
+            }
+        }
+        return bd;
     }
 
     public static final String appendString(String s1,String s2) {

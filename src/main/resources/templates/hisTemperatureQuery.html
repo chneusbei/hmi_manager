@@ -7,7 +7,7 @@
     <link rel="icon" href="favicon.ico" type="image/ico">
     <meta name="author" content="yinqi">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+<!--    <link href="css/materialdesignicons.min.css" rel="stylesheet">-->
     <link href="css/style.min.css" rel="stylesheet">
     <script th:src="@{/vue.min.js}"></script>
     <script th:src="@{/axios.min.js}"></script>
@@ -66,14 +66,25 @@
                         <tr>
                             <td>PLC名：
                                 <div class="card">
-                                    <input  type="text" id="plcName"
-                                           name="plcName" value=""  v-model="plcName"/>
+                                    <select name="plcName" v-model="plcName" style="width:100px;margin-right: 30px;margin-left: 10px;">
+                                        <option value=""  selected="selected">无</option>
+                                        <option value="A-1">压机一</option>
+                                        <option value="A-2">压机二</option>
+                                        <option value="A-3">压机三</option>
+                                        <option value="A-4">压机四</option>
+                                        <option value="A-5">压机五</option>
+                                        <option value="A-W1">压机一无线</option>
+                                        <option value="A-W2">压机二无线</option>
+                                        <option value="A-W3">压机三无线</option>
+                                        <option value="A-W4">压机四无线</option>
+                                        <option value="A-W5">压机五无线</option>
+                                    </select>
                                 </div>
                             </td>
                             <td>温度点名称：
                                 <div class="card">
-                                    <select name="temperatureName" v-model="temperatureName" style="width:500px;margin-right: 30px;margin-left: 10px;">
-                                        <option value="" selected>无</option>
+                                    <select name="temperatureName" v-model="temperatureName" style="width:200px;margin-right: 30px;margin-left: 10px;">
+                                        <option value=""  selected="selected" >无</option>
                                         <option value="getLowSpeedAxisEccentricCopperSleeveTemperature1">低速轴偏心铜套温度检测1</option>
                                         <option value="getLowSpeedAxisEccentricCopperSleeveTemperature2">低速轴偏心铜套温度检测2</option>
                                         <option value="getLowSpeedAxisEccentricCopperSleeveTemperature3">低速轴偏心铜套温度检测3</option>
@@ -112,8 +123,8 @@
 <!--                                        <option value="getBackupTemperature9">备用温度检测9</option>-->
 <!--                                        <option value="getBackupTemperature10">备用温度检测10</option>-->
 <!--                                        <option value="getBackupTemperature11">备用温度检测11</option>-->
-                                        <option value="getTemperatureWarningValue1">温度警戒值1</option>
-                                        <option value="getTemperatureWarningValue2">温度警戒值2</option>
+<!--                                        <option value="getTemperatureWarningValue1">温度警戒值1</option>-->
+<!--                                        <option value="getTemperatureWarningValue2">温度警戒值2</option>-->
                                     </select>
                                 </div>
                             </td>
@@ -129,7 +140,7 @@
                                            name="endDate" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd"  v-model="endDate"/>
                                 </div>
                             </td>
-                            <td><input type="button" @click="getgraph()" value="查看" style="background-color: #33CABB;width: 70px;height: 35px;color: white"></td>
+                            <td><input type="button" @click="getGraph()" value="查看" style="background-color: #33CABB;width: 70px;height: 35px;color: white"></td>
                         </tr>
                     </table>
 <!--                <input type="button" @click="getgraph()" value="查看" style="background-color: #33CABB;width: 70px;height: 35px;color: white">-->
@@ -167,7 +178,7 @@
             plcName:'',
             temperatureName:'',
         },methods:{
-            getgraph() {
+            getGraph() {
                 // alert("get temperature graph");
                 let arr=[];
                 let myChart= echarts.init(document.getElementById('main'));

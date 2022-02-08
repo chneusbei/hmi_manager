@@ -7,6 +7,7 @@
 
     <script th:src="@{/vue.min.js}"></script>
     <script th:src="@{/axios.min.js}"></script>
+    <script th:src="@{/moment.min.js}"></script>
     <meta name="author" content="yinqi">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!--时间选择插件-->
@@ -105,7 +106,7 @@
                     </tr>
                         <tr v-for="o in listAlarm">
                             <td :style="{background:o.impression}">{{o.id}}</td>
-                            <td :style="{background:o.impression}">{{o.createTime}}</td>
+                            <td :style="{background:o.impression}">{{FormatDate(o.createTime)}}</td>
                             <td :style="{background:o.impression}">{{o.temperatureName}}</td>
                             <td :style="{background:o.impression}">{{o.temperatureValue}}</td>
                             <td :style="{background:o.impression}">{{o.temperatureWarningValue}}</td>
@@ -169,6 +170,17 @@
                     alert(error)
                 })
             },
+            FormatDate: function(date){
+                return moment(date).format('YYYY-MM-DD HH:mm:ss');
+            },
+        timer(){
+            if (this.intervalId!=null){/*代表计时器已经启动*/
+                return ;
+            }
+            this.intervalId = setInterval(() => {
+                this.getCurrentTemperature();
+            }, 10000);
+        },
         },created(){/*vue钩子*/
             this.queryHisAlarm1();
         }
