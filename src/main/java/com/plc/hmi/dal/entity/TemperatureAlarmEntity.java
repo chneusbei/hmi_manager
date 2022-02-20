@@ -1,17 +1,16 @@
 package com.plc.hmi.dal.entity;
 
-import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.base.AbstractBaseEntity;
-import com.plc.hmi.util.HmiUtils;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class TemperatureAlarmEntity extends AbstractBaseEntity {
     //批次号
-    private Long temperatureBatchId;
+    private Long temperatureId;
     //压装日期 YYYYMMDD
     private String handleDate;
+    //A线B线
+    private String lineType;
     //对象名称
     private String temperatureName;
     //温度值
@@ -23,20 +22,21 @@ public class TemperatureAlarmEntity extends AbstractBaseEntity {
 
     }
 
-    public TemperatureAlarmEntity(Long temperatureBatchId, String handleDate, String temperatureName, BigDecimal temperatureValue, BigDecimal temperatureWarningValue) {
-        this.setTemperatureBatchId(temperatureBatchId);
+    public TemperatureAlarmEntity(Long temperatureId, String handleDate, String lineType, String temperatureName, BigDecimal temperatureValue, BigDecimal temperatureWarningValue) {
+        this.setTemperatureId(temperatureId);
         this.setHandleDate(handleDate);
+        this.setLineType(lineType);
         this.setTemperatureName(temperatureName);
         this.setTemperatureValue(temperatureValue);
         this.setTemperatureWarningValue(temperatureWarningValue);
     }
 
-    public Long getTemperatureBatchId() {
-        return temperatureBatchId;
+    public Long getTemperatureId() {
+        return temperatureId;
     }
 
-    public void setTemperatureBatchId(Long temperatureBatchId) {
-        this.temperatureBatchId = temperatureBatchId;
+    public void setTemperatureId(Long temperatureId) {
+        this.temperatureId = temperatureId;
     }
 
     public String getTemperatureName() {
@@ -69,5 +69,13 @@ public class TemperatureAlarmEntity extends AbstractBaseEntity {
 
     public void setHandleDate(String handleDate) {
         this.handleDate = handleDate;
+    }
+
+    public String getLineType() {
+        return lineType;
+    }
+
+    public void setLineType(String lineType) {
+        this.lineType = lineType;
     }
 }

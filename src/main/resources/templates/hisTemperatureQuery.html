@@ -65,34 +65,50 @@
                     <table class="imagetable">
                         <tr>
                             <td>PLC名：
-                                <div class="card">
+                                <div  v-if="lineType == lineTypeB" class="card">
                                     <select name="plcName" v-model="plcName" style="width:100px;margin-right: 30px;margin-left: 10px;">
                                         <option value=""  selected="selected">无</option>
-                                        <option value="A-1">压机一</option>
-                                        <option value="A-2">压机二</option>
-                                        <option value="A-3">压机三</option>
-                                        <option value="A-4">压机四</option>
-                                        <option value="A-5">压机五</option>
-                                        <option value="A-W1">压机一无线</option>
-                                        <option value="A-W2">压机二无线</option>
-                                        <option value="A-W3">压机三无线</option>
-                                        <option value="A-W4">压机四无线</option>
-                                        <option value="A-W5">压机五无线</option>
+                                        <option value="B-1">压机一</option>
+                                        <option value="B-2">压机二</option>
+                                        <option value="B-3">压机三</option>
+                                        <option value="B-4">压机四</option>
+                                        <option value="B-5">压机五</option>
+                                        <option value="B-W1">压机一无线</option>
+                                        <option value="B-W2">压机二无线</option>
+                                        <option value="B-W3">压机三无线</option>
+                                        <option value="B-W4">压机四无线</option>
+                                        <option value="B-W5">压机五无线</option>
                                     </select>
+                                </div>
+                                <div  v-if="lineType == lineTypeA" class="card">
+                                        <select name="plcName" v-model="plcName" style="width:100px;margin-right: 30px;margin-left: 10px;">
+                                            <option value=""  selected="selected">无</option>
+                                            <option value="B-1">压机一</option>
+                                            <option value="B-2">压机二</option>
+                                            <option value="B-3">压机三</option>
+                                            <option value="B-4">压机四</option>
+                                            <option value="B-W1">压机一无线</option>
+                                            <option value="B-W2">压机二无线</option>
+                                            <option value="B-W3">压机三无线</option>
+                                            <option value="B-W4">压机四无线</option>
+                                            <option value="B-W5">压机五无线</option>
+                                        </select>
                                 </div>
                             </td>
                             <td>温度点名称：
-                                <div class="card">
+                                <div v-if="lineType == lineTypeB" class="card">
                                     <select name="temperatureName" v-model="temperatureName" style="width:200px;margin-right: 30px;margin-left: 10px;">
                                         <option value=""  selected="selected" >无</option>
-                                        <option value="getLowSpeedAxisEccentricCopperSleeveTemperature1">低速轴偏心铜套温度检测1</option>
-                                        <option value="getLowSpeedAxisEccentricCopperSleeveTemperature2">低速轴偏心铜套温度检测2</option>
-                                        <option value="getLowSpeedAxisEccentricCopperSleeveTemperature3">低速轴偏心铜套温度检测3</option>
-                                        <option value="getLowSpeedAxisEccentricCopperSleeveTemperature4">低速轴偏心铜套温度检测4</option>
-                                        <option value="getHighSpeedAxisEccentricCopperSleeveTemperature1">高速轴偏心铜套温度检测1</option>
-                                        <option value="getHighSpeedAxisEccentricCopperSleeveTemperature2">高速轴偏心铜套温度检测2</option>
-                                        <option value="getFlywheelSupportBigAxisTemperature1">飞轮支撑大轴承温度检测1</option>
-                                        <option value="getFlywheelSupportBigAxisTemperature2">飞轮支撑大轴承温度检测2</option>
+                                        <option value="getLowSpeedAxisEccentricCopperSleeveTemperature1">低速轴偏心铜套温度1</option>
+                                        <option value="getLowSpeedAxisEccentricCopperSleeveTemperature2">低速轴偏心铜套温度2</option>
+                                        <option value="getLowSpeedAxisEccentricCopperSleeveTemperature3">低速轴偏心铜套温度3</option>
+                                        <option value="getLowSpeedAxisEccentricCopperSleeveTemperature4">低速轴偏心铜套温度4</option>
+                                        <option value="getHighSpeedAxisEccentricCopperSleeveTemperature1">高速轴偏心铜套温度1</option>
+                                        <option value="getHighSpeedAxisEccentricCopperSleeveTemperature2">高速轴偏心铜套温度2</option>
+                                        <option value="getHighSpeedAxisRollingBearingTemperature1">高速轴滚动轴承温度1</option>
+                                        <option value="getHighSpeedAxisRollingBearingTemperature2">高速轴滚动轴承温度2</option>
+                                        <option value="getFlywheelSupportBigAxisTemperature1">飞轮支撑大轴承温度1</option>
+                                        <option value="getFlywheelSupportBigAxisTemperature2">飞轮支撑大轴承温度2</option>
                                         <option value="getDrawbarBothEndsCopperSleeveTemperature1">拉杆两端铜套温度检测1</option>
                                         <option value="getDrawbarBothEndsCopperSleeveTemperature2">拉杆两端铜套温度检测2</option>
                                         <option value="getDrawbarBothEndsCopperSleeveTemperature3">拉杆两端铜套温度检测3</option>
@@ -103,28 +119,51 @@
                                         <option value="getDrawbarBothEndsCopperSleeveTemperature8">拉杆两端铜套温度检测8</option>
                                         <option value="getSmallBeltWheelSupportAxisTemperature1">小皮带轮支撑轴承温度检测1</option>
                                         <option value="getSmallBeltWheelSupportAxisTemperature2">小皮带轮支撑轴承温度检测2</option>
-                                        <option value="getTripodBottomCopperSleeveTemperature1">三脚架下端铜套温度检测1</option>
-                                        <option value="getTripodBottomCopperSleeveTemperature2">三脚架下端铜套温度检测2</option>
-                                        <option value="getTripodBottomCopperSleeveTemperature3">三脚架下端铜套温度检测3</option>
-                                        <option value="getTripodBottomCopperSleeveTemperature4">三脚架下端铜套温度检测4</option>
-                                        <option value="getTripodEccentricBigCopperSleeveTemperature1">三脚架偏心大铜套温度检测1</option>
-                                        <option value="getTripodEccentricBigCopperSleeveTemperature2">三脚架偏心大铜套温度检测2</option>
-                                        <option value="getTripodEccentricBigCopperSleeveTemperature3">三脚架偏心大铜套温度检测3</option>
-                                        <option value="getTripodEccentricBigCopperSleeveTemperature4">三脚架偏心大铜套温度检测4</option>
-<!--                                        <option value="getBackupTemperature0">备用温度检测0</option>-->
-<!--                                        <option value="getBackupTemperature1">备用温度检测1</option>-->
-<!--                                        <option value="getBackupTemperature2">备用温度检测2</option>-->
-<!--                                        <option value="getBackupTemperature3">备用温度检测3</option>-->
-<!--                                        <option value="getBackupTemperature4">备用温度检测4</option>-->
-<!--                                        <option value="getBackupTemperature5">备用温度检测5</option>-->
-<!--                                        <option value="getBackupTemperature6">备用温度检测6</option>-->
-<!--                                        <option value="getBackupTemperature7">备用温度检测7</option>-->
-<!--                                        <option value="getBackupTemperature8">备用温度检测8</option>-->
-<!--                                        <option value="getBackupTemperature9">备用温度检测9</option>-->
-<!--                                        <option value="getBackupTemperature10">备用温度检测10</option>-->
-<!--                                        <option value="getBackupTemperature11">备用温度检测11</option>-->
-<!--                                        <option value="getTemperatureWarningValue1">温度警戒值1</option>-->
-<!--                                        <option value="getTemperatureWarningValue2">温度警戒值2</option>-->
+                                        <option value="getLeftFrontTripodEccentricBigCopperSleeve">左前三脚架偏心大铜套</option>
+                                        <option value="getLeftRearTripodEccentricBigCopperSleeve">左后三脚架偏心大铜套</option>
+                                        <option value="getRightFrontTripodEccentricBigCopperSleeve">右前三脚架偏心大铜套</option>
+                                        <option value="getRightRearTripodEccentricBigCopperSleeve">右后三脚架偏心大铜套</option>
+                                        <option value="getLeftFrontTripodBottomCopperSleeve">左前三脚架下端铜套</option>
+                                        <option value="getLeftRearTripodBottomCopperSleeve">左后三脚架下端铜套</option>
+                                        <option value="getRightFrontTripodBottomCopperSleeve">右前三脚架下端铜套</option>
+                                        <option value="getRightRearTripodBottomCopperSleeve">右后三脚架下端铜套</option>
+                                        <option value="getLeftFrontConnectingRodBigCopperSleeve">左前连杆大铜套</option>
+                                        <option value="getLeftRearConnectingRodBigCopperSleeve">左后连杆大铜套</option>
+                                        <option value="getRightFrontConnectingRodBigCopperSleeve">右前连杆大铜套</option>
+                                        <option value="getRightRearConnectingRodBigCopperSleeve">右后连杆大铜套</option>
+                                        <option value="getLeftFrontLowSpeedAxisCopperSleeve">左前低速轴铜套</option>
+                                        <option value="getLeftRearLowSpeedAxisCopperSleeve">左后低速轴铜套</option>
+                                        <option value="getRightFrontLowSpeedAxisCopperSleeve">右前低速轴铜套</option>
+                                        <option value="getRightRearLowSpeedAxisCopperSleeve">右后低速轴铜套</option>
+                                    </select>
+                                </div>
+                                <div v-if="lineType == lineTypeA" class="card">
+                                    <select name="temperatureName" v-model="temperatureName" style="width:200px;margin-right: 30px;margin-left: 10px;">
+                                        <option value=""  selected="selected" >无</option>
+                                        <option value="getLeftFrontEccentricWheel">偏心轮左前</option>
+                                        <option value="getLeftRearEccentricWheel">偏心轮左后</option>
+                                        <option value="getRightFrontEccentricWheel">偏心轮右前</option>
+                                        <option value="getRightRearEccentricWheel">偏心轮右后</option>
+                                        <option value="getLeftFrontConnectingRod">连杆左前</option>
+                                        <option value="getLeftRearConnectingRod">连杆左后</option>
+                                        <option value="getRightFrontConnectingRod">连杆右前</option>
+                                        <option value="getRightRearConnectingRod">连杆右后</option>
+                                        <option value="getRightFrontHighSpeedGearBearingTemperature">前右高速齿轮轴承</option>
+                                        <option value="getRightRearHighSpeedGearBearingTemperature">右后高速齿轮轴承</option>
+                                        <option value="getLeftFrontHighSpeedGearBearingTemperature">左前高速齿轮轴承</option>
+                                        <option value="getLeftRearHighSpeedGearBearingTemperature">左后高速齿轮轴承</option>
+                                        <option value="getRightFrontMiddleGearBearingTemperature">右前中间齿轮轴承</option>
+                                        <option value="getRightRearMiddleGearBearingTemperature">右后中间齿轮轴承</option>
+                                        <option value="getLeftFrontMiddleGearBearingTemperature">左前中间齿轮轴承</option>
+                                        <option value="getLeftRearMiddleGearBearingTemperature">左后中间齿轮轴承</option>
+                                        <option value="getMainAxisGearBearingTemperature1">主轴齿轮轴承1</option>
+                                        <option value="getMainAxisGearBearingTemperature2">主轴齿轮轴承2</option>
+                                        <option value="getMainAxisGearBearingTemperature3">主轴齿轮轴承3</option>
+                                        <option value="getMainAxisGearBearingTemperature4">主轴齿轮轴承4</option>
+                                        <option value="getMainAxisGearBearingTemperature5">主轴齿轮轴承5</option>
+                                        <option value="getMainAxisGearBearingTemperature6">主轴齿轮轴承6</option>
+                                        <option value="getMainAxisGearBearingTemperature7">主轴齿轮轴承7</option>
+                                        <option value="getMainAxisGearBearingTemperature8">主轴齿轮轴承8</option>
                                     </select>
                                 </div>
                             </td>
@@ -177,6 +216,9 @@
             endDate:'',
             plcName:'',
             temperatureName:'',
+            lineType:'B',
+            lineTypeB:'B',
+            lineTypeA:'A',
         },methods:{
             getGraph() {
                 // alert("get temperature graph");
@@ -237,9 +279,17 @@
                     myChart.hideLoading();
                 });
 
-            }
+            },
+            queryLineType(){
+                axios.get("/geLineType").then(result=>{
+                    this.lineType=result.data;
+                    // alert("lineType="+result.data);
+                }).catch(function(error){
+                    alert(error)
+                })
+            },
         }, created(){
-            // this.getGraph();
+            this.queryLineType();
         }
     });
     // 指定图表的配置项和数据

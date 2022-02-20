@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /***
@@ -24,11 +25,11 @@ import java.util.*;
 @Service
 @Component
 public class Plc4xCurveDataService extends Plc4xBaseService{
-    @Autowired
+    @Resource
     private PressureCurveService pressureCurveService;
-    @Autowired
+    @Resource
     private PropertyService propertyService;
-    @Autowired
+    @Resource
     private  Plc4xCurveStatusService plc4xCurveStatusService;
 
     private final Log logger = LogFactory.getLog(Plc4xCurveDataService.class);

@@ -142,11 +142,11 @@ public class HmiUtils  {
         }
     }
 
-    public static final BigDecimal getBigDecimalWithScale2(Object obj) {
+    public static final BigDecimal getBigDecimalWithoutScale(Object obj) {
         BigDecimal bd = new BigDecimal(0);
         if(obj != null) {
             try {
-                bd = new BigDecimal(getString(obj)).setScale(2, BigDecimal.ROUND_HALF_UP);
+                bd = new BigDecimal(getString(obj)).setScale(0, BigDecimal.ROUND_DOWN);
             } catch (NumberFormatException numberFormatException) {
                 logger.info("number format error" + numberFormatException.getMessage());
             }

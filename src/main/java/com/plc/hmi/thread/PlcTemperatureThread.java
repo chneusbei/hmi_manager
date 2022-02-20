@@ -31,11 +31,13 @@ public class PlcTemperatureThread implements Runnable {
     @Override
     public synchronized void run() {
         int temperatureFetchFrequency = HmiUtils.getIntValue(propertyService.getProperty(ConfigConstants.TEMPERATURE_FETCH_FREQUENCY));
+        String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
+
         while(true) {
             List<PlcConfigEntity> plcList = plcConfigService.getPlcList();
             if(!CollectionUtils.isEmpty(plcList)) {
                 for(PlcConfigEntity plcConfigEntity: plcList) {
-                    service.getTemperatureNewFromPlc(plcConfigEntity);
+                    service.getTemperatureNewFromPlc(plcConfigEntity, lineType);
                 }
             } else {
                 System.out.println(">>>PLC列表为空，或者未能正确获取到PLC列表， 请检查plc_config表中PLC配置");

@@ -26,9 +26,8 @@ public class TemperatureAlarmService extends AbstractBaseService{
     /**
      * 历史报警信息查询
      */
-    public List<TemperatureAlarmEntity> getTemperatureAlarmWithParam(@RequestParam(value = "startDate",required = true) String startDate,
-                                                              @RequestParam(value = "endDate",required = true) String endDate){
-        List<TemperatureAlarmEntity> temperatureAlarmList = temperatureAlarmEntity.getTemperatureAlarmWithParam(startDate, endDate);
+    public List<TemperatureAlarmEntity> getTemperatureAlarmWithParam(String startDate, String endDate, String lineType){
+        List<TemperatureAlarmEntity> temperatureAlarmList = temperatureAlarmEntity.getTemperatureAlarmWithParam(startDate, endDate, lineType);
         return temperatureAlarmList;
 
     }

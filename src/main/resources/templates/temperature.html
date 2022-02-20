@@ -78,9 +78,15 @@
                 <table class="imagetable">
                     <tr>
                         <td  width="25%"></td>
-                        <td height="25px" style="width: 100px;background-color: #ccbf42;color: black">【温度警戒值1】{{temperatureWarningValue1}} &nbsp;摄氏度</td>
+                        <td height="25px" style="width: 100px;color: black">
+                            <span v-if="lineType == lineTypeB" style="height:50px;align:center;colspan:2;background-color: #ccbf42;">【温度警戒值1】{{temperatureWarningValue1}} &nbsp;摄氏度</span>
+                            <span v-if="lineType == lineTypeA" style="height:50px;align:center;colspan:2;background-color: #ccbf42;">【温度警戒值】{{temperatureWarningValue}} &nbsp;摄氏度</span>
+                        </td>
 
-                        <td height="25px" style="width: 100px;background-color: #ccbf42;color: black">【温度警戒值2】{{temperatureWarningValue2}} &nbsp;摄氏度</td>
+                        <td height="25px" style="width: 100px;color: black">
+                            <span v-if="lineType == lineTypeB" style="height:50px;align:center;colspan:2;background-color: #ccbf42;">【温度警戒值2】{{temperatureWarningValue2}} &nbsp;摄氏度</span>
+                            <span v-if="lineType == lineTypeA" style="height:50px;align:center;colspan:2;background-color: #ccbf42;"></span>
+                        </td>
                     </tr>
                 </table>
                 <table class="imagetable2">
@@ -89,21 +95,18 @@
                     </tr>
                 </table>
                 <table class="imagetable2">
-
-                    <tr>
+                    <tr v-if="lineType == lineTypeB">
                         <th>PLC名</th>
-<!--                        <th>PLC连接</th>-->
-<!--                        <th>温度状态</th>-->
                         <th>低速轴偏心铜套1</th>
                         <th>低速轴偏心铜套2</th>
                         <th>低速轴偏心铜套3</th>
                         <th>低速轴偏心铜套4</th>
                         <th>高速轴偏心铜套1</th>
                         <th>高速轴偏心铜套2</th>
-                        <th>高速轴滚动轴承1</th>
-                        <th>高速轴滚动轴承2</th>
                         <th>飞轮支撑大轴承1</th>
                         <th>飞轮支撑大轴承2</th>
+                        <th>高速轴滚动轴承1</th>
+                        <th>高速轴滚动轴承2</th>
                         <th>拉杆两端铜套1</th>
                         <th>拉杆两端铜套2</th>
                         <th>拉杆两端铜套3</th>
@@ -115,11 +118,26 @@
                         <th>小皮带轮支持轴承1</th>
                         <th>小皮带轮支持轴承2</th>
                     </tr>
-                    <tr v-for="o in listTemperature">
-<!--                        <td :style="{background:o.impression}"  >-->
-<!--                            <span v-if="o.status==='WARNING'">WARNING</span>-->
-<!--                            <span v-else-if="o.status==='OK'">INFO</span>-->
-<!--                        </td>-->
+                    <tr v-if="lineType == lineTypeA">
+                        <th>PLC名</th>
+                        <th>右前高速齿轮轴承</th>
+                        <th>右后高速齿轮轴承</th>
+                        <th>左前高速齿轮轴承</th>
+                        <th>左后高速齿轮轴承</th>
+                        <th>右前中间齿轮轴承</th>
+                        <th>右后中间齿轮轴承</th>
+                        <th>左前中间齿轮轴承</th>
+                        <th>左后中间齿轮轴承</th>
+                        <th>主轴齿轮轴承1</th>
+                        <th>主轴齿轮轴承2</th>
+                        <th>主轴齿轮轴承3</th>
+                        <th>主轴齿轮轴承4</th>
+                        <th>主轴齿轮轴承5</th>
+                        <th>主轴齿轮轴承6</th>
+                        <th>主轴齿轮轴承7</th>
+                        <th>主轴齿轮轴承8</th>
+                    </tr>
+                    <tr v-if="lineType == lineTypeB" v-for="o in listTemperature">
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
                         <td :style="{background:o.impression}">
                             <span v-if="o.lowSpeedAxisEccentricCopperSleeveTemperature1 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.lowSpeedAxisEccentricCopperSleeveTemperature1}}</span>
@@ -201,16 +219,74 @@
                             <span v-if="o.smallBeltWheelSupportAxisTemperature2 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.smallBeltWheelSupportAxisTemperature2}}</span>
                             <span v-else style="align:center;background-color: #25cc2f;">{{o.smallBeltWheelSupportAxisTemperature2}}</span>
                         </td>
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">21.3°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">22.3°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">35.3°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">56.3°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">32.3°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">18.3°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">45.3°C</td>-->
-<!--                        <td style="width: 100px;background-color: #cc1b2d;color: black">69.3°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">43.3°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">54.3°C</td>-->
+                    </tr>
+
+                    <tr v-if="lineType == lineTypeA" v-for="o in listTemperature">
+                        <td :style="{background:o.impression}">{{o.plcName}}</td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightFrontHighSpeedGearBearingTemperature >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightFrontHighSpeedGearBearingTemperature}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightFrontHighSpeedGearBearingTemperature}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightRearHighSpeedGearBearingTemperature >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightRearHighSpeedGearBearingTemperature}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightRearHighSpeedGearBearingTemperature}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftFrontHighSpeedGearBearingTemperature >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftFrontHighSpeedGearBearingTemperature}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftFrontHighSpeedGearBearingTemperature}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftRearHighSpeedGearBearingTemperature >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftRearHighSpeedGearBearingTemperature}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftRearHighSpeedGearBearingTemperature}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightFrontMiddleGearBearingTemperature >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightFrontMiddleGearBearingTemperature}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightFrontMiddleGearBearingTemperature}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightRearMiddleGearBearingTemperature >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightRearMiddleGearBearingTemperature}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightRearMiddleGearBearingTemperature}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftFrontMiddleGearBearingTemperature >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftFrontMiddleGearBearingTemperature}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftFrontMiddleGearBearingTemperature}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftRearMiddleGearBearingTemperature >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftRearMiddleGearBearingTemperature}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftRearMiddleGearBearingTemperature}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.mainAxisGearBearingTemperature1 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.mainAxisGearBearingTemperature1}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.mainAxisGearBearingTemperature1}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.mainAxisGearBearingTemperature2 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.mainAxisGearBearingTemperature2}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.mainAxisGearBearingTemperature2}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.mainAxisGearBearingTemperature3 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.mainAxisGearBearingTemperature3}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.mainAxisGearBearingTemperature3}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.mainAxisGearBearingTemperature4 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.mainAxisGearBearingTemperature4}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.mainAxisGearBearingTemperature4}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.mainAxisGearBearingTemperature5 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.mainAxisGearBearingTemperature5}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.mainAxisGearBearingTemperature5}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.mainAxisGearBearingTemperature6 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.mainAxisGearBearingTemperature6}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.mainAxisGearBearingTemperature6}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.mainAxisGearBearingTemperature7 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.mainAxisGearBearingTemperature7}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.mainAxisGearBearingTemperature7}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.mainAxisGearBearingTemperature8 >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.mainAxisGearBearingTemperature8}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.mainAxisGearBearingTemperature8}}</span>
+                        </td>
                     </tr>
                 </table>
                 <table class="imagetable2">
@@ -219,18 +295,8 @@
                     </tr>
                 </table>
                 <table class="imagetable2">
-                    <tr>
+                    <tr v-if="lineType == lineTypeB">
                         <th>PLC名</th>
-<!--                        <th>PLC连接</th>-->
-<!--                        <th>温度状态</th>-->
-<!--                        <th>左前三脚架偏心大铜套</th>-->
-<!--                        <th>左后三脚架偏心大铜套</th>-->
-<!--                        <th>右前三脚架偏心大铜套</th>-->
-<!--                        <th>右后三脚架偏心大铜套</th>-->
-<!--                        <th>左前三脚架下端铜套</th>-->
-<!--                        <th>左后三脚架下端铜套</th>-->
-<!--                        <th>右前三脚架下端铜套</th>-->
-<!--                        <th>右后三脚架下端铜套</th>-->
                         <th>左前连杆大铜套</th>
                         <th>左后连杆大铜套</th>
                         <th>右前连杆大铜套</th>
@@ -239,12 +305,27 @@
                         <th>左后低速轴铜套</th>
                         <th>右前低速轴铜套</th>
                         <th>右后低速轴铜套</th>
+                        <th>左前三脚架偏心大铜套</th>
+                        <th>左后三脚架偏心大铜套</th>
+                        <th>右前三脚架偏心大铜套</th>
+                        <th>右后三脚架偏心大铜套</th>
+                        <th>左前三脚架下端铜套</th>
+                        <th>左后三脚架下端铜套</th>
+                        <th>右前三脚架下端铜套</th>
+                        <th>右后三脚架下端铜套</th>
                     </tr>
-                    <tr v-for="o in listTemperatureWireless">
-                        <!--                        <td :style="{background:o.impression}"  >-->
-                        <!--                            <span v-if="o.status==='WARNING'">WARNING</span>-->
-                        <!--                            <span v-else-if="o.status==='OK'">INFO</span>-->
-                        <!--                        </td>-->
+                    <tr v-if="lineType == lineTypeA">
+                        <th>PLC名</th>
+                        <th>偏心轮左前</th>
+                        <th>偏心轮左后</th>
+                        <th>偏心轮右前</th>
+                        <th>偏心轮右后</th>
+                        <th>连杆左前</th>
+                        <th>连杆左后</th>
+                        <th>连杆右前</th>
+                        <th>连杆右后</th>
+                    </tr>
+                    <tr v-if="lineType == lineTypeB" v-for="o in listTemperatureWireless">
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
                         <td :style="{background:o.impression}">
                             <span v-if="o.leftFrontConnectingRodBigCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftFrontConnectingRodBigCopperSleeve}}</span>
@@ -278,17 +359,75 @@
                             <span v-if="o.rightRearLowSpeedAxisCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightRearLowSpeedAxisCopperSleeve}}</span>
                             <span v-else style="align:center;background-color: #25cc2f;">{{o.rightRearLowSpeedAxisCopperSleeve}}</span>
                         </td>
-<!--                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature1}}</td>-->
-<!--                        <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature2}}</td>-->
-<!--                        <td style="width: 100px;background-color: #cc1b2d;color: black">62.5°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">42.5°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">59.5°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">28.5°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">51.5°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">36.5°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">27.5°C</td>-->
-<!--                        <td style="width: 100px;background-color: #25cc2f;color: black">50.5°C</td>-->
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftFrontTripodEccentricBigCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftFrontTripodEccentricBigCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftFrontTripodEccentricBigCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftRearTripodEccentricBigCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftRearTripodEccentricBigCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftRearTripodEccentricBigCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightFrontTripodEccentricBigCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightFrontTripodEccentricBigCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightFrontTripodEccentricBigCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightRearTripodEccentricBigCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightRearTripodEccentricBigCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightRearTripodEccentricBigCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftFrontTripodBottomCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftFrontTripodBottomCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftFrontTripodBottomCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftRearTripodBottomCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftRearTripodBottomCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftRearTripodBottomCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightFrontTripodBottomCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightFrontTripodBottomCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightFrontTripodBottomCopperSleeve}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightRearTripodBottomCopperSleeve >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightRearTripodBottomCopperSleeve}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightRearTripodBottomCopperSleeve}}</span>
+                        </td>
                     </tr>
+                    <tr  v-if="lineType == lineTypeA"v-for="o in listTemperatureWireless">
+                        <td :style="{background:o.impression}">{{o.plcName}}</td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftFrontEccentricWheel >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftFrontEccentricWheel}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftFrontEccentricWheel}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftRearEccentricWheel >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftRearEccentricWheel}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftRearEccentricWheel}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightFrontEccentricWheel >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightFrontEccentricWheel}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightFrontEccentricWheel}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightRearEccentricWheel >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightRearEccentricWheel}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightRearEccentricWheel}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftFrontConnectingRod >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftFrontConnectingRod}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftFrontConnectingRod}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.leftRearConnectingRod >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.leftRearConnectingRod}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.leftRearConnectingRod}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightFrontConnectingRod >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightFrontConnectingRod}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightFrontConnectingRod}}</span>
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <span v-if="o.rightRearConnectingRod >= temperatureWarningValue" style="align:center;background-color: #cc1b2d;">{{o.rightRearConnectingRod}}</span>
+                            <span v-else style="align:center;background-color: #25cc2f;">{{o.rightRearConnectingRod}}</span>
+                        </td>
+                    </tr>
+
                 </table>
             </main>
             <!--End 页面主要内容-->
@@ -311,6 +450,10 @@
     new Vue({
         el:"#app",
         data:{
+            lineType:'B',
+            lineTypeB:'B',
+            lineTypeA:'A',
+            temperatureWarningValue:'',
             listTemperature:[],
             listTemperatureWireless:[],
             temperatureWarningValue1:'',
@@ -324,10 +467,14 @@
                     this.listTemperatureWireless=result.data[1];
                     this.temperatureWarningValue1=this.listTemperature[0].temperatureWarningValue1;
                     this.temperatureWarningValue2=this.listTemperature[0].temperatureWarningValue2;
-                    if (this.temperatureWarningValue1 > this.temperatureWarningValue2) {
-                        this.temperatureWarningValue = this.temperatureWarningValue1;
-                    } else {
-                        this.temperatureWarningValue = this.temperatureWarningValue2;
+                    this.lineType=this.listTemperature[0].lineType;
+                    this.temperatureWarningValue = this.listTemperature[0].temperatureWarningValueA;
+                    if(this.lineType == this.lineTypeB) {
+                        if (this.temperatureWarningValue1 > this.temperatureWarningValue2) {
+                            this.temperatureWarningValue = this.temperatureWarningValue1;
+                        } else {
+                            this.temperatureWarningValue = this.temperatureWarningValue2;
+                        }
                     }
                     // alert("1111 " );
                     // alert("temperatureWarningValue1 = " +this.temperatureWarningValue1);

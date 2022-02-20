@@ -51,11 +51,26 @@
                 <form>
                 <table class="imagetable" id="temperature">
                     <tr>
-                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><input type="submit" onClick="setPlcId(0)"  value="A-1" style="background-color: #0066CC;color: black" ></td>
-                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><input type="submit" onClick="setPlcId(1)"  value="A-2" style="background-color: #0066CC;color: black" ></td>
-                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><input type="submit" onClick="setPlcId(2)"  value="A-3" style="background-color: #0066CC;color: black" ></td>
-                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><input type="submit" onClick="setPlcId(3)"  value="A-4" style="width: 100px;background-color: #0066CC;color: black" ></td>
-                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><input type="submit" onClick="setPlcId(4)"  value="A-5" style="width: 100px;background-color: #0066CC;color: black" ></td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <input v-if="lineType == lineTypeB"  type="submit" onClick="setPlcId(0)"  value="B-1" style="width: 100px; background-color: #0066CC;color: black" >
+                            <input v-if="lineType == lineTypeA" type="submit" onClick="setPlcId(0)"  value="A-1" style="width: 100px;background-color: #0066CC;color: black" >
+                        </td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <input v-if="lineType == lineTypeB" type="submit" onClick="setPlcId(1)"  value="B-2" style="width: 100px; background-color: #0066CC;color: black" >
+                            <input v-if="lineType == lineTypeA" type="submit" onClick="setPlcId(1)"  value="A-2" style="width: 100px;background-color: #0066CC;color: black" >
+                        </td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <input v-if="lineType == lineTypeB" type="submit" onClick="setPlcId(2)"  value="B-3" style="width: 100px; background-color: #0066CC;color: black" >
+                            <input v-if="lineType == lineTypeA" type="submit" onClick="setPlcId(2)"  value="A-3" style="width: 100px;background-color: #0066CC;color: black" >
+                        </td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <input v-if="lineType == lineTypeB" type="submit" onClick="setPlcId(3)"  value="B-4" style="width: 100px;background-color: #0066CC;color: black" >
+                            <input v-if="lineType == lineTypeA" type="submit" onClick="setPlcId(3)"  value="A-4" style="width: 100px;background-color: #0066CC;color: black" >
+                        </td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <input v-if="lineType == lineTypeB" type="submit" onClick="setPlcId(4)"  value="B-5" style="width: 100px;background-color: #0066CC;color: black" >
+                            <input v-if="lineType == lineTypeA" type="submit" onClick="setPlcId(4)"  value="A-5" style="width: 100px;background-color: #0066CC;color: black" >
+                        </td>
                     </tr>
 
                     <tr>
@@ -67,49 +82,52 @@
                 </tr>
                     <tr>
                         <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><strong><h4>偏心轮温度</h4></strong></td>
-<!--                        <td getStyle(leftFrontTripodEccentricBigCopperSleeve,temperatureWarningValue1,temperatureWarningValue2)>{{leftFrontTripodEccentricBigCopperSleeve}}</td>-->
-<!--                        <td v-if="leftFrontTripodEccentricBigCopperSleeve >= temperatureWarningValue1"  style="height:50px;align:center;colspan:2; background-color: #25cc2f;">{{leftFrontTripodEccentricBigCopperSleeve}}</td>-->
-<!--                        <td v-else  style="height:50px;align:center;colspan:2; background-color: #cc1b2d;">{{leftFrontTripodEccentricBigCopperSleeve}}</td>-->
                         <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
-                            <span v-if="leftFrontTripodEccentricBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{leftFrontTripodEccentricBigCopperSleeve}}</span>
-                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{leftFrontTripodEccentricBigCopperSleeve}}</span>
+                            <span v-if="leftFrontEccentric >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{leftFrontEccentric}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{leftFrontEccentric}}</span>
                         </td>
                         <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
-                            <span v-if="leftRearTripodEccentricBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{leftRearTripodEccentricBigCopperSleeve}}</span>
-                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{leftRearTripodEccentricBigCopperSleeve}}</span>
+                            <span v-if="leftRearEccentric >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{leftRearEccentric}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{leftRearEccentric}}</span>
                         </td>
                         <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
-                            <span v-if="rightFrontTripodEccentricBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{rightFrontTripodEccentricBigCopperSleeve}}</span>
-                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{rightFrontTripodEccentricBigCopperSleeve}}</span>
+                            <span v-if="rightFrontEccentric >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{rightFrontEccentric}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{rightFrontEccentric}}</span>
                         </td>
                         <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
-                            <span v-if="rightRearTripodEccentricBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{rightRearTripodEccentricBigCopperSleeve}}</span>
-                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{rightRearTripodEccentricBigCopperSleeve}}</span>
+                            <span v-if="rightRearEccentric >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{rightRearEccentric}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{rightRearEccentric}}</span>
                         </td>
                     </tr>
                     <tr>
                         <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;"><strong><h4>连杆温度</h4></strong>&nbsp;</td>
                         <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
-                            <span v-if="leftFrontConnectingRodBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{leftFrontConnectingRodBigCopperSleeve}}</span>
-                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{leftFrontConnectingRodBigCopperSleeve}}</span>
+                            <span v-if="leftFrontConnectingRod >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{leftFrontConnectingRod}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{leftFrontConnectingRod}}</span>
                         </td>
                         <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
-                            <span v-if="leftRearConnectingRodBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{leftRearConnectingRodBigCopperSleeve}}</span>
-                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{leftRearConnectingRodBigCopperSleeve}}</span>
+                            <span v-if="leftRearConnectingRod >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{leftRearConnectingRod}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{leftRearConnectingRod}}</span>
                         </td>
                         <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
-                            <span v-if="rightFrontConnectingRodBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{rightFrontConnectingRodBigCopperSleeve}}</span>
-                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{rightFrontConnectingRodBigCopperSleeve}}</span>
+                            <span v-if="rightFrontConnectingRod >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{rightFrontConnectingRod}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{rightFrontConnectingRod}}</span>
                         </td>
                         <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
-                            <span v-if="rightRearConnectingRodBigCopperSleeve >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{rightRearConnectingRodBigCopperSleeve}}</span>
-                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{rightRearConnectingRodBigCopperSleeve}}</span>
+                            <span v-if="rightRearConnectingRod >= temperatureWarningValue" style="height:50px;align:center;colspan:2;background-color: #cc1b2d;">{{rightRearConnectingRod}}</span>
+                            <span v-else style="height:50px;align:center;colspan:2;background-color: #25cc2f;">{{rightRearConnectingRod}}</span>
                         </td>
                     </tr>
                     <tr>
                         <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;" ><strong><h4>警戒温度</h4></strong>&nbsp;</td>
-                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">{{temperatureWarningValue1}}</td>
-                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">{{temperatureWarningValue1}}</td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <span v-if="lineType == lineTypeB" style="height:50px;align:center;colspan:2;background-color: #ccbf42;"> {{temperatureWarningValue1}}</span>
+                            <span v-if="lineType == lineTypeA" style="height:50px;align:center;colspan:2;background-color: #ccbf42;"> {{temperatureWarningValue}}</span>
+                        </td>
+                        <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">
+                            <span v-if="lineType == lineTypeB" style="height:50px;align:center;colspan:2;background-color: #ccbf42;"> {{temperatureWarningValue2}}</span>
+                            <span v-if="lineType == lineTypeA" style="height:50px;align:center;colspan:2;background-color: #ccbf42;">--</span>
+                        </td>
                         <td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">--</td>
                         <td td style="width:20%;height:50px;align:center;colspan:2; background-color: #c1c5cc;">--</td>
                     </tr>
@@ -139,17 +157,20 @@
         data:{
             // listTemperature:[],
             listTemperatureWireless:[],
+            lineType:'B',
+            lineTypeB:'B',
+            lineTypeA:'A',
             temperatureWarningValue:'',
             temperatureWarningValue1:'',
             temperatureWarningValue2:'',
-            leftFrontTripodEccentricBigCopperSleeve:'',
-            leftRearTripodEccentricBigCopperSleeve:'',
-            rightFrontTripodEccentricBigCopperSleeve:'',
-            rightRearTripodEccentricBigCopperSleeve:'',
-            leftFrontConnectingRodBigCopperSleeve:'',
-            leftRearConnectingRodBigCopperSleeve:'',
-            rightFrontConnectingRodBigCopperSleeve:'',
-            rightRearConnectingRodBigCopperSleeve:'',
+            leftFrontEccentric:'',
+            leftRearEccentric:'',
+            rightFrontEccentric:'',
+            rightRearEccentric:'',
+            leftFrontConnectingRod:'',
+            leftRearConnectingRod:'',
+            rightFrontConnectingRod:'',
+            rightRearConnectingRod:'',
         },methods:{
             getCurrentTemperature(){
                 // alert("getTemperature started...");
@@ -165,20 +186,34 @@
                         // alert("index 2=" + index);
                     }
                     // alert("index="+index);
-                    this.temperatureWarningValue1=this.listTemperatureWireless[index].temperatureWarningValue1;
-                    this.temperatureWarningValue2=this.listTemperatureWireless[index].temperatureWarningValue2;
-                    this.leftFrontTripodEccentricBigCopperSleeve=this.listTemperatureWireless[index].leftFrontTripodEccentricBigCopperSleeve;
-                    this.leftRearTripodEccentricBigCopperSleeve=this.listTemperatureWireless[index].leftRearTripodEccentricBigCopperSleeve;
-                    this.rightFrontTripodEccentricBigCopperSleeve=this.listTemperatureWireless[index].rightFrontTripodEccentricBigCopperSleeve;
-                    this.rightRearTripodEccentricBigCopperSleeve=this.listTemperatureWireless[index].rightRearTripodEccentricBigCopperSleeve;
-                    this.leftFrontConnectingRodBigCopperSleeve=this.listTemperatureWireless[index].leftFrontConnectingRodBigCopperSleeve;
-                    this.leftRearConnectingRodBigCopperSleeve=this.listTemperatureWireless[index].leftRearConnectingRodBigCopperSleeve;
-                    this.rightFrontConnectingRodBigCopperSleeve=this.listTemperatureWireless[index].rightFrontConnectingRodBigCopperSleeve;
-                    this.rightRearConnectingRodBigCopperSleeve=this.listTemperatureWireless[index].rightRearConnectingRodBigCopperSleeve;
-                    if (this.temperatureWarningValue1 > this.temperatureWarningValue2) {
-                        this.temperatureWarningValue = this.temperatureWarningValue1;
+
+                    this.lineType=this.listTemperatureWireless[index].lineType;
+                    if(this.lineType == this.lineTypeB) {
+                        this.temperatureWarningValue1=this.listTemperatureWireless[index].temperatureWarningValue1;
+                        this.temperatureWarningValue2=this.listTemperatureWireless[index].temperatureWarningValue2;
+                        this.leftFrontEccentric=this.listTemperatureWireless[index].leftFrontTripodEccentricBigCopperSleeve;
+                        this.leftRearEccentric=this.listTemperatureWireless[index].leftRearTripodEccentricBigCopperSleeve;
+                        this.rightFrontEccentric=this.listTemperatureWireless[index].rightFrontTripodEccentricBigCopperSleeve;
+                        this.rightRearEccentric=this.listTemperatureWireless[index].rightRearTripodEccentricBigCopperSleeve;
+                        this.leftFrontConnectingRod=this.listTemperatureWireless[index].leftFrontConnectingRodBigCopperSleeve;
+                        this.leftRearConnectingRod=this.listTemperatureWireless[index].leftRearConnectingRodBigCopperSleeve;
+                        this.rightFrontConnectingRod=this.listTemperatureWireless[index].rightFrontConnectingRodBigCopperSleeve;
+                        this.rightRearConnectingRod=this.listTemperatureWireless[index].rightRearConnectingRodBigCopperSleeve;
+                        if (this.temperatureWarningValue1 > this.temperatureWarningValue2) {
+                            this.temperatureWarningValue = this.temperatureWarningValue1;
+                        } else {
+                            this.temperatureWarningValue = this.temperatureWarningValue2;
+                        }
                     } else {
-                        this.temperatureWarningValue = this.temperatureWarningValue2;
+                        this.temperatureWarningValue = this.listTemperatureWireless[index].temperatureWarningValueA;
+                        this.leftFrontEccentric=this.listTemperatureWireless[index].leftFrontEccentricWheel;
+                        this.leftRearEccentric=this.listTemperatureWireless[index].leftRearEccentricWheel;
+                        this.rightFrontEccentric=this.listTemperatureWireless[index].rightFrontEccentricWheel;
+                        this.rightRearEccentric=this.listTemperatureWireless[index].rightRearEccentricWheel;
+                        this.leftFrontConnectingRod=this.listTemperatureWireless[index].leftFrontConnectingRod;
+                        this.leftRearConnectingRod=this.listTemperatureWireless[index].leftRearConnectingRod;
+                        this.rightFrontConnectingRod=this.listTemperatureWireless[index].rightFrontConnectingRod;
+                        this.rightRearConnectingRod=this.listTemperatureWireless[index].rightRearConnectingRod;
                     }
                     // alert("temperatureWarningValue =  " +this.temperatureWarningValue);
                     // alert("temperatureWarningValue1 = " +this.temperatureWarningValue1);

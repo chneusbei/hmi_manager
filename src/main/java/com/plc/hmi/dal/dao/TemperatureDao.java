@@ -12,12 +12,13 @@ public class TemperatureDao {
     @Resource
     TemperatureMapper temperatureMapper;
 
-    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status, boolean isWireless) {
-        return temperatureMapper.getTemperatureWithParam(startDate, endDate, plcName, status, isWireless ? "1" : "0");
+    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status, boolean isWireless, String lineType) {
+        return temperatureMapper.getTemperatureWithParam(startDate, endDate, plcName, status, isWireless ? "1" : "0", lineType);
     }
 
-    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status) {
-        return temperatureMapper.getTemperatureWithParam(startDate, endDate, plcName, status, null);
+    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status, String lineType) {
+        List<TemperatureEntity> temperatureEntityList =  temperatureMapper.getTemperatureWithParam(startDate, endDate, plcName, status, null, lineType);
+        return temperatureEntityList;
     }
 
     public void insert(TemperatureEntity temperatureEntity) {

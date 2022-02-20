@@ -27,17 +27,17 @@ import java.util.Map;
 @RestController
 public class JsonController {
 
-    @Autowired
+    @Resource
     PressureCurveService pressureCurveService;
-    @Autowired
+    @Resource
     Plc4xCurveDataService plc4xCurveDataService;
-    @Autowired
+    @Resource
     PressureProgramService programService;
-    @Autowired
+    @Resource
     Plc4xCurveStatusService plc4xCurveStatusService;
-    @Autowired
+    @Resource
     ProductService productService;
-    @Autowired
+    @Resource
     PropertyService propertyService;
     @Resource
     PressureDataService pressureDataService;

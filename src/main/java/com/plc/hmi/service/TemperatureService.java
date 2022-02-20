@@ -34,7 +34,7 @@ public class TemperatureService extends AbstractBaseService{
      * 获取温度信息
      * @return
      */
-    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status, boolean isWireless) {
+    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status, boolean isWireless, String lineType) {
         if(!StringUtils.isEmpty(startDate)) {
             startDate=startDate.replace("-","");
         }
@@ -54,14 +54,14 @@ public class TemperatureService extends AbstractBaseService{
             }
         }
 
-        return temperatureDao.getTemperatureWithParam(startDate, endDate, plcName, status, isWireless);
+        return temperatureDao.getTemperatureWithParam(startDate, endDate, plcName, status, isWireless, lineType);
     }
 
     /**
      * 获取温度信息
      * @return
      */
-    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status) {
+    public List<TemperatureEntity> getTemperatureWithParam(String startDate, String endDate, String plcName, String status, String lineType) {
         if(!StringUtils.isEmpty(startDate)) {
             startDate=startDate.replace("-","");
         }
@@ -81,7 +81,7 @@ public class TemperatureService extends AbstractBaseService{
             }
         }
 
-        return temperatureDao.getTemperatureWithParam(startDate, endDate, plcName, status);
+        return temperatureDao.getTemperatureWithParam(startDate, endDate, plcName, status, lineType);
     }
 
 
@@ -89,13 +89,13 @@ public class TemperatureService extends AbstractBaseService{
      * 获取温度一个点信息
      * @return
      */
-    public List<TemperaturePointEntity> getTemperaturePointWithParam(String startDate, String endDate, String plcName, String temperatureName,String status) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public List<TemperaturePointEntity> getTemperaturePointWithParam(String startDate, String endDate, String plcName, String temperatureName, String status,String lineType) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         List<TemperaturePointEntity> TemperaturePointEntityList = new ArrayList<TemperaturePointEntity>();
        // 参数解析
 
         if(StringUtils.isEmpty(plcName) || StringUtils.isBlank(plcName)) {
 //            return TemperaturePointEntityList;
-            plcName = "A-1";
+            plcName = "B-1";
         }
 
         if(StringUtils.isEmpty(temperatureName)) {
@@ -123,7 +123,7 @@ public class TemperatureService extends AbstractBaseService{
         }
 
         //获取历史数据
-        List<TemperatureEntity> TemperatureEntityList = temperatureDao.getTemperatureWithParam(startDate, endDate, plcName, status);
+        List<TemperatureEntity> TemperatureEntityList = temperatureDao.getTemperatureWithParam(startDate, endDate, plcName, status, lineType);
 
         //数据组装
         for(TemperatureEntity temperatureEntity: TemperatureEntityList) {

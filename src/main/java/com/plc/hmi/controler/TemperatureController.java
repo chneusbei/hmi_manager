@@ -28,22 +28,25 @@ import java.util.*;
 @RestController
 public class TemperatureController {
 
-    @Autowired
+    @Resource
     TemperatureService temperatureService;
-    @Autowired
+    @Resource
     Plc4xTemperatureService plc4xTemperatureService;
-    @Autowired
+    @Resource
     Plc4xCurveDataService plc4xCurveDataService;
-    @Autowired
+    @Resource
     PlcConfigService plcConfigService;
-    @Autowired
+    @Resource
     TemperatureAlarmService temperatureAlarmService;
+    @Resource
+    PropertyService propertyService;
 
     @GetMapping("/getHisTemperatureNew")
     public String getHisTemperatureNew(@RequestParam(value = "start",required = true) String start,
                                        @RequestParam(value = "stop",required = true) String stop) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 //        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
-        List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(start, stop,null, null);
+        String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
+        List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(start, stop,null, null, lineType);
         String json = JSON.toJSONString(TemperatureList);
         return json;
     }
@@ -51,7 +54,8 @@ public class TemperatureController {
     @GetMapping("/getHisTemperatureNewWithoutParam")
     public String getHisTemperatureNew() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 //        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
-        List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(null, null,null, null);
+        String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
+        List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(null, null,null, null, lineType);
         String json = JSON.toJSONString(TemperatureList);
         return json;
     }
@@ -73,7 +77,8 @@ public class TemperatureController {
                                    @RequestParam(value = "plcName",required = false) String plcName,
                                    @RequestParam(value = "temperatureName",required = false) String temperatureName) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 //        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
-        List<TemperaturePointEntity> temperaturePointList =  temperatureService.getTemperaturePointWithParam(startDate, endDate, plcName,temperatureName, null);
+        String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
+        List<TemperaturePointEntity> temperaturePointList =  temperatureService.getTemperaturePointWithParam(startDate, endDate, plcName,temperatureName, null, lineType);
 //        String json = JSON.toJSONString(temperaturePointList);
 //        temperaturePointList = new ArrayList<TemperaturePointEntity>();
         if(CollectionUtils.isEmpty(temperaturePointList)) {
@@ -96,6 +101,7 @@ public class TemperatureController {
     @GetMapping("/getCurrentTemperatureNew")
     public List<List<TemperatureEntity>> getCurrentTemperatureNew(){
 //        System.out.println(">>>> getCurrentTemperature");
+//        String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
         List<List<TemperatureEntity>> temperatureList = plc4xTemperatureService.getTemperatureListNew();
         return temperatureList;
     }
@@ -110,6 +116,15 @@ public class TemperatureController {
         return geTemperatureHisAlarm(null, null);
     }
 
+    /**
+     * 获取A线B线信息
+     */
+    @ResponseBody
+    @GetMapping("/geLineType")
+    public String geLineType(){
+        String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
+        return lineType;
+    }
     /**
      * 历史报警信息查询
      */
@@ -131,8 +146,8 @@ public class TemperatureController {
         if(!StringUtils.isEmpty(stop)) {
             stop=stop.replace("-","");
         }
-
-        List<TemperatureAlarmEntity> temperatureAlarmList = temperatureAlarmService.getTemperatureAlarmWithParam(start, stop);
+        String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
+        List<TemperatureAlarmEntity> temperatureAlarmList = temperatureAlarmService.getTemperatureAlarmWithParam(start, stop, lineType);
         if(null == temperatureAlarmList) {
             temperatureAlarmList = new ArrayList<TemperatureAlarmEntity>();
         }
@@ -168,7 +183,8 @@ public class TemperatureController {
     @ResponseBody
     @GetMapping("/getTemperatureSetting")
     public TemperatureEntity getSystemParameter(){
-        TemperatureEntity entity = new TemperatureEntity();
+        String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
+        TemperatureEntity entity = new TemperatureEntity(lineType);
         List<TemperatureEntity> temperatureList = plc4xTemperatureService.getTemperatureList();
         if(!CollectionUtils.isEmpty(temperatureList)) {
             for(TemperatureEntity temperatureEntity : temperatureList) {

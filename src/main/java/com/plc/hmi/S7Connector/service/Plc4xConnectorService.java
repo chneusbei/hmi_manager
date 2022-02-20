@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +30,7 @@ import java.util.concurrent.ExecutionException;
 
 @Component
 public class Plc4xConnectorService {
-    @Autowired
+    @Resource
     private PropertyService propertyService;
     private final Log logger = LogFactory.getLog(Plc4xConnectorService.class);
 //    private String HOST =  null; //"s7://192.168.1.1/2/1"; 参数 第一个是机架rock, 第二个是插槽slot

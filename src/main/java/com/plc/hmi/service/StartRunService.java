@@ -18,9 +18,9 @@ import javax.annotation.Resource;
 @Service
 @Component
 public class StartRunService implements ApplicationRunner {
-    @Autowired
+    @Resource
     PlcConfigService plcConfigService;
-    @Autowired
+    @Resource
     PropertyService propertyService;
     @Resource
     Plc4xTemperatureService plc4xTemperatureDataService;

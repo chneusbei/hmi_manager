@@ -95,12 +95,11 @@
                 </table>
                 <table class="imagetable2">
                     <tr>
-                        <td  align="center" colspan="2"><strong><h4>历史温度报表</h4></strong></td>
+                        <td  align="center" colspan="2" style="width: 100px;background-color: #2554cc;color: black"><strong><h4>历史温度报表</h4></strong></td>
                     </tr>
                 </table>
                 <table class="imagetable2">
-
-                    <tr>
+                    <tr v-if="lineType == lineTypeB" >
                         <th>PLC名</th>
                         <th>低速轴偏心铜套1</th>
                         <th>低速轴偏心铜套2</th>
@@ -110,6 +109,8 @@
                         <th>高速轴偏心铜套2</th>
                         <th>飞轮支撑大轴承1</th>
                         <th>飞轮支撑大轴承2</th>
+                        <th>高速轴滚动轴承1</th>
+                        <th>高速轴滚动轴承2</th>
                         <th>拉杆两端铜套1</th>
                         <th>拉杆两端铜套2</th>
                         <th>拉杆两端铜套3</th>
@@ -120,8 +121,14 @@
                         <th>拉杆两端铜套8</th>
                         <th>小皮带轮支持轴承1</th>
                         <th>小皮带轮支持轴承2</th>
-                        <th>高速轴滚动轴承1</th>
-                        <th>高速轴滚动轴承2</th>
+                        <th>左前三脚架偏心大铜套</th>
+                        <th>左后三脚架偏心大铜套</th>
+                        <th>右前三脚架偏心大铜套</th>
+                        <th>右后三脚架偏心大铜套</th>
+                        <th>左前三脚架下端铜套</th>
+                        <th>左后三脚架下端铜套</th>
+                        <th>右前三脚架下端铜套</th>
+                        <th>右后三脚架下端铜套</th>
                         <th>左前连杆大铜套</th>
                         <th>左后连杆大铜套</th>
                         <th>右前连杆大铜套</th>
@@ -130,8 +137,38 @@
                         <th>左后低速轴铜套</th>
                         <th>右前低速轴铜套</th>
                         <th>右后低速轴铜套</th>
+                        <th>温度警戒值1</th>
+                        <th>温度警戒值2</th>
                     </tr>
-                    <tr v-for="o in temperatureList">
+                    <tr v-if="lineType == lineTypeA">
+                        <th>PLC名</th>
+                        <th>偏心轮左前</th>
+                        <th>偏心轮左后</th>
+                        <th>偏心轮右前</th>
+                        <th>偏心轮右后</th>
+                        <th>连杆左前</th>
+                        <th>连杆左后</th>
+                        <th>连杆右前</th>
+                        <th>连杆右后</th>
+                        <th>右前高速齿轮轴承</th>
+                        <th>右后高速齿轮轴承</th>
+                        <th>左前高速齿轮轴承</th>
+                        <th>左后高速齿轮轴承</th>
+                        <th>右前中间齿轮轴承</th>
+                        <th>右后中间齿轮轴承</th>
+                        <th>左前中间齿轮轴承</th>
+                        <th>左后中间齿轮轴承</th>
+                        <th>主轴齿轮轴承1温度</th>
+                        <th>主轴齿轮轴承2温度</th>
+                        <th>主轴齿轮轴承3温度</th>
+                        <th>主轴齿轮轴承4温度</th>
+                        <th>主轴齿轮轴承5温度</th>
+                        <th>主轴齿轮轴承6温度</th>
+                        <th>主轴齿轮轴承7温度</th>
+                        <th>主轴齿轮轴承8温度</th>
+                        <th>温度警戒值</th>
+                    </tr>
+                    <tr v-if="lineType == lineTypeB" v-for="o in temperatureList">
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
                         <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature1}}</td>
                         <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature2}}</td>
@@ -141,6 +178,8 @@
                         <td :style="{background:o.impression}">{{o.highSpeedAxisEccentricCopperSleeveTemperature2}}</td>
                         <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature1}}</td>
                         <td :style="{background:o.impression}">{{o.flywheelSupportBigAxisTemperature2}}</td>
+                        <td :style="{background:o.impression}">{{o.highSpeedAxisRollingBearingTemperature1}}</td>
+                        <td :style="{background:o.impression}">{{o.highSpeedAxisRollingBearingTemperature2}}</td>
                         <td :style="{background:o.impression}">{{o.drawbarBothEndsCopperSleeveTemperature1}}</td>
                         <td :style="{background:o.impression}">{{o.drawbarBothEndsCopperSleeveTemperature2}}</td>
                         <td :style="{background:o.impression}">{{o.drawbarBothEndsCopperSleeveTemperature3}}</td>
@@ -151,8 +190,14 @@
                         <td :style="{background:o.impression}">{{o.drawbarBothEndsCopperSleeveTemperature8}}</td>
                         <td :style="{background:o.impression}">{{o.smallBeltWheelSupportAxisTemperature1}}</td>
                         <td :style="{background:o.impression}">{{o.smallBeltWheelSupportAxisTemperature2}}</td>
-                        <td :style="{background:o.impression}">{{o.highSpeedAxisRollingBearingTemperature1}}</td>
-                        <td :style="{background:o.impression}">{{o.highSpeedAxisRollingBearingTemperature2}}</td>
+                        <td :style="{background:o.impression}">{{o.leftFrontTripodEccentricBigCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.leftRearTripodEccentricBigCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.rightFrontTripodEccentricBigCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.rightRearTripodEccentricBigCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.leftFrontTripodBottomCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.leftRearTripodBottomCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.rightFrontTripodBottomCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.rightRearTripodBottomCopperSleeve}}</td>
                         <td :style="{background:o.impression}">{{o.leftFrontConnectingRodBigCopperSleeve}}</td>
                         <td :style="{background:o.impression}">{{o.leftRearConnectingRodBigCopperSleeve}}</td>
                         <td :style="{background:o.impression}">{{o.rightFrontConnectingRodBigCopperSleeve}}</td>
@@ -161,6 +206,36 @@
                         <td :style="{background:o.impression}">{{o.leftRearLowSpeedAxisCopperSleeve}}</td>
                         <td :style="{background:o.impression}">{{o.rightFrontLowSpeedAxisCopperSleeve}}</td>
                         <td :style="{background:o.impression}">{{o.rightRearLowSpeedAxisCopperSleeve}}</td>
+                        <td :style="{background:o.impression}">{{o.temperatureWarningValue1}}</td>
+                        <td :style="{background:o.impression}">{{o.temperatureWarningValue2}}</td>
+                    </tr>
+                    <tr v-if="lineType == lineTypeA" v-for="o in temperatureList">
+                        <td :style="{background:o.impression}">{{o.plcName}}</td>
+                        <td :style="{background:o.impression}">{{o.leftFrontEccentricWheel}}</td>
+                        <td :style="{background:o.impression}">{{o.leftRearEccentricWheel}}</td>
+                        <td :style="{background:o.impression}">{{o.rightFrontEccentricWheel}}</td>
+                        <td :style="{background:o.impression}">{{o.rightRearEccentricWheel}}</td>
+                        <td :style="{background:o.impression}">{{o.leftFrontConnectingRod}}</td>
+                        <td :style="{background:o.impression}">{{o.leftRearConnectingRod}}</td>
+                        <td :style="{background:o.impression}">{{o.rightFrontConnectingRod}}</td>
+                        <td :style="{background:o.impression}">{{o.rightRearConnectingRod}}</td>
+                        <td :style="{background:o.impression}">{{o.rightFrontHighSpeedGearBearingTemperature}}</td>
+                        <td :style="{background:o.impression}">{{o.rightRearHighSpeedGearBearingTemperature}}</td>
+                        <td :style="{background:o.impression}">{{o.leftFrontHighSpeedGearBearingTemperature}}</td>
+                        <td :style="{background:o.impression}">{{o.leftRearHighSpeedGearBearingTemperature}}</td>
+                        <td :style="{background:o.impression}">{{o.rightFrontMiddleGearBearingTemperature}}</td>
+                        <td :style="{background:o.impression}">{{o.rightRearMiddleGearBearingTemperature}}</td>
+                        <td :style="{background:o.impression}">{{o.leftFrontMiddleGearBearingTemperature}}</td>
+                        <td :style="{background:o.impression}">{{o.leftRearMiddleGearBearingTemperature}}</td>
+                        <td :style="{background:o.impression}">{{o.mainAxisGearBearingTemperature1}}</td>
+                        <td :style="{background:o.impression}">{{o.mainAxisGearBearingTemperature2}}</td>
+                        <td :style="{background:o.impression}">{{o.mainAxisGearBearingTemperature3}}</td>
+                        <td :style="{background:o.impression}">{{o.mainAxisGearBearingTemperature4}}</td>
+                        <td :style="{background:o.impression}">{{o.mainAxisGearBearingTemperature5}}</td>
+                        <td :style="{background:o.impression}">{{o.mainAxisGearBearingTemperature6}}</td>
+                        <td :style="{background:o.impression}">{{o.mainAxisGearBearingTemperature7}}</td>
+                        <td :style="{background:o.impression}">{{o.mainAxisGearBearingTemperature8}}</td>
+                        <td :style="{background:o.impression}">{{o.temperatureWarningValueA}}</td>
                     </tr>
                 </table>
 
@@ -186,10 +261,14 @@
         el:"#app",
         data:{
             temperatureList:[],
+            lineType:'B',
+            lineTypeB:'B',
+            lineTypeA:'A',
         },methods:{
             getHisTemperatureNewWithoutParam(){
                 axios.get("/getHisTemperatureNewWithoutParam").then(result=>{
                     this.temperatureList=result.data;
+                    this.lineType=this.temperatureList[0].lineType;
                 }).catch(function(error){
                     alert(error)
                 })
@@ -201,6 +280,7 @@
                 }
                 axios.get("/getHisTemperatureNew",{params:requestData}).then(result=>{
                     this.temperatureList=result.data;
+                    this.lineType=this.temperatureList[0].lineType;
                 }).catch(function(error){
                     alert(error)
                 })
