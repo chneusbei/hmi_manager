@@ -1,5 +1,6 @@
 package com.plc.hmi.dal.dao;
 
+import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.dal.entity.PropertyEntity;
 import com.plc.hmi.dal.mapper.PropertyMapper;
 import com.plc.hmi.enumeration.PropertyConfigEntityEnum;
@@ -23,12 +24,18 @@ public class PropertyDao {
         propertyMapper.update(entity);
     }
 
+    public void updateById(PropertyEntity entity) {
+        propertyMapper.updateById(entity);
+    }
+
     public void delete(PropertyEntity entity) {
         propertyMapper.delete(entity);
     }
 
     public List<PropertyEntity> getProperties() {
-        return propertyMapper.getPropertyConfig();
+        List<PropertyEntity>  propertyEntityList = propertyMapper.getPropertyConfig();
+//        System.out.println(System.currentTimeMillis() +" select  value:"+ propertyEntityList.get(0).getPropValue());
+        return propertyEntityList;
     }
 
     public List<PropertyEntity> getPropertiesWithGroup(String group) {

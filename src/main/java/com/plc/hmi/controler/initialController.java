@@ -149,4 +149,8 @@ public class initialController {
         return "temperatureHisAlarm";
     }
 
+    @RequestMapping("/temperatureConfig")
+    public String temperatureConfig(){
+        return "temperatureConfig";
+    }
 }

@@ -6,6 +6,8 @@ import com.plc.hmi.dal.entity.PropertyEntity;
 import com.plc.hmi.util.HmiUtils;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
@@ -18,6 +20,7 @@ import java.util.Map;
  */
 @Service
 @Component
+@EnableTransactionManagement
 public class PropertyService extends AbstractBaseService{
     @Resource
     PropertyDao propertyDao;
@@ -25,14 +28,17 @@ public class PropertyService extends AbstractBaseService{
 
     public List<PropertyEntity> getProperties() {
         List<PropertyEntity> propList = propertyDao.getProperties();
+
         if(!CollectionUtils.isEmpty(propList)) {
             for(PropertyEntity property : propList) {
                 staticPropertyMap.put(property.getPropName(),property.getPropValue());
             }
         }
+
         return propList;
     }
 
+    @Transactional
     public List<PropertyEntity> getPropertyWithGroup(String group) {
         List<PropertyEntity> propList = propertyDao.getPropertiesWithGroup(group);
         if(!CollectionUtils.isEmpty(propList)) {
@@ -43,6 +49,7 @@ public class PropertyService extends AbstractBaseService{
         return propList;
     }
 
+    @Transactional
     public void insertList(List<PropertyEntity> entityList) {
         if(entityList != null) {
             for (PropertyEntity entity : entityList) {
@@ -51,17 +58,30 @@ public class PropertyService extends AbstractBaseService{
         }
     }
 
+    @Transactional
     public void insert(PropertyEntity entity) {
         propertyDao.insert(entity);
     }
 
+    @Transactional
     public void update(PropertyEntity entity) {
         propertyDao.update(entity);
+        staticPropertyMap.put(entity.getPropName(),entity.getPropValue());
+//        System.out.println("update  value:"+ entity.getPropValue());
     }
+
+    @Transactional
+    public void updateById(PropertyEntity entity) {
+        propertyDao.updateById(entity);
+        staticPropertyMap.put(entity.getPropName(),entity.getPropValue());
+    }
+
+    @Transactional
     public void delete(PropertyEntity entity) {
         propertyDao.delete(entity);
     }
 
+    @Transactional
     public boolean isDubblePress() {
         boolean isDubblePress = false;
         int pressCount = 1;
@@ -77,6 +97,7 @@ public class PropertyService extends AbstractBaseService{
         return isDubblePress;
     }
 
+    @Transactional
     public String getProperty(String key) {
         if(null == staticPropertyMap.get(key)) {
             this.getProperties();

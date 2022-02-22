@@ -14,6 +14,7 @@ import com.plc.hmi.service.plcService.Plc4xTemperatureService;
 import com.plc.hmi.util.HmiUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 @RestController
+@EnableTransactionManagement
 public class TemperatureController {
 
     @Resource
@@ -256,5 +258,50 @@ public class TemperatureController {
         return "PLC信息删除成功";
     }
 
+    @ResponseBody
+    @GetMapping("/getTemperatureConfig")
+    public List<PropertyEntity> getTemperatureConfig(){
+        List<PropertyEntity> propertyEntityList = propertyService.getProperties();
+        return  propertyEntityList;
+    }
 
+
+    @ResponseBody
+    @GetMapping("/updatePropertyConfig")
+    public String updatePropertyConfig(@RequestParam(value = "id",required = true) String id,
+                                  @RequestParam(value = "propName",required = true) String propName,
+                                  @RequestParam(value = "propValue",required = true) String propValue){
+
+        if(!StringUtils.isNotBlank(id) ) {
+            return "更新失败，未找到对应的配置项信息。";
+        }
+        if(!StringUtils.isNotBlank(propValue)) {
+            return  "更新失败，属性值必须填写， 请填写完整。";
+        }
+
+        if(ConfigConstants.TEMPERATURE_FETCH_FREQUENCY.equalsIgnoreCase(propName)) {
+            BigDecimal value = new BigDecimal(propValue);
+            if(value.compareTo(new BigDecimal(1000)) < 0) {
+                return "刷新时间属性必须大于或者等于1000毫秒";
+            }
+        } else {
+            if(ConfigConstants.TEMPERATURE_LINE_TYPE.equalsIgnoreCase(propName)) {
+                if (! HmiConstants.LINE_TYPE.LINE_TYPE_B.getCode().equalsIgnoreCase(propValue)) {
+                    propValue =  HmiConstants.LINE_TYPE.LINE_TYPE_A.getCode();
+                }
+            }
+        }
+
+        PropertyEntity config = new PropertyEntity();
+        config.setId(Long.valueOf(id));
+        config.setPropName(propName);
+        config.setPropValue(propValue);
+        config.setUpdateTime(new Date());
+        config.setUpdateBy("admin");
+        propertyService.updateById(config);
+//        propertyService.getProperties();
+//        String json = JSON.toJSONString("SUCESS");
+//        System.out.println(System.currentTimeMillis() + " update  value:"+ propValue);
+        return "配置更新成功";
+    }
 }

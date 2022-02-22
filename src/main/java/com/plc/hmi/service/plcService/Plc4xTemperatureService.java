@@ -1120,8 +1120,8 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
      * @return
      */
     public List<List<TemperatureEntity>> getTemperatureListNew() {
-//        return TemperatureList;
-
+        return TemperatureList;
+        /*
         List<TemperatureEntity> temperatureEntityList1 = new ArrayList<TemperatureEntity>();
         List<TemperatureEntity> temperatureEntityList2 = new ArrayList<TemperatureEntity>();
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
@@ -1245,7 +1245,8 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         for (TemperatureEntity temperatureEntity : temperatureEntityList2) {
             temperatureDao.insert(temperatureEntity);
         }
-        /*
+
+
         TemperatureAlarmEntity alarmEntity = new TemperatureAlarmEntity();
         alarmEntity.setHandleDate(HmiUtils.getYYYYMMDDString(new Date()));
         alarmEntity.setLineType("B");
@@ -1259,10 +1260,10 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         alarmEntity.setUpdateTime(new Date());
         alarmEntity.setIsDeleted("0");
         temperatureAlarmDao.insert(alarmEntity);
-         */
+
 
         return TemperatureList;
-
+        */
     }
 
     /**

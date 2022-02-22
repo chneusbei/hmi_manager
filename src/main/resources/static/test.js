@@ -21,6 +21,7 @@ document.writeln("                        <li> <a   href=\'/hisTemperature\'>历
 // document.writeln("                        <li> <a   href=\'/temperatureSetting\'>温度警戒值设置</a> </li>");
 document.writeln("                        <li> <a   href=\'/temperaturePlcConfig\'>PLC连接信息</a> </li>");
 document.writeln("                        <li> <a   href=\'/temperaturePlcConfigAdd\'>添加PLC连接信息</a> </li>");
+document.writeln("                        <li> <a   href=\'/temperatureConfig\'>系统配置</a> </li>");
 // document.writeln("                        <li> <a   href=\'/hyperbola\'>双曲线</a> </li>");
 document.writeln("                    </ul>");
 document.writeln("                </li>");

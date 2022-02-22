@@ -2,9 +2,12 @@ package com.plc.hmi.dal.mapper;
 
 import com.plc.hmi.dal.entity.PropertyEntity;
 import org.apache.ibatis.annotations.*;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 @Mapper
 public interface PropertyMapper{
+    @Transactional
     @Select("select * from property_config where is_deleted='0'")
     @Results({
             @Result(id=true,column = "ID",property = "id" ),
@@ -20,6 +23,7 @@ public interface PropertyMapper{
     })
     List<PropertyEntity> getPropertyConfig();
 
+    @Transactional
     @Select("select * from property_config where is_deleted='0' and prop_group=#{prop_group}")
     @Results({
             @Result(id=true,column = "ID",property = "id" ),
@@ -40,6 +44,9 @@ public interface PropertyMapper{
 
     @Update({"update property_config set PROP_VALUE=#{propValue}, UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where PROP_NAME=#{propName}"})
     void update(PropertyEntity entity);
+
+    @Update({"update property_config set PROP_VALUE=#{propValue}, UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where id=#{id}"})
+    void updateById(PropertyEntity entity);
 
     @Update({"update property_config set  IS_DELETED='1', UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where ID=#{id}"})
     void delete(PropertyEntity entity);
