@@ -24,12 +24,14 @@ public class StartRunService implements ApplicationRunner {
     PropertyService propertyService;
     @Resource
     Plc4xTemperatureService plc4xTemperatureDataService;
+    @Resource
+    TemperatureService temperatureService;
 
     private final Log logger = LogFactory.getLog(StartRunService.class);
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        PlcTemperatureThread plcTemperatureThread = new PlcTemperatureThread(plc4xTemperatureDataService,propertyService,plcConfigService);
+        PlcTemperatureThread plcTemperatureThread = new PlcTemperatureThread(plc4xTemperatureDataService,propertyService,plcConfigService, temperatureService);
         plcTemperatureThread.run();
     }
 }

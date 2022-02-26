@@ -5,6 +5,7 @@ import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.PressureDataEntity;
 import com.plc.hmi.dal.entity.TemperatureEntity;
+import com.plc.hmi.dal.entity.TemperaturePointEntity;
 import com.plc.hmi.service.PressureCurveService;
 import com.plc.hmi.service.PressureDataService;
 import com.plc.hmi.service.PropertyService;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 @RestController
@@ -38,8 +40,10 @@ public class ExportController {
     private static Logger logger = LoggerFactory.getLogger(ExportController.class);
 
     @GetMapping("/temperatureExport")
-    public String export( @RequestParam(value = "start",required = true) String start,
-                          @RequestParam(value = "stop",required = true) String stop) {
+    public String export( @RequestParam(value = "plcName",required = false) String plcName,
+                          @RequestParam(value = "temperatureName",required = false) String temperatureName,
+                          @RequestParam(value = "start",required = true) String start,
+                          @RequestParam(value = "stop",required = true) String stop) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         String startDate = null==start ? null : start.replace("-","");
         String endDate = null==stop ? null : stop.replace("-","");
 //        System.out.println("=======================startDate======="+startDate + "=======end====="+endDate);
@@ -64,11 +68,21 @@ public class ExportController {
         }
         //获取对应的pressure_data
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
-        List<TemperatureEntity> TemperatureEntityList = temperatureService.getTemperatureWithParam(startDate, endDate, null, null, lineType);
-        if (CollectionUtils.isEmpty(TemperatureEntityList)) {
-            return  "temperature export no data found !";
+
+        List<TemperatureEntity> TemperatureEntityList = null;
+        List<TemperaturePointEntity> temperaturePointList =  null;
+        boolean isPointData = StringUtils.isBlank(temperatureName);
+        if(isPointData) {
+            //如果有温度点参数， 导出一个点的温度
+            temperaturePointList = temperatureService.getHisTemperature(startDate,  endDate,  plcName,  temperatureName);
+        } else {
+            //如果没有温度点参数， 导出整行数据
+            TemperatureEntityList = temperatureService.getTemperatureWithParam(startDate, endDate, plcName, null, lineType, 0);
         }
 
+        if (CollectionUtils.isEmpty(TemperatureEntityList) && CollectionUtils.isEmpty(temperaturePointList)) {
+            return  "temperature export no data found !";
+        }
 
         File dir = new File(HmiConstants.CSV_OUTPUT_PATH);
         if (!dir.exists()) {
@@ -82,17 +96,7 @@ public class ExportController {
         if (!headDir.exists()) {
             headDir.mkdir();
         }
-/*
-            //创建OK，NOK包
-            File dirTemperatureOK = new File(fileDir+HmiConstants.CSV_OUTPUT_PATH_OK);
-            if(!dirTemperatureOK.exists()){
-                dirTemperatureOK.mkdir();
-            }
-            File dirTemperatureNOK = new File(fileDir+HmiConstants.CSV_OUTPUT_PATH_NOK);
-            if(!dirTemperatureNOK.exists()){
-                dirTemperatureNOK.mkdir();
-            }
-*/
+
         // 设置导出文件名
         StringBuffer sb = new StringBuffer();
         sb.append("temperature_")
@@ -109,7 +113,7 @@ public class ExportController {
         try {
 //            OutputStream os = response.getOutputStream();
 //            CsvExportUtil.responseSetProperties(fileName, response);
-            CsvExportUtil.doTemperatureExport(TemperatureEntityList,fileName, tempFileDir);
+            CsvExportUtil.doTemperatureExport(TemperatureEntityList, temperaturePointList, fileName, tempFileDir, isPointData);
 //            os.close();
         } catch (Exception e) {
             logger.error("导出失败", e.getStackTrace());

@@ -64,10 +64,11 @@ public class PropertyService extends AbstractBaseService{
     }
 
     @Transactional
-    public void update(PropertyEntity entity) {
-        propertyDao.update(entity);
+    public int  update(PropertyEntity entity) {
+       int ret = propertyDao.update(entity);
         staticPropertyMap.put(entity.getPropName(),entity.getPropValue());
 //        System.out.println("update  value:"+ entity.getPropValue());
+        return ret;
     }
 
     @Transactional

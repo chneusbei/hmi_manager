@@ -4,6 +4,7 @@ import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.PressureCurveEntity;
 import com.plc.hmi.dal.entity.PressureDataEntity;
 import com.plc.hmi.dal.entity.TemperatureEntity;
+import com.plc.hmi.dal.entity.TemperaturePointEntity;
 import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +19,8 @@ public class CsvExportUtil {
     /**
      *  导出温度监控数据文件
      */
-    public static void doTemperatureExport(List<TemperatureEntity> TemperatureEntityList,
-                                           String fileName, String path) throws Exception {
+    public static void doTemperatureExport(List<TemperatureEntity> TemperatureEntityList, List<TemperaturePointEntity> temperaturePointList,
+                                           String fileName, String path, boolean isPointData) throws Exception {
         // 设置导出文件temp名
         String tempName = fileName+ ".temp";
 
@@ -31,7 +32,12 @@ public class CsvExportUtil {
                 csvFile), "GBK"), 2048);
 
         // 组装曲线表头
-        String[] curveTitleArr = HmiConstants.TEMPERATURE_CURVE_TITLES_NEW;
+        String[] curveTitleArr = null;
+        if (isPointData) {
+            curveTitleArr = HmiConstants.TEMPERATURE_CURVE_TITLES_POINT;
+        } else {
+            curveTitleArr = HmiConstants.TEMPERATURE_CURVE_TITLES_NEW;
+        }
         StringBuffer TitleBuffer = new StringBuffer();
         for (String title : curveTitleArr) {
             TitleBuffer.append(title).append(HmiConstants.COMMA);
@@ -40,7 +46,6 @@ public class CsvExportUtil {
         csvFileOutputStream.write(TitleBuffer.toString());
         // 组装数据
         if (!CollectionUtils.isEmpty(TemperatureEntityList)) {
-            int i=1;
             for (TemperatureEntity data : TemperatureEntityList) {
                 //Index
                 csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getId()));
@@ -206,6 +211,28 @@ public class CsvExportUtil {
                 csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getMainAxisGearBearingTemperature7()));
                 csvFileOutputStream.write(HmiConstants.COMMA);
                 csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getMainAxisGearBearingTemperature8()));
+                csvFileOutputStream.write(HmiConstants.COMMA);
+
+                //换行
+                csvFileOutputStream.newLine();
+            }
+        }
+
+        if (!CollectionUtils.isEmpty(temperaturePointList)) {
+            for (TemperaturePointEntity data : temperaturePointList) {
+                csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getId()));
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getTemperatureId()));
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getPlcName()));
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getLineType()));
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getTemperatureName()));
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getTemperatureValue()));
+                csvFileOutputStream.write(HmiConstants.COMMA);
+                csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getTemperatureTime()));
                 csvFileOutputStream.write(HmiConstants.COMMA);
 
                 //换行

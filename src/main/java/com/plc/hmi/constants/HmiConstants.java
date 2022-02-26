@@ -63,6 +63,9 @@ public class HmiConstants {
             "主轴齿轮轴承1温度","主轴齿轮轴承2温度","主轴齿轮轴承3温度","主轴齿轮轴承4温度","主轴齿轮轴承5温度","主轴齿轮轴承6温度",
             "主轴齿轮轴承7温度","主轴齿轮轴承8温度"};
 
+    //温度csv文件头
+    public static final String[] TEMPERATURE_CURVE_TITLES_POINT = new String[]{"ID", "温度数据ID","上位机名", "A线B线", "温度点名","温度值","时间"};
+
 
     public enum PLC_TAG_GROUP {
         EQUIPMENT_OPERATION("equipment_operation", "设备信息_操作"),
@@ -208,6 +211,87 @@ public class HmiConstants {
         //获得value属性的值
         public String getValue() { return this.value; }
 
+    }
+
+    public enum TEMPERATURE_POINT{
+        LowSpeedAxisEccentricCopperSleeveTemperature1("getLowSpeedAxisEccentricCopperSleeveTemperature1","低速轴偏心铜套温度1"),
+        LowSpeedAxisEccentricCopperSleeveTemperature2("getLowSpeedAxisEccentricCopperSleeveTemperature2","低速轴偏心铜套温度2"),
+        LowSpeedAxisEccentricCopperSleeveTemperature3("getLowSpeedAxisEccentricCopperSleeveTemperature3","低速轴偏心铜套温度3"),
+        LowSpeedAxisEccentricCopperSleeveTemperature4("getLowSpeedAxisEccentricCopperSleeveTemperature4","低速轴偏心铜套温度4"),
+        HighSpeedAxisEccentricCopperSleeveTemperature1("getHighSpeedAxisEccentricCopperSleeveTemperature1","高速轴偏心铜套温度1"),
+        HighSpeedAxisEccentricCopperSleeveTemperature2("getHighSpeedAxisEccentricCopperSleeveTemperature2","高速轴偏心铜套温度2"),
+        HighSpeedAxisRollingBearingTemperature1("getHighSpeedAxisRollingBearingTemperature1","高速轴滚动轴承温度1"),
+        HighSpeedAxisRollingBearingTemperature2("getHighSpeedAxisRollingBearingTemperature2","高速轴滚动轴承温度2"),
+        FlywheelSupportBigAxisTemperature1("getFlywheelSupportBigAxisTemperature1","飞轮支撑大轴承温度1"),
+        FlywheelSupportBigAxisTemperature2("getFlywheelSupportBigAxisTemperature2","飞轮支撑大轴承温度2"),
+        DrawbarBothEndsCopperSleeveTemperature1("getDrawbarBothEndsCopperSleeveTemperature1","拉杆两端铜套温度检测1"),
+        DrawbarBothEndsCopperSleeveTemperature2("getDrawbarBothEndsCopperSleeveTemperature2","拉杆两端铜套温度检测2"),
+        DrawbarBothEndsCopperSleeveTemperature3("getDrawbarBothEndsCopperSleeveTemperature3","拉杆两端铜套温度检测3"),
+        DrawbarBothEndsCopperSleeveTemperature4("getDrawbarBothEndsCopperSleeveTemperature4","拉杆两端铜套温度检测4"),
+        DrawbarBothEndsCopperSleeveTemperature5("getDrawbarBothEndsCopperSleeveTemperature5","拉杆两端铜套温度检测5"),
+        DrawbarBothEndsCopperSleeveTemperature6("getDrawbarBothEndsCopperSleeveTemperature6","拉杆两端铜套温度检测6"),
+        DrawbarBothEndsCopperSleeveTemperature7("getDrawbarBothEndsCopperSleeveTemperature7","拉杆两端铜套温度检测7"),
+        DrawbarBothEndsCopperSleeveTemperature8("getDrawbarBothEndsCopperSleeveTemperature8","拉杆两端铜套温度检测8"),
+        SmallBeltWheelSupportAxisTemperature1("getSmallBeltWheelSupportAxisTemperature1","小皮带轮支撑轴承温度检测1"),
+        SmallBeltWheelSupportAxisTemperature2("getSmallBeltWheelSupportAxisTemperature2","小皮带轮支撑轴承温度检测2"),
+        LeftFrontTripodEccentricBigCopperSleeve("getLeftFrontTripodEccentricBigCopperSleeve","左前三脚架偏心大铜套"),
+        LeftRearTripodEccentricBigCopperSleeve("getLeftRearTripodEccentricBigCopperSleeve","左后三脚架偏心大铜套"),
+        RightFrontTripodEccentricBigCopperSleeve("getRightFrontTripodEccentricBigCopperSleeve","右前三脚架偏心大铜套"),
+        RightRearTripodEccentricBigCopperSleeve("getRightRearTripodEccentricBigCopperSleeve","右后三脚架偏心大铜套"),
+        LeftFrontTripodBottomCopperSleeve("getLeftFrontTripodBottomCopperSleeve","左前三脚架下端铜套"),
+        LeftRearTripodBottomCopperSleeve("getLeftRearTripodBottomCopperSleeve","左后三脚架下端铜套"),
+        RightFrontTripodBottomCopperSleeve("getRightFrontTripodBottomCopperSleeve","右前三脚架下端铜套"),
+        RightRearTripodBottomCopperSleeve("getRightRearTripodBottomCopperSleeve","右后三脚架下端铜套"),
+        LeftFrontConnectingRodBigCopperSleeve("getLeftFrontConnectingRodBigCopperSleeve","左前连杆大铜套"),
+        LeftRearConnectingRodBigCopperSleeve("getLeftRearConnectingRodBigCopperSleeve","左后连杆大铜套"),
+        RightFrontConnectingRodBigCopperSleeve("getRightFrontConnectingRodBigCopperSleeve","右前连杆大铜套"),
+        RightRearConnectingRodBigCopperSleeve("getRightRearConnectingRodBigCopperSleeve","右后连杆大铜套"),
+        LeftFrontLowSpeedAxisCopperSleeve("getLeftFrontLowSpeedAxisCopperSleeve","左前低速轴铜套"),
+        LeftRearLowSpeedAxisCopperSleeve("getLeftRearLowSpeedAxisCopperSleeve","左后低速轴铜套"),
+        RightFrontLowSpeedAxisCopperSleeve("getRightFrontLowSpeedAxisCopperSleeve","右前低速轴铜套"),
+        LeftFrontEccentricWheel("getLeftFrontEccentricWheel","偏心轮左前"),
+        LeftRearEccentricWheel("getLeftRearEccentricWheel","偏心轮左后"),
+        RightFrontEccentricWheel("getRightFrontEccentricWheel","偏心轮右前"),
+        RightRearEccentricWheel("getRightRearEccentricWheel","偏心轮右后"),
+        LeftFrontConnectingRod("getLeftFrontConnectingRod","连杆左前"),
+        LeftRearConnectingRod("getLeftRearConnectingRod","连杆左后"),
+        RightFrontConnectingRod("getRightFrontConnectingRod","连杆右前"),
+        RightRearConnectingRod("getRightRearConnectingRod","连杆右后"),
+        RightFrontHighSpeedGearBearingTemperature("getRightFrontHighSpeedGearBearingTemperature","前右高速齿轮轴承"),
+        RightRearHighSpeedGearBearingTemperature("getRightRearHighSpeedGearBearingTemperature","右后高速齿轮轴承"),
+        LeftFrontHighSpeedGearBearingTemperature("getLeftFrontHighSpeedGearBearingTemperature","左前高速齿轮轴承"),
+        LeftRearHighSpeedGearBearingTemperature("getLeftRearHighSpeedGearBearingTemperature","左后高速齿轮轴承"),
+        RightFrontMiddleGearBearingTemperature("getRightFrontMiddleGearBearingTemperature","右前中间齿轮轴承"),
+        RightRearMiddleGearBearingTemperature("getRightRearMiddleGearBearingTemperature","右后中间齿轮轴承"),
+        LeftFrontMiddleGearBearingTemperature("getLeftFrontMiddleGearBearingTemperature","左前中间齿轮轴承"),
+        LeftRearMiddleGearBearingTemperature("getLeftRearMiddleGearBearingTemperature","左后中间齿轮轴承"),
+        MainAxisGearBearingTemperature1("getMainAxisGearBearingTemperature1","主轴齿轮轴承1"),
+        MainAxisGearBearingTemperature2("getMainAxisGearBearingTemperature2","主轴齿轮轴承2"),
+        MainAxisGearBearingTemperature3("getMainAxisGearBearingTemperature3","主轴齿轮轴承3"),
+        MainAxisGearBearingTemperature4("getMainAxisGearBearingTemperature4","主轴齿轮轴承4"),
+        MainAxisGearBearingTemperature5("getMainAxisGearBearingTemperature5","主轴齿轮轴承5"),
+        MainAxisGearBearingTemperature6("getMainAxisGearBearingTemperature6","主轴齿轮轴承6"),
+        MainAxisGearBearingTemperature7("getMainAxisGearBearingTemperature7","主轴齿轮轴承7"),
+        MainAxisGearBearingTemperature8 ("getMainAxisGearBearingTemperature8","主轴齿轮轴承8");
+        //枚举对象的变量
+        private String code;
+        private String value;
+
+        //重写枚举类的默认构造器
+        TEMPERATURE_POINT(String code, String value) {
+            this.code = code;
+            this.value = value;
+        }
+
+        //获得code属性的值
+        public String getCode() { return this.code; }
+
+        //获得value属性的值
+        public String getValue() { return this.value; }
+
+        public String getValueByCode(String code ) {
+            return TEMPERATURE_POINT.valueOf(code).getValue();
+        }
     }
 
 }

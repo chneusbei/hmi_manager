@@ -99,6 +99,7 @@
                 <table class="imagetable2">
                     <tr>
                         <th>ID</th>
+                        <th>PLC名</th>
                         <th>报警时间</th>
                         <th>对象名称</th>
                         <th>温度值</th>
@@ -106,6 +107,7 @@
                     </tr>
                         <tr v-for="o in listAlarm">
                             <td :style="{background:o.impression}">{{o.id}}</td>
+                            <td :style="{background:o.impression}">{{o.plcName}}</td>
                             <td :style="{background:o.impression}">{{FormatDate(o.createTime)}}</td>
                             <td :style="{background:o.impression}">{{o.temperatureName}}</td>
                             <td :style="{background:o.impression}">{{o.temperatureValue}}</td>
@@ -134,6 +136,7 @@
         el:"#app",
         data:{
             listAlarm:[],
+            intervalId: null,
         },methods:{
             queryHisAlarm1(){
                 axios.get("/geTemperatureHisAlarmWithoutParam").then(result=>{
@@ -156,15 +159,27 @@
             FormatDate: function(date){
                 return moment(date).format('YYYY-MM-DD HH:mm:ss');
             },
-        timer(){
-            if (this.intervalId!=null){/*代表计时器已经启动*/
-                return ;
-            }
-            this.intervalId = setInterval(() => {
-                this.getCurrentTemperature();
-            }, 10000);
-        },
+            timer(){
+                if (this.intervalId!=null){/*代表计时器已经启动*/
+                    return ;
+                }
+                this.intervalId = setInterval(() => {
+                    // alert("start="+this.start + ", stop=" +this.stop );
+                    // if(this.start != undefined ) {
+                        this.queryHisAlarm();
+                    //     alert("queryHisAlarm");
+                    // } else if (this.stop!=undefined){
+                    //     this.queryHisAlarm();
+                    //     alert("queryHisAlarm");
+                    // } else {
+                    //     this.queryHisAlarm1();
+                    //     alert("queryHisAlarm1");
+                    // }
+
+                }, 10000);
+            },
         },created(){/*vue钩子*/
+            // this.timer();
             this.queryHisAlarm1();
         }
     })

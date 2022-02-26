@@ -17,7 +17,7 @@ public class initialController {
     }
     @RequestMapping("/public")
     public String getpublic(){
-        System.out.println("----");
+//        System.out.println("----");
         return "public";
     }
     @RequestMapping("/getpressresults")

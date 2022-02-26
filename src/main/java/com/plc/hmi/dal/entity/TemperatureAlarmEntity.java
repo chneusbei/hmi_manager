@@ -5,7 +5,11 @@ import com.plc.hmi.dal.entity.base.AbstractBaseEntity;
 import java.math.BigDecimal;
 
 public class TemperatureAlarmEntity extends AbstractBaseEntity {
-    //批次号
+    //PLC名
+    private String plcName;
+    //是否无线温度
+    private boolean isWireless;
+    //温度ID
     private Long temperatureId;
     //压装日期 YYYYMMDD
     private String handleDate;
@@ -22,7 +26,9 @@ public class TemperatureAlarmEntity extends AbstractBaseEntity {
 
     }
 
-    public TemperatureAlarmEntity(Long temperatureId, String handleDate, String lineType, String temperatureName, BigDecimal temperatureValue, BigDecimal temperatureWarningValue) {
+    public TemperatureAlarmEntity(String plcName, boolean isWireless, Long temperatureId, String handleDate, String lineType, String temperatureName, BigDecimal temperatureValue, BigDecimal temperatureWarningValue) {
+        this.setPlcName(plcName);
+        this.setWireless(isWireless);
         this.setTemperatureId(temperatureId);
         this.setHandleDate(handleDate);
         this.setLineType(lineType);
@@ -77,5 +83,21 @@ public class TemperatureAlarmEntity extends AbstractBaseEntity {
 
     public void setLineType(String lineType) {
         this.lineType = lineType;
+    }
+
+    public String getPlcName() {
+        return plcName;
+    }
+
+    public void setPlcName(String plcName) {
+        this.plcName = plcName;
+    }
+
+    public boolean isWireless() {
+        return isWireless;
+    }
+
+    public void setWireless(boolean wireless) {
+        isWireless = wireless;
     }
 }

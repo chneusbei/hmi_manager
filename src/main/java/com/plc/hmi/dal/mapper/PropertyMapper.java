@@ -43,7 +43,7 @@ public interface PropertyMapper{
     void insert(PropertyEntity entity);
 
     @Update({"update property_config set PROP_VALUE=#{propValue}, UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where PROP_NAME=#{propName}"})
-    void update(PropertyEntity entity);
+    int update(PropertyEntity entity);
 
     @Update({"update property_config set PROP_VALUE=#{propValue}, UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where id=#{id}"})
     void updateById(PropertyEntity entity);

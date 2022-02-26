@@ -1,33 +1,24 @@
 package com.plc.hmi.controler;
 
 import com.alibaba.fastjson.JSON;
-import com.plc.hmi.S7Connector.service.Plc4xConnectorService;
 import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.*;
-import com.plc.hmi.dal.entity.base.AbstractBaseEntity;
-import com.plc.hmi.dal.entity.plc.PlcEntity;
+import com.plc.hmi.dal.entity.common.ResponseEntity;
 import com.plc.hmi.service.*;
 import com.plc.hmi.service.plcService.Plc4xCurveDataService;
-import com.plc.hmi.service.plcService.Plc4xCurveStatusService;
 import com.plc.hmi.service.plcService.Plc4xTemperatureService;
 import com.plc.hmi.util.HmiUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.util.*;
 
 @RestController
-@EnableTransactionManagement
 public class TemperatureController {
 
     @Resource
@@ -44,11 +35,12 @@ public class TemperatureController {
     PropertyService propertyService;
 
     @GetMapping("/getHisTemperatureNew")
-    public String getHisTemperatureNew(@RequestParam(value = "start",required = true) String start,
-                                       @RequestParam(value = "stop",required = true) String stop) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+    public String getHisTemperatureNew(@RequestParam(value = "plcName",required = false) String plcName,
+                                        @RequestParam(value = "start",required = true) String start,
+                                        @RequestParam(value = "stop",required = true) String stop) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 //        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
-        List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(start, stop,null, null, lineType);
+        List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(start, stop,plcName, null, lineType, 20);
         String json = JSON.toJSONString(TemperatureList);
         return json;
     }
@@ -57,7 +49,7 @@ public class TemperatureController {
     public String getHisTemperatureNew() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 //        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
-        List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(null, null,null, null, lineType);
+        List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(null, null,null, null, lineType, 20);
         String json = JSON.toJSONString(TemperatureList);
         return json;
     }
@@ -79,20 +71,7 @@ public class TemperatureController {
                                    @RequestParam(value = "plcName",required = false) String plcName,
                                    @RequestParam(value = "temperatureName",required = false) String temperatureName) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 //        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
-        String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
-        List<TemperaturePointEntity> temperaturePointList =  temperatureService.getTemperaturePointWithParam(startDate, endDate, plcName,temperatureName, null, lineType);
-//        String json = JSON.toJSONString(temperaturePointList);
-//        temperaturePointList = new ArrayList<TemperaturePointEntity>();
-        if(CollectionUtils.isEmpty(temperaturePointList)) {
-            TemperaturePointEntity entity = new TemperaturePointEntity();
-            entity.setTemperatureValue(new BigDecimal(60));
-            entity.setTemperatureTime(new Date());
-            TemperaturePointEntity entity1 = new TemperaturePointEntity();
-            entity1.setTemperatureValue(new BigDecimal(60));
-            entity1.setTemperatureTime(new Date());
-            temperaturePointList.add(entity);
-            temperaturePointList.add(entity);
-        }
+        List<TemperaturePointEntity> temperaturePointList =  temperatureService.getHisTemperature(startDate,  endDate,  plcName,  temperatureName);
         return temperaturePointList;
     }
 
@@ -149,7 +128,7 @@ public class TemperatureController {
             stop=stop.replace("-","");
         }
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
-        List<TemperatureAlarmEntity> temperatureAlarmList = temperatureAlarmService.getTemperatureAlarmWithParam(start, stop, lineType);
+        List<TemperatureAlarmEntity> temperatureAlarmList = temperatureAlarmService.getTemperatureAlarmWithParam(start, stop, lineType, 20);
         if(null == temperatureAlarmList) {
             temperatureAlarmList = new ArrayList<TemperatureAlarmEntity>();
         }
@@ -268,27 +247,39 @@ public class TemperatureController {
 
     @ResponseBody
     @GetMapping("/updatePropertyConfig")
-    public String updatePropertyConfig(@RequestParam(value = "id",required = true) String id,
-                                  @RequestParam(value = "propName",required = true) String propName,
-                                  @RequestParam(value = "propValue",required = true) String propValue){
+    public ResponseEntity updatePropertyConfig(@RequestParam(value = "id",required = true) String id,
+                                                       @RequestParam(value = "propName",required = true) String propName,
+                                                       @RequestParam(value = "propValue",required = true) String propValue){
 
+        ResponseEntity responseEntity = new ResponseEntity();
         if(!StringUtils.isNotBlank(id) ) {
-            return "更新失败，未找到对应的配置项信息。";
+            responseEntity.setCode("9999");
+            responseEntity.setMsg("更新失败，未找到对应的配置项信息。");
+            return responseEntity;
         }
         if(!StringUtils.isNotBlank(propValue)) {
-            return  "更新失败，属性值必须填写， 请填写完整。";
+            responseEntity.setCode("9999");
+            responseEntity.setMsg( "更新失败，属性值必须填写， 请填写完整。");
+            return responseEntity;
         }
 
         if(ConfigConstants.TEMPERATURE_FETCH_FREQUENCY.equalsIgnoreCase(propName)) {
             BigDecimal value = new BigDecimal(propValue);
-            if(value.compareTo(new BigDecimal(1000)) < 0) {
-                return "刷新时间属性必须大于或者等于1000毫秒";
+            if(value.compareTo(new BigDecimal(1)) <= 0) {
+                responseEntity.setCode("9999");
+                responseEntity.setMsg( "刷新时间设置必须大于或者等于1分钟");
+                return responseEntity;
             }
-        } else {
-            if(ConfigConstants.TEMPERATURE_LINE_TYPE.equalsIgnoreCase(propName)) {
-                if (! HmiConstants.LINE_TYPE.LINE_TYPE_B.getCode().equalsIgnoreCase(propValue)) {
-                    propValue =  HmiConstants.LINE_TYPE.LINE_TYPE_A.getCode();
-                }
+        } else if(ConfigConstants.TEMPERATURE_LINE_TYPE.equalsIgnoreCase(propName)) {
+            if (! HmiConstants.LINE_TYPE.LINE_TYPE_B.getCode().equalsIgnoreCase(propValue)) {
+                propValue =  HmiConstants.LINE_TYPE.LINE_TYPE_A.getCode();
+            }
+        } else if(ConfigConstants.TEMPERATURE_DATA_CLEAR.equalsIgnoreCase(propName)) {
+            BigDecimal value = new BigDecimal(propValue);
+            if(value.compareTo(new BigDecimal(1)) <= 0) {
+                responseEntity.setCode("9999");
+                responseEntity.setMsg( "数据保留时间必须大于或者等于1个月");
+                return responseEntity;
             }
         }
 
@@ -298,10 +289,13 @@ public class TemperatureController {
         config.setPropValue(propValue);
         config.setUpdateTime(new Date());
         config.setUpdateBy("admin");
-        propertyService.updateById(config);
+        int row = propertyService.update(config);
 //        propertyService.getProperties();
 //        String json = JSON.toJSONString("SUCESS");
 //        System.out.println(System.currentTimeMillis() + " update  value:"+ propValue);
-        return "配置更新成功";
+//        String json = JSON.toJSONString("配置更新成功");
+        responseEntity.setCode("0000");
+        responseEntity.setMsg( "配置更新成功");
+        return responseEntity;
     }
 }

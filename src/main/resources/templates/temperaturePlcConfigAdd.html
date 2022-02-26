@@ -82,7 +82,8 @@
     new Vue({
         el:"#app",
         data:{
-            plcConfig:{}
+            plcConfig:{},
+            intervalId: null,
         },methods:{
             // getPlcConfig(){
             //     axios.get("/getPlcConfig").then(result=>{
@@ -91,10 +92,19 @@
             // },
             insertPlcConfig(){
                 axios.patch("/getPlcConfig",{"plcConfig":this.plcConfig}).then(alert("保存成功"))
-            }
+            },timer(){
+                if (this.intervalId!=null){/*代表计时器已经启动*/
+                    return ;
+                }
+                this.intervalId = setInterval(() => {
+                    this.getPlcConfig();
+                    // alert("10秒刷新");
+                }, 10000);
+            },
         },
         created(){
-            // this.getPlcConfig();
+            // this.timer();
+            this.getPlcConfig();
         }
     })
 </script>

@@ -171,6 +171,7 @@
             leftRearConnectingRod:'',
             rightFrontConnectingRod:'',
             rightRearConnectingRod:'',
+            intervalId: null,
         },methods:{
             getCurrentTemperature(){
                 // alert("getTemperature started...");
@@ -229,9 +230,11 @@
                 }
                 this.intervalId = setInterval(() => {
                     this.getCurrentTemperature();
+                    // alert("10秒刷新");
                 }, 10000);
             },
         },created(){/*vue钩子*/
+            this.timer();
             this.getCurrentTemperature();
         }
     })

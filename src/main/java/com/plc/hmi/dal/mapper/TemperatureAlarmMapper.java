@@ -10,7 +10,10 @@ public interface TemperatureAlarmMapper {
 
     @Select({"<script>",
             "select * from temperature_alarm where HANDLE_DATE between  #{startDate} and #{endDate} and LINE_TYPE = #{lineType}  and  IS_DELETED='0' ",
-            "order by id asc",
+            "order by id desc ",
+            "<if test='limit>0' >",
+            " limit #{limit}",
+            "</if>",
             "</script>" })
     @Results({
             @Result(id=true,column = "ID",property = "id" ),
@@ -22,10 +25,12 @@ public interface TemperatureAlarmMapper {
             @Result(column = "TEMPERATURE_WARNING_VALUE",property ="temperatureWarningValue"),
             @Result(column = "CREATE_TIME",property ="createTime"),
     })
-    List<TemperatureAlarmEntity> getTemperatureAlarmWithParam(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("lineType") String lineType);
+    List<TemperatureAlarmEntity> getTemperatureAlarmWithParam(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("lineType") String lineType, @Param("limit") int limit);
 
 
     @Insert({"INSERT INTO temperature_alarm(ID, HANDLE_DATE,LINE_TYPE, TEMPERATURE_ID, TEMPERATURE_NAME, TEMPERATURE_VALUE, TEMPERATURE_WARNING_VALUE, CREATE_BY, UPDATE_BY, CREATE_TIME, UPDATE_TIME, IS_DELETED) values(null,#{entity.handleDate},#{entity.lineType},#{entity.temperatureId},#{entity.temperatureName},#{entity.temperatureValue}, #{entity.temperatureWarningValue}, #{entity.createBy}, #{entity.updateBy}, now(), now(), '0')"})
     void insert(@Param("entity") TemperatureAlarmEntity entity);
 
+    @Delete({"DELETE FROM temperature_alarm WHERE  HANDLE_DATE <= date_format(DATE_SUB(now(), INTERVAL #{months} MONTH),'%Y%m%d')"})
+    void deleteHistoryData(int months);
 }
