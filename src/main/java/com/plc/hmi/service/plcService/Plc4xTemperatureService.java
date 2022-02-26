@@ -230,16 +230,16 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
                 wirelessTemperatureEntityP5.setRightRearEccentricWheel(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
             } else if (PlcEntityEnum.temperature_data_A11LeftFrontConnectingRod.getCode().equalsIgnoreCase(plcEntity.getName())) {
                 //A1-1连杆左前
-                temperatureEntityP1.setLeftFrontConnectingRod(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
+                wirelessTemperatureEntityP1.setLeftFrontConnectingRod(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
             } else if (PlcEntityEnum.temperature_data_A11LeftRearConnectingRod.getCode().equalsIgnoreCase(plcEntity.getName())) {
                 //A1-1连杆左后
-                temperatureEntityP1.setLeftRearConnectingRod(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
+                wirelessTemperatureEntityP1.setLeftRearConnectingRod(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
             } else if (PlcEntityEnum.temperature_data_A11RightFrontConnectingRod.getCode().equalsIgnoreCase(plcEntity.getName())) {
                 //A1-1连杆右后
-                temperatureEntityP1.setRightFrontConnectingRod(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
+                wirelessTemperatureEntityP1.setRightFrontConnectingRod(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
             } else if (PlcEntityEnum.temperature_data_A11RightRearConnectingRod.getCode().equalsIgnoreCase(plcEntity.getName())) {
                 //A1-1连杆右后
-                temperatureEntityP1.setRightRearConnectingRod(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
+                wirelessTemperatureEntityP1.setRightRearConnectingRod(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
             } else if (PlcEntityEnum.temperature_data_A1RightFrontHighSpeedGearBearingTemperature.getCode().equalsIgnoreCase(plcEntity.getName())) {
                 //A1-1右高速齿轮轴承(前)温度
                 temperatureEntityP1.setRightFrontHighSpeedGearBearingTemperature(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
