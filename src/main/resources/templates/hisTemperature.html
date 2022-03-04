@@ -399,7 +399,7 @@
                     stop:this.$refs.stop.value
                 }
                 axios.get("/temperatureExport",{params:requestData}).then(result=>{
-                    alert("export temperature to D:/csv/ success !")
+                    alert("export temperature success !")
                 }).catch(function(error){
                     alert(error)
                 })

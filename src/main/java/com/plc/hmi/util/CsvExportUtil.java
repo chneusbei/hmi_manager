@@ -220,8 +220,6 @@ public class CsvExportUtil {
 
         if (!CollectionUtils.isEmpty(temperaturePointList)) {
             for (TemperaturePointEntity data : temperaturePointList) {
-                csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getId()));
-                csvFileOutputStream.write(HmiConstants.COMMA);
                 csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getTemperatureId()));
                 csvFileOutputStream.write(HmiConstants.COMMA);
                 csvFileOutputStream.write(HmiUtils.getStringNoNull(data.getPlcName()));

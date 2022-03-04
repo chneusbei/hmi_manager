@@ -51,6 +51,6 @@ public class ConfigConstants {
     public static final String TEMPERATURE_FETCH_SLEEP_TIME = "temperature.fetch.sleep.time";
     public static final String TEMPERATURE_LINE_TYPE = "temperature.line.type";
     public static final String TEMPERATURE_DATA_CLEAR = "temperature.data.clear";
-
+    public static final String TEMPERATURE_EXPORT_DIR = "temperature.export.dir";
 
 }

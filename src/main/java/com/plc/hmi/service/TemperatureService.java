@@ -141,12 +141,12 @@ public class TemperatureService extends AbstractBaseService{
             Date temperatureTime = (Date) method.invoke(temperatureEntity);
             String plcNameStr= plcName;
             if(null == plcName) {
-                method = temperatureEntity.getClass().getMethod("plcName");
+                method = temperatureEntity.getClass().getMethod("getPlcName");
                 plcNameStr = (String) method.invoke(temperatureEntity);
             }
-            method = temperatureEntity.getClass().getMethod("handleDate");
+            method = temperatureEntity.getClass().getMethod("getHandleDate");
             String handleDate = (String) method.invoke(temperatureEntity);
-            method = temperatureEntity.getClass().getMethod("id");
+            method = temperatureEntity.getClass().getMethod("getId");
             Long temperatureId = (Long) method.invoke(temperatureEntity);
 
             TemperaturePointEntity temperaturePointEntity = new TemperaturePointEntity();

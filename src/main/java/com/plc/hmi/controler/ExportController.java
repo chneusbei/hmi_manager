@@ -71,7 +71,7 @@ public class ExportController {
 
         List<TemperatureEntity> TemperatureEntityList = null;
         List<TemperaturePointEntity> temperaturePointList =  null;
-        boolean isPointData = StringUtils.isBlank(temperatureName);
+        boolean isPointData = StringUtils.isBlank(temperatureName) ? false : true;
         if(isPointData) {
             //如果有温度点参数， 导出一个点的温度
             temperaturePointList = temperatureService.getHisTemperature(startDate,  endDate,  plcName,  temperatureName);
@@ -83,14 +83,13 @@ public class ExportController {
         if (CollectionUtils.isEmpty(TemperatureEntityList) && CollectionUtils.isEmpty(temperaturePointList)) {
             return  "temperature export no data found !";
         }
-
-        File dir = new File(HmiConstants.CSV_OUTPUT_PATH);
+        String csvDir = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_EXPORT_DIR));
+        File dir = new File(csvDir);
         if (!dir.exists()) {
             dir.mkdir();
         }
         //创建压头文件夹
-        String fileDir = HmiConstants.CSV_OUTPUT_PATH
-                + HmiConstants.TEMPERATURE_CSV_OUTPUT_PATH_;
+        String fileDir = csvDir + HmiConstants.TEMPERATURE_CSV_OUTPUT_PATH_;
         File headDir = new File(fileDir);
 
         if (!headDir.exists()) {

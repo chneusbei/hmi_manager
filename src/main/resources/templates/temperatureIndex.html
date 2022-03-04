@@ -192,6 +192,11 @@
                     if(this.lineType == this.lineTypeB) {
                         this.temperatureWarningValue1=this.listTemperatureWireless[index].temperatureWarningValue1;
                         this.temperatureWarningValue2=this.listTemperatureWireless[index].temperatureWarningValue2;
+                        if (this.temperatureWarningValue1 > this.temperatureWarningValue2) {
+                            this.temperatureWarningValue = this.temperatureWarningValue1;
+                        } else {
+                            this.temperatureWarningValue = this.temperatureWarningValue2;
+                        }
                         this.leftFrontEccentric=this.listTemperatureWireless[index].leftFrontTripodEccentricBigCopperSleeve;
                         this.leftRearEccentric=this.listTemperatureWireless[index].leftRearTripodEccentricBigCopperSleeve;
                         this.rightFrontEccentric=this.listTemperatureWireless[index].rightFrontTripodEccentricBigCopperSleeve;
@@ -200,11 +205,6 @@
                         this.leftRearConnectingRod=this.listTemperatureWireless[index].leftRearConnectingRodBigCopperSleeve;
                         this.rightFrontConnectingRod=this.listTemperatureWireless[index].rightFrontConnectingRodBigCopperSleeve;
                         this.rightRearConnectingRod=this.listTemperatureWireless[index].rightRearConnectingRodBigCopperSleeve;
-                        if (this.temperatureWarningValue1 > this.temperatureWarningValue2) {
-                            this.temperatureWarningValue = this.temperatureWarningValue1;
-                        } else {
-                            this.temperatureWarningValue = this.temperatureWarningValue2;
-                        }
                     } else {
                         this.temperatureWarningValue = this.listTemperatureWireless[index].temperatureWarningValueA;
                         this.leftFrontEccentric=this.listTemperatureWireless[index].leftFrontEccentricWheel;
