@@ -288,7 +288,7 @@
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
                         <td :style="{background:o.impression}">{{o.temperatureName}}</td>
                         <td :style="{background:o.impression}">{{o.temperatureValue}}</td>
-                        <td :style="{background:o.impression}">{{o.temperatureName}}</td>
+                        <td :style="{background:o.impression}">{{FormatDate(o.temperatureTime)}}</td>
                     </tr>
                     <tr v-if="lineType == lineTypeB && !isPointModel" v-for="o in temperatureList">
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
@@ -336,7 +336,7 @@
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
                         <td :style="{background:o.impression}">{{o.temperatureName}}</td>
                         <td :style="{background:o.impression}">{{o.temperatureValue}}</td>
-                        <td :style="{background:o.impression}">{{o.temperatureName}}</td>
+                        <td :style="{background:o.impression}">{{FormatDate(o.temperatureTime)}}</td>
                     </tr>
                     <tr v-if="lineType == lineTypeA  && !isPointModel" v-for="o in temperatureList">
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
