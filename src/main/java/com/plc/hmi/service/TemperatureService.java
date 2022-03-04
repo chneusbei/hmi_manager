@@ -151,7 +151,6 @@ public class TemperatureService extends AbstractBaseService{
 
             TemperaturePointEntity temperaturePointEntity = new TemperaturePointEntity();
             temperaturePointEntity.setLineType(lineType);
-            temperaturePointEntity.setLineType(lineType);
             temperaturePointEntity.setPlcName(plcNameStr);
             temperaturePointEntity.setHandleDate(handleDate);
             temperaturePointEntity.setTemperatureTime(temperatureTime);

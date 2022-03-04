@@ -48,7 +48,7 @@
             <script src="test.js"></script>
             <main class="lyear-layout-content">
                 <br>
-                <form action="/insertPlcConfig" method="post">
+                <form>
                 <table class="imagetable">
                     <tr>
                         <td  align="center" colspan="2"><strong><h4>PLC连接信息新增</h4></strong></td>
@@ -63,7 +63,7 @@
                         <td height="50px" >PLC IP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="plcServerIp" v-model="plcConfig.plcServerIp" type="text" style="width: 200px" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     </tr>
                     <tr>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="保存" style="width: 100px;background-color: #33CABB;color: white" ></td>
+                        <td height="50px" align="center"  colspan="2"><input type="button" value="保存"  @click="insertPlcConfig(plcConfig)" style="width: 100px;background-color: #33CABB;color: white" ></td>
                     </tr>
 
                 </table>
@@ -90,8 +90,21 @@
             //         this.plcConfig=result.data;
             //     })
             // },
-            insertPlcConfig(){
-                axios.patch("/getPlcConfig",{"plcConfig":this.plcConfig}).then(alert("保存成功"))
+            insertPlcConfig(plcConfig){
+                let params ={
+                    plcName:plcConfig.plcName,
+                    plcServerIp:plcConfig.plcServerIp
+                }
+                // axios("/insertPlcConfig",{"plcConfig":this.plcConfig}).then(alert("保存成功"))
+                axios("/insertPlcConfig",{params:params}).then(result=>{
+                    // this.propertyConfig=result.data;
+                    // console.log('---',result)
+                    alert("保存成功");
+                    window.reload();
+                    // setTimeout(() => {
+                    //     this.reaload()
+                    // },1000)
+                });
             },timer(){
                 if (this.intervalId!=null){/*代表计时器已经启动*/
                     return ;

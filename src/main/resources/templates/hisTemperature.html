@@ -201,7 +201,13 @@
                     </tr>
                 </table>
                 <table class="imagetable2">
-                    <tr v-if="lineType == lineTypeB" >
+                    <tr v-if="lineType == lineTypeB  && isPointModel" >
+                        <th>PLC名</th>
+                        <th>温度点名称</th>
+                        <th>温度值</th>
+                        <th>时间</th>
+                    </tr>
+                    <tr v-if="lineType == lineTypeB  && !isPointModel" >
                         <th>PLC名</th>
                         <th>低速轴偏心铜套1</th>
                         <th>低速轴偏心铜套2</th>
@@ -241,8 +247,15 @@
                         <th>右后低速轴铜套</th>
                         <th>温度警戒值1</th>
                         <th>温度警戒值2</th>
+                        <th>时间</th>
                     </tr>
-                    <tr v-if="lineType == lineTypeA">
+                    <tr v-if="lineType == lineTypeA  && isPointModel">
+                        <th>PLC名</th>
+                        <th>温度点名称</th>
+                        <th>温度值</th>
+                        <th>时间</th>
+                    </tr>
+                    <tr v-if="lineType == lineTypeA  && !isPointModel">
                         <th>PLC名</th>
                         <th>偏心轮左前</th>
                         <th>偏心轮左后</th>
@@ -269,8 +282,15 @@
                         <th>主轴齿轮轴承7温度</th>
                         <th>主轴齿轮轴承8温度</th>
                         <th>温度警戒值</th>
+                        <th>时间</th>
                     </tr>
-                    <tr v-if="lineType == lineTypeB" v-for="o in temperatureList">
+                    <tr v-if="lineType == lineTypeB && isPointModel" v-for="o in temperatureList">
+                        <td :style="{background:o.impression}">{{o.plcName}}</td>
+                        <td :style="{background:o.impression}">{{o.temperatureName}}</td>
+                        <td :style="{background:o.impression}">{{o.temperatureValue}}</td>
+                        <td :style="{background:o.impression}">{{o.temperatureName}}</td>
+                    </tr>
+                    <tr v-if="lineType == lineTypeB && !isPointModel" v-for="o in temperatureList">
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
                         <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature1}}</td>
                         <td :style="{background:o.impression}">{{o.lowSpeedAxisEccentricCopperSleeveTemperature2}}</td>
@@ -310,8 +330,15 @@
                         <td :style="{background:o.impression}">{{o.rightRearLowSpeedAxisCopperSleeve}}</td>
                         <td :style="{background:o.impression}">{{o.temperatureWarningValue1}}</td>
                         <td :style="{background:o.impression}">{{o.temperatureWarningValue2}}</td>
+                        <td :style="{background:o.impression}">{{FormatDate(o.createTime)}}</td>
                     </tr>
-                    <tr v-if="lineType == lineTypeA" v-for="o in temperatureList">
+                    <tr v-if="lineType == lineTypeA  && isPointModel" v-for="o in temperatureList">
+                        <td :style="{background:o.impression}">{{o.plcName}}</td>
+                        <td :style="{background:o.impression}">{{o.temperatureName}}</td>
+                        <td :style="{background:o.impression}">{{o.temperatureValue}}</td>
+                        <td :style="{background:o.impression}">{{o.temperatureName}}</td>
+                    </tr>
+                    <tr v-if="lineType == lineTypeA  && !isPointModel" v-for="o in temperatureList">
                         <td :style="{background:o.impression}">{{o.plcName}}</td>
                         <td :style="{background:o.impression}">{{o.leftFrontEccentricWheel}}</td>
                         <td :style="{background:o.impression}">{{o.leftRearEccentricWheel}}</td>
@@ -338,6 +365,7 @@
                         <td :style="{background:o.impression}">{{o.mainAxisGearBearingTemperature7}}</td>
                         <td :style="{background:o.impression}">{{o.mainAxisGearBearingTemperature8}}</td>
                         <td :style="{background:o.impression}">{{o.temperatureWarningValueA}}</td>
+                        <td :style="{background:o.impression}">{{FormatDate(o.createTime)}}</td>
                     </tr>
                 </table>
 
@@ -368,6 +396,7 @@
             lineType:'B',
             lineTypeB:'B',
             lineTypeA:'A',
+            isPointModel:false,
         },methods:{
             getHisTemperatureNewWithoutParam(){
                 axios.get("/getHisTemperatureNewWithoutParam").then(result=>{
@@ -380,8 +409,16 @@
             queryHisTemperature(){
                 let requestData={
                     plcName:this.plcName,
+                    temperatureName:this.temperatureName,
                     start:this.$refs.start.value,
                     stop:this.$refs.stop.value
+                }
+                if(this.temperatureName != undefined) {
+                    this.isPointModel = true;
+                    // alert("isPointModel = "+this.isPointModel);
+                }else {
+                    this.isPointModel = false;
+                    // alert("isPointModel = "+this.isPointModel);
                 }
                 axios.get("/getHisTemperatureNew",{params:requestData}).then(result=>{
                     this.temperatureList=result.data;
@@ -403,7 +440,9 @@
                 }).catch(function(error){
                     alert(error)
                 })
-            },
+            }, FormatDate: function(date){
+                return moment(date).format('YYYY-MM-DD HH:mm:ss');
+            }
         },created(){/*vue钩子*/
             // alert("histemperature 勾子");
             this.getHisTemperatureNewWithoutParam();

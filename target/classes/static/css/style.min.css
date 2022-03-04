@@ -2735,13 +2735,13 @@ dd, dt {
 .lyear-layout-content {
 	height: 100%;
 	width: 100%;
-    padding-top: 68px;
+    padding-top: 5px;
     padding-left: 240px;
     -webkit-transition: padding 0.3s;
     transition: padding 0.3s;
 }
 .lyear-layout-content .container-fluid {
-    padding-top: 15px;
+    padding-top: 1px;
     padding-bottom: 15px;
 }
 

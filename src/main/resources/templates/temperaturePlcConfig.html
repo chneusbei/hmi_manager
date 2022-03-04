@@ -56,8 +56,8 @@
                 <table class="imagetable">
                     <tr>
                         <td  align="center" colspan="2"><strong><h4>PLC连接信息列表</h4></strong></td>
-                        <td  width="20%" />
-                        <td/>
+                        <td align="center" colspan="2" />
+                        <td align="center" colspan="2" />
 <!--                        <td height="120px" align="center"  colspan="2"><input type="submit" value="添加PLC信息"   @click="gotoAdd()" style="width: 100px;background-color: #33CABB;color: white" ></td>-->
                     </tr>
                     <tr>
@@ -65,9 +65,6 @@
                         <th>PLC名</th>
                         <th>PLC IP</th>
                         <th>操作</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
 <!--                        <th>操作2</th>-->
                     </tr>
                     <tr v-for="o in plcConfig">
@@ -81,8 +78,11 @@
                         <td :style="{background:o.impression}">
                             <input class="form-control js-datepicker m-b-10" type="text" name="plcServerIp" v-model="o.plcServerIp" />
                         </td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="修改"   @click="updatePlcConfig(o)" style="width: 100px;background-color: #33CABB;color: white" ></td>
-                        <td height="50px" align="center"  colspan="2"><input type="submit" value="删除"   @click="deletePlcConfig(o)" style="width: 100px;background-color: #33CABB;color: white" ></td>
+                        <td :style="{background:o.impression}">
+                            <input type="button" value="修改"   @click="updatePlcConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;margin-right:30px" >
+
+                            <input type="button" value="删除"   @click="deletePlcConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;" >
+                        </td>
                     </tr>
                 </table>
                 </form>
@@ -120,7 +120,7 @@
                     plcName:o.plcName,
                     plcServerIp:o.plcServerIp
                 }
-                axios("/updatePlcConfig",{params:params}).then(alert("修改成功"), location.reload())
+                axios("/updatePlcConfig",{params:params}).then(alert("修改成功"),  window.reload())
             },
             gotoAdd(){
                 // alert("跳转");

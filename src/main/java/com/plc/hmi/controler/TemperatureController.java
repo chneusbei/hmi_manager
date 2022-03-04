@@ -36,12 +36,20 @@ public class TemperatureController {
 
     @GetMapping("/getHisTemperatureNew")
     public String getHisTemperatureNew(@RequestParam(value = "plcName",required = false) String plcName,
+                                       @RequestParam(value = "temperatureName",required = false) String temperatureName,
                                         @RequestParam(value = "start",required = true) String start,
                                         @RequestParam(value = "stop",required = true) String stop) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 //        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
-        List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(start, stop,plcName, null, lineType, 20);
-        String json = JSON.toJSONString(TemperatureList);
+        String json = null;
+        if(StringUtils.isEmpty(temperatureName)) {
+            List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(start, stop,plcName, null, lineType, 20);
+            json = JSON.toJSONString(TemperatureList);
+        } else {
+            List<TemperaturePointEntity> TemperaturePointList =  temperatureService.getHisTemperature(start,  stop,  plcName,  temperatureName);
+            json = JSON.toJSONString(TemperaturePointList);
+        }
+
         return json;
     }
 
@@ -246,6 +254,7 @@ public class TemperatureController {
 
 
     @ResponseBody
+    @ExceptionHandler(Exception.class)
     @GetMapping("/updatePropertyConfig")
     public ResponseEntity updatePropertyConfig(@RequestParam(value = "id",required = true) String id,
                                                        @RequestParam(value = "propName",required = true) String propName,
