@@ -10,21 +10,19 @@ import com.plc.hmi.service.PressureCurveService;
 import com.plc.hmi.service.PressureDataService;
 import com.plc.hmi.service.PropertyService;
 import com.plc.hmi.service.TemperatureService;
-import com.plc.hmi.service.plcService.Plc4xTemperatureService;
 import com.plc.hmi.util.CsvExportUtil;
 import com.plc.hmi.util.HmiUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 @RestController
 public class ExportController {
@@ -46,7 +44,7 @@ public class ExportController {
                           @RequestParam(value = "stop",required = true) String stop) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         String startDate = null==start ? null : start.replace("-","");
         String endDate = null==stop ? null : stop.replace("-","");
-//        System.out.println("=======================startDate======="+startDate + "=======end====="+endDate);
+        logger.info("export to csv, startDate={}, end={}", startDate ,endDate);
 
         if(!StringUtils.isEmpty(startDate)) {
             startDate=startDate.replace("-","");
@@ -130,7 +128,7 @@ public class ExportController {
                          @RequestParam(value = "endDate",required = false) String endDate) {
         startDate = null==startDate ? null : startDate.replace("-","");
         endDate =  null==endDate ? null : endDate.replace("-","");
-//        System.out.println("=======================startDate======="+startDate + "=======end====="+endDate);
+       logger.info("curveDataExport,startDate={}, end={}", startDate, endDate);
 
         //获取对应的pressure_data
         List<PressureDataEntity> pressureDateList = pressureDataService.getPressureData(startDate+"000000000", endDate+"999999999");

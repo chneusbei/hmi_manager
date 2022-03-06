@@ -7,16 +7,16 @@ import com.plc.hmi.service.PropertyService;
 import com.plc.hmi.service.TemperatureService;
 import com.plc.hmi.service.plcService.Plc4xTemperatureService;
 import com.plc.hmi.util.HmiUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.List;
 
 public class PlcTemperatureThread implements Runnable {
-    private final Log logger = LogFactory.getLog(PlcTemperatureThread.class);
+    private static Logger logger =  LoggerFactory.getLogger(PlcTemperatureThread.class);
     @Autowired
     Plc4xTemperatureService service;
     @Autowired
@@ -25,6 +25,7 @@ public class PlcTemperatureThread implements Runnable {
     PropertyService propertyService;
     @Autowired
     TemperatureService temperatureService;
+
 
     public PlcTemperatureThread(Plc4xTemperatureService service, PropertyService propertyService, PlcConfigService plcConfigService, TemperatureService temperatureService) {
         this.service = service;
@@ -42,10 +43,9 @@ public class PlcTemperatureThread implements Runnable {
             List<PlcConfigEntity> plcList = plcConfigService.getPlcList();
             if(!CollectionUtils.isEmpty(plcList)) {
                 for(PlcConfigEntity plcConfigEntity: plcList) {
-                    System.out.println("开始获取PLC温度数据:"+HmiUtils.getFormatDateString(new Date()));
+                    logger.info("开始获取PLC温度数据: {}",HmiUtils.getFormatDateString(new Date()));
                     service.getTemperatureNewFromPlc(plcConfigEntity, lineType);
-//                    System.out.println("获取PLC温度数据完成");
-//                    System.out.println("开始清理历史数据:"+ HmiUtils.getFormatDateString(new Date()));
+                    logger.info("获取PLC温度数据完成: {}",HmiUtils.getFormatDateString(new Date()));
                     temperatureService.deleteHistoryData();
                 }
             } else {

@@ -4,12 +4,12 @@ import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.service.PropertyService;
 import com.plc.hmi.service.plcService.Plc4xCurveDataService;
 import com.plc.hmi.util.HmiUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class PlcPressCurveThread implements Runnable {
-    private final Log logger = LogFactory.getLog(PlcPressCurveThread.class);
+    private static Logger logger = LoggerFactory.getLogger(PlcPressCurveThread.class);
     @Autowired
     Plc4xCurveDataService service;
     @Autowired

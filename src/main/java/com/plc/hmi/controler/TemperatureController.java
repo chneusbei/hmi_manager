@@ -12,6 +12,8 @@ import com.plc.hmi.util.HmiUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Resource;
 import java.lang.reflect.InvocationTargetException;
@@ -34,12 +36,14 @@ public class TemperatureController {
     @Resource
     PropertyService propertyService;
 
+    private static Logger logger = LoggerFactory.getLogger(TemperatureController.class);
+
     @GetMapping("/getHisTemperatureNew")
     public String getHisTemperatureNew(@RequestParam(value = "plcName",required = false) String plcName,
                                        @RequestParam(value = "temperatureName",required = false) String temperatureName,
                                         @RequestParam(value = "start",required = true) String start,
                                         @RequestParam(value = "stop",required = true) String stop) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-//        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
+        logger.info(" getHisTemperature startDate={}, endDate={}，plcName = {}", start, stop , plcName);
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
         String json = null;
         if(StringUtils.isEmpty(temperatureName)) {
@@ -55,7 +59,7 @@ public class TemperatureController {
 
     @GetMapping("/getHisTemperatureNewWithoutParam")
     public String getHisTemperatureNew() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-//        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
+        logger.info(" getHisTemperature start.");
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
         List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(null, null,null, null, lineType, 20);
         String json = JSON.toJSONString(TemperatureList);
@@ -78,7 +82,7 @@ public class TemperatureController {
                                    @RequestParam(value = "endDate",required = true) String endDate,
                                    @RequestParam(value = "plcName",required = false) String plcName,
                                    @RequestParam(value = "temperatureName",required = false) String temperatureName) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-//        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
+        logger.info(" getHisTemperature startDate={}, endDate={}, plcName={}", startDate, endDate, plcName);
         List<TemperaturePointEntity> temperaturePointList =  temperatureService.getHisTemperature(startDate,  endDate,  plcName,  temperatureName);
         return temperaturePointList;
     }
@@ -89,7 +93,7 @@ public class TemperatureController {
     @ResponseBody
     @GetMapping("/getCurrentTemperatureNew")
     public List<List<TemperatureEntity>> getCurrentTemperatureNew(){
-//        System.out.println(">>>> getCurrentTemperature");
+        logger.info(" getCurrentTemperature start .");
 //        String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
         List<List<TemperatureEntity>> temperatureList = plc4xTemperatureService.getTemperatureListNew();
         return temperatureList;
@@ -150,7 +154,7 @@ public class TemperatureController {
     @ResponseBody
     @GetMapping("/getCurrentTemperature")
     public List<TemperatureEntity> getCurrentTemperature(){
-//        System.out.println(">>>> getCurrentTemperature");
+        logger.info("getCurrentTemperature start.");
         List<TemperatureEntity> temperatureList = plc4xTemperatureService.getTemperatureList();
         return temperatureList;
 
@@ -301,7 +305,6 @@ public class TemperatureController {
         int row = propertyService.update(config);
 //        propertyService.getProperties();
 //        String json = JSON.toJSONString("SUCESS");
-//        System.out.println(System.currentTimeMillis() + " update  value:"+ propValue);
 //        String json = JSON.toJSONString("配置更新成功");
         responseEntity.setCode("0000");
         responseEntity.setMsg( "配置更新成功");

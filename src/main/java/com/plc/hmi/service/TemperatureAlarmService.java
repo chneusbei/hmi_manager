@@ -2,8 +2,8 @@ package com.plc.hmi.service;
 
 import com.plc.hmi.dal.dao.TemperatureAlarmDao;
 import com.plc.hmi.dal.entity.TemperatureAlarmEntity;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +20,7 @@ public class TemperatureAlarmService extends AbstractBaseService{
     @Resource
     TemperatureAlarmDao temperatureAlarmDao;
 
-    private final Log logger = LogFactory.getLog(TemperatureAlarmService.class);
+    private static Logger logger = LoggerFactory.getLogger(TemperatureAlarmService.class);
 
     /**
      * 历史报警信息查询

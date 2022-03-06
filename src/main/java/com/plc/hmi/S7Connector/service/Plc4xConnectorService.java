@@ -3,11 +3,9 @@ package com.plc.hmi.S7Connector.service;
 import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.PlcConfigEntity;
-import com.plc.hmi.dal.entity.PropertyEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.service.PropertyService;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+
 import org.apache.plc4x.java.PlcDriverManager;
 import org.apache.plc4x.java.api.PlcConnection;
 import org.apache.plc4x.java.api.exceptions.PlcConnectionException;
@@ -16,9 +14,10 @@ import org.apache.plc4x.java.api.messages.PlcReadResponse;
 import org.apache.plc4x.java.api.messages.PlcWriteRequest;
 import org.apache.plc4x.java.api.messages.PlcWriteResponse;
 import org.apache.plc4x.java.api.types.PlcResponseCode;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ import java.util.concurrent.ExecutionException;
 public class Plc4xConnectorService {
     @Resource
     private PropertyService propertyService;
-    private final Log logger = LogFactory.getLog(Plc4xConnectorService.class);
+    private static Logger logger = LoggerFactory.getLogger(Plc4xConnectorService.class);
 //    private String HOST =  null; //"s7://192.168.1.1/2/1"; 参数 第一个是机架rock, 第二个是插槽slot
     public Map<String, PlcConnection> plcConnectionMap = new HashMap<String, PlcConnection>();
 
@@ -49,15 +48,15 @@ public class Plc4xConnectorService {
                 PlcConnection plcConnection =  plcDriverManager.getConnection(host);
                 plcConnectionMap.put(plcConfigEntity.getPlcServerIp(), plcConnection);
             } catch (PlcConnectionException e) {
-                logger.info("connect to server error, PLC ip = " +plcConfigEntity.getPlcServerIp());
+                logger.info("connect to server error, PLC ip = {}", plcConfigEntity.getPlcServerIp());
 //                e.printStackTrace();
                 return false;
             } catch (Exception e) {
-                logger.info("connect to server error, PLC ip = " +plcConfigEntity.getPlcServerIp() );
+                logger.info("connect to server error, PLC ip = {}", plcConfigEntity.getPlcServerIp() );
                 e.printStackTrace();
                 return false;
             }
-            logger.info("connect to server ip = "+plcConfigEntity.getPlcServerIp() + " ,status  = "+isConnected(plcConfigEntity));
+            logger.info("connect to server ip = {},status  = {}",plcConfigEntity.getPlcServerIp(), isConnected(plcConfigEntity));
         }
         return true;
     }
@@ -146,10 +145,10 @@ public class Plc4xConnectorService {
         try {
             response = readRequest.execute().get();
         } catch (InterruptedException e) {
-            logger.error("execute readRequeset error." + e.getStackTrace());
+            logger.error("execute readRequeset error：" + e.getStackTrace());
             e.printStackTrace();
         } catch (ExecutionException e) {
-            logger.error("execute readRequeset error." + e.getStackTrace());
+            logger.error("execute readRequeset error:" + e.getStackTrace());
             e.printStackTrace();
         }
         return  analizyResponse(response);

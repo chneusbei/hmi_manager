@@ -1,20 +1,19 @@
 package com.plc.hmi.service.plcService;
 
 import com.plc.hmi.S7Connector.service.Plc4xConnectorService;
-import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.PlcConfigEntity;
-import com.plc.hmi.dal.entity.PropertyEntity;
 import com.plc.hmi.dal.entity.TagsInfoEntity;
 import com.plc.hmi.dal.entity.plc.PlcEntity;
 import com.plc.hmi.service.PropertyService;
 import com.plc.hmi.service.TagsInfoService;
 import com.plc.hmi.util.HmiUtils;
 import org.apache.plc4x.java.api.messages.PlcReadRequest;
-import org.apache.plc4x.java.api.types.PlcClientDatatype;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class Plc4xBaseService {
     //写请求对象
     protected List<PlcEntity> writeQueryList;
 
-
+    private static Logger logger = LoggerFactory.getLogger(Plc4xBaseService.class);
     /**
      *  获取设 PlcReadRequest.Builder
      *  高频查询，需要先获得 PlcReadRequest.Builder
@@ -88,7 +87,7 @@ public class Plc4xBaseService {
      * @param tagGroup
      */
     protected  void initQuereyList(String tagGroup) {
-//        System.out.println(">>>>>>>>>>>>>tagGroup"+tagGroup);
+        logger.info("initQuereyList  tagGroup={}",tagGroup);
 //        System.out.println(">>>>>>>>>>readQueryList.isEmpty()"+CollectionUtils.isEmpty(readQueryList));
 //        if(!CollectionUtils.isEmpty(readQueryList)) {
 //            return;

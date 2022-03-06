@@ -13,8 +13,8 @@ import com.plc.hmi.enumeration.PlcEntityEnum;
 import com.plc.hmi.service.PlcConfigService;
 import com.plc.hmi.service.PropertyService;
 import com.plc.hmi.util.HmiUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -40,7 +40,7 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
     @Resource
     PropertyService propertyService;
 
-    private final Log logger = LogFactory.getLog(Plc4xTemperatureService.class);
+    private static Logger logger = LoggerFactory.getLogger(Plc4xTemperatureService.class);
     public static Map<String, TemperatureEntity> TemperatureMap = new HashMap<String, TemperatureEntity>();
     public static Map<String, TemperatureEntity> TemperatureMapNew = new HashMap<String, TemperatureEntity>();
     public static List<List<TemperatureEntity>> TemperatureList = new ArrayList<>();
@@ -902,7 +902,6 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
      */
     private  void temperatureList2DB(List<List<TemperatureEntity>> temperatureEntityList) {
         if (null == temperatureEntityList) {
-//            System.out.println("Plc4xTemperatureDataService.temperatureList2DB: temperatureEntityList is null");
             logger.info("Plc4xTemperatureDataService.temperatureList2DB: temperatureEntityList is null");
             return;
         }

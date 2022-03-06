@@ -3,7 +3,8 @@ package com.plc.hmi.controler.zkcode;
 import com.github.pagehelper.PageInfo;
 import com.plc.hmi.dal.entity.UserEntity;
 import com.plc.hmi.service.UserService;
-import com.plc.hmi.util.HmiUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +21,13 @@ public class UserControler {
     @Resource
     private UserService userService;
 
+    private static Logger logger = LoggerFactory.getLogger(UserControler.class);
+
     @ResponseBody
     @RequestMapping("/userLogin")
     public UserEntity operatorRole(@RequestParam("username") String userName, @RequestParam("password")String password){
-        System.out.println("user log in : username="+userName +".password"+password);
+//        System.out.println("user log in : username="+userName +".password"+password);
+        logger.info("user log in : username={}, password={}",userName ,password);
         UserEntity user = userService.getUser(userName);
         if(null != user) {
             if(!password.equalsIgnoreCase(user.getUserPassword())) {

@@ -30,7 +30,6 @@ public class PropertyDao {
 
     public List<PropertyEntity> getProperties() {
         List<PropertyEntity>  propertyEntityList = propertyMapper.getPropertyConfig();
-//        System.out.println(System.currentTimeMillis() +" select  value:"+ propertyEntityList.get(0).getPropValue());
         return propertyEntityList;
     }
 

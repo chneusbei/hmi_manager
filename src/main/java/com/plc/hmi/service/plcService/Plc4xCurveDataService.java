@@ -8,11 +8,10 @@ import com.plc.hmi.enumeration.PlcEntityEnum;
 import com.plc.hmi.service.PressureCurveService;
 import com.plc.hmi.service.PropertyService;
 import com.plc.hmi.util.HmiUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jvnet.hk2.annotations.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -32,7 +31,7 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     @Resource
     private  Plc4xCurveStatusService plc4xCurveStatusService;
 
-    private final Log logger = LogFactory.getLog(Plc4xCurveDataService.class);
+    private static Logger logger = LoggerFactory.getLogger(Plc4xCurveDataService.class);
     public static String tagGroup = HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode();
 //    public static String tagGroup = HmiConstants.PLC_TAG_GROUP.CURVE_DATA.getCode();
     public static Map<Long, List<PressureCurveEntity>> curveMap = new HashMap<Long, List<PressureCurveEntity>>();

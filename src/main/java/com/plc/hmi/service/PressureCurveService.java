@@ -4,8 +4,8 @@ import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.dal.dao.PressureCurveDao;
 import com.plc.hmi.dal.entity.*;
 import com.plc.hmi.util.HmiUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -30,7 +30,7 @@ public class PressureCurveService extends AbstractBaseService{
     @Resource
     private PropertyService propertyService;
 
-    private final Log logger = LogFactory.getLog(PressureCurveService.class);
+    private static Logger logger = LoggerFactory.getLogger(PressureCurveService.class);
     //用户存储实时PLC曲线信息。线程安全的链表容器
     private static java.util.concurrent.ConcurrentLinkedDeque<PressureCurveEntity>
             synCurveDeque =  new java.util.concurrent.ConcurrentLinkedDeque<PressureCurveEntity>();;

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 public class OpcClientSrviceTest {
-    private static Logger logger = LoggerFactory.getLogger(PlcConnectserviceTest.class);
+    private static Logger logger = LoggerFactory.getLogger(OpcClientSrviceTest.class);
 //
 //    @Autowired
 //    private OpcClientService opcClientService;

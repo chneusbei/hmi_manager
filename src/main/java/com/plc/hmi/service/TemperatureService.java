@@ -7,12 +7,11 @@ import com.plc.hmi.dal.entity.TemperatureEntity;
 import com.plc.hmi.dal.entity.TemperaturePointEntity;
 import com.plc.hmi.util.HmiUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.jvnet.hk2.annotations.Service;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import java.lang.reflect.InvocationTargetException;
@@ -36,7 +35,7 @@ public class TemperatureService extends AbstractBaseService{
     @Resource
     TemperatureAlarmService temperatureAlarmService;
 
-    private final Log logger = LogFactory.getLog(TemperatureService.class);
+    private static Logger logger = LoggerFactory.getLogger(TemperatureService.class);
 
     /**
      * 获取温度信息
@@ -170,10 +169,12 @@ public class TemperatureService extends AbstractBaseService{
      * @return
      */
     public void deleteHistoryData() {
+       logger.info("开始清理历史数据:"+ HmiUtils.getFormatDateString(new Date()));
         String clearDateString = propertyService.getProperty(ConfigConstants.TEMPERATURE_DATA_CLEAR);
         BigDecimal months = new BigDecimal(clearDateString);
         temperatureDao.deleteHistoryData(months.intValue());
         temperatureAlarmService.deleteHistoryData(months.intValue());
+        logger.info("清理历史数据完成:"+ HmiUtils.getFormatDateString(new Date()));
     }
 
 
@@ -182,7 +183,7 @@ public class TemperatureService extends AbstractBaseService{
      * @return
      */
     public List<TemperaturePointEntity> getHisTemperature(String startDate,  String endDate,  String plcName,  String temperatureName) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        //        System.out.println(" getHisTemperature startDate" + startDate + ", endDate"+endDate + ", plcName = "+ plcName);
+        logger.info(" getHisTemperature startDate={}, endDate={}, plcName={}" , startDate, endDate, plcName);
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
         List<TemperaturePointEntity> temperaturePointList =  getTemperaturePointWithParam(startDate, endDate, plcName,temperatureName, null, lineType, 20);
 //        String json = JSON.toJSONString(temperaturePointList);
