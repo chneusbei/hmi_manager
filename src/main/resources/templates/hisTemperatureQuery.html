@@ -169,13 +169,13 @@
                             </td>
                             <td>开始时间：
                                 <div class="card">
-                                    <input class="form-control js-datepicker m-b-10" type="text" id="example-datepicker"
+                                    <input class="form-control js-datepicker m-b-10" type="text"  ref="startDate"  id="example-datepicker"
                                            name="startDate" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd" v-model="startDate"/>
                                 </div>
                             </td>
                             <td>结束时间：
                                 <div class="card">
-                                    <input class="form-control js-datepicker m-b-10" type="text" id=""
+                                    <input class="form-control js-datepicker m-b-10" type="text" ref="endDate"  id="datepicker"
                                            name="endDate" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd"  v-model="endDate"/>
                                 </div>
                             </td>
@@ -225,8 +225,8 @@
                 let arr=[];
                 let myChart= echarts.init(document.getElementById('main'));
                 let requestDate={
-                    startDate:this.startDate,
-                    endDate:this.endDate,
+                    startDate:this.$refs.startDate.value,
+                    endDate:this.$refs.endDate.value,
                     plcName:this.plcName,
                     temperatureName:this.temperatureName
                 }
@@ -242,7 +242,7 @@
                         // let isErrant=true;
                         // alert("value ="+result[i].temperatureValue);
                         let isSolidLine=true;
-                        arr.push([FormatDate(result[i].temperatureTime),result[i].temperatureValue]);
+                        arr.push([moment(result[i].temperatureTime).utcOffset(0).format('YYYY-MM-DD HH:mm:ss'),result[i].temperatureValue]);
                         var color="black";
 
                         this.series1.push({
@@ -275,7 +275,7 @@
                     myChart.setOption(option);
                     console.log("arr=>"+arr);
                 }).catch(err=>{
-                    alert("error chart");
+                    alert("error chart"+err);
                     myChart.hideLoading();
                 });
 
@@ -287,10 +287,10 @@
                 }).catch(function(error){
                     alert(error)
                 })
-            },
-        }, FormatDate: function(date){
-            return moment(date).utcOffset(0).format('YYYY-MM-DD HH:mm:ss');
-        }, created(){
+            },FormatDate: function(date){
+                return moment(date).utcOffset(0).format('YYYY-MM-DD HH:mm:ss');
+            }
+        },  created(){
             this.queryLineType();
         }
     });
