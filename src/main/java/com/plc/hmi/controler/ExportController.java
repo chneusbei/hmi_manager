@@ -72,7 +72,7 @@ public class ExportController {
         boolean isPointData = StringUtils.isBlank(temperatureName) ? false : true;
         if(isPointData) {
             //如果有温度点参数， 导出一个点的温度
-            temperaturePointList = temperatureService.getHisTemperature(startDate,  endDate,  plcName,  temperatureName);
+            temperaturePointList = temperatureService.getHisTemperature(startDate,  endDate,  plcName,  temperatureName, 0);
         } else {
             //如果没有温度点参数， 导出整行数据
             TemperatureEntityList = temperatureService.getTemperatureWithParam(startDate, endDate, plcName, null, lineType, 0);

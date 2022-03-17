@@ -50,7 +50,7 @@ public class TemperatureController {
             List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(start, stop,plcName, null, lineType, 20);
             json = JSON.toJSONString(TemperatureList);
         } else {
-            List<TemperaturePointEntity> TemperaturePointList =  temperatureService.getHisTemperature(start,  stop,  plcName,  temperatureName);
+            List<TemperaturePointEntity> TemperaturePointList =  temperatureService.getHisTemperature(start,  stop,  plcName,  temperatureName, 20);
             json = JSON.toJSONString(TemperaturePointList);
         }
 
@@ -83,7 +83,7 @@ public class TemperatureController {
                                    @RequestParam(value = "plcName",required = false) String plcName,
                                    @RequestParam(value = "temperatureName",required = false) String temperatureName) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         logger.info(" getHisTemperature startDate={}, endDate={}, plcName={}", startDate, endDate, plcName);
-        List<TemperaturePointEntity> temperaturePointList =  temperatureService.getHisTemperature(startDate,  endDate,  plcName,  temperatureName);
+        List<TemperaturePointEntity> temperaturePointList =  temperatureService.getHisTemperature(startDate,  endDate,  plcName,  temperatureName, 0);
         return temperaturePointList;
     }
 

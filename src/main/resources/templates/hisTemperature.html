@@ -441,7 +441,7 @@
                     alert(error)
                 })
             }, FormatDate: function(date){
-                return moment(date).format('YYYY-MM-DD HH:mm:ss');
+                return moment(date).utcOffset(0).format('YYYY-MM-DD HH:mm:ss');
             }
         },created(){/*vue钩子*/
             // alert("histemperature 勾子");

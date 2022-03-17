@@ -242,7 +242,7 @@
                         // let isErrant=true;
                         // alert("value ="+result[i].temperatureValue);
                         let isSolidLine=true;
-                        arr.push([result[i].temperatureTime,result[i].temperatureValue]);
+                        arr.push([FormatDate(result[i].temperatureTime),result[i].temperatureValue]);
                         var color="black";
 
                         this.series1.push({
@@ -288,6 +288,8 @@
                     alert(error)
                 })
             },
+        }, FormatDate: function(date){
+            return moment(date).utcOffset(0).format('YYYY-MM-DD HH:mm:ss');
         }, created(){
             this.queryLineType();
         }

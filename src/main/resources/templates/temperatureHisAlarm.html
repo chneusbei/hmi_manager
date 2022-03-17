@@ -157,7 +157,7 @@
                 })
             },
             FormatDate: function(date){
-                return moment(date).format('YYYY-MM-DD HH:mm:ss');
+                return moment(date).utcOffset(0).format('YYYY-MM-DD HH:mm:ss');
             },
             timer(){
                 if (this.intervalId!=null){/*代表计时器已经启动*/
