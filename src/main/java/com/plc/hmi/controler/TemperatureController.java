@@ -1,6 +1,8 @@
 package com.plc.hmi.controler;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.plc.hmi.constants.ConfigConstants;
 import com.plc.hmi.constants.HmiConstants;
 import com.plc.hmi.dal.entity.*;
@@ -41,17 +43,27 @@ public class TemperatureController {
     @GetMapping("/getHisTemperatureNew")
     public String getHisTemperatureNew(@RequestParam(value = "plcName",required = false) String plcName,
                                        @RequestParam(value = "temperatureName",required = false) String temperatureName,
-                                        @RequestParam(value = "start",required = true) String start,
-                                        @RequestParam(value = "stop",required = true) String stop) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
+                                       @RequestParam(value = "start",required = true) String start,
+                                       @RequestParam(value = "stop",required = true) String stop,
+                                       @RequestParam(value = "page",required = false) int page,
+                                       @RequestParam(value = "pageSize",required = false) int pageSize) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         logger.info(" getHisTemperature startDate={}, endDate={}，plcName = {}", start, stop , plcName);
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
+        page = page <=0 ? 1: page;
+        pageSize = pageSize > 0 ? pageSize : 10;
         String json = null;
+        PageHelper.startPage(page,pageSize);
+
         if(StringUtils.isEmpty(temperatureName)) {
-            List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(start, stop,plcName, null, lineType, 20);
-            json = JSON.toJSONString(TemperatureList);
+//            List<TemperatureEntity> temperatureList =  temperatureService.getTemperatureWithParam(start, stop,plcName, null, lineType, 20);
+            PageInfo<TemperatureEntity> pageInfo = new PageInfo<TemperatureEntity>(temperatureService.getTemperatureWithParam(start, stop,plcName, null, lineType));
+//            List<TemperatureEntity> temperatureList  = null;
+            json = JSON.toJSONString(pageInfo);
         } else {
-            List<TemperaturePointEntity> TemperaturePointList =  temperatureService.getHisTemperature(start,  stop,  plcName,  temperatureName, 20);
-            json = JSON.toJSONString(TemperaturePointList);
+//            List<TemperaturePointEntity> TemperaturePointList =  temperatureService.getHisTemperature(start,  stop,  plcName,  temperatureName, 20);
+            PageInfo<TemperaturePointEntity> pageInfo = new PageInfo<TemperaturePointEntity>(temperatureService.getHisTemperature(start,  stop,  plcName,  temperatureName));
+//            List<TemperaturePointEntity> TemperaturePointList = null;
+            json = JSON.toJSONString(pageInfo);
         }
 
         return json;
@@ -60,9 +72,12 @@ public class TemperatureController {
     @GetMapping("/getHisTemperatureNewWithoutParam")
     public String getHisTemperatureNew() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         logger.info(" getHisTemperature start.");
+        PageHelper.startPage(1,10);
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
-        List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(null, null,null, null, lineType, 20);
-        String json = JSON.toJSONString(TemperatureList);
+//        List<TemperatureEntity> TemperatureList =  temperatureService.getTemperatureWithParam(null, null,null, null, lineType, 20);
+        PageInfo<TemperatureEntity> pageInfo = new PageInfo<TemperatureEntity>(temperatureService.getTemperatureWithParam(null, null,null, null, lineType));
+//        List<TemperatureEntity> TemperatureList = null;
+        String json = JSON.toJSONString(pageInfo);
         return json;
     }
 
@@ -83,7 +98,7 @@ public class TemperatureController {
                                    @RequestParam(value = "plcName",required = false) String plcName,
                                    @RequestParam(value = "temperatureName",required = false) String temperatureName) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
         logger.info(" getHisTemperature startDate={}, endDate={}, plcName={}", startDate, endDate, plcName);
-        List<TemperaturePointEntity> temperaturePointList =  temperatureService.getHisTemperature(startDate,  endDate,  plcName,  temperatureName, 0);
+        List<TemperaturePointEntity> temperaturePointList =  temperatureService.getHisTemperature(startDate,  endDate,  plcName,  temperatureName);
         return temperaturePointList;
     }
 
