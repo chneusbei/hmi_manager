@@ -201,20 +201,29 @@
                     </tr>
                 </table>
 
-                <table class="imagetable">
-                    <tr>
-<!--                <div class="u-pages" style="margin-bottom:20px; margin-top:10px;">-->
-<!--                    <ul>-->
-                        <td v-if="showPre" align="center"  style="width: 20px"><a onClick="jumpFirst(cur)"> 首页 </a></td>
-                        <td v-if="showPre" align="center"  style="width: 20px"><a onClick="minus(cur)"> 上一页 </a></td>
-                        <td  align="center"  style="width: 20px"><a @click="btnClick(pageNo)"> {{cur}} </a></td>
-                        <td v-if="showTail" align="center"  style="width: 20px"><a onClick="plus(cur)">下一页</a></td>
-                        <td v-if="showTail" align="center" style="width: 20px"><a onClick="jumpTail(cur)">尾页</a></td>
-                        <td v-if="showTail" align="center" style="width: 20px">共{{total}}条,{{pages}}页,每页10条 </td>
-<!--                    </ul>-->
-<!--                </div>-->
-                    </tr>
-                </table>
+<!--                <table class="imagetable">-->
+<!--                    <tr>-->
+<!--&lt;!&ndash;                <div class="u-pages" style="margin-bottom:20px; margin-top:10px;">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <ul>&ndash;&gt;-->
+<!--                        <td v-if="showPre" align="center"  style="width: 20px"><a onClick="jumpFirst(cur)"> 首页 </a></td>-->
+<!--                        <td v-if="showPre" align="center"  style="width: 20px"><a onClick="minus(cur)"> 上一页 </a></td>-->
+<!--                        <td  align="center"  style="width: 20px"><a @click="btnClick(pageNo)"> {{cur}} </a></td>-->
+<!--                        <td v-if="showTail" align="center"  style="width: 20px"><a onClick="plus(cur)">下一页</a></td>-->
+<!--                        <td v-if="showTail" align="center" style="width: 20px"><a onClick="jumpTail(cur)">尾页</a></td>-->
+<!--                        <td v-if="showTail" align="center" style="width: 20px">共{{total}}条,{{pages}}页,每页10条 </td>-->
+<!--&lt;!&ndash;                    </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                    </tr>-->
+<!--                </table>-->
+                <div class="form-group col-md-12">
+                    <label v-if="showPre"><a @click=jumpFirst(cur)> 首页</a></label>
+                    <label v-if="showPre"><a @click=minus(cur)> 上一页 </a></label>
+<!--                    <label><a @click="btnClick(pageNo)"> {{cur}} </a></label>-->
+                    <label> {{cur}} </label>
+                    <label v-if="showTail"><a @click=plus(cur)>下一页</a></label>
+                    <label v-if="showTail"><a @click=jumpTail(cur)>尾页</a></label>
+                    <label>共{{total}}条  {{pages}}页  每页10条 </label>
+                </div>
                 <table class="imagetable2">
                     <tr v-if="lineType == lineTypeB  && isPointModel" >
                         <th>PLC名</th>
@@ -417,7 +426,7 @@
             showMorePre: false,
             showMoreTail: false,
             total:0,
-            showPre:true,
+            showPre:false,
             showTail:true,
             showMoreTail:true,
             pageNo:1,
@@ -440,11 +449,16 @@
                     temperatureName:this.temperatureName,
                     start:this.$refs.start.value,
                     stop:this.$refs.stop.value,
-                    page:1,
+                    page:this.cur,
                     pageSize:10
                 }
                 if(this.temperatureName != undefined) {
-                    this.isPointModel = true;
+                    if(this.temperatureName==='') {
+                        this.isPointModel = false;
+                    } else {
+                        this.isPointModel = true;
+                    }
+
                     // alert("isPointModel = "+this.isPointModel);
                 }else {
                     this.isPointModel = false;
@@ -455,7 +469,11 @@
                     this.pages = result.data.pages;
                     this.total = result.data.total;
                     this.lineType=this.temperatureList[0].lineType;
-                    // $this.$set("records", data.record.records);
+                    // alert("ID"+this.temperatureList[0].id);
+                    // if(this.lineType == undefined){
+                    //     this.lineType = 'B'
+                    // }
+                        // $this.$set("records", data.record.records);
                     // $this.$set("start", data.record.query.start);
                     // $this.$set("total", data.record.query.total);
                     // $this.$set("limit", data.record.query.limit);
@@ -479,26 +497,31 @@
             }, FormatDate: function(date){
                 return moment(date).utcOffset(0).format('YYYY-MM-DD HH:mm:ss');
             }, jumpFirst:function(data){
-                var $this = this;
+                // var $this = this;
                 data = 1;
-                $this.cur = data;
+                this.cur = data;
                 if (data == 1 )
                 {
-                    $this.$set("showPre", false);
+                    this.showPre = false;
                 }else
                 {
-                    $this.$set("showPre", true);
+                    this.showPre = true;
                 }
                 let requestData={
                     plcName:this.plcName,
                     temperatureName:this.temperatureName,
                     start:this.$refs.start.value,
                     stop:this.$refs.stop.value,
-                    page:1,
+                    page:this.cur,
                     pageSize:10
                 }
                 if(this.temperatureName != undefined) {
-                    this.isPointModel = true;
+                    if(this.temperatureName==='') {
+                        this.isPointModel = false;
+                    } else {
+                        this.isPointModel = true;
+                    }
+
                     // alert("isPointModel = "+this.isPointModel);
                 }else {
                     this.isPointModel = false;
@@ -515,19 +538,18 @@
                 }).catch(function(error){
                     alert(error)
                 })
-                $this.$set("showTail", true);
+                this.showTail = true;
                 return data;
             },
             minus:function(data){
-                var $this = this;
                 data--;
-                $this.cur = data;
-                $this.$set("showTail", true);
+                this.cur = data;
+                this.showTail = true;
                 if(data == 1){
-                    $this.$set("showPre", false);
+                    this.showPre = false;
 
                 }else{
-                    $this.$set("showPre", true);
+                    this.showPre = true;
                 }
 
                 let requestData={
@@ -535,11 +557,16 @@
                     temperatureName:this.temperatureName,
                     start:this.$refs.start.value,
                     stop:this.$refs.stop.value,
-                    page:1,
+                    page:this.cur,
                     pageSize:10
                 }
                 if(this.temperatureName != undefined) {
-                    this.isPointModel = true;
+                    if(this.temperatureName==='') {
+                        this.isPointModel = false;
+                    } else {
+                        this.isPointModel = true;
+                    }
+
                     // alert("isPointModel = "+this.isPointModel);
                 }else {
                     this.isPointModel = false;
@@ -559,32 +586,47 @@
                 return data;
             },
             plus: function(data){
-                var $this = this;
+                // alert("plus 方法,页码=" + data );
                 data++;
-                $this.cur = data;
-                $this.$set("showPre", true);
-                if (data == $this.pageNo)
+                this.cur = data;
+                // alert("plus 1"  );
+                if (data == 1 )
                 {
-                    $this.$set("showTail", false);
+                    this.showPre = false;
                 }else
                 {
-                    $this.$set("showTail", true);
+                    this.showPre = true;
                 }
+                // alert("plus 2"  );
+                if (data == this.pageNo)
+                {
+                    this.showTail = false;
+                }else
+                {
+                    this.showTail = true;
+                }
+                // alert("plus 3"  );
                 let requestData={
                     plcName:this.plcName,
                     temperatureName:this.temperatureName,
                     start:this.$refs.start.value,
                     stop:this.$refs.stop.value,
-                    page:1,
+                    page:this.cur,
                     pageSize:10
                 }
                 if(this.temperatureName != undefined) {
-                    this.isPointModel = true;
+                    if(this.temperatureName==='') {
+                        this.isPointModel = false;
+                    } else {
+                        this.isPointModel = true;
+                    }
+
                     // alert("isPointModel = "+this.isPointModel);
                 }else {
                     this.isPointModel = false;
                     // alert("isPointModel = "+this.isPointModel);
                 }
+                // alert("plus 方法 getHisTemperatureNew" )
                 axios.get("/getHisTemperatureNew",{params:requestData}).then(result=>{
                     this.temperatureList=result.data.list;
                     this.count = result.data.pages;
@@ -599,41 +641,43 @@
                 return data;
             },
             classRenderer:function(index){
-                var $this = this;
-                var cur = $this.cur;
-                if(index != cur){
+                if(index != this.cur){
                     return 'crt';
                 }
                 return '';
             },
             btnClick:function(data){
-                var $this = this;
                 if(data == 1){
-                    $this.$set("showPre", false);
+                    this.showPre = false;
 
                 }else{
-                    $this.$set("showPre", true);
+                    this.showPre = true;
                 }
-                if (data == $this.pageNo)
+                if (data == this.pageNo)
                 {
-                    $this.$set("showTail", false);
+                    this.showTail = false;
                 }else
                 {
-                    $this.$set("showTail", true);
+                    this.showTail = true;
                 }
-                if (data != $this.cur)
+                if (data != this.cur)
                 {
-                    $this.cur = data;
+                    this.cur = data;
                     let requestData={
                         plcName:this.plcName,
                         temperatureName:this.temperatureName,
                         start:this.$refs.start.value,
                         stop:this.$refs.stop.value,
-                        page:1,
+                        page:this.cur,
                         pageSize:10
                     }
                     if(this.temperatureName != undefined) {
-                        this.isPointModel = true;
+                        if(this.temperatureName==='') {
+                            this.isPointModel = false;
+                        } else {
+                            this.isPointModel = true;
+                        }
+
                         // alert("isPointModel = "+this.isPointModel);
                     }else {
                         this.isPointModel = false;
@@ -653,26 +697,30 @@
                 }
             },
             jumpTail:function(data){
-                var $this = this;
-                data = $this.pageNo;
-                $this.cur = data;
-                if (data == $this.pageNo)
+                data = this.pageNo;
+                this.cur = data;
+                if (data == this.pageNo)
                 {
-                    $this.$set("showTail", false);
+                    this.showTail = false;
                 }else
                 {
-                    $this.$set("showTail", true);
+                    this.showTail = true;
                 }
                 let requestData={
                     plcName:this.plcName,
                     temperatureName:this.temperatureName,
                     start:this.$refs.start.value,
                     stop:this.$refs.stop.value,
-                    page:1,
+                    page:this.cur,
                     pageSize:10
                 }
                 if(this.temperatureName != undefined) {
-                    this.isPointModel = true;
+                    if(this.temperatureName==='') {
+                        this.isPointModel = false;
+                    } else {
+                        this.isPointModel = true;
+                    }
+
                     // alert("isPointModel = "+this.isPointModel);
                 }else {
                     this.isPointModel = false;
@@ -689,46 +737,45 @@
                 }).catch(function(error){
                     alert(error)
                 })
-                $this.$set("showPre", true);
+                this.showPre = true;
                 return data;
             },
             computed: {
                 //*********************分页开始******************************//
                 indexs: function(){
-                    var $this = this;
                     var ar = [];
 
-                    if ($this.cur > 3)
+                    if (this.cur > 3)
                     {
-                        ar.push($this.cur - 3);
-                        ar.push($this.cur - 2);
-                        ar.push($this.cur - 1);
+                        ar.push(this.cur - 3);
+                        ar.push(this.cur - 2);
+                        ar.push(this.cur - 1);
 
                     }else
                     {
-                        for (var i = 1; i < $this.cur; i++)
+                        for (var i = 1; i < this.cur; i++)
                         {
                             ar.push(i);
                         }
                     }
-                    if ($this.cur != $this.pageNo)
+                    if (this.cur != this.pageNo)
                     {
-                        ar.push($this.cur);
+                        ar.push(this.cur);
                     }
 
-                    if ( $this.cur < ( $this.pageNo - 3 ) )
+                    if ( this.cur < ( this.pageNo - 3 ) )
                     {
-                        ar.push($this.cur + 1);
-                        ar.push($this.cur + 2);
-                        ar.push($this.cur + 3);
-                        if ( $this.cur < ( $this.pageNo - 4 ) )
+                        ar.push(this.cur + 1);
+                        ar.push(this.cur + 2);
+                        ar.push(this.cur + 3);
+                        if ( this.cur < ( this.pageNo - 4 ) )
                         {
-                            $this.$set("showMoreTail", true);
+                            this.showMoreTail = true;
                         }
                     }else
                     {
-                        $this.$set("showMoreTail", false);
-                        for (var i = ($this.cur + 1); i < $this.pageNo; i++)
+                        this.showMoreTail = false;
+                        for (var i = (this.cur + 1); i < this.pageNo; i++)
                         {
                             ar.push(i);
                         }

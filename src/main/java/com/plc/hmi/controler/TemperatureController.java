@@ -54,10 +54,13 @@ public class TemperatureController {
         String json = null;
         PageHelper.startPage(page,pageSize);
 
-        if(StringUtils.isEmpty(temperatureName)) {
+        if(StringUtils.isEmpty(temperatureName) || StringUtils.isBlank(temperatureName)) {
 //            List<TemperatureEntity> temperatureList =  temperatureService.getTemperatureWithParam(start, stop,plcName, null, lineType, 20);
             PageInfo<TemperatureEntity> pageInfo = new PageInfo<TemperatureEntity>(temperatureService.getTemperatureWithParam(start, stop,plcName, null, lineType));
 //            List<TemperatureEntity> temperatureList  = null;
+//            if (null != pageInfo.getList().get(0)) {
+//                System.out.println(pageInfo.getList().get(0).getId());
+//            }
             json = JSON.toJSONString(pageInfo);
         } else {
 //            List<TemperaturePointEntity> TemperaturePointList =  temperatureService.getHisTemperature(start,  stop,  plcName,  temperatureName, 20);
