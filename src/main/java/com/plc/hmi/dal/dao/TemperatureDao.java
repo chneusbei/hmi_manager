@@ -29,4 +29,12 @@ public class TemperatureDao {
     public void deleteHistoryData(int months) {
         temperatureMapper.deleteHistoryData(months);
     }
+
+    public long getMaxId() {
+        return temperatureMapper.getMaxId();
+    }
+
+    public List<TemperatureEntity> getTemperatureWithMaxId(long maxId) {
+        return temperatureMapper.getTemperatureWithMaxId(maxId);
+    }
 }

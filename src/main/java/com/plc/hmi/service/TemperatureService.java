@@ -204,4 +204,21 @@ public class TemperatureService extends AbstractBaseService{
         return temperaturePointList;
     }
 
+
+    /**
+     *获取最大ID
+     * @return  long  id
+     */
+    public long getMaxId() {
+        return temperatureDao.getMaxId();
+    }
+
+    /**temperatureConfig
+     *根据最大ID获取大于这个ID的所有记录
+     * @return List<TemperatureEntity>
+     */
+    public List<TemperatureEntity> getTemperatureWithMaxId(long maxId) {
+        return temperatureDao.getTemperatureWithMaxId(maxId);
+    }
+
 }
