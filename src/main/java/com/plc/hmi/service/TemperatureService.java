@@ -186,7 +186,7 @@ public class TemperatureService extends AbstractBaseService{
      * @return
      */
     public List<TemperaturePointEntity> getHisTemperature(String startDate,  String endDate,  String plcName,  String temperatureName) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        logger.info(" getHisTemperature startDate={}, endDate={}, plcName={}" , startDate, endDate, plcName);
+        logger.info(" getHisTemperature startDate={}, endDate={}, plcName={}, temperatureName={}" , startDate, endDate, plcName, temperatureName);
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
         List<TemperaturePointEntity> temperaturePointList =  getTemperaturePointWithParam(startDate, endDate, plcName,temperatureName, null, lineType);
 //        String json = JSON.toJSONString(temperaturePointList);
