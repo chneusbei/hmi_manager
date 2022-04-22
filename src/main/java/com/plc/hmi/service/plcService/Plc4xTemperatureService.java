@@ -75,12 +75,16 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         if(!CollectionUtils.isEmpty(temperatureEntityList)) {
 //            TemperatureMap.put(plcConfigEntity.getPlcName(),temperatureEntityList);
             TemperatureList = temperatureEntityList;
-            //获取当前库最大ID
-            long maxId = temperatureDao.getMaxId();
+
             //入库温度信息
             this.temperatureList2DB(temperatureEntityList);
             //获取本次入库的温度信息列表
-
+            //获取当前库最大ID, 为了防止数据库中没有数据， 在数据入库后再获取最大ID
+            long maxId = temperatureDao.getMaxId();
+            maxId = maxId-temperatureEntityList.size();
+            if(maxId < 0) {
+                maxId = 0;
+            }
             //入库温度报警信息
             List<TemperatureEntity> temperatureEntityListNew = temperatureDao.getTemperatureWithMaxId(maxId);
             List<TemperatureAlarmEntity> temperatureAlarmList = this.getTemperatureAlarmList(temperatureEntityListNew, lineType);
