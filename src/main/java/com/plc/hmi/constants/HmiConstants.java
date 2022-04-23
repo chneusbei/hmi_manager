@@ -3,6 +3,9 @@ package com.plc.hmi.constants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.plc4x.java.api.types.PlcClientDatatype;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HmiConstants {
 
     //成功/是
@@ -190,6 +193,17 @@ public class HmiConstants {
         //获得value属性的值
         public String getValue() { return this.value; }
 
+        //获得code值列表
+        public static List<String> getCodeListByLineType(String LineTye) {
+            List<String> codeList = new ArrayList<String>();
+            for (PLC_NAME_GROUP plc : PLC_NAME_GROUP.values()) {
+                if(plc.getCode().startsWith(LineTye.toUpperCase())) {
+                    codeList.add(plc.getCode());
+                }
+            }
+            return codeList;
+        }
+
     }
 
     public enum LINE_TYPE{
@@ -249,6 +263,7 @@ public class HmiConstants {
         getLeftFrontLowSpeedAxisCopperSleeve("getLeftFrontLowSpeedAxisCopperSleeve","左前低速轴铜套"),
         getLeftRearLowSpeedAxisCopperSleeve("getLeftRearLowSpeedAxisCopperSleeve","左后低速轴铜套"),
         getRightFrontLowSpeedAxisCopperSleeve("getRightFrontLowSpeedAxisCopperSleeve","右前低速轴铜套"),
+        getRightRearLowSpeedAxisCopperSleeve("getRightRearLowSpeedAxisCopperSleeve","右后低速轴铜套"),
         getLeftFrontEccentricWheel("getLeftFrontEccentricWheel","偏心轮左前"),
         getLeftRearEccentricWheel("getLeftRearEccentricWheel","偏心轮左后"),
         getRightFrontEccentricWheel("getRightFrontEccentricWheel","偏心轮右前"),
@@ -293,5 +308,76 @@ public class HmiConstants {
             return TEMPERATURE_POINT.valueOf(code).getValue();
         }
     }
+
+    //A线温度点信息
+    public static final List<String> TEMPERATURE_POINT_LINE_A = new ArrayList<String>();
+    static{
+        TEMPERATURE_POINT_LINE_A.add("getLeftFrontEccentricWheel"); //偏心轮左前
+        TEMPERATURE_POINT_LINE_A.add("getLeftRearEccentricWheel"); //偏心轮左后
+        TEMPERATURE_POINT_LINE_A.add("getRightFrontEccentricWheel"); //偏心轮右前
+        TEMPERATURE_POINT_LINE_A.add("getRightRearEccentricWheel"); //偏心轮右后
+        TEMPERATURE_POINT_LINE_A.add("getLeftFrontConnectingRod"); //连杆左前
+        TEMPERATURE_POINT_LINE_A.add("getLeftRearConnectingRod"); //连杆左后
+        TEMPERATURE_POINT_LINE_A.add("getRightFrontConnectingRod"); //连杆右前
+        TEMPERATURE_POINT_LINE_A.add("getRightRearConnectingRod"); //连杆右后
+        TEMPERATURE_POINT_LINE_A.add("getRightFrontHighSpeedGearBearingTemperature"); //前右高速齿轮轴承
+        TEMPERATURE_POINT_LINE_A.add("getRightRearHighSpeedGearBearingTemperature"); //右后高速齿轮轴承
+        TEMPERATURE_POINT_LINE_A.add("getLeftFrontHighSpeedGearBearingTemperature"); //左前高速齿轮轴承
+        TEMPERATURE_POINT_LINE_A.add("getLeftRearHighSpeedGearBearingTemperature"); //左后高速齿轮轴承
+        TEMPERATURE_POINT_LINE_A.add("getRightFrontMiddleGearBearingTemperature");  //右前中间齿轮轴承
+        TEMPERATURE_POINT_LINE_A.add("getRightRearMiddleGearBearingTemperature"); //右后中间齿轮轴承
+        TEMPERATURE_POINT_LINE_A.add("getLeftFrontMiddleGearBearingTemperature"); //左前中间齿轮轴承
+        TEMPERATURE_POINT_LINE_A.add("getLeftRearMiddleGearBearingTemperature"); //左后中间齿轮轴承
+        TEMPERATURE_POINT_LINE_A.add("getMainAxisGearBearingTemperature1"); //主轴齿轮轴承1
+        TEMPERATURE_POINT_LINE_A.add("getMainAxisGearBearingTemperature2"); //主轴齿轮轴承2
+        TEMPERATURE_POINT_LINE_A.add("getMainAxisGearBearingTemperature3"); //主轴齿轮轴承3
+        TEMPERATURE_POINT_LINE_A.add("getMainAxisGearBearingTemperature4"); //主轴齿轮轴承4
+        TEMPERATURE_POINT_LINE_A.add("getMainAxisGearBearingTemperature5"); //主轴齿轮轴承5
+        TEMPERATURE_POINT_LINE_A.add("getMainAxisGearBearingTemperature6"); //主轴齿轮轴承6
+        TEMPERATURE_POINT_LINE_A.add("getMainAxisGearBearingTemperature7"); //主轴齿轮轴承7
+        TEMPERATURE_POINT_LINE_A.add("getMainAxisGearBearingTemperature8"); //主轴齿轮轴承8
+    }
+
+    //B线温度点信息
+    public static final List<String> TEMPERATURE_POINT_LINE_B = new ArrayList<String>();
+    static{
+        TEMPERATURE_POINT_LINE_B.add("getLowSpeedAxisEccentricCopperSleeveTemperature1"); //低速轴偏心铜套温度1
+        TEMPERATURE_POINT_LINE_B.add("getLowSpeedAxisEccentricCopperSleeveTemperature2"); //低速轴偏心铜套温度2
+        TEMPERATURE_POINT_LINE_B.add("getLowSpeedAxisEccentricCopperSleeveTemperature3"); //低速轴偏心铜套温度3
+        TEMPERATURE_POINT_LINE_B.add("getLowSpeedAxisEccentricCopperSleeveTemperature4"); //低速轴偏心铜套温度4
+        TEMPERATURE_POINT_LINE_B.add("getHighSpeedAxisEccentricCopperSleeveTemperature1"); //高速轴偏心铜套温度1
+        TEMPERATURE_POINT_LINE_B.add("getHighSpeedAxisEccentricCopperSleeveTemperature2"); //高速轴偏心铜套温度2
+        TEMPERATURE_POINT_LINE_B.add("getHighSpeedAxisRollingBearingTemperature1"); //高速轴滚动轴承温度1
+        TEMPERATURE_POINT_LINE_B.add("getHighSpeedAxisRollingBearingTemperature2"); //高速轴滚动轴承温度2
+        TEMPERATURE_POINT_LINE_B.add("getFlywheelSupportBigAxisTemperature1"); //飞轮支撑大轴承温度1
+        TEMPERATURE_POINT_LINE_B.add("getFlywheelSupportBigAxisTemperature2"); //飞轮支撑大轴承温度2
+        TEMPERATURE_POINT_LINE_B.add("getDrawbarBothEndsCopperSleeveTemperature1"); //拉杆两端铜套温度检测1
+        TEMPERATURE_POINT_LINE_B.add("getDrawbarBothEndsCopperSleeveTemperature2"); //拉杆两端铜套温度检测2
+        TEMPERATURE_POINT_LINE_B.add("getDrawbarBothEndsCopperSleeveTemperature3"); //拉杆两端铜套温度检测3
+        TEMPERATURE_POINT_LINE_B.add("getDrawbarBothEndsCopperSleeveTemperature4"); //拉杆两端铜套温度检测4
+        TEMPERATURE_POINT_LINE_B.add("getDrawbarBothEndsCopperSleeveTemperature5"); //拉杆两端铜套温度检测5
+        TEMPERATURE_POINT_LINE_B.add("getDrawbarBothEndsCopperSleeveTemperature6"); //拉杆两端铜套温度检测6
+        TEMPERATURE_POINT_LINE_B.add("getDrawbarBothEndsCopperSleeveTemperature7"); //拉杆两端铜套温度检测7
+        TEMPERATURE_POINT_LINE_B.add("getDrawbarBothEndsCopperSleeveTemperature8"); //拉杆两端铜套温度检测8
+        TEMPERATURE_POINT_LINE_B.add("getSmallBeltWheelSupportAxisTemperature1"); //小皮带轮支撑轴承温度检测1
+        TEMPERATURE_POINT_LINE_B.add("getSmallBeltWheelSupportAxisTemperature2"); //小皮带轮支撑轴承温度检测2
+        TEMPERATURE_POINT_LINE_B.add("getLeftFrontTripodEccentricBigCopperSleeve"); //左前三脚架偏心大铜套
+        TEMPERATURE_POINT_LINE_B.add("getLeftRearTripodEccentricBigCopperSleeve"); //左后三脚架偏心大铜套
+        TEMPERATURE_POINT_LINE_B.add("getRightFrontTripodEccentricBigCopperSleeve"); //右前三脚架偏心大铜套
+        TEMPERATURE_POINT_LINE_B.add("getRightRearTripodEccentricBigCopperSleeve"); //右后三脚架偏心大铜套
+        TEMPERATURE_POINT_LINE_B.add("getLeftFrontTripodBottomCopperSleeve"); //左前三脚架下端铜套
+        TEMPERATURE_POINT_LINE_B.add("getLeftRearTripodBottomCopperSleeve"); //左后三脚架下端铜套
+        TEMPERATURE_POINT_LINE_B.add("getRightFrontTripodBottomCopperSleeve"); //右前三脚架下端铜套
+        TEMPERATURE_POINT_LINE_B.add("getRightRearTripodBottomCopperSleeve"); //右后三脚架下端铜套
+        TEMPERATURE_POINT_LINE_B.add("getLeftFrontConnectingRodBigCopperSleeve"); //左前连杆大铜套
+        TEMPERATURE_POINT_LINE_B.add("getLeftRearConnectingRodBigCopperSleeve"); //左后连杆大铜套
+        TEMPERATURE_POINT_LINE_B.add("getRightFrontConnectingRodBigCopperSleeve"); //右前连杆大铜套
+        TEMPERATURE_POINT_LINE_B.add("getRightRearConnectingRodBigCopperSleeve"); //右后连杆大铜套
+        TEMPERATURE_POINT_LINE_B.add("getLeftFrontLowSpeedAxisCopperSleeve"); //左前低速轴铜套
+        TEMPERATURE_POINT_LINE_B.add("getLeftRearLowSpeedAxisCopperSleeve"); //左后低速轴铜套
+        TEMPERATURE_POINT_LINE_B.add("getRightFrontLowSpeedAxisCopperSleeve"); //右前低速轴铜套
+        TEMPERATURE_POINT_LINE_B.add("getRightRearLowSpeedAxisCopperSleeve"); //右后低速轴铜套
+    }
+
 
 }

@@ -96,12 +96,12 @@ public class TemperatureController {
      * @throws InvocationTargetException
      */
     @GetMapping("/getHisTemperature")
-    public List<TemperaturePointEntity> getHisTemperature(@RequestParam(value = "startDate",required = true) String startDate,
-                                   @RequestParam(value = "endDate",required = true) String endDate,
+    public List<List<TemperaturePointEntity>> getHisTemperature(@RequestParam(value = "startDate",required = false) String startDate,
+                                   @RequestParam(value = "endDate",required = false) String endDate,
                                    @RequestParam(value = "plcName",required = false) String plcName,
                                    @RequestParam(value = "temperatureName",required = false) String temperatureName) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-        logger.info(" getHisTemperature startDate={}, endDate={}, plcName={}", startDate, endDate, plcName);
-        List<TemperaturePointEntity> temperaturePointList =  temperatureService.getHisTemperature(startDate,  endDate,  plcName,  temperatureName);
+        logger.info(" getHisTemperature startDate={}, endDate={}, plcName={}, temperatureName={}", startDate, endDate, plcName, temperatureName);
+        List<List<TemperaturePointEntity>> temperaturePointList =  temperatureService.getHisTemperatureList(startDate,  endDate,  plcName,  temperatureName);
         return temperaturePointList;
     }
 

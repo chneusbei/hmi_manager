@@ -46,24 +46,9 @@ public class ExportController {
         String endDate = null==stop ? null : stop.replace("-","");
         logger.info("export to csv, startDate={}, end={}", startDate ,endDate);
 
-        if(!StringUtils.isEmpty(startDate)) {
-            startDate=startDate.replace("-","");
-        }
-
-        if(!StringUtils.isEmpty(endDate)) {
-            endDate=endDate.replace("-","");
-        }
-
-        if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
-            startDate = HmiUtils.getYYYYMMDDString(new Date());
-            endDate =startDate;
-        } else if (StringUtils.isEmpty(startDate) || StringUtils.isEmpty(endDate)) {
-            if(StringUtils.isEmpty(startDate)) {
-                startDate = endDate;
-            } else {
-                endDate = startDate;
-            }
-        }
+        List<String> dateList = HmiUtils.getFormatTcsDate(startDate, endDate);
+        startDate = dateList.get(0);
+        endDate = dateList.get(1);
         //获取对应的pressure_data
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
 

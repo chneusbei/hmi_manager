@@ -1,12 +1,15 @@
 package com.plc.hmi.util;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,6 +56,33 @@ public class HmiUtils  {
 
     public static String getMillFormatDateString(Date date) {
         return dateFormatYYYYMMDDHHMMSSSSS.format(date);
+    }
+
+
+    public static List<String> getFormatTcsDate(String startDate, String endDate) {
+        if(!StringUtils.isEmpty(startDate)) {
+            startDate=startDate.replace("-","");
+        }
+
+        if(!StringUtils.isEmpty(endDate)) {
+            endDate=endDate.replace("-","");
+        }
+
+        if(StringUtils.isEmpty(startDate) && StringUtils.isEmpty(endDate)) {
+            startDate = HmiUtils.getYYYYMMDDString(new Date());
+            endDate =startDate;
+        } else if (StringUtils.isEmpty(startDate) || StringUtils.isEmpty(endDate)) {
+            if(StringUtils.isEmpty(startDate)) {
+                startDate = endDate;
+            } else {
+                endDate = startDate;
+            }
+        }
+        ArrayList dateList = new ArrayList<String>();
+        dateList.add(startDate);
+        dateList.add(endDate);
+        return dateList;
+
     }
 
     public static final String getString(Object obj) {

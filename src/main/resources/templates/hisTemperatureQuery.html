@@ -230,39 +230,74 @@
                     plcName:this.plcName,
                     temperatureName:this.temperatureName
                 }
+                // alert("temperatureName = "+ this.temperatureName);
+                // alert("temperatureName === undefined = "+ (this.temperatureName === undefined));
+                // alert("this.temperatureName blank = "+ (this.temperatureName === ''));
+                if(this.plcName === undefined || this.plcName === '') {
+                     alert("plc名不能为空");
+                     return;
+                }
+
                 // alert("startDate="+requestDate.startDate);
                 // alert("endDate="+requestDate.endDate);
                 // alert("plcName="+requestDate.plcName);
                 // alert("temperatureName="+requestDate.temperatureName);
                 // myChart.clear();
-                axios.get("/getHisTemperature",{params:requestDate}).then(result=>{
-                    result =result.data;
+                // this.myChart.dispose();
+                // myChart.dispose();
+                axios.get("/getHisTemperature",{params:requestDate}).then(result=> {
+                    // alert("result.data="+result.data);
                     this.series1 = [];
-                    for (let i in result){
-                        // let isErrant=true;
-                        // alert("value ="+result[i].temperatureValue);
-                        let isSolidLine=true;
-                        arr.push([moment(result[i].temperatureTime).utcOffset(0).format('YYYY-MM-DD HH:mm:ss'),result[i].temperatureValue]);
-                        var color="black";
+                    // alert("size =" + result.data.length);
+                    for (let i in result.data) {
+                        // alert("size i =" + result.data[i].length);
+                        for (let j in i) {
+                            // alert("j="+j);
+                            // let isErrant=true;
+                            // alert("value ="+result[i].temperatureValue);
+                            let isSolidLine = true;
+                            arr.push([moment(result.data[i][j].temperatureTime).utcOffset(0).format('YYYY-MM-DD HH:mm:ss'), result.data[i][j].temperatureValue]);
+                            var color = 'rgb(' + [
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160),
+                                Math.round(Math.random() * 160)
+                            ].join(',') + ')';
 
-                        this.series1.push({
-                            data:arr,/*需要显示的数据*/
-                            type:'line',/*以什么方式展示*/
-                            color:'blue',  //折线条的颜色
-                            smooth:true,   //关键点，为true是不支持虚线的，实线就用true
-                            // 显示数值
-                            itemStyle:{
-                                normal:{
-                                    lineStyle:{
-                                        type:'solid'  //'dotted'虚线 'solid'实线
-                                    },
+                            var name = result.data[i][j].temperatureName;
+                            this.series1.push({
+                                data: arr,/*需要显示的数据*/
+                                type: 'line',/*以什么方式展示*/
+                                // color:'blue',  //折线条的颜色
+                                color:color,
+                                name:name,
+                                smooth: true,   //关键点，为true是不支持虚线的，实线就用true
+                                // 显示数值
+                                itemStyle: {
+                                    normal: {
+                                        lineStyle: {
+                                            type: 'solid'  //'dotted'虚线 'solid'实线
+                                        },
+                                    }
                                 }
-                            }
-                        });
-
+                            });
                     }
 
+                }
+
                     let  option = {
+                        legend: {
+                            icon: "circle",   //    改变它的icon circle，rect ，roundRect，triangle
+                            itemWidth:8,  // 设置它的宽度
+                            itemHeight:8, // 设置它的高度
+                            itemGap:20, // 设置它的间距
+                            // orient: 'vertical',  //vertical是竖着显示 ，默认是横着
+                            // left: '70%',   //距离左边70%，也可用left,center,right
+                            y: '1%',   //距离顶部的距离，也可以用center
+                            // textStyle:{    //icon后面的文字设置
+                            //   fontSize: 18,//字体大小
+                            //   color: '#ffffff'//字体颜色
+                            // }
+                        },
                         xAxis: {
                             type: 'time',
                         },
@@ -289,6 +324,12 @@
                 })
             },FormatDate: function(date){
                 return moment(date).utcOffset(0).format('YYYY-MM-DD HH:mm:ss');
+            }, randomColor: function() {
+                return 'rgb(' + [
+                    Math.round(Math.random() * 160),
+                    Math.round(Math.random() * 160),
+                    Math.round(Math.random() * 160)
+                ].join(',') + ')';
             }
         },  created(){
             this.queryLineType();
