@@ -245,76 +245,79 @@
                 // myChart.clear();
                 // this.myChart.dispose();
                 // myChart.dispose();
+                arr=[];
                 axios.get("/getHisTemperature",{params:requestDate}).then(result=> {
                     // alert("result.data="+result.data);
                     this.series1 = [];
                     // alert("size =" + result.data.length);
                     for (let i in result.data) {
-                        // alert("size i =" + result.data[i].length);
-                        for (let j in i) {
+                        // alert("i="+i);
+                        for (let j in result.data[i]) {
                             // alert("j="+j);
                             // let isErrant=true;
                             // alert("value ="+result[i].temperatureValue);
-                            let isSolidLine = true;
-                            arr.push([moment(result.data[i][j].temperatureTime).utcOffset(0).format('YYYY-MM-DD HH:mm:ss'), result.data[i][j].temperatureValue]);
-                            var color = 'rgb(' + [
-                                Math.round(Math.random() * 160),
-                                Math.round(Math.random() * 160),
-                                Math.round(Math.random() * 160)
-                            ].join(',') + ')';
-
-                            var name = result.data[i][j].temperatureName;
-                            this.series1.push({
-                                data: arr,/*需要显示的数据*/
-                                type: 'line',/*以什么方式展示*/
-                                // color:'blue',  //折线条的颜色
-                                color:color,
-                                name:name,
-                                smooth: true,   //关键点，为true是不支持虚线的，实线就用true
-                                // 显示数值
-                                itemStyle: {
-                                    normal: {
-                                        lineStyle: {
-                                            type: 'solid'  //'dotted'虚线 'solid'实线
-                                        },
-                                    }
+                            // let isSolidLine = true;
+                            arr.push([moment(result.data[i][j].temperatureTime).utcOffset(0).format('YYYY-MM-DD HH:mm:ss'), result.data[i][0].temperatureValue]);
+                        }
+                         // alert("1");
+                        var color = 'rgb(' + [
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160)
+                        ].join(',') + ')';
+                        // alert("2");
+                        var name = result.data[i][0].temperatureName;
+                        // alert("3");
+                        this.series1.push({
+                            data: arr,/*需要显示的数据*/
+                            type: 'line',/*以什么方式展示*/
+                            // color:'blue',  //折线条的颜色
+                            color:color,
+                            name:name,
+                            smooth: true,   //关键点，为true是不支持虚线的，实线就用true
+                            // 显示数值
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        type: 'solid'  //'dotted'虚线 'solid'实线
+                                    },
                                 }
-                            });
-                    }
-
+                            }
+                        });
+                        // alert("4");
+                        // alert("4");
                 }
-
-                    let  option = {
-                        legend: {
-                            icon: "circle",   //    改变它的icon circle，rect ，roundRect，triangle
-                            itemWidth:8,  // 设置它的宽度
-                            itemHeight:8, // 设置它的高度
-                            itemGap:20, // 设置它的间距
-                            // orient: 'vertical',  //vertical是竖着显示 ，默认是横着
-                            // left: '70%',   //距离左边70%，也可用left,center,right
-                            y: '1%',   //距离顶部的距离，也可以用center
-                            // textStyle:{    //icon后面的文字设置
-                            //   fontSize: 18,//字体大小
-                            //   color: '#ffffff'//字体颜色
-                            // }
-                        },
-                        xAxis: {
-                            type: 'time',
-                        },
-                        yAxis: {
-                            type: 'value',
-                        },
-                        series:this.series1
-                    };
+                    // alert("arr length" + arr.length);
+                let  option = {
+                    legend: {
+                        icon: "circle",   //    改变它的icon circle，rect ，roundRect，triangle
+                        itemWidth:8,  // 设置它的宽度
+                        itemHeight:8, // 设置它的高度
+                        itemGap:20, // 设置它的间距
+                        // orient: 'vertical',  //vertical是竖着显示 ，默认是横着
+                        // left: '70%',   //距离左边70%，也可用left,center,right
+                        y: '1%',   //距离顶部的距离，也可以用center
+                        // textStyle:{    //icon后面的文字设置
+                        //   fontSize: 18,//字体大小
+                        //   color: '#ffffff'//字体颜色
+                        // }
+                    },
+                    xAxis: {
+                        type: 'time',
+                    },
+                    yAxis: {
+                        type: 'value',
+                    },
+                    series:this.series1
+                };
                     // 使用刚指定的配置项和数据显示图表。
-                    myChart.setOption(option);
-                    console.log("arr=>"+arr);
-                }).catch(err=>{
-                    alert("error chart"+err);
-                    myChart.hideLoading();
-                });
-
-            },
+                myChart.setOption(option);
+                console.log("arr=>"+arr);
+            }).catch(err=>{
+                alert("error chart: "+err);
+                myChart.hideLoading();
+            });
+        },
             queryLineType(){
                 axios.get("/geLineType").then(result=>{
                     this.lineType=result.data;
