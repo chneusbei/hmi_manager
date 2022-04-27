@@ -12,8 +12,8 @@ public class TemperatureAlarmDao {
     @Resource
     TemperatureAlarmMapper temperatureAlarmMapper;
 
-    public List<TemperatureAlarmEntity> getTemperatureAlarmWithParam(String startDate, String endDate, String lineType, int limit) {
-        return temperatureAlarmMapper.getTemperatureAlarmWithParam(startDate, endDate, lineType, limit);
+    public List<TemperatureAlarmEntity> getTemperatureAlarmWithParam(String startDate, String endDate, String lineType) {
+        return temperatureAlarmMapper.getTemperatureAlarmWithParam(startDate, endDate, lineType);
     }
 
 

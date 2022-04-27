@@ -96,6 +96,15 @@
                 </table>
                 <br>
                 <br>
+                <div class="form-group col-md-12">
+                    <label v-if="showPre"><a @click=jumpFirst(cur)> 首页</a></label>
+                    <label v-if="showPre"><a @click=minus(cur)> 上一页 </a></label>
+                    <!--                    <label><a @click="btnClick(pageNo)"> {{cur}} </a></label>-->
+                    <label> {{cur}} </label>
+                    <label v-if="showTail"><a @click=plus(cur)>下一页</a></label>
+                    <label v-if="showTail"><a @click=jumpTail(cur)>尾页</a></label>
+                    <label>共{{total}}条  {{pages}}页  每页10条 </label>
+                </div>
                 <table class="imagetable2">
                     <tr>
                         <th>ID</th>
@@ -137,10 +146,23 @@
         data:{
             listAlarm:[],
             intervalId: null,
+            cur:1,
+            showTail:true,
+            showMorePre: false,
+            showMoreTail: false,
+            total:0,
+            showPre:false,
+            showTail:true,
+            showMoreTail:true,
+            pageNo:1,
+            indexs:[],
+            pages:1,
         },methods:{
             queryHisAlarm1(){
                 axios.get("/geTemperatureHisAlarmWithoutParam").then(result=>{
-                    this.listAlarm=result.data;
+                    this.listAlarm=result.data.list;
+                    this.pages = result.data.pages;
+                    this.total = result.data.total;
                 }).catch(function(error){
                     alert(error)
                 })
@@ -148,18 +170,238 @@
             queryHisAlarm(){
                 let requestData={
                     start:this.$refs.start.value,
-                    stop:this.$refs.stop.value
+                    stop:this.$refs.stop.value,
+                    page:this.cur,
+                    pageSize:10
                 }
                 axios.get("/geTemperatureHisAlarm",{params:requestData}).then(result=>{
-                    this.listAlarm=result.data;
+                    this.listAlarm=result.data.list;
+                    this.pages = result.data.pages;
+                    this.total = result.data.total;
                 }).catch(function(error){
                     alert(error)
                 })
             },
             FormatDate: function(date){
                 return moment(date).utcOffset(0).format('YYYY-MM-DD HH:mm:ss');
+            }, jumpFirst:function(data){
+                // var $this = this;
+                data = 1;
+                this.cur = data;
+                if (data == 1 )
+                {
+                    this.showPre = false;
+                }else
+                {
+                    this.showPre = true;
+                }
+                let requestData={
+                    start:this.$refs.start.value,
+                    stop:this.$refs.stop.value,
+                    page:this.cur,
+                    pageSize:10
+                }
+
+                axios.get("/geTemperatureHisAlarm",{params:requestData}).then(result=>{
+                    this.listAlarm=result.data.list;
+                    this.count = result.data.pages;
+                    // $this.$set("records", data.record.records);
+                    // $this.$set("start", data.record.query.start);
+                    // $this.$set("total", data.record.query.total);
+                    // $this.$set("limit", data.record.query.limit);
+                }).catch(function(error){
+                    alert(error)
+                })
+                this.showTail = true;
+                return data;
             },
-            timer(){
+            minus:function(data){
+                data--;
+                this.cur = data;
+                this.showTail = true;
+                if(data == 1){
+                    this.showPre = false;
+
+                }else{
+                    this.showPre = true;
+                }
+
+                let requestData={
+                    start:this.$refs.start.value,
+                    stop:this.$refs.stop.value,
+                    page:this.cur,
+                    pageSize:10
+                }
+
+                axios.get("/geTemperatureHisAlarm",{params:requestData}).then(result=>{
+                    this.listAlarm=result.data.list;
+                    this.count = result.data.pages;
+                    // $this.$set("records", data.record.records);
+                    // $this.$set("start", data.record.query.start);
+                    // $this.$set("total", data.record.query.total);
+                    // $this.$set("limit", data.record.query.limit);
+                }).catch(function(error){
+                    alert(error)
+                })
+                return data;
+            },
+            plus: function(data){
+                // alert("plus 方法,页码=" + data );
+                data++;
+                this.cur = data;
+                // alert("plus 1"  );
+                if (data == 1 )
+                {
+                    this.showPre = false;
+                }else
+                {
+                    this.showPre = true;
+                }
+                // alert("plus 2"  );
+                if (data == this.pageNo)
+                {
+                    this.showTail = false;
+                }else
+                {
+                    this.showTail = true;
+                }
+                // alert("plus 3"  );
+                let requestData={
+                    start:this.$refs.start.value,
+                    stop:this.$refs.stop.value,
+                    page:this.cur,
+                    pageSize:10
+                }
+
+                // alert("plus 方法 geTemperatureHisAlarm" )
+                axios.get("/geTemperatureHisAlarm",{params:requestData}).then(result=>{
+                    this.listAlarm=result.data.list;
+                    this.count = result.data.pages;
+                    // $this.$set("records", data.record.records);
+                    // $this.$set("start", data.record.query.start);
+                    // $this.$set("total", data.record.query.total);
+                    // $this.$set("limit", data.record.query.limit);
+                }).catch(function(error){
+                    alert(error)
+                })
+                return data;
+            },
+            classRenderer:function(index){
+                if(index != this.cur){
+                    return 'crt';
+                }
+                return '';
+            },
+            btnClick:function(data){
+                if(data == 1){
+                    this.showPre = false;
+
+                }else{
+                    this.showPre = true;
+                }
+                if (data == this.pageNo)
+                {
+                    this.showTail = false;
+                }else
+                {
+                    this.showTail = true;
+                }
+                if (data != this.cur)
+                {
+                    this.cur = data;
+                    let requestData={
+                        start:this.$refs.start.value,
+                        stop:this.$refs.stop.value,
+                        page:this.cur,
+                        pageSize:10
+                    }
+
+                    axios.get("/geTemperatureHisAlarm",{params:requestData}).then(result=>{
+                        this.listAlarm=result.data.list;
+                        this.count = result.data.pages;
+                        // $this.$set("records", data.record.records);
+                        // $this.$set("start", data.record.query.start);
+                        // $this.$set("total", data.record.query.total);
+                        // $this.$set("limit", data.record.query.limit);
+                    }).catch(function(error){
+                        alert(error)
+                    })
+                }
+            },
+            jumpTail:function(data){
+                data = this.pageNo;
+                this.cur = data;
+                if (data == this.pageNo)
+                {
+                    this.showTail = false;
+                }else
+                {
+                    this.showTail = true;
+                }
+                let requestData={
+                    start:this.$refs.start.value,
+                    stop:this.$refs.stop.value,
+                    page:this.cur,
+                    pageSize:10
+                }
+
+                axios.get("/geTemperatureHisAlarm",{params:requestData}).then(result=>{
+                    this.listAlarm=result.data.list;
+                    this.count = result.data.pages;
+                    // $this.$set("records", data.record.records);
+                    // $this.$set("start", data.record.query.start);
+                    // $this.$set("total", data.record.query.total);
+                    // $this.$set("limit", data.record.query.limit);
+                }).catch(function(error){
+                    alert(error)
+                })
+                this.showPre = true;
+                return data;
+            },
+            computed: {
+                //*********************分页开始******************************//
+                indexs: function(){
+                    var ar = [];
+
+                    if (this.cur > 3)
+                    {
+                        ar.push(this.cur - 3);
+                        ar.push(this.cur - 2);
+                        ar.push(this.cur - 1);
+
+                    }else
+                    {
+                        for (var i = 1; i < this.cur; i++)
+                        {
+                            ar.push(i);
+                        }
+                    }
+                    if (this.cur != this.pageNo)
+                    {
+                        ar.push(this.cur);
+                    }
+
+                    if ( this.cur < ( this.pageNo - 3 ) )
+                    {
+                        ar.push(this.cur + 1);
+                        ar.push(this.cur + 2);
+                        ar.push(this.cur + 3);
+                        if ( this.cur < ( this.pageNo - 4 ) )
+                        {
+                            this.showMoreTail = true;
+                        }
+                    }else
+                    {
+                        this.showMoreTail = false;
+                        for (var i = (this.cur + 1); i < this.pageNo; i++)
+                        {
+                            ar.push(i);
+                        }
+                    }
+                    return ar;
+                }
+                //*********************分页结束******************************//
+        }, timer(){
                 if (this.intervalId!=null){/*代表计时器已经启动*/
                     return ;
                 }

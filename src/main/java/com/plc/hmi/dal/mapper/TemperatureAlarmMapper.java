@@ -11,9 +11,6 @@ public interface TemperatureAlarmMapper {
     @Select({"<script>",
             "select * from temperature_alarm where HANDLE_DATE between  #{startDate} and #{endDate} and LINE_TYPE = #{lineType}  and  IS_DELETED='0' ",
             "order by id desc ",
-            "<if test='limit>0' >",
-            " limit #{limit}",
-            "</if>",
             "</script>" })
     @Results({
             @Result(id=true,column = "ID",property = "id" ),
@@ -27,7 +24,7 @@ public interface TemperatureAlarmMapper {
             @Result(column = "TEMPERATURE_WARNING_VALUE",property ="temperatureWarningValue"),
             @Result(column = "CREATE_TIME",property ="createTime"),
     })
-    List<TemperatureAlarmEntity> getTemperatureAlarmWithParam(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("lineType") String lineType, @Param("limit") int limit);
+    List<TemperatureAlarmEntity> getTemperatureAlarmWithParam(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("lineType") String lineType);
 
 
     @Insert({"INSERT INTO temperature_alarm(ID,PLC_NAME,IS_WIRELESS, HANDLE_DATE,LINE_TYPE, TEMPERATURE_ID, TEMPERATURE_NAME, TEMPERATURE_VALUE, TEMPERATURE_WARNING_VALUE, CREATE_BY, UPDATE_BY, CREATE_TIME, UPDATE_TIME, IS_DELETED) values(null,#{entity.plcName},#{entity.isWireless},#{entity.handleDate},#{entity.lineType},#{entity.temperatureId},#{entity.temperatureName},#{entity.temperatureValue}, #{entity.temperatureWarningValue}, #{entity.createBy}, #{entity.updateBy}, now(), now(), '0')"})

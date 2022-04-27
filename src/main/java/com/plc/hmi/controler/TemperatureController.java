@@ -123,8 +123,10 @@ public class TemperatureController {
      */
     @ResponseBody
     @GetMapping("/geTemperatureHisAlarmWithoutParam")
-    public List<TemperatureAlarmEntity> geTemperatureHisAlarmWithoutParam(){
-        return geTemperatureHisAlarm(null, null);
+    public String geTemperatureHisAlarmWithoutParam(){
+        logger.info(" geTemperatureHisAlarmWithoutParam start.");
+        return geTemperatureHisAlarm(null, null, 1,10 );
+//        return geTemperatureHisAlarm(null, null);
     }
 
     /**
@@ -136,13 +138,17 @@ public class TemperatureController {
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
         return lineType;
     }
+
     /**
      * 历史报警信息查询
      */
     @ResponseBody
     @GetMapping("/geTemperatureHisAlarm")
-    public List<TemperatureAlarmEntity> geTemperatureHisAlarm(@RequestParam(value = "start",required = true) String start,
-                                                         @RequestParam(value = "stop",required = true) String stop){
+    public String  geTemperatureHisAlarm(@RequestParam(value = "start",required = true) String start,
+                                                          @RequestParam(value = "stop",required = true) String stop,
+                                                          @RequestParam(value = "page",required = false) int page,
+                                                          @RequestParam(value = "pageSize",required = false) int pageSize){
+        logger.info(" geTemperatureHisAlarm startDate={}, endDate={}", start, stop );
         if(null == start || StringUtils.isEmpty(start)) {
             start = HmiUtils.getYYYYMMDDString(new Date());
         }
@@ -157,12 +163,20 @@ public class TemperatureController {
         if(!StringUtils.isEmpty(stop)) {
             stop=stop.replace("-","");
         }
+        page = page <=0 ? 1: page;
+        pageSize = pageSize > 0 ? pageSize : 10;
+        String json = null;
+        PageHelper.startPage(page,pageSize);
+
         String lineType = HmiUtils.getString(propertyService.getProperty(ConfigConstants.TEMPERATURE_LINE_TYPE));
-        List<TemperatureAlarmEntity> temperatureAlarmList = temperatureAlarmService.getTemperatureAlarmWithParam(start, stop, lineType, 20);
-        if(null == temperatureAlarmList) {
-            temperatureAlarmList = new ArrayList<TemperatureAlarmEntity>();
-        }
-        return temperatureAlarmList;
+
+        PageInfo<TemperatureAlarmEntity> pageInfo = new PageInfo<TemperatureAlarmEntity>(temperatureAlarmService.getTemperatureAlarmWithParam(start, stop, lineType));
+//        List<TemperatureAlarmEntity> temperatureAlarmList = temperatureAlarmService.getTemperatureAlarmWithParam(start, stop, lineType, 20);
+//        if(null == temperatureAlarmList) {
+//            temperatureAlarmList = new ArrayList<TemperatureAlarmEntity>();
+//        }
+        json = JSON.toJSONString(pageInfo);
+        return json;
 
     }
 
