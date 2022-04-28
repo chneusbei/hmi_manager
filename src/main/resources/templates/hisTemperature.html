@@ -438,7 +438,10 @@
                     this.temperatureList=result.data.list;
                     this.pages = result.data.pages;
                     this.total = result.data.total;
-                    this.lineType=this.temperatureList[0].lineType;
+                    // alert("temperatureList.length= "+this.temperatureList.length);
+                    if(this.temperatureList.length > 0) {
+                        this.lineType = this.temperatureList[0].lineType;
+                    }
                 }).catch(function(error){
                     alert(error)
                 })
@@ -468,7 +471,10 @@
                     this.temperatureList=result.data.list;
                     this.pages = result.data.pages;
                     this.total = result.data.total;
-                    this.lineType=this.temperatureList[0].lineType;
+                    // alert("temperatureList.length= "+this.temperatureList.length);
+                    if(this.temperatureList.length > 0) {
+                        this.lineType=this.temperatureList[0].lineType;
+                    }
                     // alert("ID"+this.temperatureList[0].id);
                     // if(this.lineType == undefined){
                     //     this.lineType = 'B'
@@ -530,7 +536,9 @@
                 axios.get("/getHisTemperatureNew",{params:requestData}).then(result=>{
                     this.temperatureList=result.data.list;
                     this.count = result.data.pages;
-                    this.lineType=this.temperatureList[0].lineType;
+                    if(this.temperatureList.length > 0) {
+                        this.lineType = this.temperatureList[0].lineType;
+                    }
                     // $this.$set("records", data.record.records);
                     // $this.$set("start", data.record.query.start);
                     // $this.$set("total", data.record.query.total);
@@ -575,7 +583,9 @@
                 axios.get("/getHisTemperatureNew",{params:requestData}).then(result=>{
                     this.temperatureList=result.data.list;
                     this.count = result.data.pages;
-                    this.lineType=this.temperatureList[0].lineType;
+                    if(this.temperatureList.length > 0) {
+                        this.lineType = this.temperatureList[0].lineType;
+                    }
                     // $this.$set("records", data.record.records);
                     // $this.$set("start", data.record.query.start);
                     // $this.$set("total", data.record.query.total);
@@ -630,7 +640,9 @@
                 axios.get("/getHisTemperatureNew",{params:requestData}).then(result=>{
                     this.temperatureList=result.data.list;
                     this.count = result.data.pages;
-                    this.lineType=this.temperatureList[0].lineType;
+                    if(this.temperatureList.length > 0) {
+                        this.lineType = this.temperatureList[0].lineType;
+                    }
                     // $this.$set("records", data.record.records);
                     // $this.$set("start", data.record.query.start);
                     // $this.$set("total", data.record.query.total);
@@ -686,7 +698,9 @@
                     axios.get("/getHisTemperatureNew",{params:requestData}).then(result=>{
                         this.temperatureList=result.data.list;
                         this.count = result.data.pages;
-                        this.lineType=this.temperatureList[0].lineType;
+                        if(this.temperatureList.length > 0) {
+                            this.lineType = this.temperatureList[0].lineType;
+                        }
                         // $this.$set("records", data.record.records);
                         // $this.$set("start", data.record.query.start);
                         // $this.$set("total", data.record.query.total);
@@ -729,7 +743,9 @@
                 axios.get("/getHisTemperatureNew",{params:requestData}).then(result=>{
                     this.temperatureList=result.data.list;
                     this.count = result.data.pages;
-                    this.lineType=this.temperatureList[0].lineType;
+                    if(this.temperatureList.length > 0) {
+                        this.lineType = this.temperatureList[0].lineType;
+                    }
                     // $this.$set("records", data.record.records);
                     // $this.$set("start", data.record.query.start);
                     // $this.$set("total", data.record.query.total);
