@@ -74,7 +74,7 @@
             getgraph() {
                 let arr=[];
                 let myChart= echarts.init(document.getElementById('main'));
-                axios.get("/getHisDateByCode",{params:{recordId:this.recordId}}).then(result=>{
+                axios.get("/getHisDataByCode",{params:{recordId:this.recordId}}).then(result=>{
                     result =result.data;
                     for(let i in result){
                         if (i==0){

@@ -1,0 +1,82 @@
+2022-04-27 22:37:09,336 INFO (StartupInfoLogger.java:55)- Starting HmiApplication v1 on DESKTOP-U3JN8NL with PID 125332 (E:\myworkspace\hmi_manager\target\tcs-1.jar started by Administrator in E:\myworkspace\hmi_manager\target)
+2022-04-27 22:37:09,336 INFO (StartupInfoLogger.java:55)- Starting HmiApplication v1 on DESKTOP-U3JN8NL with PID 125332 (E:\myworkspace\hmi_manager\target\tcs-1.jar started by Administrator in E:\myworkspace\hmi_manager\target)
+2022-04-27 22:37:09,345 INFO (SpringApplication.java:651)- No active profile set, falling back to default profiles: default
+2022-04-27 22:37:09,345 INFO (SpringApplication.java:651)- No active profile set, falling back to default profiles: default
+2022-04-27 22:37:09,344 INFO (StartupInfoLogger.java:55)- Starting HmiApplication v1 on DESKTOP-U3JN8NL with PID 125668 (E:\myworkspace\hmi_manager\target\tcs-1.jar started by Administrator in E:\myworkspace\hmi_manager\target)
+2022-04-27 22:37:09,344 INFO (StartupInfoLogger.java:55)- Starting HmiApplication v1 on DESKTOP-U3JN8NL with PID 125668 (E:\myworkspace\hmi_manager\target\tcs-1.jar started by Administrator in E:\myworkspace\hmi_manager\target)
+2022-04-27 22:37:09,351 INFO (SpringApplication.java:651)- No active profile set, falling back to default profiles: default
+2022-04-27 22:37:09,351 INFO (SpringApplication.java:651)- No active profile set, falling back to default profiles: default
+2022-04-27 22:37:10,555 WARN (ClassPathMapperScanner.java:166)- No MyBatis mapper was found in '[com.plc.hmi.dal.dim.mapper]' package. Please check your configuration.
+2022-04-27 22:37:10,567 WARN (ClassPathMapperScanner.java:166)- No MyBatis mapper was found in '[com.plc.hmi.dal.dim.mapper]' package. Please check your configuration.
+2022-04-27 22:37:10,897 INFO (RepositoryConfigurationDelegate.java:127)- Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2022-04-27 22:37:10,907 INFO (RepositoryConfigurationDelegate.java:127)- Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2022-04-27 22:37:10,946 INFO (RepositoryConfigurationDelegate.java:187)- Finished Spring Data repository scanning in 40ms. Found 0 JDBC repository interfaces.
+2022-04-27 22:37:10,956 INFO (RepositoryConfigurationDelegate.java:187)- Finished Spring Data repository scanning in 39ms. Found 0 JDBC repository interfaces.
+2022-04-27 22:37:11,716 INFO (PostProcessorRegistrationDelegate.java:330)- Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$ce6bc056] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-27 22:37:11,730 INFO (PostProcessorRegistrationDelegate.java:330)- Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$51199eb5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-27 22:37:11,799 INFO (AbstractAddressingEndpointMapping.java:236)- Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2022-04-27 22:37:11,811 INFO (AbstractAddressingEndpointMapping.java:236)- Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2022-04-27 22:37:11,837 INFO (PostProcessorRegistrationDelegate.java:330)- Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-27 22:37:11,855 INFO (PostProcessorRegistrationDelegate.java:330)- Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-04-27 22:37:15,593 INFO (TomcatWebServer.java:92)- Tomcat initialized with port(s): 8080 (http)
+2022-04-27 22:37:15,593 INFO (TomcatWebServer.java:92)- Tomcat initialized with port(s): 8080 (http)
+2022-04-27 22:37:15,659 INFO (DirectJDKLog.java:173)- Initializing ProtocolHandler ["http-nio-8080"]
+2022-04-27 22:37:15,659 INFO (DirectJDKLog.java:173)- Initializing ProtocolHandler ["http-nio-8080"]
+2022-04-27 22:37:15,660 INFO (DirectJDKLog.java:173)- Starting service [Tomcat]
+2022-04-27 22:37:15,660 INFO (DirectJDKLog.java:173)- Starting service [Tomcat]
+2022-04-27 22:37:15,661 INFO (DirectJDKLog.java:173)- Starting Servlet engine: [Apache Tomcat/9.0.30]
+2022-04-27 22:37:15,661 INFO (DirectJDKLog.java:173)- Starting Servlet engine: [Apache Tomcat/9.0.30]
+2022-04-27 22:37:16,069 INFO (DirectJDKLog.java:173)- Initializing Spring embedded WebApplicationContext
+2022-04-27 22:37:16,069 INFO (DirectJDKLog.java:173)- Initializing Spring embedded WebApplicationContext
+2022-04-27 22:37:16,070 INFO (ServletWebServerApplicationContext.java:284)- Root WebApplicationContext: initialization completed in 6597 ms
+2022-04-27 22:37:16,071 INFO (ServletWebServerApplicationContext.java:284)- Root WebApplicationContext: initialization completed in 6580 ms
+2022-04-27 22:37:18,653 INFO (ExecutorConfigurationSupport.java:171)- Initializing ExecutorService 'applicationTaskExecutor'
+2022-04-27 22:37:18,656 INFO (ExecutorConfigurationSupport.java:171)- Initializing ExecutorService 'applicationTaskExecutor'
+2022-04-27 22:37:18,834 INFO (WelcomePageHandlerMapping.java:54)- Adding welcome page: class path resource [templates/index.html]
+2022-04-27 22:37:18,837 INFO (WelcomePageHandlerMapping.java:54)- Adding welcome page: class path resource [templates/index.html]
+2022-04-27 22:37:20,643 INFO (DirectJDKLog.java:173)- Starting ProtocolHandler ["http-nio-8080"]
+2022-04-27 22:37:20,661 INFO (DirectJDKLog.java:173)- Starting ProtocolHandler ["http-nio-8080"]
+2022-04-27 22:37:20,725 INFO (DirectJDKLog.java:173)- Pausing ProtocolHandler ["http-nio-8080"]
+2022-04-27 22:37:20,726 INFO (DirectJDKLog.java:173)- Stopping service [Tomcat]
+2022-04-27 22:37:20,727 INFO (DirectJDKLog.java:173)- Pausing ProtocolHandler ["http-nio-8080"]
+2022-04-27 22:37:20,728 INFO (DirectJDKLog.java:173)- Stopping service [Tomcat]
+2022-04-27 22:37:20,760 INFO (DirectJDKLog.java:173)- Stopping ProtocolHandler ["http-nio-8080"]
+2022-04-27 22:37:20,760 INFO (DirectJDKLog.java:173)- Stopping ProtocolHandler ["http-nio-8080"]
+2022-04-27 22:37:20,761 INFO (DirectJDKLog.java:173)- Destroying ProtocolHandler ["http-nio-8080"]
+2022-04-27 22:37:20,761 INFO (DirectJDKLog.java:173)- Destroying ProtocolHandler ["http-nio-8080"]
+2022-04-27 22:37:20,764 INFO (ConditionEvaluationReportLoggingListener.java:136)- 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-04-27 22:37:20,765 INFO (ConditionEvaluationReportLoggingListener.java:136)- 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-04-27 22:37:20,768 ERROR (LoggingFailureAnalysisReporter.java:40)- 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2022-04-27 22:37:20,769 ERROR (LoggingFailureAnalysisReporter.java:40)- 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2022-04-27 22:37:20,817 INFO (ExecutorConfigurationSupport.java:208)- Shutting down ExecutorService 'applicationTaskExecutor'
+2022-04-27 22:37:20,817 INFO (ExecutorConfigurationSupport.java:208)- Shutting down ExecutorService 'applicationTaskExecutor'
