@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>历史压装曲线</title>
+    <title>历史不合格压装信息</title>
     <link rel="icon" href="favicon.ico" type="image/ico">
     <meta name="author" content="yinqi">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -12,6 +12,53 @@
     <script th:src="@{/vue.min.js}"></script>
     <script th:src="@{/axios.min.js}"></script>
     <script src="echarts.min.js"></script>
+    <style>
+        .imagetable{
+            border:2px solid white;
+            width: 80%;
+            margin-left: 100px;
+        }
+        table.imagetable {
+            font-family: verdana,arial,sans-serif;
+            font-size:15px;
+            color:#333333;
+            border-width: 1px;
+            border-collapse: collapse;
+        }
+        table.imagetable td {
+            background:white;
+            border-width: 1px;
+            padding-left: 8px;
+            padding-top: 8px;
+            padding-right: 8px;
+        }
+
+        .imagetable2{
+            border:2px solid black;
+            width: 80%;
+            margin-left: 100px;
+        }
+        table.imagetable2 {
+            font-family: verdana,arial,sans-serif;
+            font-size:15px;
+            color:#333333;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table.imagetable2 td {
+            background:white;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+        table.imagetable2 th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
@@ -36,7 +83,20 @@
                                        name="endDate" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd"  v-model="endDate"/>
                             </div>
                         </td>
-                        <td><input type="submit" @click="getSystemParameter()" value="查询" style="background-color: #33CABB;width: 70px;height: 35px;color: white" id="query" ></td>
+                        <td><input type="submit" @click="getNokHisData()" value="显示曲线" style="background-color: #33CABB;width: 70px;height: 35px;color: white" id="query" ></td>
+                    </tr>
+                </table>
+                <table class="imagetable2">
+                    <tr>
+                        <th>记录号</th>
+                        <th>数据时间</th>
+                        <th>状态</th>
+                    </tr>
+                    <tr v-for="o in nokList">
+                        <td :style="{background:o.impression}">{{o.recordId}}</td>
+                        <td :style="{background:o.impression}">{{o.createTime}}</td>
+                        <td :style="{background:o.impression}">NOK</td>
+                        <td><input  type="button" @click="showGraph(o.recordId)" value="查询"></td>
                     </tr>
                 </table>
                 <div >
@@ -76,11 +136,14 @@
             recordId:null,
             pressureData:null,
             series1:[],
+            startDate:'',
+            endDate:'',
+            nokList:[]
         },methods:{
-            getgraph() {
+            showGraph(recordId) {
                 let arr=[];
                 let myChart= echarts.init(document.getElementById('main'));
-                axios.get("/getHisDataByCode",{params:{recordId:this.recordId}}).then(result=>{
+                axios.get("/getHisDataByCode",{params:{recordId:recordId}}).then(result=>{
                     result =result.data;
                     for(let i in result){
                         if (i==0){
@@ -133,9 +196,23 @@
                     myChart.hideLoading();
                 });
 
+            },getNokHisData(){
+                let requestData={
+                    // startDate:this.$refs.startDate.value,
+                    // endDate:this.$refs.endDate.value
+                    startDate:this.startDate,
+                    endDate:this.endDate
+                }
+                // alert("startDate="+requestData.startDate)
+                // alert("endDate="+requestData.endDate)
+                axios.get("/getNokHisData",{params:requestData}).then(response=>{
+                    this.nokList=response.data;
+                }).catch(function(error){
+                    alert(error)
+                })
             }
         }, created(){
-
+            this.getNokHisData();
         }
     });
     // 指定图表的配置项和数据

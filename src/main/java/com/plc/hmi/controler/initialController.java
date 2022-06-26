@@ -76,6 +76,10 @@ public class initialController {
     public String dataExport(){
         return "dataExport";
     }
+    @RequestMapping("/hisNokCurve")
+    public String hisNokCurve(){
+        return "hisNokCurve";
+    }
     @RequestMapping("/accountManagement")
     public String accountManagement(){
         return "accountManagement";

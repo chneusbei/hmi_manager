@@ -9,6 +9,7 @@ import com.plc.hmi.service.*;
 import com.plc.hmi.service.plcService.Plc4xCurveDataService;
 import com.plc.hmi.service.plcService.Plc4xCurveStatusService;
 import com.plc.hmi.util.HmiUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,17 +70,17 @@ public class JsonController {
     @RequestMapping("/getNokHisData")
     public String getNokHisData( @RequestParam(value = "startDate",required = false) String startDate,
                                  @RequestParam(value = "endDate",required = false) String endDate){
-        startDate = null==startDate ? null : startDate.replace("-","");
-        endDate =  null==endDate ? null : endDate.replace("-","");
-        if (null == startDate && null == endDate) {
+        startDate = StringUtils.isBlank(startDate) ? null : startDate.replace("-","");
+        endDate = StringUtils.isBlank(endDate) ? null : endDate.replace("-","");
+        if (StringUtils.isBlank(startDate) && StringUtils.isBlank(endDate)) {
             startDate = HmiUtils.getYYYYMMDDString(new Date());
             endDate = startDate;
-        } else if (null == startDate) {
+        } else if (StringUtils.isBlank(startDate)) {
             startDate = endDate;
         } else {
             endDate = startDate;
         }
-        List<PressureDataEntity> list = pressureDataService.getPressureDataWithStatus(startDate, endDate, HmiConstants.NOK);
+        List<PressureDataEntity> list = pressureDataService.getPressureDataWithStatus(startDate+"000000000", endDate+"235900000", HmiConstants.NOK);
         String json = JSON.toJSONString(list);
         return json;
     }
