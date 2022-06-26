@@ -20,15 +20,25 @@
             <script src="test.js"></script>
 
             <main class="lyear-layout-content">
-                历史压装曲线
+                历史不合格压装信息
                 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-
-                <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;
-                    程序号：<input type="text" v-model="recordId" > <!--<input type="submit" value="确定">-->
-                    <input   type="button" @click="getgraph()" value="查询">
-                </div>
+                <table class="imagetable">
+                    <tr>
+                        <td>开始日期：
+                            <div class="card">
+                                <input class="form-control js-datepicker m-b-10" type="text" id="example-datepicker"
+                                       name="startDate" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd" v-model="startDate"/>
+                            </div>
+                        </td>
+                        <td>结束日期：
+                            <div class="card">
+                                <input class="form-control js-datepicker m-b-10" type="text" id=""
+                                       name="endDate" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd"  v-model="endDate"/>
+                            </div>
+                        </td>
+                        <td><input type="submit" @click="getSystemParameter()" value="查询" style="background-color: #33CABB;width: 70px;height: 35px;color: white" id="query" ></td>
+                    </tr>
+                </table>
                 <div >
                     <!--<label>产品代码：{{pressureData}}</label>-->
                     <div id="main" style="width: 90%;height:600px; "></div>
@@ -47,10 +57,6 @@
                         </span>
                     </div>
                 </div>
-
-
-
-
 
                 <script type="text/javascript" src="js/jquery.min.js"></script>
                 <script type="text/javascript" src="js/bootstrap.min.js"></script>

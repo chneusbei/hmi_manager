@@ -19,10 +19,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class JsonController {
@@ -43,10 +40,10 @@ public class JsonController {
     PressureDataService pressureDataService;
 
 
-    @RequestMapping("/getHisDateByCode")
-    public String getHisDateByCode(@RequestParam(value = "recordId",required = false) Long recordId){
+    @RequestMapping("/getHisDataByCode")
+    public String getHisDataByCode(@RequestParam(value = "recordId",required = false) Long recordId){
 //        System.out.println(pressDataId);
-        List<PressureCurveEntity> list =pressureCurveService.getHisDateByCode(recordId);
+        List<PressureCurveEntity> list =pressureCurveService.getHisDataByCode(recordId);
         List<PressureDataEntity> pressureData = pressureDataService.getPressureData(recordId);
         if(CollectionUtils.isEmpty(list)) {
             list = new  ArrayList<PressureCurveEntity>();
@@ -66,6 +63,24 @@ public class JsonController {
         list1.add(pressureData);
         list1.add(list);
         String json = JSON.toJSONString(list1);
+        return json;
+    }
+
+    @RequestMapping("/getNokHisData")
+    public String getNokHisData( @RequestParam(value = "startDate",required = false) String startDate,
+                                 @RequestParam(value = "endDate",required = false) String endDate){
+        startDate = null==startDate ? null : startDate.replace("-","");
+        endDate =  null==endDate ? null : endDate.replace("-","");
+        if (null == startDate && null == endDate) {
+            startDate = HmiUtils.getYYYYMMDDString(new Date());
+            endDate = startDate;
+        } else if (null == startDate) {
+            startDate = endDate;
+        } else {
+            endDate = startDate;
+        }
+        List<PressureDataEntity> list = pressureDataService.getPressureDataWithStatus(startDate, endDate, HmiConstants.NOK);
+        String json = JSON.toJSONString(list);
         return json;
     }
 

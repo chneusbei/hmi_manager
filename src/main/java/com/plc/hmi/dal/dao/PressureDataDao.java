@@ -32,7 +32,9 @@ public class PressureDataDao {
         return pressureDataMapper.getPressureDataByDate(startDate, endDate);
     }
 
-
+    public List<PressureDataEntity> getPressureData(String startDate, String endDate, String pressResult) {
+        return pressureDataMapper.getPressureDataWithStatus(startDate, endDate, pressResult);
+    }
 
     public PressureStatisticalDataEntity getPressureStatisticalData(BigDecimal startDate, BigDecimal endDate) {
         List<HashMap> resList = pressureDataMapper.getPressureStatisticalData(startDate, endDate);

@@ -38,6 +38,15 @@ public class PressureDataService extends AbstractBaseService{
     }
 
     /**
+     * 获取产品压装失败信息列表
+     * @param startDate，endDate
+     * @return
+     */
+    public List<PressureDataEntity> getPressureDataWithStatus(String startDate, String endDate, String pressResult) {
+        return pressureDataDao.getPressureData(startDate, endDate, pressResult);
+    }
+
+    /**
      * 获取最近产品压装结果信息
      * @param
      * @return

@@ -40,7 +40,7 @@ public class PressureCurveService extends AbstractBaseService{
      * @param recordId
      * @return
      */
-    public List<PressureCurveEntity> getHisDateByCode(Long  recordId) {
+    public List<PressureCurveEntity> getHisDataByCode(Long  recordId) {
         return pressureCurveDao.getCurveData(recordId);
     }
 

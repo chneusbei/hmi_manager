@@ -49,7 +49,7 @@ public class PressureCurveTest {
 //        service.batchInsert(entityList);
 //        service.insert(entity);
 //        List<PressureCurveEntity> resultList = service.getCurrDate();
-        List<PressureCurveEntity> hisList =service.getHisDateByCode(0L);
+        List<PressureCurveEntity> hisList =service.getHisDataByCode(0L);
         System.out.println("END----------------");
 
         /*
