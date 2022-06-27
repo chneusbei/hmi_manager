@@ -4,14 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <title>历史不合格压装信息</title>
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
     <link rel="icon" href="favicon.ico" type="image/ico">
     <meta name="author" content="yinqi">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/materialdesignicons.min.css" rel="stylesheet">
     <link href="css/style.min.css" rel="stylesheet">
-    <script th:src="@{/vue.min.js}"></script>
-    <script th:src="@{/axios.min.js}"></script>
     <script src="echarts.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <!--时间选择插件-->
+    <script src="js/bootstrap-datetimepicker/moment.min.js"></script>
+    <script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker/locale/zh-cn.js"></script>
+    <!--日期选择插件-->
+    <script src="js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
     <style>
         .imagetable{
             border:2px solid white;
@@ -59,6 +70,17 @@
             border-style: solid;
         }
     </style>
+    <script src="jquery-3.3.1.min.js">
+
+    </script>
+    <script >
+        $(function (){
+            $("#imagetable").hide();
+            $("#daochu").click(function(){
+                $("#imagetable").show();
+            })
+        })
+    </script>
 </head>
 <body>
 <div id="app">
@@ -83,7 +105,7 @@
                                        name="endDate" placeholder="yyyy-mm-dd" value="" data-date-format="yyyy-mm-dd"  v-model="endDate"/>
                             </div>
                         </td>
-                        <td><input type="submit" @click="getNokHisData()" value="显示曲线" style="background-color: #33CABB;width: 70px;height: 35px;color: white" id="query" ></td>
+                        <td><input type="submit" @click="getNokHisData()" value="查询" style="background-color: #33CABB;width: 70px;height: 35px;color: white" id="query" ></td>
                     </tr>
                 </table>
                 <table class="imagetable2">
@@ -91,12 +113,13 @@
                         <th>记录号</th>
                         <th>数据时间</th>
                         <th>状态</th>
+                        <th>操作</th>
                     </tr>
                     <tr v-for="o in nokList">
                         <td :style="{background:o.impression}">{{o.recordId}}</td>
-                        <td :style="{background:o.impression}">{{o.createTime}}</td>
+                        <td :style="{background:o.impression}">{{o.startDate}}</td>
                         <td :style="{background:o.impression}">NOK</td>
-                        <td><input  type="button" @click="showGraph(o.recordId)" value="查询"></td>
+                        <td><input  type="button" @click="showGraph(o.recordId)" value="显示曲线"></td>
                     </tr>
                 </table>
                 <div >
@@ -126,7 +149,17 @@
             <!--End 页面主要内容-->
         </div>
     </div>
-
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <!--时间选择插件-->
+    <script src="js/bootstrap-datetimepicker/moment.min.js"></script>
+    <script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker/locale/zh-cn.js"></script>
+    <!--日期选择插件-->
+    <script src="js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
 </div>
 
 <script  type="module">
@@ -203,8 +236,9 @@
                     startDate:this.startDate,
                     endDate:this.endDate
                 }
-                // alert("startDate="+requestData.startDate)
-                // alert("endDate="+requestData.endDate)
+                alert("startDate="+this.startDate)
+                alert("endDate="+this.endDate)
+                alert("start="+this.$refs.startDate)
                 axios.get("/getNokHisData",{params:requestData}).then(response=>{
                     this.nokList=response.data;
                 }).catch(function(error){
