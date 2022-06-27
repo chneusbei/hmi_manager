@@ -117,7 +117,7 @@
                     </tr>
                     <tr v-for="o in nokList">
                         <td :style="{background:o.impression}">{{o.recordId}}</td>
-                        <td :style="{background:o.impression}">{{o.startDate}}</td>
+                        <td :style="{background:o.impression}"></td>
                         <td :style="{background:o.impression}">NOK</td>
                         <td><input  type="button" @click="showGraph(o.recordId)" value="显示曲线"></td>
                     </tr>
@@ -238,7 +238,7 @@
                 }
                 alert("startDate="+this.startDate)
                 alert("endDate="+this.endDate)
-                alert("start="+this.$refs.startDate)
+                // alert("start="+this.$refs.startDate)
                 axios.get("/getNokHisData",{params:requestData}).then(response=>{
                     this.nokList=response.data;
                 }).catch(function(error){

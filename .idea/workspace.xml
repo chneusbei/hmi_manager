@@ -7,17 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cecb0697-7a75-43f3-82cd-1d72e4e882c3" name="Default Changelist" comment="代码提交20220322">
-      <change afterPath="$PROJECT_DIR$/tcs.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_12.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hmi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hmi.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/AlarmControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/zkcode/AlarmControler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureStatisticalDataEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureStatisticalDataEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/HmiUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/HmiUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/curveMonitoring.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/curveMonitoring.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/dataQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/dataQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/hiscurveQuery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/hiscurveQuery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/PressureCurveTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/plc/hmi/PressureCurveTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/hisNokCurve.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/hisNokCurve.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/initialController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/initialController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/createAnAccount.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/createAnAccount.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -513,6 +507,7 @@
       <workItem from="1653441489555" duration="16213000" />
       <workItem from="1654611684330" duration="6296000" />
       <workItem from="1656246084566" duration="2667000" />
+      <workItem from="1656297349637" duration="176000" />
     </task>
     <task id="LOCAL-00058" summary="代码提交20210317">
       <created>1615637365309</created>
@@ -988,22 +983,22 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="29" y="62" width="1092" height="617" maximized="true" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1650717707972" />
-    <state width="1323" height="146" key="GridCell.Tab.0.bottom" timestamp="1656248086750">
+    <state width="1323" height="43" key="GridCell.Tab.0.bottom" timestamp="1656297410094">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1656248086750" />
-    <state width="1323" height="146" key="GridCell.Tab.0.center" timestamp="1656248086750">
+    <state width="1323" height="43" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1656297410094" />
+    <state width="1323" height="43" key="GridCell.Tab.0.center" timestamp="1656297410093">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1656248086750" />
-    <state width="1323" height="146" key="GridCell.Tab.0.left" timestamp="1656248086750">
+    <state width="1323" height="43" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1656297410093" />
+    <state width="1323" height="43" key="GridCell.Tab.0.left" timestamp="1656297410093">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1656248086750" />
-    <state width="1323" height="146" key="GridCell.Tab.0.right" timestamp="1656248086750">
+    <state width="1323" height="43" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1656297410093" />
+    <state width="1323" height="43" key="GridCell.Tab.0.right" timestamp="1656297410094">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1656248086750" />
+    <state width="1323" height="43" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1656297410094" />
     <state width="1323" height="38" key="GridCell.Tab.1.bottom" timestamp="1656248561397">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
