@@ -6,12 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cecb0697-7a75-43f3-82cd-1d72e4e882c3" name="Default Changelist" comment="代码提交20220322">
+    <list default="true" id="cecb0697-7a75-43f3-82cd-1d72e4e882c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/hisNokCurve.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/hisNokCurve.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/initialController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/controler/initialController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/createAnAccount.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/createAnAccount.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -507,14 +503,7 @@
       <workItem from="1653441489555" duration="16213000" />
       <workItem from="1654611684330" duration="6296000" />
       <workItem from="1656246084566" duration="2667000" />
-      <workItem from="1656297349637" duration="176000" />
-    </task>
-    <task id="LOCAL-00058" summary="代码提交20210317">
-      <created>1615637365309</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1615637365310</updated>
+      <workItem from="1656297349637" duration="418000" />
     </task>
     <task id="LOCAL-00059" summary="代码提交20210314">
       <created>1615723880096</created>
@@ -852,7 +841,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656248746410</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="代码提交20220627">
+      <created>1656297563989</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1656297563989</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -939,7 +935,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="代码提交20210418" />
     <MESSAGE value="代码提交20210420" />
     <MESSAGE value="代码提交20210420-2" />
     <MESSAGE value="代码提交20210831-2" />
@@ -964,17 +959,18 @@
     <MESSAGE value="代码提交20220427" />
     <MESSAGE value="代码提交20220322" />
     <MESSAGE value="代码提交20220626" />
-    <option name="LAST_COMMIT_MESSAGE" value="代码提交20220626" />
+    <MESSAGE value="代码提交20220627" />
+    <option name="LAST_COMMIT_MESSAGE" value="代码提交20220627" />
   </component>
   <component name="WindowStateProjectService">
     <state x="438" y="71" key="#xdebugger.evaluate" timestamp="1650202091194">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="438" y="71" key="#xdebugger.evaluate/0.0.1366.738@0.0.1366.738" timestamp="1650202091194" />
-    <state x="183" y="0" key="CommitChangelistDialog2" timestamp="1656248739154">
+    <state x="183" y="0" key="CommitChangelistDialog2" timestamp="1656297559586">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="183" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1656248739154" />
+    <state x="183" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1656297559586" />
     <state width="547" height="473" key="DebuggerActiveHint" timestamp="1651069895609">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -1039,10 +1035,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="392" y="85" key="MultipleFileMergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1654612127694" />
-    <state x="275" y="87" key="Vcs.Push.Dialog.v2" timestamp="1656248750079">
+    <state x="275" y="87" key="Vcs.Push.Dialog.v2" timestamp="1656297735074">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="275" y="87" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1656248750079" />
+    <state x="275" y="87" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1656297735074" />
     <state width="691" height="377" key="XDebugger.FullValuePopup" timestamp="1647871831422">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -1055,10 +1051,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="278" y="27" width="896" height="649" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1656247880209" />
-    <state x="445" y="81" key="git4idea.branch.GitSmartOperationDialog" timestamp="1656248802031">
+    <state x="445" y="81" key="git4idea.branch.GitSmartOperationDialog" timestamp="1656297824563">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="445" y="81" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.738@0.0.1366.738" timestamp="1656248802031" />
+    <state x="445" y="81" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.738@0.0.1366.738" timestamp="1656297824563" />
     <state x="339" y="164" width="672" height="687" key="run.anything.popup" timestamp="1647957790885">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
