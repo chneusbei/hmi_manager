@@ -159,6 +159,7 @@ public class PressureCurveService extends AbstractBaseService{
         pressureDataEntity.setCreateTime(new Date());
         pressureDataEntity.setUpdateTime(new Date());
         pressureDataEntity.setPressureHeadNo(entityList.get(0).getPressureHeadNo());
+        pressureDataEntity.setTraceCode(entityList.get(0).getTraceCode());
         pressureDataService.insert(pressureDataEntity);
         for (PressureCurveEntity pressureCurveEntity : entityList) {
             pressureCurveEntity.setRecordId(recordId);

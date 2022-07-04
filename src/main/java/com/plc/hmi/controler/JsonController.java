@@ -56,7 +56,7 @@ public class JsonController {
             list.add(pressureCurveEntity);
         }
         if(CollectionUtils.isEmpty(pressureData)) {
-           pressureData = new ArrayList<PressureDataEntity>();
+            pressureData = new ArrayList<PressureDataEntity>();
             PressureDataEntity pressureDataEntity = new PressureDataEntity();
             pressureData.add(pressureDataEntity);
         }
@@ -64,6 +64,70 @@ public class JsonController {
         list1.add(pressureData);
         list1.add(list);
         String json = JSON.toJSONString(list1);
+        return json;
+    }
+
+    @RequestMapping("/getHisCurveByCode")
+    public String getHisCurveByCode(@RequestParam(value = "recordId",required = false) Long recordId){
+
+        /**
+         *  曲线信息
+         * */
+        List<PressureCurveEntity> list =pressureCurveService.getHisDataByCode(recordId);
+//        List<PressureDataEntity> pressureData = pressureDataService.getPressureData(recordId);
+//        if(CollectionUtils.isEmpty(list)) {
+//            list = new  ArrayList<PressureCurveEntity>();
+//            PressureCurveEntity pressureCurveEntity = new PressureCurveEntity();
+//            pressureCurveEntity.setSolidLine(true);
+//            pressureCurveEntity.setErrant(false);
+//            pressureCurveEntity.setPosition(new BigDecimal(100));
+//            pressureCurveEntity.setPressForce(new BigDecimal(100));
+//            list.add(pressureCurveEntity);
+//        }
+//        if(CollectionUtils.isEmpty(pressureData)) {
+//            pressureData = new ArrayList<PressureDataEntity>();
+//            PressureDataEntity pressureDataEntity = new PressureDataEntity();
+//            pressureData.add(pressureDataEntity);
+//        }
+//        List<List<? extends AbstractBaseEntity>> list1=new ArrayList<>();
+//        list1.add(pressureData);
+//        list1.add(list);
+//        String json = JSON.toJSONString(list1);
+//        return json;
+
+
+        /**
+         * 公差窗口
+         */
+        boolean showErrantd = HmiUtils.getBooleanValue(propertyService.getProperty(ConfigConstants.ERRAND_USE_FLAG));
+        List<List<PressureCurveEntity>> errantList = new ArrayList<List<PressureCurveEntity>>();
+        if (showErrantd) {
+            String programCode = "p1+";
+            if (null != list && null != list.get(0)) {
+                programCode = HmiUtils.getProgrameCode("1", HmiUtils.getString(list.get(0).getProductId()));
+            }
+//            programCode = "p1-";
+//            System.out.println("======================programCode================"+programCode);
+            errantList = programService.getErrandDataforChart(programCode);
+
+        }
+
+        if(!CollectionUtils.isEmpty(list)) {
+//            PressureCurveEntity fristCurve = list.get(0);
+//            System.out.println("----------fristCurve recordNo--------"+  fristCurve.getRecordNo());
+            //产品信息
+            /*
+            ProductEntity  product = productService.getStaticProduct(HmiUtils.getString(fristCurve.getProductId()));
+            if(null != product) {
+                fristCurve.setProductCode(product.getProductCode());
+                fristCurve.setProductName(product.getProductName());
+                fristCurve.setProductTraceCode(product.getProductTraceCode());
+            } */
+            errantList.add(list);
+        }
+
+        String json = JSON.toJSONString(errantList);
+//        System.out.println(" lin 1 "+json);
         return json;
     }
 
@@ -80,7 +144,7 @@ public class JsonController {
         } else {
             endDate = startDate;
         }
-        List<PressureDataEntity> list = pressureDataService.getPressureDataWithStatus(startDate+"000000000", endDate+"235900000", HmiConstants.NOK);
+        List<PressureDataEntity> list = pressureDataService.getPressureDataWithStatus(startDate+"000000000", endDate+"235900000", null);
         String json = JSON.toJSONString(list);
         return json;
     }

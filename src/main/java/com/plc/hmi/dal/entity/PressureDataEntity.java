@@ -24,6 +24,8 @@ public class PressureDataEntity extends AbstractBaseEntity {
     private BigDecimal maxPress;
     //最大压力时候位移
     private BigDecimal positionOfMaxPress;
+    //追溯码
+    private String traceCode;
 
     public BigDecimal getEndDate() {
         return endDate;
@@ -95,5 +97,13 @@ public class PressureDataEntity extends AbstractBaseEntity {
 
     public void setPressureHeadNo(int pressureHeadNo) {
         this.pressureHeadNo = pressureHeadNo;
+    }
+
+    public String getTraceCode() {
+        return traceCode;
+    }
+
+    public void setTraceCode(String traceCode) {
+        this.traceCode = traceCode;
     }
 }

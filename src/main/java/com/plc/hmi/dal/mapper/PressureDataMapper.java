@@ -28,6 +28,7 @@ public interface PressureDataMapper {
             @Result(column = "CREATE_TIME",property = "createTime"),
             @Result(column = "UPDATE_TIME",property = "updateTime"),
             @Result(column = "IS_DELETED",property = "isDeleted"),
+            @Result(column = "TRACE_CODE",property ="traceCode"),
     })
     List<PressureDataEntity>  getPressureData(@Param("recordId") Long recordId);
 
@@ -48,6 +49,7 @@ public interface PressureDataMapper {
             @Result(column = "CREATE_TIME",property = "createTime"),
             @Result(column = "UPDATE_TIME",property = "updateTime"),
             @Result(column = "IS_DELETED",property = "isDeleted"),
+            @Result(column = "TRACE_CODE",property ="traceCode"),
     })
     PressureDataEntity  getDataByHeadNo(@Param("pressureHeadNo") int pressureHeadNo);
 
@@ -77,6 +79,7 @@ public interface PressureDataMapper {
             @Result(column = "CREATE_TIME",property = "createTime"),
             @Result(column = "UPDATE_TIME",property = "updateTime"),
             @Result(column = "IS_DELETED",property = "isDeleted"),
+            @Result(column = "TRACE_CODE",property ="traceCode"),
     })
     List<PressureDataEntity>  getPressureDataByDate(@Param("startDate") String startDate, @Param("endDate") String endDate);
 
@@ -108,13 +111,14 @@ public interface PressureDataMapper {
             @Result(column = "CREATE_TIME",property = "createTime"),
             @Result(column = "UPDATE_TIME",property = "updateTime"),
             @Result(column = "IS_DELETED",property = "isDeleted"),
+            @Result(column = "TRACE_CODE",property ="traceCode"),
     })
     List<PressureDataEntity>  getPressureDataWithStatus(@Param("startDate") String startDate, @Param("endDate") String endDate, @Param("pressResult") String pressResult);
 
     @Select("select PRESS_RESULT, count(1) as COUNT from pressure_data where PRESSURE_HEAD_NO = '1' and is_deleted='0' and END_DATE between #{startDate} and #{endDate} group by PRESS_RESULT")
     List<HashMap> getPressureStatisticalData(@Param("startDate") BigDecimal startDate, @Param("endDate") BigDecimal endDate);
 
-    @Insert({"insert into pressure_data(id, PRESSURE_HEAD_NO, PRODUCT_ID, PRODUCT_NO, PRESS_RESULT, RECORD_ID, START_DATE, END_DATE, MAX_PRESS, POSITION_OF_MAX_PRESS, IS_DELETED, CREATE_BY, UPDATE_BY,CREATE_TIME,UPDATE_TIME) values(null, #{pressureHeadNo}, #{productId}, #{productNo}, #{pressResult}, #{recordId},#{startDate},#{endDate},#{maxPress},#{positionOfMaxPress},'0', #{createBy}, #{createBy}, now(), now())"})
+    @Insert({"insert into pressure_data(id, PRESSURE_HEAD_NO, PRODUCT_ID, PRODUCT_NO, PRESS_RESULT, RECORD_ID, START_DATE, END_DATE, MAX_PRESS, POSITION_OF_MAX_PRESS, IS_DELETED, CREATE_BY, UPDATE_BY,CREATE_TIME,UPDATE_TIME,TRACE_CODE) values(null, #{pressureHeadNo}, #{productId}, #{productNo}, #{pressResult}, #{recordId},#{startDate},#{endDate},#{maxPress},#{positionOfMaxPress},'0', #{createBy}, #{createBy}, now(), now(), #{traceCode})"})
     void insert(PressureDataEntity entity);
 
 //    @Update({"update pressure_data set PROGRAM_TYPE=#{programType}, PROGRAM_VALUE=#{programValue}, UPDATE_BY= #{updateBy}, UPDATE_TIME=now() where ID=#{id}"})
