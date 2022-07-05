@@ -8,6 +8,13 @@
   <component name="ChangeListManager">
     <list default="true" id="cecb0697-7a75-43f3-82cd-1d72e4e882c3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hmi.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hmi.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/JsonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plc/hmi/controler/JsonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/hisNokCurve.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/hisNokCurve.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureDataEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureDataEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/dal/entity/PressureStatisticalDataEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/plc/hmi/util/HmiUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +48,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="spring-beans.schema" />
       </list>
     </option>
   </component>
@@ -99,16 +105,12 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\myworkspace\hmi_manager\src\main\resources" />
-      <recent name="E:\myworkspace\hmi_manager\src" />
-    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.plc.hmi.util" />
       <recent name="com.plc.hmi.dal.entity.common" />
       <recent name="com.plc.hmi.dal.mapper" />
       <recent name="com.plc.hmi.dal.dao" />
       <recent name="com.plc.hmi.service" />
+      <recent name="com.plc.hmi.dal.entity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\myworkspace\hmi_manager\src\main\resources\templates" />
@@ -484,26 +486,128 @@
       <workItem from="1645345865864" duration="7144000" />
       <workItem from="1645453362261" duration="10296000" />
       <workItem from="1645536738494" duration="2303000" />
-      <workItem from="1645613544704" duration="44159000" />
-      <workItem from="1646568695823" duration="5427000" />
-      <workItem from="1646662778429" duration="1349000" />
-      <workItem from="1646881103969" duration="3721000" />
-      <workItem from="1647396568549" duration="4662000" />
-      <workItem from="1647507259498" duration="8337000" />
-      <workItem from="1647747481068" duration="1266000" />
-      <workItem from="1647864777835" duration="5970000" />
-      <workItem from="1647870894152" duration="2396000" />
-      <workItem from="1647955883183" duration="6158000" />
-      <workItem from="1648549032940" duration="573000" />
-      <workItem from="1649675573536" duration="58000" />
-      <workItem from="1650194170075" duration="8148000" />
-      <workItem from="1650429082854" duration="159000" />
-      <workItem from="1650461365621" duration="41480000" />
-      <workItem from="1653394293866" duration="583000" />
-      <workItem from="1653441489555" duration="16213000" />
-      <workItem from="1654611684330" duration="6296000" />
-      <workItem from="1656246084566" duration="2667000" />
-      <workItem from="1656297349637" duration="418000" />
+      <workItem from="1645613544704" duration="43039000" />
+      <workItem from="1656945141048" duration="2652000" />
+      <workItem from="1656949278245" duration="10803000" />
+    </task>
+    <task id="LOCAL-00042" summary="代码提交20200707">
+      <created>1594138815927</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1594138815928</updated>
+    </task>
+    <task id="LOCAL-00043" summary="代码提交20200708">
+      <created>1594225415090</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1594225415090</updated>
+    </task>
+    <task id="LOCAL-00044" summary="代码提交20200709">
+      <created>1594307722888</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1594307722888</updated>
+    </task>
+    <task id="LOCAL-00045" summary="代码提交20200711">
+      <created>1594649159878</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1594649159878</updated>
+    </task>
+    <task id="LOCAL-00046" summary="代码提交20200713">
+      <created>1594653233119</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1594653233120</updated>
+    </task>
+    <task id="LOCAL-00047" summary="代码提交20200720">
+      <created>1595257438925</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1595257438925</updated>
+    </task>
+    <task id="LOCAL-00048" summary="代码提交20200801">
+      <created>1596270325758</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1596270325758</updated>
+    </task>
+    <task id="LOCAL-00049" summary="代码提交20200801-2">
+      <created>1596270813294</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1596270813295</updated>
+    </task>
+    <task id="LOCAL-00050" summary="代码提交20200816">
+      <created>1597559724767</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1597559724767</updated>
+    </task>
+    <task id="LOCAL-00051" summary="代码提交20200921">
+      <created>1600731897510</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1600731897510</updated>
+    </task>
+    <task id="LOCAL-00052" summary="代码提交20201116-1">
+      <created>1605532641762</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1605532641762</updated>
+    </task>
+    <task id="LOCAL-00053" summary="代码提交202010124">
+      <created>1611489283805</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1611489283806</updated>
+    </task>
+    <task id="LOCAL-00054" summary="代码提交20210124">
+      <created>1611499195414</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1611499195415</updated>
+    </task>
+    <task id="LOCAL-00055" summary="代码提交20210223">
+      <created>1614090729538</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1614090729539</updated>
+    </task>
+    <task id="LOCAL-00056" summary="代码提交20210227">
+      <created>1614400689445</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1614400689446</updated>
+    </task>
+    <task id="LOCAL-00057" summary="代码提交20210228">
+      <created>1614478895182</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1614478895183</updated>
+    </task>
+    <task id="LOCAL-00058" summary="代码提交20210317">
+      <created>1615637365309</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1615637365310</updated>
     </task>
     <task id="LOCAL-00059" summary="代码提交20210314">
       <created>1615723880096</created>
@@ -722,133 +826,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646399192677</updated>
     </task>
-    <task id="LOCAL-00090" summary="代码提交20220226">
-      <created>1646404364344</created>
+    <task id="LOCAL-00090" summary="代码提交20220705">
+      <created>1656950451652</created>
       <option name="number" value="00090" />
       <option name="presentableId" value="LOCAL-00090" />
       <option name="project" value="LOCAL" />
-      <updated>1646404364345</updated>
+      <updated>1656950451653</updated>
     </task>
-    <task id="LOCAL-00091" summary="代码提交20220226">
-      <created>1646405092085</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1646405092086</updated>
-    </task>
-    <task id="LOCAL-00092" summary="代码提交20220306">
-      <created>1646574212749</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1646574212749</updated>
-    </task>
-    <task id="LOCAL-00093" summary="代码提交20220317">
-      <created>1647520198746</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1647520198746</updated>
-    </task>
-    <task id="LOCAL-00094" summary="代码提交20220317">
-      <created>1647522033611</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1647522033612</updated>
-    </task>
-    <task id="LOCAL-00095" summary="代码提交20220322">
-      <created>1647962023079</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1647962023081</updated>
-    </task>
-    <task id="LOCAL-00096" summary="代码提交20220417">
-      <created>1650202359385</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1650202359386</updated>
-    </task>
-    <task id="LOCAL-00097" summary="代码提交20220420">
-      <created>1650464487089</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1650464487090</updated>
-    </task>
-    <task id="LOCAL-00098" summary="代码提交20220421">
-      <created>1650505089934</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1650505089934</updated>
-    </task>
-    <task id="LOCAL-00099" summary="代码提交20220322">
-      <created>1650507770472</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1650507770472</updated>
-    </task>
-    <task id="LOCAL-00100" summary="代码提交20220421">
-      <created>1650508237993</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1650508237993</updated>
-    </task>
-    <task id="LOCAL-00101" summary="代码提交20220422">
-      <created>1650598440836</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1650598440836</updated>
-    </task>
-    <task id="LOCAL-00102" summary="代码提交20220423">
-      <created>1650728284924</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1650728284924</updated>
-    </task>
-    <task id="LOCAL-00103" summary="代码提交20220322">
-      <created>1650812095535</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1650812095535</updated>
-    </task>
-    <task id="LOCAL-00104" summary="代码提交20220427">
-      <created>1651070078818</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1651070078818</updated>
-    </task>
-    <task id="LOCAL-00105" summary="代码提交20220322">
-      <created>1651149496035</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1651149496035</updated>
-    </task>
-    <task id="LOCAL-00106" summary="代码提交20220626">
-      <created>1656248746409</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1656248746410</updated>
-    </task>
-    <task id="LOCAL-00107" summary="代码提交20220627">
-      <created>1656297563989</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1656297563989</updated>
-    </task>
-    <option name="localTasksCounter" value="108" />
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -935,6 +920,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="代码提交20210124" />
+    <MESSAGE value="代码提交20210223" />
+    <MESSAGE value="代码提交20210227" />
+    <MESSAGE value="代码提交20210228" />
+    <MESSAGE value="代码提交20210317" />
+    <MESSAGE value="代码提交20210314" />
+    <MESSAGE value="代码提交20210320" />
+    <MESSAGE value="代码提交20210322" />
+    <MESSAGE value="代码提交20210417" />
+    <MESSAGE value="代码提交20210418" />
     <MESSAGE value="代码提交20210420" />
     <MESSAGE value="代码提交20210420-2" />
     <MESSAGE value="代码提交20210831-2" />
@@ -947,122 +942,92 @@
     <MESSAGE value="代码提交20211118 2" />
     <MESSAGE value="代码提交20220208" />
     <MESSAGE value="代码提交20220222" />
-    <MESSAGE value="代码提交20220304" />
     <MESSAGE value="代码提交20220226" />
-    <MESSAGE value="代码提交20220306" />
-    <MESSAGE value="代码提交20220317" />
-    <MESSAGE value="代码提交20220417" />
-    <MESSAGE value="代码提交20220420" />
-    <MESSAGE value="代码提交20220421" />
-    <MESSAGE value="代码提交20220422" />
-    <MESSAGE value="代码提交20220423" />
-    <MESSAGE value="代码提交20220427" />
-    <MESSAGE value="代码提交20220322" />
-    <MESSAGE value="代码提交20220626" />
-    <MESSAGE value="代码提交20220627" />
-    <option name="LAST_COMMIT_MESSAGE" value="代码提交20220627" />
+    <MESSAGE value="代码提交20220304" />
+    <MESSAGE value="代码提交20220705" />
+    <option name="LAST_COMMIT_MESSAGE" value="代码提交20220705" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="438" y="71" key="#xdebugger.evaluate" timestamp="1650202091194">
+    <state x="488" y="53" key="#com.intellij.ide.util.MemberChooser" timestamp="1656946750869">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="438" y="71" key="#xdebugger.evaluate/0.0.1366.738@0.0.1366.738" timestamp="1650202091194" />
-    <state x="183" y="0" key="CommitChangelistDialog2" timestamp="1656297559586">
+    <state x="488" y="53" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1656946750869" />
+    <state x="438" y="71" key="#xdebugger.evaluate" timestamp="1657035045932">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="183" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1656297559586" />
-    <state width="547" height="473" key="DebuggerActiveHint" timestamp="1651069895609">
+    <state x="438" y="71" key="#xdebugger.evaluate/0.0.1366.738@0.0.1366.738" timestamp="1657035045932" />
+    <state x="283" y="0" key="CommitChangelistDialog2" timestamp="1656950444694">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="547" height="473" key="DebuggerActiveHint/0.0.1366.738@0.0.1366.738" timestamp="1651069895609" />
-    <state x="29" y="62" width="1092" height="617" maximized="true" key="DiffContextDialog" timestamp="1650717707972">
+    <state x="283" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1656950444694" />
+    <state width="416" height="466" key="DebuggerActiveHint" timestamp="1657031471800">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="29" y="62" width="1092" height="617" maximized="true" key="DiffContextDialog/0.0.1366.738@0.0.1366.738" timestamp="1650717707972" />
-    <state width="1323" height="43" key="GridCell.Tab.0.bottom" timestamp="1656297410094">
+    <state width="416" height="466" key="DebuggerActiveHint/0.0.1366.738@0.0.1366.738" timestamp="1657031471800" />
+    <state width="1323" height="98" key="GridCell.Tab.0.bottom" timestamp="1657038662827">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="43" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1656297410094" />
-    <state width="1323" height="43" key="GridCell.Tab.0.center" timestamp="1656297410093">
+    <state width="1323" height="98" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1657038662827" />
+    <state width="1323" height="98" key="GridCell.Tab.0.center" timestamp="1657038662827">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="43" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1656297410093" />
-    <state width="1323" height="43" key="GridCell.Tab.0.left" timestamp="1656297410093">
+    <state width="1323" height="98" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1657038662827" />
+    <state width="1323" height="98" key="GridCell.Tab.0.left" timestamp="1657038662827">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="43" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1656297410093" />
-    <state width="1323" height="43" key="GridCell.Tab.0.right" timestamp="1656297410094">
+    <state width="1323" height="98" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1657038662827" />
+    <state width="1323" height="98" key="GridCell.Tab.0.right" timestamp="1657038662827">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="43" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1656297410094" />
-    <state width="1323" height="38" key="GridCell.Tab.1.bottom" timestamp="1656248561397">
+    <state width="1323" height="98" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1657038662827" />
+    <state width="1323" height="98" key="GridCell.Tab.1.bottom" timestamp="1657038662827">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="38" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1656248561397" />
-    <state width="1323" height="38" key="GridCell.Tab.1.center" timestamp="1656248561397">
+    <state width="1323" height="98" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1657038662827" />
+    <state width="1323" height="98" key="GridCell.Tab.1.center" timestamp="1657038662827">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="38" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1656248561397" />
-    <state width="1323" height="38" key="GridCell.Tab.1.left" timestamp="1656248561397">
+    <state width="1323" height="98" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1657038662827" />
+    <state width="1323" height="98" key="GridCell.Tab.1.left" timestamp="1657038662827">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="38" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1656248561397" />
-    <state width="1323" height="38" key="GridCell.Tab.1.right" timestamp="1656248561397">
+    <state width="1323" height="98" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1657038662827" />
+    <state width="1323" height="98" key="GridCell.Tab.1.right" timestamp="1657038662827">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="38" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1656248561397" />
-    <state width="1323" height="146" key="GridCell.Tab.2.bottom" timestamp="1651149419686">
+    <state width="1323" height="98" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1657038662827" />
+    <state width="1323" height="98" key="GridCell.Tab.2.bottom" timestamp="1657038662828">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.2.bottom/0.0.1366.738@0.0.1366.738" timestamp="1651149419686" />
-    <state width="1323" height="146" key="GridCell.Tab.2.center" timestamp="1651149419685">
+    <state width="1323" height="98" key="GridCell.Tab.2.bottom/0.0.1366.738@0.0.1366.738" timestamp="1657038662828" />
+    <state width="1323" height="98" key="GridCell.Tab.2.center" timestamp="1657038662827">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.2.center/0.0.1366.738@0.0.1366.738" timestamp="1651149419685" />
-    <state width="1323" height="146" key="GridCell.Tab.2.left" timestamp="1651149419685">
+    <state width="1323" height="98" key="GridCell.Tab.2.center/0.0.1366.738@0.0.1366.738" timestamp="1657038662827" />
+    <state width="1323" height="98" key="GridCell.Tab.2.left" timestamp="1657038662827">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.2.left/0.0.1366.738@0.0.1366.738" timestamp="1651149419685" />
-    <state width="1323" height="146" key="GridCell.Tab.2.right" timestamp="1651149419685">
+    <state width="1323" height="98" key="GridCell.Tab.2.left/0.0.1366.738@0.0.1366.738" timestamp="1657038662827" />
+    <state width="1323" height="98" key="GridCell.Tab.2.right" timestamp="1657038662827">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.2.right/0.0.1366.738@0.0.1366.738" timestamp="1651149419685" />
-    <state x="129" y="62" key="MergeDialog" timestamp="1654612123725">
+    <state width="1323" height="98" key="GridCell.Tab.2.right/0.0.1366.738@0.0.1366.738" timestamp="1657038662827" />
+    <state x="392" y="85" key="MultipleFileMergeDialog" timestamp="1656297925583">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="129" y="62" key="MergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1654612123725" />
-    <state x="392" y="85" key="MultipleFileMergeDialog" timestamp="1654612127694">
+    <state x="392" y="85" key="MultipleFileMergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1656297925583" />
+    <state x="275" y="91" key="Vcs.Push.Dialog.v2" timestamp="1656950459140">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="392" y="85" key="MultipleFileMergeDialog/0.0.1366.738@0.0.1366.738" timestamp="1654612127694" />
-    <state x="275" y="87" key="Vcs.Push.Dialog.v2" timestamp="1656297735074">
+    <state x="275" y="91" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1656950459140" />
+    <state x="359" y="102" width="918" height="545" key="find.popup" timestamp="1657035808534">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="275" y="87" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1656297735074" />
-    <state width="691" height="377" key="XDebugger.FullValuePopup" timestamp="1647871831422">
+    <state x="359" y="102" width="918" height="545" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1657035808534" />
+    <state x="445" y="81" key="git4idea.branch.GitSmartOperationDialog" timestamp="1656297909871">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="691" height="377" key="XDebugger.FullValuePopup/0.0.1366.738@0.0.1366.738" timestamp="1647871831422" />
-    <state x="285" y="211" width="906" height="605" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1650723916833">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="285" y="211" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.738@0.0.1366.738" timestamp="1650723916833" />
-    <state x="278" y="27" width="896" height="649" key="find.popup" timestamp="1656247880209">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="278" y="27" width="896" height="649" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1656247880209" />
-    <state x="445" y="81" key="git4idea.branch.GitSmartOperationDialog" timestamp="1656297824563">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="445" y="81" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.738@0.0.1366.738" timestamp="1656297824563" />
-    <state x="339" y="164" width="672" height="687" key="run.anything.popup" timestamp="1647957790885">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="339" y="164" width="672" height="687" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1647957790885" />
-    <state x="346" y="50" width="672" height="688" key="search.everywhere.popup" timestamp="1656247581727">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="346" y="50" width="672" height="688" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1656247581727" />
+    <state x="445" y="81" key="git4idea.branch.GitSmartOperationDialog/0.0.1366.738@0.0.1366.738" timestamp="1656297909871" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/hmi$HmiApplication.ic" NAME="HmiApplication Coverage Results" MODIFIED="1645861698994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -121,7 +121,7 @@
                         <td :style="{background:o.impression}">{{o.recordId}}</td>
                         <td :style="{background:o.impression}">
                             <span v-if="o.pressResult=='1'">OK</span>
-                            <span v-else-if="o.alarmType=='0'">NOK</span>
+                            <span v-else-if="o.pressResult=='0'">NOK</span>
                         </td>
                         <td :style="{background:o.impression}">{{o.startDate}}</td>
                         <td><input  type="button" @click="showGraph(o.recordId)" value="显示曲线"></td>
@@ -179,39 +179,61 @@
             nokList:[]
         },methods:{
             showGraph(recordId) {
-                let arr=[];
-                let myChart= echarts.init(document.getElementById('main'));
-                axios.get("/getHisDataByCode",{params:{recordId:recordId}}).then(result=>{
+
+                var myChart= echarts.init(document.getElementById('main'));
+                axios.get("/getHisCurveByCode",{params:{recordId:recordId}}).then(result=>{
                     result =result.data;
                     for(let i in result){
                         if (i==0){
                             this.pressureData=result[i][0];
                             continue;
                         }
-
+                        let arr=[];
+                        let isErrant=true;
+                        let isSolidLine=true;
+                        // let recordNoNow=0;
                         for (let j in result[i]){
-                            let isErrant=true;
-                            let isSolidLine=true;
                             arr.push([result[i][j].position,result[i][j].pressForce]);
-                            isErrant=result[i][j].errant;
-                            isSolidLine=result[i][j].solidLine;
-                                var color="";
-                                if(isErrant){
-                                    color="black";
-                                }else{
-                                    color="blue";
+                            // if(j==0) {
+                                isErrant = result[i][j].errant;
+                                isSolidLine = result[i][j].solidLine;
+                                if(!isErrant) {
+                                    isSolidLine = true;
+                                //     recordNoNow=result[i][j].recordNo;
+                                //     if(recordNo != recordNoNow) {
+                                //         // console.log("recordNo=>"+recordNo +", recordNoNow=>"+recordNoNow);
+                                //         myChart.clear();
+                                //         series1=[]
+                                //         recordNo = recordNoNow;
+                                //     }
                                 }
+                            // }
+                            let color="";
+                            if(isErrant){
+                                color="green";
+                            }else{
+                                color="blue";
+                            }
+                            let type="";
+                            if(isSolidLine){
+                                type="solid";
+                            }else{
+                                type="dotted";
+                            }
                             this.series1.push({
                                 data:arr,/*需要显示的数据*/
                                 type:'line',/*以什么方式展示*/
-                                color:'blue',  //折线条的颜色
-                                smooth:true,   //关键点，为true是不支持虚线的，实线就用true
+                                color:color,  //折线条的颜色
+                                smooth:false,   //关键点，为true是不支持虚线的，实线就用true
+                                show:false, //曲线上各点数值显示
+                                symbol:"none",//曲线上圆圈显示
                                 // 显示数值
                                 itemStyle:{
                                     normal:{
                                         lineStyle:{
-                                            type:'solid'  //'dotted'虚线 'solid'实线
-                                        },
+                                            width:2,/*设置单个虚线原点的宽度*/
+                                            type:type  //'dotted'虚线 'solid'实线
+                                        },label: {show: false}
                                     }
                                 }
                             });
@@ -229,7 +251,7 @@
                     };
                     // 使用刚指定的配置项和数据显示图表。
                     myChart.setOption(option);
-                    console.log("arr=>"+arr);
+                    // console.log("arr=>"+arr);
                 }).catch(err=>{
                     myChart.hideLoading();
                 });
