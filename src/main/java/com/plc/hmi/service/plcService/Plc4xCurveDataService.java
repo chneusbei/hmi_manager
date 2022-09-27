@@ -209,12 +209,12 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      */
     private  void curve2DB(int pressHeadNo, Map<Long, List<PressureCurveEntity>> map) {
         if (!map.isEmpty()) {
-          /*  try {
+            try {
                 //睡眠1秒，让页面有足够时间做paint
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }*/
+            }
 //                System.out.println("set curve data to batch insert thread*************************");
 //                pressureCurveService.curve2queue(curveMap.get(productNo));
 //                Iterator<Long> it=curveMap.keySet().iterator();

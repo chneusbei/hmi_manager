@@ -7,6 +7,18 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class PressureCurveEntity extends AbstractBaseEntity {
+    public PressureCurveEntity(){
+    }
+    public PressureCurveEntity(int pressureHeadNo, String recordId, Long recordNo, BigDecimal position, BigDecimal pressForce, String handleDate, Boolean isOK) {
+        this.pressureHeadNo = pressureHeadNo;
+        this.recordId = recordId;
+        this.recordNo = recordNo;
+        this.position = position;
+        this.pressForce = pressForce;
+        this.handleDate = handleDate;
+        this.isOK = isOK;
+    }
+
     //压头序号
     private int pressureHeadNo;
     //位置/压力曲线ID
