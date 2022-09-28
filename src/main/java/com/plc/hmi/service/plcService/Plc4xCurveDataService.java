@@ -209,12 +209,12 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
      */
     private  void curve2DB(int pressHeadNo, Map<Long, List<PressureCurveEntity>> map) {
         if (!map.isEmpty()) {
-            try {
+          /*  try {
                 //睡眠1秒，让页面有足够时间做paint
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
 //                System.out.println("set curve data to batch insert thread*************************");
 //                pressureCurveService.curve2queue(curveMap.get(productNo));
 //                Iterator<Long> it=curveMap.keySet().iterator();
@@ -231,7 +231,8 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
             // 数据入库后，修改PLC的OK/NOK/压装完成  三个变量
 //            logger.info("压头"+pressHeadNo+"压装结果判定为：" + isOk);
             setFlagAfterPressure(pressHeadNo, isOk);
-            map.clear();
+            //入库时不再清空实时曲线数据， 改为在下一条曲线开始时清空
+//            map.clear();
         }
     }
 
@@ -296,12 +297,16 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 
         if(pressHeadNo ==1 ) {
             if (CollectionUtils.isEmpty(curveMap.get(productNo))) {
+                //新曲线开始时再清空老曲线的数据
+                curveMap.clear();
                 curveMap.put(productNo, curveEntityList);
             } else {
                 curveMap.get(productNo).addAll(curveEntityList);
             }
         } else {
             if (CollectionUtils.isEmpty(curveMap2.get(productNo2))) {
+                //新曲线开始时再清空老曲线的数据
+                curveMap2.clear();
                 curveMap2.put(productNo2, curveEntityList);
             } else {
                 curveMap2.get(productNo2).addAll(curveEntityList);
