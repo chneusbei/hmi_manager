@@ -41,6 +41,7 @@ public class JsonController {
     PressureDataService pressureDataService;
 
 //    public static int theCount =0;
+//    public static long preTime=0;
 
 
     @RequestMapping("/getHisDataByCode")
@@ -165,15 +166,37 @@ public class JsonController {
          * */
 
         List<PressureCurveEntity> list = plc4xCurveDataService.getCurveDatas();
-//        List<PressureCurveEntity> list = null;
-//        if(theCount<100) {
-//            System.out.println("====================================GET CHART 1, count= " + theCount);
-//            list = initList();
-//            theCount ++;
-//        } else {
-//            System.out.println("====================================GET CHART2,  count= " + theCount);
-//            list = initList1();
-//        }
+
+       /* long interVal = 0;
+        if(preTime>0) {
+            interVal = System.currentTimeMillis()-preTime;
+        }
+        List<PressureCurveEntity> list = null;
+        if(theCount<60) {
+//            System.out.println("====================================GET CHART 1, count= " + theCount+", interVal="+interVal);
+            System.out.println("====================================GET CHART 1, interVal="+interVal);
+            list = initList();
+            theCount ++;
+        } else if(theCount>150){
+            System.out.println("====================================GET CHART 3, interVal="+interVal);
+            list = null;
+            theCount ++;
+        } else{
+            System.out.println("====================================GET CHART2, interVal="+interVal);
+            list = initList1();
+
+            theCount ++;
+        }*/
+
+       /* if(!CollectionUtils.isEmpty(list)) {
+            PressureCurveEntity lastEntity = list.get(list.size()-1);
+            System.out.println(">>>>>>>>>> get curve dates: pressureHeadNo="+lastEntity.getPressureHeadNo()
+                    +"; recordId="+lastEntity.getRecordId()
+                    +"; recordNo="+lastEntity.getRecordNo()
+                    +"; maxPosition="+lastEntity.getPosition().intValue()
+            );
+        }*/
+
 
         /**
          * 公差窗口
@@ -205,6 +228,7 @@ public class JsonController {
 
         String json = JSON.toJSONString(errantList);
 //        System.out.println(" lin 1 "+json);
+//        preTime = System.currentTimeMillis();
         return json;
     }
 
@@ -214,6 +238,15 @@ public class JsonController {
          *  曲线信息
          * */
         List<PressureCurveEntity> list = plc4xCurveDataService.getCurveDatas2();
+
+      /*  if(!CollectionUtils.isEmpty(list)) {
+            PressureCurveEntity lastEntity = list.get(list.size()-1);
+            System.out.println(">>>>>>>>>>>>>>>>>get curve dates: pressureHeadNo="+lastEntity.getPressureHeadNo()
+                    +"; recordId="+lastEntity.getRecordId()
+                    +"; recordNo="+lastEntity.getRecordNo()
+                    +"; maxPosition="+lastEntity.getPosition().intValue()
+            );
+        }*/
         /**
          * 公差窗口
          */
