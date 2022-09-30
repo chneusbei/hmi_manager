@@ -118,6 +118,14 @@ public class PressureCurveEntity extends AbstractBaseEntity {
     //压装结果
     private Boolean isOK;
 
+    /**
+     * 曲线是否入库，需要清理属性
+     */
+    //是否已入库
+    private boolean isToDb = false;
+    //是否已经被前端页面读取
+    private boolean isPaint = false;
+
 
     public boolean isErrant() {
         return isErrant;
@@ -573,6 +581,22 @@ public class PressureCurveEntity extends AbstractBaseEntity {
 
     public void setTraceCode(String traceCode) {
         this.traceCode = traceCode;
+    }
+
+    public boolean isToDb() {
+        return isToDb;
+    }
+
+    public void setToDb(boolean toDb) {
+        isToDb = toDb;
+    }
+
+    public boolean isPaint() {
+        return isPaint;
+    }
+
+    public void setPaint(boolean paint) {
+        isPaint = paint;
     }
 
     public void setTraceCodeForce() {

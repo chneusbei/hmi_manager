@@ -80,6 +80,10 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     public List<PressureCurveEntity> getCurveDatas() {
 //        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
         List<PressureCurveEntity> list = curveMap.get(productNo);
+        //设置是否已经被前端画线
+        if(!CollectionUtils.isEmpty(list)) {
+            curveMap.get(productNo).get(list.size()-1).setPaint(true);
+        }
 //        if(!CollectionUtils.isEmpty(list)) {
 //            System.out.println("size = "+list.size()+", totalTime="+(endTime-startTime) );
 //        } else {
@@ -94,6 +98,9 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
     public List<PressureCurveEntity> getCurveDatas2() {
 //        System.out.println("page  request received>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" );
         List<PressureCurveEntity> list = curveMap2.get(productNo2);
+        if(!CollectionUtils.isEmpty(list)) {
+            curveMap2.get(productNo2).get(list.size()-1).setPaint(true);
+        }
 
 //        for(long key : curveMap2.keySet()) {
 //            int size =curveMap2.get(key) == null ? 0 : curveMap2.get(key).size();
@@ -151,6 +158,10 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 //        if(preCurveLength2 == 0 && !CollectionUtils.isEmpty(curveMap2)) {
 //            curveMap2.clear();
 //        }
+        //清理已经入库数据
+        this.clearCurveMap(curveMap);
+        this.clearCurveMap(curveMap2);
+
         if(curveStatusEntity.getMotionState1() ==2 || curveStatusEntity.getMotionState1() ==4) {
             //获取曲线信息
             List<PlcEntity> curve1List = this.getDynamicCurveDatas(1, preCurveLength1, curveStatusEntity.getDataLength1());
@@ -225,8 +236,10 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         for(Long recordId : map.keySet()){
             entityList = map.get(recordId);
 //                if(!CollectionUtils.isEmpty(entityList) && entityList.size() > 30) {
-            if(!CollectionUtils.isEmpty(entityList)) {
+            if(!CollectionUtils.isEmpty(entityList) && !entityList.get(entityList.size()-1).isToDb()) {
                 isOk = pressureCurveService.batchInsert(String.valueOf(pressHeadNo), entityList);
+                //存储曲线入库标识
+                entityList.get(entityList.size()-1).setToDb(true);
             }
         }
 
@@ -234,14 +247,37 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 //            logger.info("压头"+pressHeadNo+"压装结果判定为：" + isOk);
         setFlagAfterPressure(pressHeadNo, isOk);
         //入库时不再清空实时曲线数据， 改为在下一条曲线开始时清空
-        try {
+        /*try {
             //睡眠4秒，让页面有足够时间做paint
             Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        map.clear();
+        map.clear();*/
 
+    }
+
+    private void clearCurveMap(Map<Long, List<PressureCurveEntity>> map){
+        if (map.isEmpty()) {
+            return;
+        }
+//                System.out.println("set curve data to batch insert thread*************************");
+//                pressureCurveService.curve2queue(curveMap.get(productNo));
+//                Iterator<Long> it=curveMap.keySet().iterator();
+        for(Long recordId : map.keySet()){
+            List<PressureCurveEntity> entityList = map.get(recordId);
+//                if(!CollectionUtils.isEmpty(entityList) && entityList.size() > 30) {
+            if(CollectionUtils.isEmpty(entityList)) {
+                continue;
+            }
+            //曲线入库时间信息超过4秒就清理掉
+            boolean isToDb = entityList.get(entityList.size()-1).isToDb();
+            boolean isPaint = entityList.get(entityList.size()-1).isPaint();
+            if(isToDb && isPaint) {
+                map.remove(recordId);
+            }
+
+        }
     }
 
     /**
