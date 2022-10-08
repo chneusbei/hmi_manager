@@ -298,12 +298,12 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         }
 
         if(pressHeadNo ==1 ) {
-            if (CollectionUtils.isEmpty(curveMap)) {
+            if (CollectionUtils.isEmpty(curveMap) || this.isAll2Db(curveMap)) {
                 //如果容器是空的， 说明是新曲线， 曲线id 递增。
                 productNo ++;
             }
         } else {
-            if (CollectionUtils.isEmpty(curveMap2)) {
+            if (CollectionUtils.isEmpty(curveMap2) || this.isAll2Db(curveMap2)) {
                 //如果容器是空的， 说明是新曲线， 曲线id 递增。
                 productNo2 ++;
             }
@@ -646,6 +646,21 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 
 //        super.initQuereyList(HmiConstants.PLC_TAG_GROUP.CURVE_STATUS.getCode());
 //        List<PlcEntity>  status = super.getDataByBuilder();
+    }
+
+    /**
+     * 判断容器中的曲线是否都已经全部入库
+     * @param map
+     * @return bolean
+     */
+    private boolean isAll2Db(Map<Long, List<PressureCurveEntity>> map) {
+        for(Long recordId : map.keySet()){
+            List<PressureCurveEntity> entityList = map.get(recordId);
+            if(!CollectionUtils.isEmpty(entityList) && !entityList.get(entityList.size()-1).isToDb()) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
