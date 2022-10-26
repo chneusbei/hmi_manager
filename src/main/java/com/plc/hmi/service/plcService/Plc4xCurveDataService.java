@@ -8,7 +8,6 @@ import com.plc.hmi.enumeration.PlcEntityEnum;
 import com.plc.hmi.service.PressureCurveService;
 import com.plc.hmi.service.PropertyService;
 import com.plc.hmi.util.HmiUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jvnet.hk2.annotations.Service;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 /***
@@ -298,13 +296,13 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
         }
 
         if(pressHeadNo ==1 ) {
-            if (CollectionUtils.isEmpty(curveMap) || this.isAll2Db(curveMap)) {
-                //如果容器是空的， 说明是新曲线， 曲线id 递增。
+            if (CollectionUtils.isEmpty(curveMap) || this.is2Db(curveMap.get(productNo))) {
+                //如果容器是空的，或者曲线不存在，说明是新曲线， 曲线id 递增。
                 productNo ++;
             }
         } else {
-            if (CollectionUtils.isEmpty(curveMap2) || this.isAll2Db(curveMap2)) {
-                //如果容器是空的， 说明是新曲线， 曲线id 递增。
+            if (CollectionUtils.isEmpty(curveMap2) || this.is2Db(curveMap2.get(productNo2))) {
+                //如果容器是空的，或者曲线不存在， 说明是新曲线， 曲线id 递增。
                 productNo2 ++;
             }
         }
@@ -650,16 +648,16 @@ public class Plc4xCurveDataService extends Plc4xBaseService{
 
     /**
      * 判断容器中的曲线是否都已经全部入库
-     * @param map
+     * @param entityList
      * @return bolean
      */
-    private boolean isAll2Db(Map<Long, List<PressureCurveEntity>> map) {
-        for(Long recordId : map.keySet()){
-            List<PressureCurveEntity> entityList = map.get(recordId);
+    private boolean is2Db(List<PressureCurveEntity> entityList) {
+//        for(Long recordId : map.keySet()){
+//            List<PressureCurveEntity> entityList = map.get(recordId);
             if(!CollectionUtils.isEmpty(entityList) && !entityList.get(entityList.size()-1).isToDb()) {
                 return false;
             }
-        }
+//        }
         return true;
     }
 
