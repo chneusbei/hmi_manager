@@ -125,6 +125,8 @@ public class PressureCurveEntity extends AbstractBaseEntity {
     private boolean isToDb = false;
     //是否已经被前端页面读取
     private boolean isPaint = false;
+    //是否取数完成
+    private boolean dataFinished = false;
 
 
     public boolean isErrant() {
@@ -597,6 +599,14 @@ public class PressureCurveEntity extends AbstractBaseEntity {
 
     public void setPaint(boolean paint) {
         isPaint = paint;
+    }
+
+    public boolean isDataFinished() {
+        return dataFinished;
+    }
+
+    public void setDataFinished(boolean dataFinished) {
+        this.dataFinished = dataFinished;
     }
 
     public void setTraceCodeForce() {
