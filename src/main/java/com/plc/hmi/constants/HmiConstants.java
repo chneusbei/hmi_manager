@@ -8,6 +8,26 @@ import java.util.List;
 
 public class HmiConstants {
 
+
+    //AVG启用状态 - 启用
+    public static final String AVG_STATUS_ACTIVE ="1";
+    //AVG启用状态 - 停用
+    public static final String AVG_STATUS_STOP ="0";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //成功/是
     public static final String OK= "1";
     //失败/否

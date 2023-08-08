@@ -3194,6 +3194,20 @@ dd, dt {
     .lyear-layout-content {
         padding-left: 0;
     }
+    .lyear-layout-left {
+        padding-left: 10px;
+        width: 30%;
+        height: 500px;
+        background-color: dodgerblue;
+        float: left;
+    }
+    .lyear-layout-right {
+        padding-left: 10px;
+        width: 70%;
+        height: 500px;
+        background-color: #7d5b4e;
+        float: right;
+    }
 	.lyear-layout-sidebar {
         -webkit-box-shadow: none;
 		-moz-webkit-box-shadow: none;

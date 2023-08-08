@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>地图</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <script src="echarts.min.js"></script>
+    <!--时间选择插件-->
+    <link rel="stylesheet" href="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css">
+    <!--日期选择插件-->
+    <link rel="stylesheet" href="js/bootstrap-datepicker/bootstrap-datepicker3.min.css">
+    <link href="css/style.min.css" rel="stylesheet">
+    <style>
+        #imagetable{
+            border:2px solid white;
+        }
+        #imagetable td{
+            border:2px solid white;
+        }
+        .imagetable{
+            border:2px solid white;
+            width: 80%;
+            margin-left: 100px;
+        }
+        table.imagetable {
+            font-family: verdana,arial,sans-serif;
+            font-size:15px;
+            color:#333333;
+            border-width: 1px;
+            border-collapse: collapse;
+        }
+        table.imagetable td {
+            background:white;
+            border-width: 1px;
+            padding-left: 8px;
+            padding-top: 8px;
+            padding-right: 8px;
+            /*border-style: solid;*/
+        }
+        table.imagetable th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+        table.imagetable td {
+            background:white ;
+            border-width: 1px;
+            padding: 8px;
+            border-color: #999999;
+        }
+        .imagetable2{
+            border:2px solid black;
+            width: 80%;
+            margin-left: 10px;
+        }
+        table.imagetable2 {
+            font-family: verdana,arial,sans-serif;
+            font-size:8px;
+            color:#333333;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table.imagetable2 td {
+            background:white;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+        table.imagetable2 th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+    </style>
+    <script src="jquery-3.3.1.min.js">
+    </script>
+</head>
+<body>
+<div id="app">
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+            <script src="test.js"></script>
+            <main class="lyear-layout-content">
+                地图信息
+                <table class="imagetable">
+                <tr>
+                    <td><input type="button" @click="getGraph()" value="导入地图" style="background-color: #33CABB;width: 70px;height: 35px;color: white"></td>
+                </tr>
+            </table>
+                <div id="main" style="width: 90%;height:500px;"></div>
+<!--                    <table class="imagetable">-->
+<!--                        <tr>-->
+<!--                            <td><input type="button" @click="getGraph()" value="导入地图" style="background-color: #33CABB;width: 70px;height: 35px;color: white"></td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+                <table class="imagetable2">
+                    <tr>
+                        <td  align="center" colspan="16"><strong><h4>地图信息表</h4></strong></td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <th>路径ID</th>
+                        <th>类型</th>
+                        <th>起始点</th>
+                        <th>结束点</th>
+                        <th>线速度</th>
+                        <th>角速度</th>
+                    </tr>
+                    <tr v-for="o in mapInfoList">
+                        <td :style="{background:o.impression}">
+                            {{o.pointCode}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.pointType}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.startPoint}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.endPoint}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.lineVelocity}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.angleVelocity}}
+                        </td>
+                        <!--                        <td :style="{background:o.impression}">-->
+                        <!--                            <input type="button" value="修改"   @click="updateAvgConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;margin-right:30px" >-->
+                        <!--                            <input type="button" value="删除"   @click="deleteAvgConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;" >-->
+                        <!--                            <input type="button" value="停用"   @click="updateAvgConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;" >-->
+                        <!--                        </td>-->
+                    </tr>
+                </table>
+<!--                <input type="button" @click="getgraph()" value="查看" style="background-color: #33CABB;width: 70px;height: 35px;color: white">-->
+                    <br>
+
+                <script type="text/javascript" src="js/jquery.min.js"></script>
+                <script type="text/javascript" src="js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+                <script type="text/javascript" src="js/main.min.js"></script>
+            </main>
+            <!--End 页面主要内容-->
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <!--时间选择插件-->
+    <script src="js/bootstrap-datetimepicker/moment.min.js"></script>
+    <script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/bootstrap-datetimepicker/locale/zh-cn.js"></script>
+    <!--日期选择插件-->
+    <script src="js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
+</div>
+
+<script  type="module">
+    new Vue({
+        el:"#app",
+        data:{
+            // pressureData:null,
+            mapInfoList:{},
+            series1:[],
+            startDate:'',
+            endDate:'',
+            plcName:'',
+            temperatureName:'',
+            lineType:'B',
+            lineTypeB:'B',
+            lineTypeA:'A',
+        },methods:{
+            getGraph() {
+                // alert("get temperature graph");
+                let arr=[];
+                let myChart= echarts.init(document.getElementById('main'));
+                let requestDate={
+                    startDate:this.$refs.startDate.value,
+                    endDate:this.$refs.endDate.value,
+                    plcName:this.plcName,
+                    temperatureName:this.temperatureName
+                }
+                // alert("temperatureName = "+ this.temperatureName);
+                // alert("temperatureName === undefined = "+ (this.temperatureName === undefined));
+                // alert("this.temperatureName blank = "+ (this.temperatureName === ''));
+                if(this.plcName === undefined || this.plcName === '') {
+                     alert("plc名不能为空");
+                     return;
+                }
+
+                // alert("startDate="+requestDate.startDate);
+                // alert("endDate="+requestDate.endDate);
+                // alert("plcName="+requestDate.plcName);
+                // alert("temperatureName="+requestDate.temperatureName);
+                // myChart.clear();
+                // this.myChart.dispose();
+                // myChart.dispose();
+                arr=[];
+                axios.get("/getHisTemperature",{params:requestDate}).then(result=> {
+                    // alert("result.data="+result.data);
+                    this.series1 = [];
+                    // alert("size =" + result.data.length);
+                    for (let i in result.data) {
+                        // alert("i="+i);
+                        for (let j in result.data[i]) {
+                            // alert("j="+j);
+                            // let isErrant=true;
+                            // alert("value ="+result[i].temperatureValue);
+                            // let isSolidLine = true;
+                            arr.push([moment(result.data[i][j].temperatureTime).utcOffset(0).format('YYYY-MM-DD HH:mm:ss'), result.data[i][0].temperatureValue]);
+                        }
+                         // alert("1");
+                        var color = 'rgb(' + [
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160),
+                            Math.round(Math.random() * 160)
+                        ].join(',') + ')';
+                        // alert("2");
+                        var name = result.data[i][0].temperatureName;
+                        // alert("3");
+                        this.series1.push({
+                            data: arr,/*需要显示的数据*/
+                            type: 'line',/*以什么方式展示*/
+                            // color:'blue',  //折线条的颜色
+                            color:color,
+                            name:name,
+                            smooth: true,   //关键点，为true是不支持虚线的，实线就用true
+                            // 显示数值
+                            itemStyle: {
+                                normal: {
+                                    lineStyle: {
+                                        type: 'solid'  //'dotted'虚线 'solid'实线
+                                    },
+                                }
+                            }
+                        });
+                        // alert("4");
+                        // alert("4");
+                }
+                    // alert("arr length" + arr.length);
+                let  option = {
+                    legend: {
+                        icon: "circle",   //    改变它的icon circle，rect ，roundRect，triangle
+                        itemWidth:8,  // 设置它的宽度
+                        itemHeight:8, // 设置它的高度
+                        itemGap:20, // 设置它的间距
+                        // orient: 'vertical',  //vertical是竖着显示 ，默认是横着
+                        // left: '70%',   //距离左边70%，也可用left,center,right
+                        y: '1%',   //距离顶部的距离，也可以用center
+                        // textStyle:{    //icon后面的文字设置
+                        //   fontSize: 18,//字体大小
+                        //   color: '#ffffff'//字体颜色
+                        // }
+                    },
+                    xAxis: {
+                        type: 'time',
+                    },
+                    yAxis: {
+                        type: 'value',
+                    },
+                    series:this.series1
+                };
+                    // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+                console.log("arr=>"+arr);
+            }).catch(err=>{
+                alert("error chart: "+err);
+                myChart.hideLoading();
+            });
+        },
+            getMapInfo(){
+                axios.get("/getMapInfo").then(result=>{
+                    this.mapInfoList=result.data;
+                    // alert("lineType="+result.data);
+                }).catch(function(error){
+                    alert(error)
+                })
+            },FormatDate: function(date){
+                return moment(date).utcOffset(0).format('YYYY-MM-DD HH:mm:ss');
+            }, randomColor: function() {
+                return 'rgb(' + [
+                    Math.round(Math.random() * 160),
+                    Math.round(Math.random() * 160),
+                    Math.round(Math.random() * 160)
+                ].join(',') + ')';
+            }
+        },  created(){
+            this.getMapInfo();
+        }
+    });
+    // 指定图表的配置项和数据
+
+</script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

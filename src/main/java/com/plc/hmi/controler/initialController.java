@@ -153,4 +153,59 @@ public class initialController {
     public String temperatureConfig(){
         return "temperatureConfig";
     }
+
+    /**
+     *  AVG
+     */
+    @RequestMapping("/avgConfig")
+    public String avgConfig(){
+        return "avgConfig";
+    }
+
+    @RequestMapping("/avgConfigAdd")
+    public String avgConfigAdd(){
+        return "avgConfigAdd";
+    }
+
+    @RequestMapping("/avgDbAdd")
+    public String avgDbAdd(){
+        return "avgDbAdd";
+    }
+
+    @RequestMapping("/avgDbConfig")
+    public String avgDbConfig(){
+        return "avgDbConfig";
+    }
+
+    @RequestMapping("/avgInfoList")
+    public String avgInfoList(){
+        return "avgInfoList";
+    }
+
+    @RequestMapping("/mapInfo")
+    public String mapInfo(){
+        return "mapInfo";
+    }
+
+    @RequestMapping("/factoryInfo")
+    public String factoryInfo(){
+        return "factoryInfo";
+    }
+//    @RequestMapping("/addFactoryInfo")
+//    public String addFactoryInfo(){
+//        return "addFactoryInfo";
+//    }
+    @RequestMapping("/avgManager")
+    public String avgManager(){
+            return "avgManager";
+    }
+    @RequestMapping("/communicateInfo")
+    public String communicateInfo(){
+        return "communicateInfo";
+    }
+    @RequestMapping("/avgBoard")
+    public String avgBoard(){
+        return "avgBoard";
+    }
+
 }

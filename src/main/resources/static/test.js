@@ -1,14 +1,15 @@
 document.writeln("<aside class=\'lyear-layout-sidebar\'  >");
 document.writeln("    <!-- logo -->");
 document.writeln("    <div id=\'logo\' class=\'sidebar-header\'>");
-document.writeln("        <a  href=\'index.html\'><h2>温度监控系统</h2></a>");
+document.writeln("        <a  href=\'index.html\'><h2>AVG管理系统</h2></a>");
 document.writeln("    </div>");
 document.writeln("    <div class=\'lyear-layout-sidebar-scroll\'>");
 document.writeln("      <nav class=\'sidebar-main\'>");
 document.writeln("            <ul class=\'nav nav-drawer\'>");
 document.writeln("                <li class=\'nav-item nav-item-has-subnav\'>");
-document.writeln("                    <a   href=\'javascript:void(0)\'><i class=\'mdi mdi-palette\'></i>温度实时监控</a>");
+document.writeln("                    <a   href=\'javascript:void(0)\'><i class=\'mdi mdi-palette\'></i>AVG管理菜单</a>");
 document.writeln("                    <ul class=\'nav nav-subnav\'>");
+/*
 // document.writeln("                        <li> <a   href=\'/equipmentStatusMonitoring\'>设备状态监控</a> </li>");
 // document.writeln("                        <li> <a   href=\'/ioequipmentStatusMonitoring\'>设备IO状态监控</a> </li>");
 // document.writeln("                        <li> <a   href=\'/safetyMonitoring\'>设备操作监控</a> </li>");
@@ -19,10 +20,31 @@ document.writeln("                        <li> <a   href=\'/hisTemperatureQuery\
 document.writeln("                        <li> <a   href=\'/temperatureHisAlarm\'>历史温度报警信息</a> </li>");
 document.writeln("                        <li> <a   href=\'/hisTemperature\'>历史温度报表</a> </li>");
 // document.writeln("                        <li> <a   href=\'/temperatureSetting\'>温度警戒值设置</a> </li>");
-document.writeln("                        <li> <a   href=\'/temperaturePlcConfig\'>PLC连接信息</a> </li>");
-document.writeln("                        <li> <a   href=\'/temperaturePlcConfigAdd\'>添加PLC连接信息</a> </li>");
-document.writeln("                        <li> <a   href=\'/temperatureConfig\'>系统配置</a> </li>");
+ */
+
+// document.writeln("                        <li> <a   href=\'/temperatureConfig\'>系统配置</a> </li>");
+
+
 // document.writeln("                        <li> <a   href=\'/hyperbola\'>双曲线</a> </li>");
+document.writeln("                        <li> <a   href=\'/avgBoard\'>看板</a> </li>");
+document.writeln("                        <li> <a   href=\'/factoryInfo\'>工厂管理</a> </li>");
+document.writeln("                        <li> <a   href=\'/mapInfo\'>地图管理</a> </li>");
+document.writeln("                        <li> <a   href=\'/avgManager\'>AVG管理</a> </li>");
+document.writeln("                        <li> <a   href=\'/avgDbConfig\'>数据库管理</a> </li>");
+document.writeln("                        <li> <a   href=\'/communicateInfo\'>通讯管理</a> </li>");
+
+
+// document.writeln("                        <li> <a   href=\'/avgConfig\'>AVG配置信息</a> </li>");
+// document.writeln("                        <li> <a   href=\'/avgConfigAdd\'>添加AVG</a> </li>");
+// document.writeln("                        <li> <a   href=\'/mapInfo\'>地图</a> </li>");
+// document.writeln("                        <li> <a   href=\'/avgInfoList\'>AVG小车信息列表</a> </li>");
+// document.writeln("                        <li> <a   href=\'/avgDbConfig\'>AVG数据库配置信息</a> </li>");
+// document.writeln("                        <li> <a   href=\'/avgInfoList\'>添加AVG</a> </li>");
+// document.writeln("                        <li> <a   href=\'/avgDbAdd\'>添加AVG数据库配置</a> </li>");
+// document.writeln("                        <li> <a   href=\'/temperaturePlcConfig\'>PLC连接信息</a> </li>");
+// document.writeln("                        <li> <a   href=\'/temperaturePlcConfigAdd\'>添加PLC连接信息</a> </li>");
+// document.writeln("                        <li> <a   href=\'/avgInfoList\'>AVG小车信息列表</a> </li>");
+// document.writeln("                        <li> <a   href=\'/temperaturePlcConfigAdd\'>通讯管理</a> </li>");
 document.writeln("                    </ul>");
 document.writeln("                </li>");
 // document.writeln("                <li class=\'nav-item nav-item-has-subnav\'>");

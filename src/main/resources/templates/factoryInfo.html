@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>添加工厂信息</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <style>
+        .imagetable{
+            border:2px solid black;
+            width: 80%;
+            height: 300px;
+            margin-left: 100px;
+        }
+        table.imagetable {
+            font-family: verdana,arial,sans-serif;
+            font-size:15px;
+            color:#333333;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table.imagetable th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+        }
+        table.imagetable td {
+            background:white ;
+            border-width: 1px;
+            padding: 8px;
+            border-color: #999999;
+        }
+        .imagetable2{
+            border:2px solid black;
+            width: 80%;
+            margin-left: 10px;
+        }
+        table.imagetable2 {
+            font-family: verdana,arial,sans-serif;
+            font-size:8px;
+            color:#333333;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table.imagetable2 td {
+            background:white;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+        table.imagetable2 th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+            <script src="test.js"></script>
+            <main class="lyear-layout-content">
+                <form >
+<!--                <table class="imagetable">-->
+<!--                    <tr>-->
+<!--                        <td><input type="button" @click="addFactoryInfo()" value="添加工厂信息" style="background-color: #33CABB;width: 70px;height: 35px;color: white"></td>-->
+<!--                    </tr>-->
+<!--                </table>-->
+                <div class="lyear-layout-container">
+<!--                    <input type="button" @click="addFactoryInfo()" value="添加工厂信息" style="background-color: #33CABB;width: 100px;height: 35px;color: white">-->
+                    <a href="addFactoryInfo.html"><i class="mdi mdi-account"></i> 添加工厂信息</a>
+                    <br/>
+                    <br/>
+                </div>
+                <table class="imagetable2">
+                    <tr>
+                        <td  align="center" colspan="10"><strong><h4>工厂信息</h4></strong></td>
+<!--                        <td align="center" colspan="2" />-->
+<!--                        <td align="center" colspan="2" />-->
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>工厂名称</th>
+                        <th>车间名称</th>
+                        <th>地图数量</th>
+                        <th>地图名称</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr v-for="o in factoryInfo">
+                        <td :style="{background:o.impression}">
+                            {{o.id}}
+<!--                            <input class="form-control js-datepicker m-b-10" type="text" name="id" v-model="o.id"/>-->
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.factoryName}}
+<!--                            <input class="form-control js-datepicker m-b-10" type="text" name="avgName" v-model="o.avgName" />-->
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.workshopName}}
+<!--                            <input class="form-control js-datepicker m-b-10" type="text" name="avgLong" v-model="o.avgLong" />-->
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.mapAccount}}
+<!--                            <input class="form-control js-datepicker m-b-10" type="text" name="avgWide" v-model="o.avgWide" />-->
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.mapName}}
+<!--                            <input class="form-control js-datepicker m-b-10" type="text" name="naviIp" v-model="o.naviIp" />-->
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.createTime}}
+<!--                            <input class="form-control js-datepicker m-b-10" type="text" name="createTime" v-model="o.createTime" />-->
+                        </td>
+                        <td :style="{background:o.impression}">
+                            <input type="button" value="修改"   @click="updateFactoryInfo(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;margin-right:30px" >
+                            <input type="button" value="删除"   @click="deleteFactoryInfo(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;" >
+<!--                            <input type="button" value="停用"   @click="updateAvgConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;" >-->
+                        </td>
+                    </tr>
+                </table>
+                </form>
+            </main>
+            <!--End 页面主要内容-->
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
+</div>
+<script type="module">
+    new Vue({
+        el:"#app",
+        data:{
+            factoryInfo:{}
+        },methods:{
+            getFactoryInfo(){
+                axios.get("/getFactoryInfo").then(result=>{
+                    this.factoryInfo=result.data;
+                })
+            },
+            deleteFactoryInfo(o){
+                let params ={
+                    oid:o.id
+                }
+                axios("/deleteFactoryInfo",{params:params}).then(alert("删除成功"), location.reload())
+                },
+            updateFactoryInfo(o){
+                // alert("id"+o.id);
+                let params ={
+                    id:o.id,
+                    avgName:o.avgName,
+                    naviIp:o.naviIp
+                }
+                axios("/updateFactoryInfo",{params:params}).then(alert("修改成功"),  window.reload())
+            },
+            gotoAdd(){
+                // alert("跳转");
+                this.$router.push('/avgFactoryInfoAdd');
+            }
+            },
+        created(){
+            this.getFactoryInfo();
+        }
+    })
+</script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

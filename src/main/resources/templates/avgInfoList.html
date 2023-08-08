@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>AVG小车列表信息</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <style>
+        .imagetable{
+            border:2px solid black;
+            width: 80%;
+            height: 300px;
+            margin-left: 100px;
+        }
+        table.imagetable {
+            font-family: verdana,arial,sans-serif;
+            font-size:15px;
+            color:#333333;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table.imagetable th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+        }
+        table.imagetable td {
+            background:white ;
+            border-width: 1px;
+            padding: 8px;
+            border-color: #999999;
+        }
+        .imagetable2{
+            border:2px solid black;
+            width: 80%;
+            margin-left: 10px;
+        }
+        table.imagetable2 {
+            font-family: verdana,arial,sans-serif;
+            font-size:8px;
+            color:#333333;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table.imagetable2 td {
+            background:white;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+        table.imagetable2 th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+            <script src="test.js"></script>
+            <main class="lyear-layout-content">
+                <br>
+                <form >
+                <table class="imagetable2">
+                    <tr>
+                        <td  align="center" colspan="16"><strong><h4>AVG小车列表信息</h4></strong></td>
+                    </tr>
+                    <tr>
+                        <th  align="center" colspan="6"></th>
+                        <th  align="center" colspan="4">激光</th>
+                        <th  align="center" colspan="3">二维码</th>
+                        <th  align="center" colspan="3">液压</th>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <th>AVG名</th>
+                        <th>动力电</th>
+                        <th>充电吸合</th>
+                        <th>充电状态</th>
+                        <th>电池</th>
+                        <th>导航模式</th>
+                        <th>激光任务状态</th>
+                        <th>激光当前点ID</th>
+                        <th>激光目标点ID</th>
+                        <th>激光坐标</th>
+                        <th>二维码ID</th>
+                        <th>二维码状态</th>
+                        <th>二维码坐标</th>
+                        <th>液压动作</th>
+                        <th>液压位置</th>
+                        <th>液压故障</th>
+                    </tr>
+                    <tr v-for="o in avgInfoList">
+                        <td :style="{background:o.impression}">
+                            {{o.avgName}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.electricity}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.chargeSwitch}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.chargeStatus}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.cell}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.navigationMode}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.laserTaskStatus}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.laserCurrentPointId}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.laserTargetId}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.laserCoordinate}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.qrCodeId}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.qrCodeStatus}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.qrCodeCoordinate}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.hydraulicPressureAction}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.hydraulicPressurePosition}}
+                        </td>
+                        <td :style="{background:o.impression}">
+                            {{o.hydraulicPressureError}}
+                        </td>
+<!--                        <td :style="{background:o.impression}">-->
+<!--                            <input type="button" value="修改"   @click="updateAvgConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;margin-right:30px" >-->
+<!--                            <input type="button" value="删除"   @click="deleteAvgConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;" >-->
+<!--                            <input type="button" value="停用"   @click="updateAvgConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;" >-->
+<!--                        </td>-->
+                    </tr>
+                </table>
+                </form>
+            </main>
+            <!--End 页面主要内容-->
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
+</div>
+<script type="module">
+    new Vue({
+        el:"#app",
+        data:{
+            avgInfoList:{}
+        },methods:{
+            getAvgInfoList(){
+                axios.get("/getAvgInfoList").then(result=>{
+                    this.avgInfoList=result.data;
+                })
+            },
+            deleteAvgInfoList(o){
+                let params ={
+                    oid:o.id
+                }
+                axios("/deleteAvgInfoList",{params:params}).then(alert("删除成功"), location.reload())
+                },
+            updateAvgInfoList(o){
+                // alert("id"+o.id);
+                let params ={
+                    id:o.id,
+                    avgName:o.avgName,
+                    naviIp:o.naviIp
+                }
+                axios("/updateAvgInfoList",{params:params}).then(alert("修改成功"),  window.reload())
+            },
+            // gotoAdd(){
+            //     // alert("跳转");
+            //     this.$router.push('/avgDbAdd');
+            // }
+            },
+        created(){
+            this.getAvgInfoList();
+        }
+    })
+</script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>AVG看板</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <style>
+        .imagetable{
+            border:2px solid black;
+            width: 80%;
+            height: 300px;
+            margin-left: 100px;
+        }
+        table.imagetable {
+            font-family: verdana,arial,sans-serif;
+            font-size:15px;
+            color:#333333;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table.imagetable th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+        }
+        table.imagetable td {
+            background:white ;
+            border-width: 1px;
+            padding: 8px;
+            border-color: #999999;
+        }
+        .imagetable2{
+            border:2px solid black;
+            width: 80%;
+            margin-left: 10px;
+        }
+        table.imagetable2 {
+            font-family: verdana,arial,sans-serif;
+            font-size:8px;
+            color:#333333;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table.imagetable2 td {
+            background:white;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+        table.imagetable2 th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+            <script src="test.js"></script>
+            <main class="lyear-layout-content">
+                <br>
+                <form >
+                    <div class="lyear-layout-left">
+                        <H1> 工厂列表</H1>
+<!--                        <ul class="nav nav-subnav">-->
+<!--                            <li> <a href="/equipmentFaultAlarm">一号工厂</a> </li>-->
+<!--                            <li> <a href="/hisAlarm">二号工厂</a> </li>-->
+<!--                            <li> <a href="/hisAlarm">三号工厂</a> </li>-->
+<!--                        </ul>-->
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <H3> <a href="/equipmentFaultAlarm">一号工厂</a></H3>
+                        <H3> <a href="/equipmentFaultAlarm">二号工厂</a></H3>
+                        <H3> <a href="/equipmentFaultAlarm">三号工厂</a></H3>
+                    </div>
+
+                    <div class="lyear-layout-right">
+                        <H1> AVG详情</H1>
+                        <br/>
+                        <br/>
+                        <H3> <a href="/equipmentFaultAlarm"> 地图1-1</a> &nbsp &nbsp &nbsp &nbsp<a href="/equipmentFaultAlarm"> 地图1-2</a> </H3>
+                    </div>
+<!--                    <table class="imagetable2">-->
+<!--                        <tr>-->
+<!--                            <td  align="center" colspan="10"><strong><h4>AVG看板</h4></strong></td>-->
+<!--                            &lt;!&ndash;                        <td align="center" colspan="2" />&ndash;&gt;-->
+<!--                            &lt;!&ndash;                        <td align="center" colspan="2" />&ndash;&gt;-->
+<!--                        </tr>-->
+<!--                        <tr></tr>-->
+<!--                        <tr>-->
+<!--                            <th>ID</th>-->
+<!--                            <th>AVG名称</th>-->
+<!--                            <th>AVG状态</th>-->
+<!--                            <th>地图名称</th>-->
+<!--                            <th>车间名称</th>-->
+<!--                            <th>工厂名称</th>-->
+<!--                            <th>操作</th>-->
+<!--                        </tr>-->
+<!--                        <tr v-for="o in avgConfig">-->
+<!--                            <td :style="{background:o.impression}">-->
+<!--                                {{o.id}}-->
+<!--                                &lt;!&ndash;                            <input class="form-control js-datepicker m-b-10" type="text" name="id" v-model="o.id"/>&ndash;&gt;-->
+<!--                            </td>-->
+<!--                            <td :style="{background:o.impression}">-->
+<!--                                {{o.avgName}}-->
+<!--                                &lt;!&ndash;                            <input class="form-control js-datepicker m-b-10" type="text" name="avgName" v-model="o.avgName" />&ndash;&gt;-->
+<!--                            </td>-->
+<!--                            <td :style="{background:o.impression}">-->
+<!--                                {{o.isActivated}}-->
+<!--                                &lt;!&ndash;                            <input class="form-control js-datepicker m-b-10" type="text" name="avgLong" v-model="o.avgLong" />&ndash;&gt;-->
+<!--                            </td>-->
+<!--                            <td :style="{background:o.impression}">-->
+<!--                                {{o.mapName}}-->
+<!--                                &lt;!&ndash;                            <input class="form-control js-datepicker m-b-10" type="text" name="avgWide" v-model="o.avgWide" />&ndash;&gt;-->
+<!--                            </td>-->
+<!--                            <td :style="{background:o.impression}">-->
+<!--                                {{o.workshopName}}-->
+<!--                                &lt;!&ndash;                            <input class="form-control js-datepicker m-b-10" type="text" name="naviIp" v-model="o.naviIp" />&ndash;&gt;-->
+<!--                            </td>-->
+<!--                            <td :style="{background:o.impression}">-->
+<!--                                {{o.factoryName}}-->
+<!--                                &lt;!&ndash;                            <input class="form-control js-datepicker m-b-10" type="text" name="varIp" v-model="o.varIp" />&ndash;&gt;-->
+<!--                            </td>-->
+<!--                            <td :style="{background:o.impression}">-->
+<!--                                <input type="button" value="调度策略设置"   @click="updateAvgConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;margin-right:30px" >-->
+<!--                                <input type="button" value="通讯协议设置"   @click="deleteAvgConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;margin-right:30px" >-->
+<!--                                <input type="button" value="AVG控制界面"   @click="updateAvgConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;" >-->
+<!--                            </td>-->
+<!--                        </tr>-->
+<!--                    </table>-->
+                </form>
+            </main>
+            <!--End 页面主要内容-->
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
+</div>
+<script type="module">
+    new Vue({
+        el:"#app",
+        data:{
+            avgConfig:{}
+        },methods:{
+            getAvgConfig(){
+                axios.get("/getAvgConfig").then(result=>{
+                    this.avgConfig=result.data;
+                })
+            },
+            deleteAvgConfig(o){
+                let params ={
+                    oid:o.id
+                }
+                axios("/deleteAvgConfig",{params:params}).then(alert("删除成功"), location.reload())
+            },
+            updateAvgConfig(o){
+                // alert("id"+o.id);
+                let params ={
+                    id:o.id,
+                    avgName:o.avgName,
+                    naviIp:o.naviIp
+                }
+                axios("/updateAvgConfig",{params:params}).then(alert("修改成功"),  window.reload())
+            },
+            gotoAdd(){
+                // alert("跳转");
+                this.$router.push('/avgConfigAdd');
+            }
+        },
+        created(){
+            this.getAvgConfig();
+        }
+    })
+</script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>
