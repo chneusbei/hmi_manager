@@ -171,6 +171,7 @@ public class HmiConstants {
         PLC_A_2("A-2", "压机二"),
         PLC_A_3("A-3", "压机三"),
         PLC_A_4("A-4", "压机四"),
+        PLC_A_5("A-5", "压机五"),
         PLC_A_WIRELESS_1("A-W1", "压机一无线"),
         PLC_A_WIRELESS_2("A-W2", "压机二无线"),
         PLC_A_WIRELESS_3("A-W3", "压机三无线"),

@@ -149,6 +149,7 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         TemperatureEntity temperatureEntityP2 = new TemperatureEntity(HmiConstants.PLC_NAME_GROUP.PLC_A_2.getCode(),batchId, false, lineType);
         TemperatureEntity temperatureEntityP3 = new TemperatureEntity(HmiConstants.PLC_NAME_GROUP.PLC_A_3.getCode(),batchId, false, lineType);
         TemperatureEntity temperatureEntityP4 = new TemperatureEntity(HmiConstants.PLC_NAME_GROUP.PLC_A_4.getCode(),batchId, false, lineType);
+        TemperatureEntity temperatureEntityP5 = new TemperatureEntity(HmiConstants.PLC_NAME_GROUP.PLC_A_5.getCode(),batchId, false, lineType);
         TemperatureEntity wirelessTemperatureEntityP1 = new TemperatureEntity(HmiConstants.PLC_NAME_GROUP.PLC_A_WIRELESS_1.getCode(),batchId, true, lineType);
         TemperatureEntity wirelessTemperatureEntityP2 = new TemperatureEntity(HmiConstants.PLC_NAME_GROUP.PLC_A_WIRELESS_2.getCode(),batchId, true, lineType);
         TemperatureEntity wirelessTemperatureEntityP3 = new TemperatureEntity(HmiConstants.PLC_NAME_GROUP.PLC_A_WIRELESS_3.getCode(),batchId, true, lineType);
@@ -159,6 +160,7 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         temperatureEntityList.add(temperatureEntityP2);
         temperatureEntityList.add(temperatureEntityP3);
         temperatureEntityList.add(temperatureEntityP4);
+        temperatureEntityList.add(temperatureEntityP5);
         temperatureEntityListWireless.add(wirelessTemperatureEntityP1);
         temperatureEntityListWireless.add(wirelessTemperatureEntityP2);
         temperatureEntityListWireless.add(wirelessTemperatureEntityP3);
@@ -346,6 +348,30 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
             } else if (PlcEntityEnum.temperature_data_A4MainAxisGearBearingTemperature8.getCode().equalsIgnoreCase(plcEntity.getName())) {
                 //A-4主轴齿轮轴承8温度
                 temperatureEntityP4.setMainAxisGearBearingTemperature8(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
+            }else if (PlcEntityEnum.temperature_data_A5MainAxisGearBearingTemperature1.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                //A-5主轴齿轮轴承1温度
+                temperatureEntityP5.setMainAxisGearBearingTemperature1(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
+            } else if (PlcEntityEnum.temperature_data_A5MainAxisGearBearingTemperature2.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                //A-5主轴齿轮轴承2温度
+                temperatureEntityP5.setMainAxisGearBearingTemperature2(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
+            } else if (PlcEntityEnum.temperature_data_A5MainAxisGearBearingTemperature3.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                //A-5主轴齿轮轴承3温度
+                temperatureEntityP5.setMainAxisGearBearingTemperature3(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
+            } else if (PlcEntityEnum.temperature_data_A5MainAxisGearBearingTemperature4.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                //A-5主轴齿轮轴承4温度
+                temperatureEntityP5.setMainAxisGearBearingTemperature4(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
+            } else if (PlcEntityEnum.temperature_data_A5MainAxisGearBearingTemperature5.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                //A-5主轴齿轮轴承5温度
+                temperatureEntityP5.setMainAxisGearBearingTemperature5(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
+            } else if (PlcEntityEnum.temperature_data_A5MainAxisGearBearingTemperature6.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                //A-5主轴齿轮轴承6温度
+                temperatureEntityP5.setMainAxisGearBearingTemperature6(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
+            } else if (PlcEntityEnum.temperature_data_A5MainAxisGearBearingTemperature7.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                //A-5主轴齿轮轴承7温度
+                temperatureEntityP5.setMainAxisGearBearingTemperature7(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
+            } else if (PlcEntityEnum.temperature_data_A5MainAxisGearBearingTemperature8.getCode().equalsIgnoreCase(plcEntity.getName())) {
+                //A-5主轴齿轮轴承8温度
+                temperatureEntityP5.setMainAxisGearBearingTemperature8(HmiUtils.getBigDecimalWithoutScale(plcEntity.getValueOjb()));
             }
         }
         //设置通用属性
@@ -353,6 +379,7 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         temperatureEntityP2.setTemperatureWarningValueA(wirelessTemperatureEntityP1.getTemperatureWarningValueA());
         temperatureEntityP3.setTemperatureWarningValueA(wirelessTemperatureEntityP1.getTemperatureWarningValueA());
         temperatureEntityP4.setTemperatureWarningValueA(wirelessTemperatureEntityP1.getTemperatureWarningValueA());
+        temperatureEntityP5.setTemperatureWarningValueA(wirelessTemperatureEntityP1.getTemperatureWarningValueA());
         wirelessTemperatureEntityP2.setTemperatureWarningValueA(wirelessTemperatureEntityP1.getTemperatureWarningValueA());
         wirelessTemperatureEntityP3.setTemperatureWarningValueA(wirelessTemperatureEntityP1.getTemperatureWarningValueA());
         wirelessTemperatureEntityP4.setTemperatureWarningValueA(wirelessTemperatureEntityP1.getTemperatureWarningValueA());
@@ -361,6 +388,7 @@ public class Plc4xTemperatureService extends Plc4xBaseService{
         TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_A_2.getCode(), temperatureEntityP2);
         TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_A_3.getCode(), temperatureEntityP3);
         TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_A_4.getCode(), temperatureEntityP4);
+        TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_A_5.getCode(), temperatureEntityP5);
         TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_A_WIRELESS_1.getCode(), wirelessTemperatureEntityP1);
         TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_A_WIRELESS_2.getCode(), wirelessTemperatureEntityP2);
         TemperatureMapNew.put(HmiConstants.PLC_NAME_GROUP.PLC_A_WIRELESS_3.getCode(), wirelessTemperatureEntityP3);

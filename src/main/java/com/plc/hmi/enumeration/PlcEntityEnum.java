@@ -227,7 +227,15 @@ public enum PlcEntityEnum {
     temperature_data_A4MainAxisGearBearingTemperature5("A-4MainAxisGearBearingTemperature5", "A-4主轴齿轮轴承5温度"),
     temperature_data_A4MainAxisGearBearingTemperature6("A-4MainAxisGearBearingTemperature6", "A-4主轴齿轮轴承6温度"),
     temperature_data_A4MainAxisGearBearingTemperature7("A-4MainAxisGearBearingTemperature7", "A-4主轴齿轮轴承7温度"),
-    temperature_data_A4MainAxisGearBearingTemperature8("A-4MainAxisGearBearingTemperature8", "A-4主轴齿轮轴承8温度");
+    temperature_data_A4MainAxisGearBearingTemperature8("A-4MainAxisGearBearingTemperature8", "A-4主轴齿轮轴承8温度"),
+    temperature_data_A5MainAxisGearBearingTemperature1("A-5MainAxisGearBearingTemperature1", "A-5主轴齿轮轴承1温度"),
+    temperature_data_A5MainAxisGearBearingTemperature2("A-5MainAxisGearBearingTemperature2", "A-5主轴齿轮轴承2温度"),
+    temperature_data_A5MainAxisGearBearingTemperature3("A-5MainAxisGearBearingTemperature3", "A-5主轴齿轮轴承3温度"),
+    temperature_data_A5MainAxisGearBearingTemperature4("A-5MainAxisGearBearingTemperature4", "A-5主轴齿轮轴承4温度"),
+    temperature_data_A5MainAxisGearBearingTemperature5("A-5MainAxisGearBearingTemperature5", "A-5主轴齿轮轴承5温度"),
+    temperature_data_A5MainAxisGearBearingTemperature6("A-5MainAxisGearBearingTemperature6", "A-5主轴齿轮轴承6温度"),
+    temperature_data_A5MainAxisGearBearingTemperature7("A-5MainAxisGearBearingTemperature7", "A-5主轴齿轮轴承7温度"),
+    temperature_data_A5MainAxisGearBearingTemperature8("A-5MainAxisGearBearingTemperature8", "A-5主轴齿轮轴承8温度");
     //温度信息
     /*
     temperature_data_lowSpeedAxisEccentricCopperSleeveTemperature1("lowSpeedAxisEccentricCopperSleeveTemperature1", "低速轴偏心铜套温度检测1"),
