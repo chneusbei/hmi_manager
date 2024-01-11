@@ -153,4 +153,8 @@ public class initialController {
     public String temperatureConfig(){
         return "temperatureConfig";
     }
+    @RequestMapping("/andonCell")
+    public String andonCell(){
+        return "andonCell";
+    }
 }

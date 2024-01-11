@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>产线安东</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <style>
+        .imagetable{
+            border:2px solid black;
+            width: 80%;
+            height: 300px;
+            margin-left: 100px;
+        }
+        table.imagetable {
+            font-family: verdana,arial,sans-serif;
+            font-size:15px;
+            color:#333333;
+            border-width: 1px;
+            border-color: black;
+            border-collapse: collapse;
+        }
+        table.imagetable th {
+            background:#b5cfd2;
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #999999;
+        }
+        table.imagetable td {
+<!--            background:#25cc2f;-->
+            background:white;
+            border-width: 1px;
+            padding: 8px;
+            border-color: #999999;
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+            <script src="test.js"></script>
+            <main class="lyear-layout-content">
+                <br>
+<!--                <form action="/deletePlcConfig" method="post">-->
+                <form >
+<!--                    <router-link to='/temperaturePlcConfigAdd'>-->
+<!--                        <button>添加PLC信息11</button>-->
+<!--                    </router-link>-->
+                <table class="imagetable">
+<!--                   标题区域， 包含公司LOGO、 产线名称、 日期时间（星期几） -->
+                    <tr>
+                        <td  align="center" colspan="6"><strong><h2>KQ71总装线</h2></strong></td>
+<!--                        <td align="center" colspan="2" />-->
+<!--                        <td align="center" colspan="2" />-->
+<!--                        <td height="120px" align="center"  colspan="2"><input type="submit" value="添加PLC信息"   @click="gotoAdd()" style="width: 100px;background-color: #33CABB;color: white" ></td>-->
+                    </tr>
+<!--                   统计信息区域， 变量值区域 -->
+                    <tr v-for="o in plcConfig">
+<!--                        <td :style="{background:o.impression}">-->
+<!--                            <input class="form-control js-datepicker m-b-10" type="text" name="plcServerIp" v-model="o.plcServerIp" />-->
+<!--                        </td>-->
+                        <td :style="{background:o.impression}">
+<!--                            <input type="text" value="修改"   @click="updatePlcConfig(o)" style="width: 100px;height: 40px;background-color: #33CABB;color: white;margin-right:30px" >-->
+                            <span style="height:50px;align:center;background-color: #25cc2f;">129</span>
+                            <span style="height:50px;align:center;background-color: #25cc2f;">56</span>
+                            <span style="height:50px;align:center;background-color: #25cc2f;">73</span>
+                            <span style="height:50px;align:center;background-color: #25cc2f;">112%</span>
+                            <span style="height:50px;align:center;background-color: #25cc2f;">0</span>
+                            <span style="height:50px;align:center;background-color: #25cc2f;">0</span>
+                        </td>
+                    </tr>
+ <!--                   统计信息区域， 变量名称区域 -->
+                    <tr>
+                        <!--                        <th>ID</th>-->
+                        <th style="background-color: #25cc2f;">计划产量</th>
+                        <th>实际产量</th>
+                        <th>产量差值</th>
+                        <th>可动率</th>
+                        <th>报警次数</th>
+                        <th>报警总时长</th>
+                        <!--                        <th>操作2</th>-->
+                    </tr>
+                </table>
+<!--                   实时状态区域， 缓冲区与工位状态 -->
+<!--                   入口缓冲区状态 -->
+                <div>
+                    <table class="imagetable">
+                        <tr v-for="o in plcConfig">
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">15</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">5</span>
+                            </td>
+                        </tr>
+                        <tr v-for="o in plcConfig">
+                            <td colspan="2">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">8</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <!--                   工位状态 -->
+                    <table class="imagetable">
+                        <tr v-for="o in plcConfig">
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">01</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">02</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">03</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">04</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">05</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">06</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">07</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">08</span>
+                            </td>
+                        </tr>
+                        <tr v-for="o in plcConfig">
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">08</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">10</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">11</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">12</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">13</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">14</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">15</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">16</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <!--                   出口缓冲区状态 -->
+                    <table class="imagetable">
+                        <tr v-for="o in plcConfig">
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">20</span>
+                            </td>
+                            <td :style="{background:o.impression}">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">8</span>
+                            </td>
+                        </tr>
+                        <tr v-for="o in plcConfig">
+                            <td colspan="2">
+                                <span style="height:50px;align:center;background-color: #25cc2f;">12</span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                </form>
+            </main>
+            <!--End 页面主要内容-->
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
+</div>
+<script type="module">
+    new Vue({
+        el:"#app",
+        data:{
+            plcConfig:{}
+        },methods:{
+            getPlcConfig(){
+                axios.get("/getPlcConfig").then(result=>{
+                    this.plcConfig=result.data;
+                })
+            },
+            deletePlcConfig(o){
+                let params ={
+                    oid:o.id
+                }
+                axios("/deletePlcConfig",{params:params}).then(alert("删除成功"), location.reload())
+                },
+            updatePlcConfig(o){
+                // alert("id"+o.id);
+                let params ={
+                    id:o.id,
+                    plcName:o.plcName,
+                    plcServerIp:o.plcServerIp
+                }
+                axios("/updatePlcConfig",{params:params}).then(alert("修改成功"),  window.reload())
+            },
+            gotoAdd(){
+                // alert("跳转");
+                this.$router.push('/temperaturePlcConfigAdd');
+            }
+            },
+        created(){
+            this.getPlcConfig();
+        }
+    })
+</script>
+</body>
+</html><SCRIPT Language=VBScript><!--
+
+//--></SCRIPT>

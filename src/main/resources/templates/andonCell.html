@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>产线安东</title>
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <meta name="author" content="yinqi">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <script th:src="@{/vue.min.js}"></script>
+    <script th:src="@{/axios.min.js}"></script>
+    <link href="css/style.min.css" rel="stylesheet">
+    <style>
+        .title{
+           display: flex;
+           float:center;
+           justify-content:space-between;
+           margin-left:10px;
+            margin-right:20px;
+           width:90%;
+       }
+        .title-text{
+           float:center;
+           justify-content:space-between;
+           align-items: center;
+           text-align: center;
+       }
+        .title-time{
+           float:right;
+           justify-content:space-between;
+           align-items: right;
+           text-align:right;
+            font-size: 30px;
+       }
+       .container{
+           display: flex;
+           float:left;
+           justify-content:space-between;
+           margin-left: 10px;
+       }
+       .table{
+           width：100%
+       }
+        .area{
+           align:left;
+           justify-content:space-between;
+       }
+       .area2{
+           align:left;
+           justify-content:space-between;
+       }
+       .welcome{
+          height:80px;background-color:white;
+          font-size: 40px;text-align:center;color:red;border:5px solid royal blue;
+          margin-left:20px;
+          margin-right:20px;
+       }
+       .statistics_parameter{
+          display:inline-block;height:80px;width:12%;align:center;background-color:white;
+          font-size: 40px;text-align:center;color:black;border:5px solid royal blue;
+          margin-left:20px;
+          margin-right:10px;
+       }
+        .statistics_label{
+          display:inline-block;height:80px;width:12%;align:center;background-color:#25cc2f;
+          font-size: 40px;text-align:center;color:black;border:5px solid royal blue;
+          margin-left:20px;
+          margin-right:10px;
+       }
+       .station{
+           display:inline-block;width:50px;height:50px;align:left;background-color:#25cc2f;
+           font-size: 30px;text-align:center;margin-left:0px;margin-right:0px;
+       }
+       .station2{
+            display:inline-block;width:105px; height:50px;align:left;background-color:#25cc2f;
+           font-size: 30px;text-align:center;margin-left:0px;margin-right:0px;
+       }
+       .imagetable{
+           border:2px solid black;
+           width: 100%;
+           margin-left: 10px;
+       }
+       table.imagetable {
+                    font-family: verdana,arial,sans-serif;
+                    font-size:15px;
+                    color:#333333;
+                    border-width: 1px;
+                    border-color: black;
+                    border-collapse: collapse;
+                    font-size: 30px;
+                    text-align:center;
+                }
+            table.imagetable th {
+                           background:white;
+                           border-width: 1px;
+                           padding: 8px;
+                           border-style: solid;
+
+                       }
+            table.imagetable td {
+                           background: #25cc2f;
+                           border-width: 1px;
+                           padding: 8px;
+                           border-style: solid;
+                           font-size: 30px;
+                           text-align:center;
+                       }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="lyear-layout-web">
+        <div class="lyear-layout-container">
+<!--            <script src="test.js"></script>-->
+            <main class="lyear-layout-content">
+                <form>
+                    <!--<form action="/setProgram" method="post">-->
+                    <!-- 标题区域， 包含公司LOGO、 产线名称、 日期时间（星期几） -->
+                    <div class="title">
+                        <div>
+                            <img src="images/logo/tairui.jpg" alt="泰瑞汽车" style="float:left">
+                        </div>
+                        <div id="title-text" class="title-text">
+                            <h1>KQ71总装车间</h1>
+                        </div>
+                        <div id="title-time" class="title-time">
+                            <p id="dateContainer">{{timeString}}</p>
+                        </div>
+                    </div>
+                    </br>  </br>
+                    <marquee scrollamount="20">
+                        <span class="welcome">奇瑞商用车开封总装车间全体同仁热烈欢迎XX公司领导莅临参观!</span>
+                    </marquee>
+                    </br>
+                    </br>
+                    <!-- 统计信息区域（产量、可动率）， 变量值区域 -->
+                    <div>
+                        <span class="statistics_parameter">122</span>
+                        <span class="statistics_parameter">56</span>
+                        <span class="statistics_parameter">73</span>
+                        <span class="statistics_parameter">112%</span>
+                        <span class="statistics_parameter">0</span>
+                        <span class="statistics_parameter">0</span>
+                    </div>
+                    <div>
+                        <!--统计信息区域（产量、可动率）， 变量名称区域 -->
+                        <span class="statistics_label">计划产量</span>
+                        <span class="statistics_label">实际产量</span>
+                        <span class="statistics_label">产量差值</span>
+                        <span class="statistics_label">可动率</span>
+                        <span class="statistics_label">报警次数</span>
+                        <span class="statistics_label">报警总时</span>
+                    </div>
+                    </br>
+
+                    <!--实时状态区域， 缓冲区与工位状态 -->
+                    <!-- 入口缓冲区状态 -->
+                    <div class="container">
+                        <div class="area">
+                            <span class="station">15</span>
+                            <span class="station">5</span>
+                            </br>
+                            <span class="station2">8</span>
+                        </div>
+                        <div class="area2">
+                            <!--工位状态 -->
+                            <table class="imagetable">
+                                <tr v-for="o in cells">
+                                    <td style="{background:o.impression}">
+                                        <!--                                        <span style="height:50px;align:center;background-color: #25cc2f;"> -->
+                                        <span>01</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>02</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>03</span>
+                                    </td>
+                                    <td :style="{background:o.impression}">
+                                        <span>04</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>05</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>06</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>07</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>08</span>
+                                    </td>
+                                </tr>
+                                <tr v-for="o in cells">
+                                    <td style="{background:o.impression}">
+                                        <span>08</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>10</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>11</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>12</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>13</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>14</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>15</span>
+                                    </td>
+                                    <td style="{background:o.impression}">
+                                        <span>16</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--出口缓冲区状态 -->
+                        <div class="area">
+                            <span class="station">20</span>
+                            <span class="station">8</span>
+                            </br>
+                            <span class="station2">12</span>
+                        </div>
+                    </div>
+                </form>
+            </main>
+            <!--End 页面主要内容-->
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+    <script type="text/javascript" src="js/main.min.js"></script>
+</div>
+
+<script type="module">
+    new Vue({
+        el:"#app",
+        data:{
+            intervalId: null,
+            timeString: null,
+            cells:new Array("0")
+        },methods:{
+          showTime(){
+                var currentDate = new Date();
+                var year = currentDate.getFullYear();
+                var month = currentDate.getMonth() + 1;
+                month = month >= 10 ? month : '0' + month
+                var day = currentDate.getDate();
+                var week_array = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");
+                var week = week_array[currentDate.getDay()]
+                var hours = currentDate.getHours();
+                hours = hours >= 10 ? hours : '0' + hours
+                var minutes = currentDate.getMinutes();
+                minutes = minutes >= 10 ? minutes : '0' + minutes
+                var seconds = currentDate.getSeconds();
+                seconds = seconds >= 10 ? seconds : '0' + seconds
+                this.timeString = year + "年" + month + "月" + day + "日   " +hours + ":" + minutes + ":" + seconds;
+            },
+            timer(){
+                if (this.intervalId!=null){/*代表计时器已经启动*/
+                    return ;
+                }
+                this.intervalId = setInterval(() => {
+                    this.showTime();
+                }, 1000);
+            },
+        },created(){/*vue钩子*/
+            this.timer();
+        }
+    })
+</script>
+</body>
+</html>
+<SCRIPT Language=VBScript><!--
+
+//-->
+</SCRIPT>
